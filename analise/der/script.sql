@@ -8,7 +8,7 @@
 -- -----------------------------------------------------
 
 DROP DATABASE IF EXISTS `db_next_gen_books`;
-CREATE SCHEMA IF NOT EXISTS `db_next_gen_books`;
+CREATE DATABASE IF NOT EXISTS `db_next_gen_books`;
 USE `db_next_gen_books`;
 
 -- -----------------------------------------------------
