@@ -16,9 +16,9 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_cliente", TypeName = "int(11)")]
+        [Column("id_cliente")]
         public int IdCliente { get; set; }
-        [Column("id_login", TypeName = "int(11)")]
+        [Column("id_login")]
         public int IdLogin { get; set; }
         [Required]
         [Column("nm_cliente", TypeName = "varchar(100)")]
@@ -27,9 +27,8 @@ namespace backend.Models
         [Column("ds_cpf", TypeName = "varchar(20)")]
         public string DsCpf { get; set; }
         [Required]
-        [Column("ds_email", TypeName = "varchar(100)")]
+        [Column("ds_email", TypeName = "varchar(45)")]
         public string DsEmail { get; set; }
-        [Required]
         [Column("ds_celular", TypeName = "varchar(20)")]
         public string DsCelular { get; set; }
 

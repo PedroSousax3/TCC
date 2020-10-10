@@ -14,7 +14,7 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_autor", TypeName = "int(11)")]
+        [Column("id_autor")]
         public int IdAutor { get; set; }
         [Required]
         [Column("nm_autor", TypeName = "varchar(100)")]
@@ -23,6 +23,8 @@ namespace backend.Models
         public DateTime DtNascimento { get; set; }
         [Column("ds_autor", TypeName = "varchar(500)")]
         public string DsAutor { get; set; }
+        [Column("ds_foto", TypeName = "varchar(150)")]
+        public string DsFoto { get; set; }
 
         [InverseProperty("IdAutorNavigation")]
         public virtual ICollection<TbLivroAutor> TbLivroAutor { get; set; }

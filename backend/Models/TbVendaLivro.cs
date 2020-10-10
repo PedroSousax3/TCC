@@ -8,12 +8,17 @@ namespace backend.Models
     [Table("tb_venda_livro")]
     public partial class TbVendaLivro
     {
+        public TbVendaLivro()
+        {
+            TbAvaliacaoLivro = new HashSet<TbAvaliacaoLivro>();
+        }
+
         [Key]
-        [Column("id_venda_livro", TypeName = "int(11)")]
+        [Column("id_venda_livro")]
         public int IdVendaLivro { get; set; }
-        [Column("id_venda", TypeName = "int(11)")]
+        [Column("id_venda")]
         public int IdVenda { get; set; }
-        [Column("id_livro", TypeName = "int(11)")]
+        [Column("id_livro")]
         public int IdLivro { get; set; }
         [Column("vl_venda_livro", TypeName = "decimal(10,0)")]
         public decimal VlVendaLivro { get; set; }
@@ -24,5 +29,7 @@ namespace backend.Models
         [ForeignKey(nameof(IdVenda))]
         [InverseProperty(nameof(TbVenda.TbVendaLivro))]
         public virtual TbVenda IdVendaNavigation { get; set; }
+        [InverseProperty("IdVendaLivroNavigation")]
+        public virtual ICollection<TbAvaliacaoLivro> TbAvaliacaoLivro { get; set; }
     }
 }

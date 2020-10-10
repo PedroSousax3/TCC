@@ -10,21 +10,21 @@ namespace backend.Models
     {
         public TbLivro()
         {
-            TbAvaliacaoLivro = new HashSet<TbAvaliacaoLivro>();
+            TbEstoque = new HashSet<TbEstoque>();
             TbLivroAutor = new HashSet<TbLivroAutor>();
             TbLivroGenero = new HashSet<TbLivroGenero>();
             TbVendaLivro = new HashSet<TbVendaLivro>();
         }
 
         [Key]
-        [Column("id_livro", TypeName = "int(11)")]
+        [Column("id_livro")]
         public int IdLivro { get; set; }
-        [Column("id_editora", TypeName = "int(11)")]
+        [Column("id_editora")]
         public int IdEditora { get; set; }
         [Required]
         [Column("nm_livro", TypeName = "varchar(100)")]
         public string NmLivro { get; set; }
-        [Column("id_autor", TypeName = "int(11)")]
+        [Column("id_autor")]
         public int IdAutor { get; set; }
         [Required]
         [Column("ds_genero", TypeName = "varchar(60)")]
@@ -39,7 +39,7 @@ namespace backend.Models
         public string TpAcabamento { get; set; }
         [Column("vl_preco", TypeName = "decimal(10,0)")]
         public decimal VlPreco { get; set; }
-        [Column("nr_paginas", TypeName = "int(11)")]
+        [Column("nr_paginas")]
         public int? NrPaginas { get; set; }
         [Column("ds_isbn_10", TypeName = "varchar(20)")]
         public string DsIsbn10 { get; set; }
@@ -54,7 +54,7 @@ namespace backend.Models
         [InverseProperty(nameof(TbEditora.TbLivro))]
         public virtual TbEditora IdEditoraNavigation { get; set; }
         [InverseProperty("IdLivroNavigation")]
-        public virtual ICollection<TbAvaliacaoLivro> TbAvaliacaoLivro { get; set; }
+        public virtual ICollection<TbEstoque> TbEstoque { get; set; }
         [InverseProperty("IdLivroNavigation")]
         public virtual ICollection<TbLivroAutor> TbLivroAutor { get; set; }
         [InverseProperty("IdLivroNavigation")]

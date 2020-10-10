@@ -14,7 +14,7 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_editora", TypeName = "int(11)")]
+        [Column("id_editora")]
         public int IdEditora { get; set; }
         [Required]
         [Column("nm_editora", TypeName = "varchar(100)")]
@@ -22,6 +22,10 @@ namespace backend.Models
         [Required]
         [Column("dt_fundacao", TypeName = "varchar(45)")]
         public string DtFundacao { get; set; }
+        [Column("ds_logo", TypeName = "varchar(150)")]
+        public string DsLogo { get; set; }
+        [Column("ds_sigla", TypeName = "varchar(10)")]
+        public string DsSigla { get; set; }
 
         [InverseProperty("IdEditoraNavigation")]
         public virtual ICollection<TbLivro> TbLivro { get; set; }

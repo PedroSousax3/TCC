@@ -15,7 +15,7 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_login", TypeName = "int(11)")]
+        [Column("id_login")]
         public int IdLogin { get; set; }
         [Required]
         [Column("nm_usuario", TypeName = "varchar(50)")]
@@ -25,6 +25,10 @@ namespace backend.Models
         public string DsSenha { get; set; }
         [Column("dt_ultimo_login", TypeName = "datetime")]
         public DateTime DtUltimoLogin { get; set; }
+        [Column("ds_codigo_verificacao", TypeName = "varchar(15)")]
+        public string DsCodigoVerificacao { get; set; }
+        [Column("dt_codigo_verificacao", TypeName = "datetime")]
+        public DateTime? DtCodigoVerificacao { get; set; }
 
         [InverseProperty("IdLoginNavigation")]
         public virtual ICollection<TbCliente> TbCliente { get; set; }

@@ -14,9 +14,9 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_venda", TypeName = "int(11)")]
+        [Column("id_venda")]
         public int IdVenda { get; set; }
-        [Column("id_cliente", TypeName = "int(11)")]
+        [Column("id_cliente")]
         public int IdCliente { get; set; }
         [Required]
         [Column("ds_nf", TypeName = "varchar(150)")]
