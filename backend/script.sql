@@ -8,7 +8,7 @@
 -- -----------------------------------------------------
 
 DROP DATABASE IF EXISTS `db_next_gen_books`;
-CREATE SCHEMA IF NOT EXISTS `db_next_gen_books`;
+CREATE DATABASE IF NOT EXISTS `db_next_gen_books`;
 USE `db_next_gen_books`;
 
 -- -----------------------------------------------------
@@ -58,8 +58,10 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_cliente` (
 	`ds_cpf` VARCHAR(20) NOT NULL,
 	`ds_email` VARCHAR(45) NOT NULL,
 	`ds_celular` VARCHAR(20) NULL,
+	`ds_foto` VARCHAR(150) NULL,
 	PRIMARY KEY (`id_cliente`),
 	INDEX `id_login_idx` (`id_login` ASC) VISIBLE,
+	UNIQUE INDEX `ds_foto_UNIQUE` (`ds_foto` ASC) VISIBLE,
 	FOREIGN KEY (`id_login`) REFERENCES `db_next_gen_books`.`tb_login` (`id_login`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 
@@ -100,23 +102,24 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_editora` (
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro` (
-	`id_livro` INT NOT NULL AUTO_INCREMENT,
-	`id_editora` INT NOT NULL,
-	`nm_livro` VARCHAR(100) NOT NULL,
-	`id_autor` INT NOT NULL,
-	`ds_genero` VARCHAR(60) NOT NULL,
-	`dt_lancamento` DATETIME NOT NULL,
-	`ds_idioma` VARCHAR(50) NOT NULL,
-	`tp_acabamento` VARCHAR(50) NOT NULL,
-	`vl_preco` DECIMAL NOT NULL,
-	`nr_paginas` INT NULL,
-	`ds_isbn_10` VARCHAR(20) NULL,
-	`ds_isbn_13` VARCHAR(20) NULL,
-	`nr_edicao` VARCHAR(45) NULL,
-	`tb_livrocol` VARCHAR(45) NULL,
-	PRIMARY KEY (`id_livro`),
-	INDEX `id_editora_idx` (`id_editora` ASC) VISIBLE,
-	FOREIGN KEY (`id_editora`) REFERENCES `db_next_gen_books`.`tb_editora` (`id_editora`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `id_livro` INT NOT NULL AUTO_INCREMENT,
+  `id_editora` INT NOT NULL,
+  `nm_livro` VARCHAR(100) NOT NULL,
+  `id_autor` INT NOT NULL,
+  `ds_genero` VARCHAR(60) NOT NULL,
+  `dt_lancamento` DATETIME NOT NULL,
+  `ds_capa` VARCHAR(150) NULL,
+  `ds_idioma` VARCHAR(50) NOT NULL,
+  `tp_acabamento` VARCHAR(50) NOT NULL,
+  `vl_preco` DECIMAL NOT NULL,
+  `nr_paginas` INT NULL,
+  `ds_isbn_10` VARCHAR(20) NOT NULL,
+  `ds_isbn_13` VARCHAR(20) NOT NULL,
+  `nr_edicao` INT NOT NULL,
+  PRIMARY KEY (`id_livro`),
+  INDEX `id_editora_idx` (`id_editora` ASC) VISIBLE,
+  UNIQUE INDEX `ds_capa_UNIQUE` (`ds_capa` ASC) VISIBLE,
+  CONSTRAINT `id_editora` FOREIGN KEY (`id_editora`) REFERENCES `db_next_gen_books`.`tb_editora` (`id_editora`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
