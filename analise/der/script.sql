@@ -177,6 +177,22 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro_genero` (
 ) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table `db_next_gen_books`.`tb_favoritos`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_favoritos` (
+	`id_favoritos` INT NOT NULL AUTO_INCREMENT,
+	`id_livro` INT NOT NULL,
+	`id_cliente` INT NOT NULL,
+	`dt_inclusao` DATETIME NOT NULL,
+	PRIMARY KEY (`id_favoritos`),
+	UNIQUE INDEX `id_livro_UNIQUE` (`id_livro` ASC) VISIBLE,
+	INDEX `id_cliente_idx` (`id_cliente` ASC) VISIBLE,
+	FOREIGN KEY (`id_cliente`) REFERENCES `db_next_gen_books`.`tb_cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+	FOREIGN KEY (`id_livro`) REFERENCES `db_next_gen_books`.`tb_livro` (`id_livro`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 -- Table `db_next_gen_books`.`tb_venda`
 -- -----------------------------------------------------
 
