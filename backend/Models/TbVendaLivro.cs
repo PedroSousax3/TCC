@@ -14,11 +14,11 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_venda_livro")]
+        [Column("id_venda_livro", TypeName = "int(11)")]
         public int IdVendaLivro { get; set; }
-        [Column("id_venda")]
+        [Column("id_venda", TypeName = "int(11)")]
         public int IdVenda { get; set; }
-        [Column("id_livro")]
+        [Column("id_livro", TypeName = "int(11)")]
         public int IdLivro { get; set; }
         [Column("vl_venda_livro", TypeName = "decimal(10,0)")]
         public decimal VlVendaLivro { get; set; }

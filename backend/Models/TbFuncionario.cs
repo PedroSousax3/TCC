@@ -9,10 +9,12 @@ namespace backend.Models
     public partial class TbFuncionario
     {
         [Key]
-        [Column("id_funcionario")]
+        [Column("id_funcionario", TypeName = "int(11)")]
         public int IdFuncionario { get; set; }
-        [Column("id_login")]
+        [Column("id_login", TypeName = "int(11)")]
         public int IdLogin { get; set; }
+        [Column("id_endereco", TypeName = "int(11)")]
+        public int IdEndereco { get; set; }
         [Required]
         [Column("nm_funcionario", TypeName = "varchar(100)")]
         public string NmFuncionario { get; set; }
@@ -32,17 +34,10 @@ namespace backend.Models
         [Required]
         [Column("ds_cargo", TypeName = "varchar(50)")]
         public string DsCargo { get; set; }
-        [Required]
-        [Column("ds_endereco", TypeName = "varchar(70)")]
-        public string DsEndereco { get; set; }
-        [Column("nr_residencia")]
-        public int NrResidencia { get; set; }
-        [Required]
-        [Column("ds_cep", TypeName = "varchar(10)")]
-        public string DsCep { get; set; }
-        [Column("ds_complemento", TypeName = "varchar(50)")]
-        public string DsComplemento { get; set; }
 
+        [ForeignKey(nameof(IdEndereco))]
+        [InverseProperty(nameof(TbEndereco.TbFuncionario))]
+        public virtual TbEndereco IdEnderecoNavigation { get; set; }
         [ForeignKey(nameof(IdLogin))]
         [InverseProperty(nameof(TbLogin.TbFuncionario))]
         public virtual TbLogin IdLoginNavigation { get; set; }
