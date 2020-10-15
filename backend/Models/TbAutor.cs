@@ -14,7 +14,7 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_autor")]
+        [Column("id_autor", TypeName = "int(11)")]
         public int IdAutor { get; set; }
         [Required]
         [Column("nm_autor", TypeName = "varchar(100)")]

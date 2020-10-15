@@ -14,9 +14,9 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_endereco")]
+        [Column("id_endereco", TypeName = "int(11)")]
         public int IdEndereco { get; set; }
-        [Column("id_cliente")]
+        [Column("id_cliente", TypeName = "int(11)")]
         public int IdCliente { get; set; }
         [Required]
         [Column("nm_endereco", TypeName = "varchar(50)")]
@@ -27,7 +27,7 @@ namespace backend.Models
         [Required]
         [Column("ds_cep", TypeName = "varchar(10)")]
         public string DsCep { get; set; }
-        [Column("nr_endereco")]
+        [Column("nr_endereco", TypeName = "int(11)")]
         public int NrEndereco { get; set; }
         [Required]
         [Column("ds_complemento", TypeName = "varchar(35)")]

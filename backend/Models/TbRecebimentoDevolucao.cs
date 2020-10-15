@@ -9,9 +9,9 @@ namespace backend.Models
     public partial class TbRecebimentoDevolucao
     {
         [Key]
-        [Column("id_livro_devolvido")]
+        [Column("id_livro_devolvido", TypeName = "int(11)")]
         public int IdLivroDevolvido { get; set; }
-        [Column("id_devolucao")]
+        [Column("id_devolucao", TypeName = "int(11)")]
         public int IdDevolucao { get; set; }
         [Column("dt_recebimento_livro", TypeName = "datetime")]
         public DateTime DtRecebimentoLivro { get; set; }
