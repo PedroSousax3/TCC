@@ -1,0 +1,15 @@
+
+
+
+.barra-inicial, .barra-final{
+    background-color: aquamarine;
+}
+
+.meio{
+    background-color: pink;
+    text-align: center;
+}
+
+.Meio-Login, .Meio-Cadastro{
+    background-color: purple;
+}
