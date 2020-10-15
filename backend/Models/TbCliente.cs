@@ -12,13 +12,14 @@ namespace backend.Models
         {
             TbAvaliacaoLivro = new HashSet<TbAvaliacaoLivro>();
             TbEndereco = new HashSet<TbEndereco>();
+            TbFavoritos = new HashSet<TbFavoritos>();
             TbVenda = new HashSet<TbVenda>();
         }
 
         [Key]
-        [Column("id_cliente")]
+        [Column("id_cliente", TypeName = "int(11)")]
         public int IdCliente { get; set; }
-        [Column("id_login")]
+        [Column("id_login", TypeName = "int(11)")]
         public int IdLogin { get; set; }
         [Required]
         [Column("nm_cliente", TypeName = "varchar(100)")]
@@ -31,6 +32,10 @@ namespace backend.Models
         public string DsEmail { get; set; }
         [Column("ds_celular", TypeName = "varchar(20)")]
         public string DsCelular { get; set; }
+        [Column("ds_foto", TypeName = "varchar(150)")]
+        public string DsFoto { get; set; }
+        [Column("tp_genero", TypeName = "varchar(50)")]
+        public string TpGenero { get; set; }
 
         [ForeignKey(nameof(IdLogin))]
         [InverseProperty(nameof(TbLogin.TbCliente))]
@@ -39,6 +44,8 @@ namespace backend.Models
         public virtual ICollection<TbAvaliacaoLivro> TbAvaliacaoLivro { get; set; }
         [InverseProperty("IdClienteNavigation")]
         public virtual ICollection<TbEndereco> TbEndereco { get; set; }
+        [InverseProperty("IdClienteNavigation")]
+        public virtual ICollection<TbFavoritos> TbFavoritos { get; set; }
         [InverseProperty("IdClienteNavigation")]
         public virtual ICollection<TbVenda> TbVenda { get; set; }
     }

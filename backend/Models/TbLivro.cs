@@ -17,18 +17,16 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_livro")]
+        [Column("id_livro", TypeName = "int(11)")]
         public int IdLivro { get; set; }
-        [Column("id_editora")]
+        [Column("id_editora", TypeName = "int(11)")]
         public int IdEditora { get; set; }
         [Required]
         [Column("nm_livro", TypeName = "varchar(100)")]
         public string NmLivro { get; set; }
-        [Column("id_autor")]
-        public int IdAutor { get; set; }
         [Required]
-        [Column("ds_genero", TypeName = "varchar(60)")]
-        public string DsGenero { get; set; }
+        [Column("ds_livro", TypeName = "varchar(800)")]
+        public string DsLivro { get; set; }
         [Column("dt_lancamento", TypeName = "datetime")]
         public DateTime DtLancamento { get; set; }
         [Required]
@@ -37,22 +35,31 @@ namespace backend.Models
         [Required]
         [Column("tp_acabamento", TypeName = "varchar(50)")]
         public string TpAcabamento { get; set; }
-        [Column("vl_preco", TypeName = "decimal(10,0)")]
-        public decimal VlPreco { get; set; }
-        [Column("nr_paginas")]
+        [Required]
+        [Column("ds_capa", TypeName = "varchar(150)")]
+        public string DsCapa { get; set; }
+        [Column("nr_paginas", TypeName = "int(11)")]
         public int? NrPaginas { get; set; }
+        [Required]
         [Column("ds_isbn_10", TypeName = "varchar(20)")]
         public string DsIsbn10 { get; set; }
+        [Required]
         [Column("ds_isbn_13", TypeName = "varchar(20)")]
         public string DsIsbn13 { get; set; }
-        [Column("nr_edicao", TypeName = "varchar(45)")]
-        public string NrEdicao { get; set; }
-        [Column("tb_livrocol", TypeName = "varchar(45)")]
-        public string TbLivrocol { get; set; }
+        [Column("nr_edicao", TypeName = "int(11)")]
+        public int NrEdicao { get; set; }
+        [Column("vl_preco_compra", TypeName = "decimal(10,5)")]
+        public decimal VlPrecoCompra { get; set; }
+        [Column("vl_preco_venda", TypeName = "decimal(10,5)")]
+        public decimal VlPrecoVenda { get; set; }
 
         [ForeignKey(nameof(IdEditora))]
         [InverseProperty(nameof(TbEditora.TbLivro))]
         public virtual TbEditora IdEditoraNavigation { get; set; }
+        [InverseProperty("IdLivroNavigation")]
+        public virtual TbFavoritos TbFavoritos { get; set; }
+        [InverseProperty("IdLivroNavigation")]
+        public virtual TbMedidas TbMedidas { get; set; }
         [InverseProperty("IdLivroNavigation")]
         public virtual ICollection<TbEstoque> TbEstoque { get; set; }
         [InverseProperty("IdLivroNavigation")]
