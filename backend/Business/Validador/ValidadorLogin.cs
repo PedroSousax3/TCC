@@ -1,5 +1,6 @@
 using System.Linq;
 using System;
+
 namespace backend.Business.Validador
 {
     public class ValidadorLogin
