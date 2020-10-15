@@ -9,9 +9,9 @@ namespace backend.Models
     public partial class TbVendaStatus
     {
         [Key]
-        [Column("id_venda_status", TypeName = "int(11)")]
+        [Column("id_venda_status")]
         public int IdVendaStatus { get; set; }
-        [Column("id_venda", TypeName = "int(11)")]
+        [Column("id_venda")]
         public int IdVenda { get; set; }
         [Required]
         [Column("nm_status", TypeName = "varchar(70)")]

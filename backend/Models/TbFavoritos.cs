@@ -9,11 +9,11 @@ namespace backend.Models
     public partial class TbFavoritos
     {
         [Key]
-        [Column("id_favoritos", TypeName = "int(11)")]
+        [Column("id_favoritos")]
         public int IdFavoritos { get; set; }
-        [Column("id_livro", TypeName = "int(11)")]
+        [Column("id_livro")]
         public int IdLivro { get; set; }
-        [Column("id_cliente", TypeName = "int(11)")]
+        [Column("id_cliente")]
         public int IdCliente { get; set; }
         [Column("dt_inclusao", TypeName = "datetime")]
         public DateTime DtInclusao { get; set; }

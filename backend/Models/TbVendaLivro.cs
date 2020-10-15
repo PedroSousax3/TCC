@@ -11,16 +11,19 @@ namespace backend.Models
         public TbVendaLivro()
         {
             TbAvaliacaoLivro = new HashSet<TbAvaliacaoLivro>();
+            TbDevolucao = new HashSet<TbDevolucao>();
         }
 
         [Key]
-        [Column("id_venda_livro", TypeName = "int(11)")]
+        [Column("id_venda_livro")]
         public int IdVendaLivro { get; set; }
-        [Column("id_venda", TypeName = "int(11)")]
+        [Column("id_venda")]
         public int IdVenda { get; set; }
-        [Column("id_livro", TypeName = "int(11)")]
+        [Column("id_livro")]
         public int IdLivro { get; set; }
-        [Column("vl_venda_livro", TypeName = "decimal(10,0)")]
+        [Column("nr_livros")]
+        public int NrLivros { get; set; }
+        [Column("vl_venda_livro", TypeName = "decimal(10,5)")]
         public decimal VlVendaLivro { get; set; }
 
         [ForeignKey(nameof(IdLivro))]
@@ -31,5 +34,7 @@ namespace backend.Models
         public virtual TbVenda IdVendaNavigation { get; set; }
         [InverseProperty("IdVendaLivroNavigation")]
         public virtual ICollection<TbAvaliacaoLivro> TbAvaliacaoLivro { get; set; }
+        [InverseProperty("IdVendaLivroNavigation")]
+        public virtual ICollection<TbDevolucao> TbDevolucao { get; set; }
     }
 }

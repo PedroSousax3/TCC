@@ -10,14 +10,13 @@ namespace backend.Models
     {
         public TbEndereco()
         {
-            TbFuncionario = new HashSet<TbFuncionario>();
             TbVenda = new HashSet<TbVenda>();
         }
 
         [Key]
-        [Column("id_endereco", TypeName = "int(11)")]
+        [Column("id_endereco")]
         public int IdEndereco { get; set; }
-        [Column("id_cliente", TypeName = "int(11)")]
+        [Column("id_cliente")]
         public int IdCliente { get; set; }
         [Required]
         [Column("nm_endereco", TypeName = "varchar(50)")]
@@ -28,7 +27,7 @@ namespace backend.Models
         [Required]
         [Column("ds_cep", TypeName = "varchar(10)")]
         public string DsCep { get; set; }
-        [Column("nr_endereco", TypeName = "int(11)")]
+        [Column("nr_endereco")]
         public int NrEndereco { get; set; }
         [Required]
         [Column("ds_complemento", TypeName = "varchar(35)")]
@@ -39,8 +38,6 @@ namespace backend.Models
         [ForeignKey(nameof(IdCliente))]
         [InverseProperty(nameof(TbCliente.TbEndereco))]
         public virtual TbCliente IdClienteNavigation { get; set; }
-        [InverseProperty("IdEnderecoNavigation")]
-        public virtual ICollection<TbFuncionario> TbFuncionario { get; set; }
         [InverseProperty("IdEnderecoNavigation")]
         public virtual ICollection<TbVenda> TbVenda { get; set; }
     }

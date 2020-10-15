@@ -14,13 +14,15 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_genero", TypeName = "int(11)")]
+        [Column("id_genero")]
         public int IdGenero { get; set; }
         [Required]
         [Column("nm_genero", TypeName = "varchar(70)")]
         public string NmGenero { get; set; }
         [Column("ds_genero", TypeName = "varchar(200)")]
         public string DsGenero { get; set; }
+        [Column("ds_foto", TypeName = "varchar(150)")]
+        public string DsFoto { get; set; }
 
         [InverseProperty("IdGeneroNavigation")]
         public virtual ICollection<TbLivroGenero> TbLivroGenero { get; set; }

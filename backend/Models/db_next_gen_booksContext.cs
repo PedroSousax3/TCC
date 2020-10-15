@@ -18,6 +18,7 @@ namespace backend.Models
         public virtual DbSet<TbAutor> TbAutor { get; set; }
         public virtual DbSet<TbAvaliacaoLivro> TbAvaliacaoLivro { get; set; }
         public virtual DbSet<TbCliente> TbCliente { get; set; }
+        public virtual DbSet<TbDevolucao> TbDevolucao { get; set; }
         public virtual DbSet<TbEditora> TbEditora { get; set; }
         public virtual DbSet<TbEndereco> TbEndereco { get; set; }
         public virtual DbSet<TbEstoque> TbEstoque { get; set; }
@@ -28,6 +29,8 @@ namespace backend.Models
         public virtual DbSet<TbLivroAutor> TbLivroAutor { get; set; }
         public virtual DbSet<TbLivroGenero> TbLivroGenero { get; set; }
         public virtual DbSet<TbLogin> TbLogin { get; set; }
+        public virtual DbSet<TbMedidas> TbMedidas { get; set; }
+        public virtual DbSet<TbRecebimentoDevolucao> TbRecebimentoDevolucao { get; set; }
         public virtual DbSet<TbVenda> TbVenda { get; set; }
         public virtual DbSet<TbVendaLivro> TbVendaLivro { get; set; }
         public virtual DbSet<TbVendaStatus> TbVendaStatus { get; set; }
@@ -36,8 +39,8 @@ namespace backend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
-                optionsBuilder.UseMySql("server=localhost;user id=root;password=1234;database=db_next_gen_books", x => x.ServerVersion("5.7.31-mysql"));
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseMySql("server=localhost;user id=root;password=45923617xx;database=db_next_gen_books", x => x.ServerVersion("8.0.20-mysql"));
             }
         }
 
@@ -49,16 +52,16 @@ namespace backend.Models
                     .HasName("PRIMARY");
 
                 entity.Property(e => e.DsAutor)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsFoto)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.NmAutor)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
             });
 
             modelBuilder.Entity<TbAvaliacaoLivro>(entity =>
@@ -73,8 +76,8 @@ namespace backend.Models
                     .HasName("id_venda_livro_idx");
 
                 entity.Property(e => e.DsComentario)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasOne(d => d.IdClienteNavigation)
                     .WithMany(p => p.TbAvaliacaoLivro)
@@ -102,28 +105,28 @@ namespace backend.Models
                     .HasName("id_login_idx");
 
                 entity.Property(e => e.DsCelular)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsCpf)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsEmail)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsFoto)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.NmCliente)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.TpGenero)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasOne(d => d.IdLoginNavigation)
                     .WithMany(p => p.TbCliente)
@@ -132,26 +135,53 @@ namespace backend.Models
                     .HasConstraintName("tb_cliente_ibfk_1");
             });
 
+            modelBuilder.Entity<TbDevolucao>(entity =>
+            {
+                entity.HasKey(e => e.IdDevolucao)
+                    .HasName("PRIMARY");
+
+                entity.HasIndex(e => e.IdVendaLivro)
+                    .HasName("id_venda_livro");
+
+                entity.Property(e => e.DsCodigoRastreio)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.DsComprovante)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.DsMotivo)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.HasOne(d => d.IdVendaLivroNavigation)
+                    .WithMany(p => p.TbDevolucao)
+                    .HasForeignKey(d => d.IdVendaLivro)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("id_venda_livro");
+            });
+
             modelBuilder.Entity<TbEditora>(entity =>
             {
                 entity.HasKey(e => e.IdEditora)
                     .HasName("PRIMARY");
 
                 entity.Property(e => e.DsLogo)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsSigla)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DtFundacao)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.NmEditora)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
             });
 
             modelBuilder.Entity<TbEndereco>(entity =>
@@ -163,24 +193,24 @@ namespace backend.Models
                     .HasName("id_cliente_idx");
 
                 entity.Property(e => e.DsCelular)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsCep)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsComplemento)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsEndereco)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.NmEndereco)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasOne(d => d.IdClienteNavigation)
                     .WithMany(p => p.TbEndereco)
@@ -234,37 +264,40 @@ namespace backend.Models
                 entity.HasKey(e => e.IdFuncionario)
                     .HasName("PRIMARY");
 
-                entity.HasIndex(e => e.IdEndereco)
-                    .HasName("id_endereco_idx");
-
                 entity.HasIndex(e => e.IdLogin)
                     .HasName("fk_tb_funcionario_tb_login1_idx");
 
                 entity.Property(e => e.DsCargo)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsCarteiraTrabalho)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.DsCep)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.DsComplemento)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsCpf)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsEmail)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.DsEndereco)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.NmFuncionario)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
-
-                entity.HasOne(d => d.IdEnderecoNavigation)
-                    .WithMany(p => p.TbFuncionario)
-                    .HasForeignKey(d => d.IdEndereco)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("tb_funcionario_ibfk_2");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasOne(d => d.IdLoginNavigation)
                     .WithMany(p => p.TbFuncionario)
@@ -278,13 +311,17 @@ namespace backend.Models
                 entity.HasKey(e => e.IdGenero)
                     .HasName("PRIMARY");
 
+                entity.Property(e => e.DsFoto)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
                 entity.Property(e => e.DsGenero)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.NmGenero)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
             });
 
             modelBuilder.Entity<TbLivro>(entity =>
@@ -300,32 +337,32 @@ namespace backend.Models
                     .HasName("id_editora_idx");
 
                 entity.Property(e => e.DsCapa)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsIdioma)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsIsbn10)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsIsbn13)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsLivro)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.NmLivro)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.TpAcabamento)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasOne(d => d.IdEditoraNavigation)
                     .WithMany(p => p.TbLivro)
@@ -388,16 +425,51 @@ namespace backend.Models
                     .HasName("PRIMARY");
 
                 entity.Property(e => e.DsCodigoVerificacao)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsSenha)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.NmUsuario)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+            });
+
+            modelBuilder.Entity<TbMedidas>(entity =>
+            {
+                entity.HasKey(e => e.IdMedidas)
+                    .HasName("PRIMARY");
+
+                entity.HasIndex(e => e.IdLivro)
+                    .HasName("id_livro_UNIQUE")
+                    .IsUnique();
+
+                entity.HasOne(d => d.IdLivroNavigation)
+                    .WithOne(p => p.TbMedidas)
+                    .HasForeignKey<TbMedidas>(d => d.IdLivro)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("tb_medidas_ibfk_1");
+            });
+
+            modelBuilder.Entity<TbRecebimentoDevolucao>(entity =>
+            {
+                entity.HasKey(e => e.IdLivroDevolvido)
+                    .HasName("PRIMARY");
+
+                entity.HasIndex(e => e.IdDevolucao)
+                    .HasName("id_devolucao_idx");
+
+                entity.Property(e => e.DsStatusLivro)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.HasOne(d => d.IdDevolucaoNavigation)
+                    .WithMany(p => p.TbRecebimentoDevolucao)
+                    .HasForeignKey(d => d.IdDevolucao)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("tb_recebimento_devolucao_ibfk_1");
             });
 
             modelBuilder.Entity<TbVenda>(entity =>
@@ -412,20 +484,20 @@ namespace backend.Models
                     .HasName("id_endereco_idx");
 
                 entity.Property(e => e.DsCodigoRastreio)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.DsNf)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
-                entity.Property(e => e.DsStatus)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                entity.Property(e => e.DsStatusPagamento)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.TpPagamento)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasOne(d => d.IdClienteNavigation)
                     .WithMany(p => p.TbVenda)
@@ -473,12 +545,12 @@ namespace backend.Models
                     .HasName("id_venda_idx");
 
                 entity.Property(e => e.DsVendaStatuscol)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.NmStatus)
-                    .HasCharSet("latin1")
-                    .HasCollation("latin1_swedish_ci");
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasOne(d => d.IdVendaNavigation)
                     .WithMany(p => p.TbVendaStatus)
