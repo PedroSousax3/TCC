@@ -37,7 +37,7 @@ namespace backend.Models
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder.UseMySql("server=localhost;user id=root;password=45923617xx;database=db_next_gen_books", x => x.ServerVersion("5.7.31-mysql"));
+                optionsBuilder.UseMySql("server=localhost;user id=root;password=1234;database=db_next_gen_books", x => x.ServerVersion("5.7.31-mysql"));
             }
         }
 
