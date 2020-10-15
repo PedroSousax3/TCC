@@ -8,9 +8,14 @@ namespace backend.Business
       public Models.TbLogin ValidarCadastrarLogin(Models.TbLogin tabela)
       {
           bool jaexiste = database.VerificarSeOUsuarioExiste(tabela.NmUsuario);
-          validador.ValidarLogin(jaexiste,tabela.DsSenha);
+          validador.ValidarCadastroLogin(jaexiste,tabela.DsSenha);
           database.CadastrarLogin(tabela);
           return tabela;
       }  
+      public Models.TbLogin ValidarConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
+      {
+         validador.ValidarConfirmarLogin(request.Usuario,request.Senha);
+         return database.confirmarLogin(request);
+      }
     }
 }

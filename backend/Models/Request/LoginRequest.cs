@@ -8,6 +8,10 @@ namespace backend.Models.Request
             public string Senha { get; set; }
             public string ConfirmarSenha { get; set; }
         }
-            
+        public class ConfirmarLogin
+        {
+            public string Usuario { get; set; }
+            public string Senha { get; set; }
+        }
     }
 }

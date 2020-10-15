@@ -5,13 +5,18 @@ namespace backend.Business.Validador
     public class ValidadorLogin
     {
         Business.Validador.ValidadorPadrao validador = new Business.Validador.ValidadorPadrao();
-        public void ValidarLogin(bool jaexiste,string senha)
+        public void ValidarCadastroLogin(bool jaexiste,string senha)
         {
            validador.ValidarTexto(senha,"Senha");
            ValidarUsuario(jaexiste);
            ValidarQuantideDeCaracteresSenha(senha);
            ValidarCaracteresEspeciaisSenha(senha);
            ValidarNumerosSenha(senha);
+        }
+        public void ValidarConfirmarLogin(string usuario,string senha)
+        {
+           validador.ValidarTexto(usuario,"Usuario");
+           validador.ValidarTexto(senha,"Senha");
         }
         private void ValidarUsuario(bool jaexiste)
         {

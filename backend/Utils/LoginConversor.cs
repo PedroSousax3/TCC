@@ -3,7 +3,8 @@ namespace backend.Utils
 {
     public class LoginConversor
     {
-        public Models.TbLogin ParaTabela(Models.Request.LoginRequest.CadastrarLogin request)
+        Database.LoginDatabase database = new Database.LoginDatabase();
+        public Models.TbLogin ParaTabelaCadastrarLogin(Models.Request.LoginRequest.CadastrarLogin request)
         {
             Models.TbLogin tabela = new Models.TbLogin();
             tabela.NmUsuario = request.Usuario;
@@ -16,13 +17,23 @@ namespace backend.Utils
            return tabela;
         }
 
-        public Models.Response.LoginResponse.CadastrarLogin ParaResponse(Models.TbLogin tabela)
+        public Models.Response.LoginResponse.CadastrarLogin ParaResponseCadastrarLogin(Models.TbLogin tabela)
         {
              Models.Response.LoginResponse.CadastrarLogin response = new Models.Response.LoginResponse.CadastrarLogin();
              response.Id = tabela.IdLogin;
              response.Usuario = tabela.NmUsuario;
 
              return response;
+        }
+
+        public Models.Response.LoginResponse.ConfirmarLogin ParaResponseConfirmarLogin(Models.TbLogin tabela)
+        {
+            Models.Response.LoginResponse.ConfirmarLogin response = new Models.Response.LoginResponse.ConfirmarLogin();
+            response.IdLogin = tabela.IdLogin;
+            response.NomeUsuario = tabela.NmUsuario;
+            database.VerificarPerfil(tabela.IdLogin,response);
+            
+            return response;
         }
     }
 }
