@@ -14,6 +14,14 @@ namespace backend.Database
             context.SaveChanges();
             return tabela;
         }
+
+        public Models.TbCliente CadastrarClienteParcial(Models.TbCliente tabela)
+        {
+            context.TbCliente.Add(tabela);
+            context.SaveChanges();
+            return tabela;
+        }
+
         public bool VerificarSeOUsuarioExiste(string usuario)
         {
             Models.TbLogin tabela = context.TbLogin.FirstOrDefault(x => x.NmUsuario == usuario);
@@ -26,6 +34,7 @@ namespace backend.Database
                }
                return resposta;
         }
+
         
         public Models.Response.LoginResponse.ConfirmarLogin VerificarPerfil(int idlogin,Models.Response.LoginResponse.ConfirmarLogin response)
         {
@@ -53,6 +62,7 @@ namespace backend.Database
             }
             return response;
         }
+
         public Models.TbLogin confirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
         {
            Models.TbLogin tabela = context.TbLogin.FirstOrDefault(x => x.NmUsuario == request.Usuario
@@ -66,5 +76,6 @@ namespace backend.Database
             
             return tabela;
         }
+        
     }
 }

@@ -11,10 +11,14 @@ namespace backend.Utils
             tabela.TpGenero = request.Genero;
             return tabela;
         }
-        public Models.Response.ClienteResponse ParaResponse(Models.TbCliente tabela)
+        public Models.Response.ClienteResponse ParaResponseCadastrarCliente(Models.TbCliente tabela)
         {
             Models.Response.ClienteResponse response = new Models.Response.ClienteResponse();
             response.Nome = tabela.NmCliente;
+            response.IdCliente = tabela.IdCliente;
+            response.Genero = tabela.TpGenero;
+            response.Cpf = tabela.DsCpf;
+            response.Celular = tabela.DsCelular;
             return response;
         }
     }

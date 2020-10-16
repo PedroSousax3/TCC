@@ -11,11 +11,17 @@ namespace backend.Business
           validador.ValidarCadastroLogin(jaexiste,tabela.DsSenha);
           database.CadastrarLogin(tabela);
           return tabela;
-      }  
+      } 
+
       public Models.TbLogin ValidarConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
       {
          validador.ValidarConfirmarLogin(request.Usuario,request.Senha);
          return database.confirmarLogin(request);
+      }
+      
+      public Models.TbCliente cadastrarCliente(Models.TbCliente tabela)
+      {
+         return database.CadastrarClienteParcial(tabela);
       }
     }
 }

@@ -19,8 +19,9 @@ namespace backend.Controllers
             try
             {
                 Models.TbLogin tabela = conversor.ParaTabelaCadastrarLogin(request);
-                tabela = conversor.ParaTabelaClienteLogin(tabela,request);
-                business.ValidarCadastrarLogin(tabela);
+                tabela = business.ValidarCadastrarLogin(tabela);
+                Models.TbCliente cliente = conversor.ParaTabelaClienteCadastroParcial(tabela.IdLogin,request);
+                business.cadastrarCliente(cliente);
                 return conversor.ParaResponseCadastrarLogin(tabela);
             }
             catch (System.Exception ex)
@@ -28,6 +29,7 @@ namespace backend.Controllers
                 return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
             }
         }
+        
         [HttpPost]
         public ActionResult<Models.Response.LoginResponse.ConfirmarLogin> ConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
         {

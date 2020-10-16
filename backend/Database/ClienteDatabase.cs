@@ -12,6 +12,7 @@ namespace backend.Database
              tabela.IdLogin = idLogin;
              tabela.NmCliente = tabelaCliente.NmCliente;
              tabela.DsCelular = tabelaCliente.DsCelular;
+             tabela.DsCpf = tabelaCliente.DsCpf;
              tabela.DsFoto = tabelaCliente.DsFoto;
              tabela.TpGenero = tabelaCliente.TpGenero;
              context.SaveChanges();

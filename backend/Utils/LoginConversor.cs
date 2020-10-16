@@ -5,6 +5,7 @@ namespace backend.Utils
     public class LoginConversor
     {
         Database.LoginDatabase database = new Database.LoginDatabase();
+        Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
         public Models.TbLogin ParaTabelaCadastrarLogin(Models.Request.LoginRequest.CadastrarLogin request)
         {
             Models.TbLogin tabela = new Models.TbLogin();
@@ -17,14 +18,16 @@ namespace backend.Utils
             
            return tabela;
         }
-        public Models.TbLogin ParaTabelaClienteLogin(Models.TbLogin tabela,Models.Request.LoginRequest.CadastrarLogin request)
+        public Models.TbCliente ParaTabelaClienteCadastroParcial(int idLogin,Models.Request.LoginRequest.CadastrarLogin request)
         {
+            Models.TbCliente tabela = new Models.TbCliente();
             if(request.Email == request.ConfirmarEmail)
             {
-                tabela.TbCliente.Add(new Models.TbCliente(){
-                    DsEmail = request.Email,
-                    IdLogin = tabela.IdLogin
-                }); 
+              
+                    tabela.DsEmail = request.Email;
+                    tabela.IdLogin = idLogin;
+                    tabela.NmCliente = "ainda não definido";
+                    tabela.DsCpf = "ainda não definido";
             }
             else
               throw new ArgumentException("Confirmação de Email incorreta");
@@ -34,7 +37,7 @@ namespace backend.Utils
         public Models.Response.LoginResponse.ConfirmarLogin ParaResponseCadastrarLogin(Models.TbLogin tabela)
         {
              Models.Response.LoginResponse.ConfirmarLogin response = new Models.Response.LoginResponse.ConfirmarLogin();
-             response.Id = tabela.IdLogin;
+             response.IdLogin = tabela.IdLogin;
              response.NomeUsuario = tabela.NmUsuario;
              database.VerificarPerfil(tabela.IdLogin,response);
 
