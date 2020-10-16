@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './style.css';
@@ -7,9 +7,10 @@ import './style.css';
 import nextGenBookAPI from "../../Service/NextGenBookApi";
 const api = new nextGenBookAPI();
 
-export default function Logar() {
+export default function Logar(props) {
     //login
     const navegacao = useHistory();
+    const [infos, setInfos] = useState(props.location.state);
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -42,25 +43,33 @@ export default function Logar() {
         <div>
           <form>
           <div>            
-
-<div className="Caixa-Login">
-          <div className="Titulo">ENTRAR</div>
-    <div className="form-group row" style={{minWidth:"500px"}}>
-        <label className="col-sm-2 col-form-label"> Username ou Email: </label>
-      <div className="col-sm-8">
-        <input id="Username" type="text" value={username} onChange={(m) => setUsername(m.target.value)} className="form-control"/>
+<div className="Menu"></div>
+<div className="meio">
+  <div className="Caixa-Login">
+          <div className="Titulo"><h4>ENTRAR</h4></div>
+    <div className="Dados" >
+      <div className="username">
+        <label > Username ou Email: </label>
+          
+            <input id="Username" type="text" value={username} onChange={(m) => setUsername(m.target.value)} className="form-control"/>
+      </div>    
+    
+      <div className="senha">
+          <label > Senha: </label>
+          <input id="Senha" type="password" value={senha} onChange={(m) => setSenha(m.target.value)} className="aaa"/>
       </div>
-    </div>
-      <div className="form-group row" style={{minWidth:"500px"}}>
-          <label className="col-sm-2 col-form-label"> Senha: </label>
-        <div className="col-sm-8">
-          <input id="Senha" type="password" value={senha} onChange={(m) => setSenha(m.target.value)} className="form-control"/>
-        </div>
     </div>
     <div>
       <button type="submit" className="btn btn-primary" onClick={logar}>Logar</button>
     </div>
+    <div className="Links">
+        <h5><Link to={{pathname:"/EsqueciSenha", state: infos}}>Esqueci a Senha</Link></h5>
+        <h5><Link to={{pathname:"Cadastro", state: infos}}>Se cadastrar</Link></h5>
+    </div>   
+  </div>
 </div>
+<div className="Menu"></div>
+
 </div>
           </form>
           <ToastContainer />
