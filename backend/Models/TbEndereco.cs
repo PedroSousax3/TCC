@@ -27,6 +27,12 @@ namespace backend.Models
         [Required]
         [Column("ds_cep", TypeName = "varchar(10)")]
         public string DsCep { get; set; }
+        [Required]
+        [Column("nm_cidade", TypeName = "varchar(50)")]
+        public string NmCidade { get; set; }
+        [Required]
+        [Column("nm_estado", TypeName = "varchar(45)")]
+        public string NmEstado { get; set; }
         [Column("nr_endereco")]
         public int NrEndereco { get; set; }
         [Required]

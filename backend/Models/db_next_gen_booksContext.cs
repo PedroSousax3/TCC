@@ -17,6 +17,7 @@ namespace backend.Models
 
         public virtual DbSet<TbAutor> TbAutor { get; set; }
         public virtual DbSet<TbAvaliacaoLivro> TbAvaliacaoLivro { get; set; }
+        public virtual DbSet<TbCarrinho> TbCarrinho { get; set; }
         public virtual DbSet<TbCliente> TbCliente { get; set; }
         public virtual DbSet<TbDevolucao> TbDevolucao { get; set; }
         public virtual DbSet<TbEditora> TbEditora { get; set; }
@@ -92,6 +93,34 @@ namespace backend.Models
                     .HasConstraintName("tb_avaliacao_livro_ibfk_2");
             });
 
+            modelBuilder.Entity<TbCarrinho>(entity =>
+            {
+                entity.HasKey(e => e.IdCarrinho)
+                    .HasName("PRIMARY");
+
+                entity.HasIndex(e => e.IdCliente)
+                    .HasName("id_cliente_idx");
+
+                entity.HasIndex(e => e.IdLivro)
+                    .HasName("id_livro_idx");
+
+                entity.Property(e => e.NrLivro)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.HasOne(d => d.IdClienteNavigation)
+                    .WithMany(p => p.TbCarrinho)
+                    .HasForeignKey(d => d.IdCliente)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("tb_carrinho_ibfk_1");
+
+                entity.HasOne(d => d.IdLivroNavigation)
+                    .WithMany(p => p.TbCarrinho)
+                    .HasForeignKey(d => d.IdLivro)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("tb_carrinho_ibfk_2");
+            });
+
             modelBuilder.Entity<TbCliente>(entity =>
             {
                 entity.HasKey(e => e.IdCliente)
@@ -159,7 +188,7 @@ namespace backend.Models
                     .WithMany(p => p.TbDevolucao)
                     .HasForeignKey(d => d.IdVendaLivro)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("id_venda_livro");
+                    .HasConstraintName("tb_devolucao_ibfk_1");
             });
 
             modelBuilder.Entity<TbEditora>(entity =>
@@ -208,7 +237,15 @@ namespace backend.Models
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_0900_ai_ci");
 
+                entity.Property(e => e.NmCidade)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
                 entity.Property(e => e.NmEndereco)
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.NmEstado)
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_0900_ai_ci");
 

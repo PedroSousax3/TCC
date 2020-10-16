@@ -10,6 +10,7 @@ namespace backend.Models
     {
         public TbLivro()
         {
+            TbCarrinho = new HashSet<TbCarrinho>();
             TbEstoque = new HashSet<TbEstoque>();
             TbLivroAutor = new HashSet<TbLivroAutor>();
             TbLivroGenero = new HashSet<TbLivroGenero>();
@@ -60,6 +61,8 @@ namespace backend.Models
         public virtual TbFavoritos TbFavoritos { get; set; }
         [InverseProperty("IdLivroNavigation")]
         public virtual TbMedidas TbMedidas { get; set; }
+        [InverseProperty("IdLivroNavigation")]
+        public virtual ICollection<TbCarrinho> TbCarrinho { get; set; }
         [InverseProperty("IdLivroNavigation")]
         public virtual ICollection<TbEstoque> TbEstoque { get; set; }
         [InverseProperty("IdLivroNavigation")]
