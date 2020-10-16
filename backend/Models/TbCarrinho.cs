@@ -5,24 +5,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace backend.Models
 {
-    [Table("tb_favoritos")]
-    public partial class TbFavoritos
+    [Table("tb_carrinho")]
+    public partial class TbCarrinho
     {
         [Key]
-        [Column("id_favoritos")]
-        public int IdFavoritos { get; set; }
+        [Column("id_carrinho")]
+        public int IdCarrinho { get; set; }
         [Column("id_livro")]
         public int IdLivro { get; set; }
         [Column("id_cliente")]
         public int IdCliente { get; set; }
-        [Column("dt_inclusao", TypeName = "datetime")]
-        public DateTime DtInclusao { get; set; }
+        [Column("dt_atualizacao", TypeName = "datetime")]
+        public DateTime DtAtualizacao { get; set; }
+        [Required]
+        [Column("nr_livro", TypeName = "varchar(45)")]
+        public string NrLivro { get; set; }
 
         [ForeignKey(nameof(IdCliente))]
-        [InverseProperty(nameof(TbCliente.TbFavoritos))]
+        [InverseProperty(nameof(TbCliente.TbCarrinho))]
         public virtual TbCliente IdClienteNavigation { get; set; }
         [ForeignKey(nameof(IdLivro))]
-        [InverseProperty(nameof(TbLivro.TbFavoritos))]
+        [InverseProperty(nameof(TbLivro.TbCarrinho))]
         public virtual TbLivro IdLivroNavigation { get; set; }
     }
 }

@@ -11,15 +11,16 @@ namespace backend.Models
         public TbCliente()
         {
             TbAvaliacaoLivro = new HashSet<TbAvaliacaoLivro>();
+            TbCarrinho = new HashSet<TbCarrinho>();
             TbEndereco = new HashSet<TbEndereco>();
             TbFavoritos = new HashSet<TbFavoritos>();
             TbVenda = new HashSet<TbVenda>();
         }
 
         [Key]
-        [Column("id_cliente", TypeName = "int(11)")]
+        [Column("id_cliente")]
         public int IdCliente { get; set; }
-        [Column("id_login", TypeName = "int(11)")]
+        [Column("id_login")]
         public int IdLogin { get; set; }
         [Required]
         [Column("nm_cliente", TypeName = "varchar(100)")]
@@ -42,6 +43,8 @@ namespace backend.Models
         public virtual TbLogin IdLoginNavigation { get; set; }
         [InverseProperty("IdClienteNavigation")]
         public virtual ICollection<TbAvaliacaoLivro> TbAvaliacaoLivro { get; set; }
+        [InverseProperty("IdClienteNavigation")]
+        public virtual ICollection<TbCarrinho> TbCarrinho { get; set; }
         [InverseProperty("IdClienteNavigation")]
         public virtual ICollection<TbEndereco> TbEndereco { get; set; }
         [InverseProperty("IdClienteNavigation")]

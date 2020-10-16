@@ -10,6 +10,7 @@ namespace backend.Models
     {
         public TbLivro()
         {
+            TbCarrinho = new HashSet<TbCarrinho>();
             TbEstoque = new HashSet<TbEstoque>();
             TbLivroAutor = new HashSet<TbLivroAutor>();
             TbLivroGenero = new HashSet<TbLivroGenero>();
@@ -17,9 +18,9 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_livro", TypeName = "int(11)")]
+        [Column("id_livro")]
         public int IdLivro { get; set; }
-        [Column("id_editora", TypeName = "int(11)")]
+        [Column("id_editora")]
         public int IdEditora { get; set; }
         [Required]
         [Column("nm_livro", TypeName = "varchar(100)")]
@@ -38,7 +39,7 @@ namespace backend.Models
         [Required]
         [Column("ds_capa", TypeName = "varchar(150)")]
         public string DsCapa { get; set; }
-        [Column("nr_paginas", TypeName = "int(11)")]
+        [Column("nr_paginas")]
         public int? NrPaginas { get; set; }
         [Required]
         [Column("ds_isbn_10", TypeName = "varchar(20)")]
@@ -46,7 +47,7 @@ namespace backend.Models
         [Required]
         [Column("ds_isbn_13", TypeName = "varchar(20)")]
         public string DsIsbn13 { get; set; }
-        [Column("nr_edicao", TypeName = "int(11)")]
+        [Column("nr_edicao")]
         public int NrEdicao { get; set; }
         [Column("vl_preco_compra", TypeName = "decimal(10,5)")]
         public decimal VlPrecoCompra { get; set; }
@@ -60,6 +61,8 @@ namespace backend.Models
         public virtual TbFavoritos TbFavoritos { get; set; }
         [InverseProperty("IdLivroNavigation")]
         public virtual TbMedidas TbMedidas { get; set; }
+        [InverseProperty("IdLivroNavigation")]
+        public virtual ICollection<TbCarrinho> TbCarrinho { get; set; }
         [InverseProperty("IdLivroNavigation")]
         public virtual ICollection<TbEstoque> TbEstoque { get; set; }
         [InverseProperty("IdLivroNavigation")]

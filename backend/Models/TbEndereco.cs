@@ -14,9 +14,9 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_endereco", TypeName = "int(11)")]
+        [Column("id_endereco")]
         public int IdEndereco { get; set; }
-        [Column("id_cliente", TypeName = "int(11)")]
+        [Column("id_cliente")]
         public int IdCliente { get; set; }
         [Required]
         [Column("nm_endereco", TypeName = "varchar(50)")]
@@ -27,7 +27,13 @@ namespace backend.Models
         [Required]
         [Column("ds_cep", TypeName = "varchar(10)")]
         public string DsCep { get; set; }
-        [Column("nr_endereco", TypeName = "int(11)")]
+        [Required]
+        [Column("nm_cidade", TypeName = "varchar(50)")]
+        public string NmCidade { get; set; }
+        [Required]
+        [Column("nm_estado", TypeName = "varchar(45)")]
+        public string NmEstado { get; set; }
+        [Column("nr_endereco")]
         public int NrEndereco { get; set; }
         [Required]
         [Column("ds_complemento", TypeName = "varchar(35)")]

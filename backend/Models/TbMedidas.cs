@@ -9,9 +9,9 @@ namespace backend.Models
     public partial class TbMedidas
     {
         [Key]
-        [Column("id_medidas", TypeName = "int(11)")]
+        [Column("id_medidas")]
         public int IdMedidas { get; set; }
-        [Column("id_livro", TypeName = "int(11)")]
+        [Column("id_livro")]
         public int IdLivro { get; set; }
         [Column("vl_altura", TypeName = "decimal(10,5)")]
         public decimal VlAltura { get; set; }
