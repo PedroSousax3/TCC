@@ -20,13 +20,13 @@ export default function Logar(props) {
         e.preventDefault();
         try {
           const m = {
-            username: username,
-            email: email,
+            username:username,
+            email:email,
             senha:senha
           };
 
           const a = await api.login(m);
-          
+          console.log(e);
           if(a.data.clienteFuncionario == "Cliente"){
             navegacao.push("/Home",a.data);
           }else{
@@ -43,7 +43,7 @@ export default function Logar(props) {
         <div>
           <form>
           <div>            
-<div className="Menu"></div>
+<div className="Menu" ><img src="Logo.jpeg" className="Logo"/></div>
 <div className="meio">
   <div className="Caixa-Login">
           <div className="Titulo"><h4>ENTRAR</h4></div>

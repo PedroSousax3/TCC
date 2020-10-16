@@ -1,5 +1,10 @@
 
-
+.Logo{
+    width: 13vw;
+    height: 7vh;
+    margin-top: 10px;
+    margin-left: 10px;
+}
 .Titulo{
     
     margin-bottom: 10px;
@@ -27,9 +32,7 @@
     flex-direction: column;
     
 }
-.teste{
-    background-color: rgb(255, 0, 43)153, 136, 139);
-}
+
 
 .senha{
     margin: 10px;

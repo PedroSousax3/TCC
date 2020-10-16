@@ -5,7 +5,9 @@ const api = axios.create({
 
 export default class NextGenBookApi{
     async login(req){
+        console.log(req);
         const resp = await api.post('/Login/Login', req);
+        
         return resp;
     }
 
