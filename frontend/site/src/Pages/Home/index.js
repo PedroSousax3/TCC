@@ -10,14 +10,7 @@ export default function Home(props){
             <div className="text-center">
                 <h1>Olá {props.location.state.nome}</h1>
             </div>
-            <div className="text-center mb-5">
-               <h3><Link to={{pathname:"/Consultar", state: infos}}>Consultar meus agendamentos</Link></h3>
-
-               <h3><Link to={{pathname:"/Cadastrar", state: infos}}>Agendar</Link></h3>
-            </div>
-            <div className="mt-5">
-                <Link to={{pathname:"/"}}>Sair</Link>
-            </div>
+            
         </div> 
     )
 }

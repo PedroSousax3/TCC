@@ -8,4 +8,9 @@ export default class NextGenBookApi{
         const resp = await api.post('/Login/Login', req);
         return resp;
     }
+
+    async cadastrar(req){
+    const resp = await api.post('/Cadastrar', req);
+    return resp.data;
+  }
 }
