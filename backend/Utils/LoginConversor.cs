@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 namespace backend.Utils
 {
     public class LoginConversor
@@ -16,12 +17,26 @@ namespace backend.Utils
             
            return tabela;
         }
-
-        public Models.Response.LoginResponse.CadastrarLogin ParaResponseCadastrarLogin(Models.TbLogin tabela)
+        public Models.TbLogin ParaTabelaClienteLogin(Models.TbLogin tabela,Models.Request.LoginRequest.CadastrarLogin request)
         {
-             Models.Response.LoginResponse.CadastrarLogin response = new Models.Response.LoginResponse.CadastrarLogin();
+            if(request.Email == request.ConfirmarEmail)
+            {
+                tabela.TbCliente.Add(new Models.TbCliente(){
+                    DsEmail = request.Email,
+                    IdLogin = tabela.IdLogin
+                }); 
+            }
+            else
+              throw new ArgumentException("Confirmação de Email incorreta");
+              
+              return tabela;
+        }
+        public Models.Response.LoginResponse.ConfirmarLogin ParaResponseCadastrarLogin(Models.TbLogin tabela)
+        {
+             Models.Response.LoginResponse.ConfirmarLogin response = new Models.Response.LoginResponse.ConfirmarLogin();
              response.Id = tabela.IdLogin;
-             response.Usuario = tabela.NmUsuario;
+             response.NomeUsuario = tabela.NmUsuario;
+             database.VerificarPerfil(tabela.IdLogin,response);
 
              return response;
         }
