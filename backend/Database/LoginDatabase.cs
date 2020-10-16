@@ -17,10 +17,14 @@ namespace backend.Database
         public bool VerificarSeOUsuarioExiste(string usuario)
         {
             Models.TbLogin tabela = context.TbLogin.FirstOrDefault(x => x.NmUsuario == usuario);
+            Models.TbCliente tabelaCliente = context.TbCliente.FirstOrDefault(x => x.DsEmail == usuario);
+            bool resposta = true;
             if(tabela == null)
-               return false;
-            else
-               return true;
+               {
+                   if(tabelaCliente == null)
+                     resposta = false;
+               }
+               return resposta;
         }
         
         public Models.Response.LoginResponse.ConfirmarLogin VerificarPerfil(int idlogin,Models.Response.LoginResponse.ConfirmarLogin response)
