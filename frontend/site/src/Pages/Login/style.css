@@ -5,24 +5,13 @@
     margin-top: 10px;
     margin-left: 10px;
 }
-.Titulo{
-    
-    margin-bottom: 10px;
-}
-.meio{
-    width: 99,6vw;
-    height: 77vh;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    text-align: center;
-    flex-direction: column;
-    display: flex;
-}
+
+
 .Menu{
     background-color:  rgb(152, 240, 187);
     height: 10vh;
 }
+
 .Caixa-Login{
     background-color: rgb(152, 240, 187);
     width: 30vw;
@@ -30,18 +19,5 @@
     display: flex;
     text-align: center;
     flex-direction: column;
-    
-}
-
-
-.senha{
-    margin: 10px;
-}
-
-.Dados{
-    justify-content: center;
-    align-items: center;
-    text-align: center ;
-    
 }
 
