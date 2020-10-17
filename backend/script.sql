@@ -12,7 +12,7 @@
 -- DATABASE db_next_gen_books
 -- -----------------------------------------------------
 DROP DATABASE IF EXISTS `db_next_gen_books`;
-CREATE DATABASE IF NOT EXISTS `db_next_gen_books` DEFAULT CHARACTER SET utf8 ;
+CREATE DATABASE IF NOT EXISTS `db_next_gen_books`;
 USE `db_next_gen_books` ;
 
 -- -----------------------------------------------------
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_endereco` (
   `nm_cidade` VARCHAR(50) NOT NULL,
   `nm_estado` VARCHAR(45) NOT NULL,
   `nr_endereco` INT NOT NULL,
-  `ds_complemento` VARCHAR(35) NOT NULL,
+  `ds_complemento` VARCHAR(35) NULL,
   `ds_celular` VARCHAR(20) NULL,
   PRIMARY KEY (`id_endereco`),
   INDEX `id_cliente_idx` (`id_cliente` ASC) VISIBLE,

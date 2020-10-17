@@ -31,6 +31,12 @@ namespace backend.Business
             return foto;
         }
 
+        public void RemoverArquivo(string nome)
+        {
+            string caminhoFoto = Path.Combine(AppContext.BaseDirectory, "Storage", "Fotos", nome);
+            File.Delete(caminhoFoto);
+        }
+
         public string GerarContentType(string nome)
         {
             string extensao = System.IO.Path.GetExtension(nome).Replace(".", "");

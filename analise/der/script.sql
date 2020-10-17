@@ -9,11 +9,7 @@
 -- MySQL Workbench Forward Engineering
 
 -- -----------------------------------------------------
--- Schema db_next_gen_books
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema db_next_gen_books
+-- DATABASE db_next_gen_books
 -- -----------------------------------------------------
 DROP DATABASE IF EXISTS `db_next_gen_books`;
 CREATE DATABASE IF NOT EXISTS `db_next_gen_books`;
@@ -93,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_endereco` (
   `nm_cidade` VARCHAR(50) NOT NULL,
   `nm_estado` VARCHAR(45) NOT NULL,
   `nr_endereco` INT NOT NULL,
-  `ds_complemento` VARCHAR(35) NOT NULL,
+  `ds_complemento` VARCHAR(35) NULL,
   `ds_celular` VARCHAR(20) NULL,
   PRIMARY KEY (`id_endereco`),
   INDEX `id_cliente_idx` (`id_cliente` ASC) VISIBLE,
@@ -110,7 +106,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_editora` (
   `id_editora` INT NOT NULL AUTO_INCREMENT,
   `nm_editora` VARCHAR(100) NOT NULL,
-  `dt_fundacao` VARCHAR(45) NOT NULL,
+  `dt_fundacao` DATETIME NOT NULL,
   `ds_logo` VARCHAR(150) NULL,
   `ds_sigla` VARCHAR(10) NULL,
   PRIMARY KEY (`id_editora`))
@@ -130,8 +126,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro` (
   `tp_acabamento` VARCHAR(50) NOT NULL,
   `ds_capa` VARCHAR(150) NOT NULL,
   `nr_paginas` INT NULL,
-  `ds_isbn_10` VARCHAR(20) NOT NULL,
-  `ds_isbn_13` VARCHAR(20) NOT NULL,
+  `ds_isbn` VARCHAR(20) NOT NULL,
   `nr_edicao` INT NOT NULL,
   `vl_preco_compra` DECIMAL(10,5) NOT NULL,
   `vl_preco_venda` DECIMAL(10,5) NOT NULL,
