@@ -16,8 +16,8 @@ namespace backend.Models
         [Required]
         [Column("nm_status", TypeName = "varchar(70)")]
         public string NmStatus { get; set; }
-        [Column("ds_venda_statuscol", TypeName = "varchar(45)")]
-        public string DsVendaStatuscol { get; set; }
+        [Column("ds_venda_status", TypeName = "varchar(200)")]
+        public string DsVendaStatus { get; set; }
         [Column("dt_atualizacao", TypeName = "datetime")]
         public DateTime DtAtualizacao { get; set; }
 

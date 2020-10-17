@@ -15,8 +15,8 @@ namespace backend.Models
         public int IdLivro { get; set; }
         [Column("nr_quantidade")]
         public int NrQuantidade { get; set; }
-        [Column("dt_atualizacao")]
-        public int DtAtualizacao { get; set; }
+        [Column("dt_atualizacao", TypeName = "datetime")]
+        public DateTime DtAtualizacao { get; set; }
 
         [ForeignKey(nameof(IdLivro))]
         [InverseProperty(nameof(TbLivro.TbEstoque))]

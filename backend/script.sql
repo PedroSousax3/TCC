@@ -291,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_estoque` (
   `id_estoque` INT NOT NULL AUTO_INCREMENT,
   `id_livro` INT NOT NULL,
   `nr_quantidade` INT NOT NULL,
-  `dt_atualizacao` INT NOT NULL,
+  `dt_atualizacao` DATETIME NOT NULL,
   PRIMARY KEY (`id_estoque`),
   INDEX `id_livro_idx` (`id_livro` ASC) VISIBLE,
     FOREIGN KEY (`id_livro`)
@@ -330,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_venda_status` (
   `id_venda_status` INT NOT NULL AUTO_INCREMENT,
   `id_venda` INT NOT NULL,
   `nm_status` VARCHAR(70) NOT NULL,
-  `ds_venda_statuscol` VARCHAR(45) NULL,
+  `ds_venda_status` VARCHAR(200) NULL,
   `dt_atualizacao` DATETIME NOT NULL,
   PRIMARY KEY (`id_venda_status`),
   INDEX `id_venda_idx` (`id_venda` ASC) VISIBLE,
