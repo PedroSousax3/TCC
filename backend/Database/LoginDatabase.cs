@@ -25,18 +25,20 @@ namespace backend.Database
         public bool VerificarSeOUsuarioExiste(string usuario)
         {
             Models.TbLogin tabela = context.TbLogin.FirstOrDefault(x => x.NmUsuario == usuario);
-            Models.TbCliente tabelaCliente = context.TbCliente.FirstOrDefault(x => x.DsEmail == usuario);
             bool resposta = true;
             if(tabela == null)
-               {
-                   if(tabelaCliente == null)
-                     resposta = false;
-               }
+                  resposta = false;
                return resposta;
         }
-
-        
-        public Models.Response.LoginResponse.ConfirmarLogin VerificarPerfil(int idlogin,Models.Response.LoginResponse.ConfirmarLogin response)
+        public bool VerificarSeEmailExiste(string usuario)
+        {
+            Models.TbCliente tabelaCliente = context.TbCliente.FirstOrDefault(x => x.DsEmail == usuario);
+            bool resposta = true;
+            if(tabelaCliente  == null)
+              resposta = false;
+            return resposta;
+        }
+      public Models.Response.LoginResponse.ConfirmarLogin VerificarPerfil(int idlogin,Models.Response.LoginResponse.ConfirmarLogin response)
         {
             Models.TbCliente cliente = context.TbCliente.FirstOrDefault(x => x.IdLogin == idlogin);
             Models.TbFuncionario funcionario = context.TbFuncionario.FirstOrDefault(x => x.IdLogin == idlogin);
@@ -69,7 +71,13 @@ namespace backend.Database
                                                                   &&   x.DsSenha == request.Senha);
             
             if(tabela == null)
-              throw new ArgumentException("Nome do Usuario ou Senha incorretos");
+            {
+                Models.TbCliente cliente = context.TbCliente.FirstOrDefault(x => x.DsEmail == request.Usuario);
+                tabela = context.TbLogin.FirstOrDefault(x =>x.IdLogin == cliente.IdLogin &&
+                                                         x.DsSenha == request.Senha);
+                if(tabela == null)
+                    throw new ArgumentException("Usuario ou senha incorretos");
+            }
              
              tabela.DtUltimoLogin = DateTime.Now;
              context.SaveChanges();

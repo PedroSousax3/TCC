@@ -19,7 +19,7 @@ namespace backend.Controllers
             try
             {
                 Models.TbLogin tabela = conversor.ParaTabelaCadastrarLogin(request);
-                tabela = business.ValidarCadastrarLogin(tabela);
+                tabela = business.ValidarCadastrarLogin(tabela,request);
                 Models.TbCliente cliente = conversor.ParaTabelaClienteCadastroParcial(tabela.IdLogin,request);
                 business.cadastrarCliente(cliente);
                 return conversor.ParaResponseCadastrarLogin(tabela);

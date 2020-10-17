@@ -6,18 +6,25 @@ namespace backend.Business.Validador
     public class ValidadorLogin
     {
         Business.Validador.ValidadorPadrao validador = new Business.Validador.ValidadorPadrao();
-        public void ValidarCadastroLogin(bool jaexiste,string senha)
+        public void ValidarCadastroLogin(bool jaexisteEmail,bool jaexiste,string senha)
         {
            validador.ValidarTexto(senha,"Senha");
            ValidarUsuario(jaexiste);
+           ValidarUsuarioPorEmail(jaexisteEmail);
            ValidarQuantideDeCaracteresSenha(senha);
            ValidarCaracteresEspeciaisSenha(senha);
            ValidarNumerosSenha(senha);
         }
+
         public void ValidarConfirmarLogin(string usuario,string senha)
         {
            validador.ValidarTexto(usuario,"Usuario");
            validador.ValidarTexto(senha,"Senha");
+        }
+        private void ValidarUsuarioPorEmail(bool jaexiste)
+        {
+            if(jaexiste == true)
+             throw new ArgumentException("Esse Email ja esta Cadastrado"); 
         }
         private void ValidarUsuario(bool jaexiste)
         {

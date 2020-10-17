@@ -5,10 +5,11 @@ namespace backend.Business
       Business.Validador.ValidadorLogin validador = new Business.Validador.ValidadorLogin();
       Database.LoginDatabase database = new Database.LoginDatabase();
       
-      public Models.TbLogin ValidarCadastrarLogin(Models.TbLogin tabela)
+      public Models.TbLogin ValidarCadastrarLogin(Models.TbLogin tabela ,Models.Request.LoginRequest.CadastrarLogin request)
       {
           bool jaexiste = database.VerificarSeOUsuarioExiste(tabela.NmUsuario);
-          validador.ValidarCadastroLogin(jaexiste,tabela.DsSenha);
+          bool jaexisteEmail = database.VerificarSeEmailExiste(request.Email);
+          validador.ValidarCadastroLogin(jaexisteEmail,jaexiste,tabela.DsSenha);
           database.CadastrarLogin(tabela);
           return tabela;
       } 
