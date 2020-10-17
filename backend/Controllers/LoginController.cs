@@ -14,14 +14,14 @@ namespace backend.Controllers
         Utils.LoginConversor conversor = new Utils.LoginConversor();
         Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
         [HttpPost("cadastrar")]
-        public ActionResult<Models.Response.LoginResponse.ConfirmarLogin> CadastrarLogin(Models.Request.LoginRequest.CadastrarLogin request)
+        public async Task<ActionResult<Models.Response.LoginResponse.ConfirmarLogin>> CadastrarLogin(Models.Request.LoginRequest.CadastrarLogin request)
         {
             try
             {
                 Models.TbLogin tabela = conversor.ParaTabelaCadastrarLogin(request);
-                tabela = business.ValidarCadastrarLogin(tabela,request);
+                tabela = await business.ValidarCadastrarLogin(tabela,request);
                 Models.TbCliente cliente = conversor.ParaTabelaClienteCadastroParcial(tabela.IdLogin,request);
-                business.cadastrarCliente(cliente);
+                await business.cadastrarCliente(cliente);
                 return conversor.ParaResponseCadastrarLogin(tabela);
             }
             catch (System.Exception ex)
@@ -31,11 +31,11 @@ namespace backend.Controllers
         }
         
         [HttpPost]
-        public ActionResult<Models.Response.LoginResponse.ConfirmarLogin> ConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
+        public async Task<ActionResult<Models.Response.LoginResponse.ConfirmarLogin>> ConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
         {
             try
             {
-                Models.TbLogin tabela = business.ValidarConfirmarLogin(request);
+                Models.TbLogin tabela = await business.ValidarConfirmarLogin(request);
                 return conversor.ParaResponseConfirmarLogin(tabela);
             }
             catch (System.Exception ex)

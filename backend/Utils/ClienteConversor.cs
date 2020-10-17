@@ -14,6 +14,8 @@ namespace backend.Utils
         public Models.Response.ClienteResponse ParaResponseCadastrarCliente(Models.TbCliente tabela)
         {
             Models.Response.ClienteResponse response = new Models.Response.ClienteResponse();
+            response.IdCliente = tabela.IdCliente;
+            response.IdLogin = tabela.IdLogin;
             response.Nome = tabela.NmCliente;
             response.IdCliente = tabela.IdCliente;
             response.Genero = tabela.TpGenero;

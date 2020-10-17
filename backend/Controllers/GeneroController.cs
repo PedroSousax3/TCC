@@ -15,13 +15,13 @@ namespace backend.Controllers
         Business.GerenciadorFoto gerenciador = new Business.GerenciadorFoto();
         
         [HttpPost("cadastrar")]
-         public ActionResult<Models.Response.GeneroResponse.ListarGeneros> CadastrarGenero([FromForm] Models.Request.GeneroRequest request)
+         public async Task<ActionResult<Models.Response.GeneroResponse.ListarGeneros>> CadastrarGenero([FromForm] Models.Request.GeneroRequest request)
          {
              try
              {
                 Models.TbGenero tabela = conversor.ParaTabelaGenero(request);
                 tabela.DsFoto = gerenciador.GerarNovoNome(request.Foto.FileName);
-                business.ValidarCadastroGenero(tabela);
+                await business.ValidarCadastroGenero(tabela);
                 gerenciador.SalvarFoto(tabela.DsFoto,request.Foto);
                 return conversor.ParaResponseListarGenero(tabela);
              }
@@ -32,13 +32,13 @@ namespace backend.Controllers
          }
 
          [HttpPut("alterar/{idgenero}")]
-         public ActionResult<Models.Response.GeneroResponse.ListarGeneros> AlterarGenero([FromForm] Models.Request.GeneroRequest request,int idgenero)
+         public async Task<ActionResult<Models.Response.GeneroResponse.ListarGeneros>> AlterarGenero([FromForm] Models.Request.GeneroRequest request,int idgenero)
          {
              try
              {
                  Models.TbGenero tabela = conversor.ParaTabelaGenero(request);
                  tabela.DsFoto = gerenciador.GerarNovoNome(request.Foto.FileName);
-                 business.ValidarAlterar(idgenero,tabela);
+                 tabela = await business.ValidarAlterar(idgenero,tabela);
                  gerenciador.SalvarFoto(tabela.DsFoto,request.Foto);
                  return conversor.ParaResponseListarGenero(tabela);
              }
@@ -49,11 +49,11 @@ namespace backend.Controllers
          }
 
         [HttpGet("Generos")]
-        public ActionResult<List<Models.Response.GeneroResponse.ListarGeneros>> ListarGeneros()
+        public async Task<ActionResult<List<Models.Response.GeneroResponse.ListarGeneros>>> ListarGeneros()
         {
             try
             {
-               List<Models.TbGenero> tabela = business.ValidarListarGeneros();
+               List<Models.TbGenero> tabela =await  business.ValidarListarGeneros();
                return conversor.ParaListaResponseListarGenero(tabela); 
             }
             catch (System.Exception ex)
@@ -63,11 +63,11 @@ namespace backend.Controllers
         }
 
         [HttpDelete("deletar/{id}")]
-        public ActionResult<Models.Response.GeneroResponse.ListarGeneros> DeletarGenero(int id)
+        public async Task<ActionResult<Models.Response.GeneroResponse.ListarGeneros>> DeletarGenero(int id)
         {
             try
             {
-                Models.TbGenero tabela = business.DeletarGenero(id);
+                Models.TbGenero tabela = await business.DeletarGenero(id);
                 return conversor.ParaResponseListarGenero(tabela);
             }
             catch (System.Exception ex)
