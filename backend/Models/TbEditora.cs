@@ -19,9 +19,8 @@ namespace backend.Models
         [Required]
         [Column("nm_editora", TypeName = "varchar(100)")]
         public string NmEditora { get; set; }
-        [Required]
-        [Column("dt_fundacao", TypeName = "varchar(45)")]
-        public string DtFundacao { get; set; }
+        [Column("dt_fundacao", TypeName = "datetime")]
+        public DateTime DtFundacao { get; set; }
         [Column("ds_logo", TypeName = "varchar(150)")]
         public string DsLogo { get; set; }
         [Column("ds_sigla", TypeName = "varchar(10)")]

@@ -13,8 +13,7 @@ namespace backend.Models.Response
         public string encapamento { get; set; }
         public string foto { get; set; }
         public int? paginas { get; set; }
-        public string isbn10 { get; set; }
-        public string isbn13 { get; set; }
+        public string isbn { get; set; }
         public int edicao { get; set; }
         public double compra { get; set; }
         public double venda { get; set; }

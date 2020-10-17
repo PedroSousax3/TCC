@@ -42,11 +42,8 @@ namespace backend.Models
         [Column("nr_paginas")]
         public int? NrPaginas { get; set; }
         [Required]
-        [Column("ds_isbn_10", TypeName = "varchar(20)")]
-        public string DsIsbn10 { get; set; }
-        [Required]
-        [Column("ds_isbn_13", TypeName = "varchar(20)")]
-        public string DsIsbn13 { get; set; }
+        [Column("ds_isbn", TypeName = "varchar(20)")]
+        public string DsIsbn { get; set; }
         [Column("nr_edicao")]
         public int NrEdicao { get; set; }
         [Column("vl_preco_compra", TypeName = "decimal(10,5)")]

@@ -15,8 +15,7 @@ namespace backend.Utils.Conversor
             tabela.DsIdioma = livro.idioma;
             tabela.TpAcabamento = livro.encapamento;
             tabela.NrPaginas = livro.paginas;
-            tabela.DsIsbn10 = livro.isbn10;
-            tabela.DsIsbn13 = livro.isbn13;
+            tabela.DsIsbn = livro.isbn;
             tabela.NrEdicao = livro.edicao;
             tabela.VlPrecoCompra = Convert.ToDecimal(livro.compra);
             tabela.VlPrecoVenda = Convert.ToDecimal(livro.venda);
@@ -37,8 +36,7 @@ namespace backend.Utils.Conversor
             livro.encapamento = tabela.TpAcabamento;
             livro.foto = tabela.DsCapa;
             livro.paginas = tabela.NrPaginas;
-            livro.isbn10 = tabela.DsIsbn10;
-            livro.isbn13 = tabela.DsIsbn13;
+            livro.isbn = tabela.DsIsbn;
             livro.edicao = tabela.NrEdicao;
             livro.compra = Convert.ToDouble(tabela.VlPrecoCompra);
             livro.venda = Convert.ToDouble(tabela.VlPrecoVenda);

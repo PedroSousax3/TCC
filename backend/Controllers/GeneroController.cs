@@ -19,11 +19,11 @@ namespace backend.Controllers
          {
              try
              {
-                 Models.TbGenero tabela = conversor.ParaTabelaGenero(request);
-                 tabela.DsFoto = gerenciador.GerarNovoNome(request.Foto.FileName);
-                 business.ValidarCadastroGenero(tabela);
-                 gerenciador.SalvarFoto(tabela.DsFoto,request.Foto);
-                 return conversor.ParaResponseListarGenero(tabela);
+                Models.TbGenero tabela = conversor.ParaTabelaGenero(request);
+                tabela.DsFoto = gerenciador.GerarNovoNome(request.Foto.FileName);
+                business.ValidarCadastroGenero(tabela);
+                gerenciador.SalvarFoto(tabela.DsFoto,request.Foto);
+                return conversor.ParaResponseListarGenero(tabela);
              }
              catch (System.Exception ex)
              {
