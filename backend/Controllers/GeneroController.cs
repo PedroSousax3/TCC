@@ -8,7 +8,7 @@ namespace backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class GeneroController:ControllerBase
+    public class GeneroController : ControllerBase
     {
         Business.GeneroBusiness business = new Business.GeneroBusiness();
         Utils.GeneroConversor conversor = new Utils.GeneroConversor(); 
