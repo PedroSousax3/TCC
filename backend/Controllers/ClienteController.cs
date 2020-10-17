@@ -13,15 +13,15 @@ namespace backend.Controllers
         Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
         Business.ClienteBusiness business = new Business.ClienteBusiness();
         Utils.ClienteConversor conversor = new Utils.ClienteConversor(); 
-        [HttpPut("cadastrar/{idcliente}/{idlogin}")]
-        public ActionResult<Models.Response.ClienteResponse> CadastrarCliente([FromForm] Models.Request.ClienteRequest.CadastrarCliente request,int idcliente,int idlogin)
+        [HttpPut("cadastrar/{idcliente}")]
+        public async Task<ActionResult<Models.Response.ClienteResponse>> CadastrarCliente([FromForm] Models.Request.ClienteRequest.CadastrarCliente request,int idcliente)
         {
           try
           {
             
                 Models.TbCliente tabela = conversor.ParaTabelaCadastrarCliente(request);
                 tabela.DsFoto = gerenciadorFoto.GerarNovoNome(request.Foto.FileName);
-                business.CadastrarCliente(tabela,idcliente,idlogin);
+                tabela = await business.CadastrarCliente(tabela,idcliente);
                 gerenciadorFoto.SalvarFoto(tabela.DsFoto,request.Foto);
                 return conversor.ParaResponseCadastrarCliente(tabela);
           }
@@ -30,8 +30,23 @@ namespace backend.Controllers
               
               return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
           }   
-
-               
         }
+        [HttpGet("foto/{nome}")]
+        public ActionResult ConsultarArquivoPorNomeController(string nome)
+        {
+            try
+            {
+                byte[] arquivo = gerenciadorFoto.LerFoto(nome);
+                string extensao = gerenciadorFoto.GerarContentType(nome);
+                return File(arquivo, extensao);
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound( 
+                    new Models.Response.ErroResponse(404, ex.Message)
+                );
+            }
+        }
+               
     }
 }

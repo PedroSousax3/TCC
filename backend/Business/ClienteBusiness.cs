@@ -1,11 +1,14 @@
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 namespace backend.Business
 {
-    public class ClienteBusiness
+    public class ClienteBusiness:Validador.ValidadorCliente
     {
           Database.ClienteDatabase database = new Database.ClienteDatabase(); 
-        public Models.TbCliente CadastrarCliente(Models.TbCliente tabela,int idcliente,int idlogin)
+        public async Task<Models.TbCliente> CadastrarCliente(Models.TbCliente tabela,int idcliente)
         {
-            return  database.CadastrarCliente(idcliente,idlogin,tabela);
+            ValidarCliente(idcliente,tabela);
+            return  await database.CadastrarCliente(idcliente,tabela);
         }
     }
 }

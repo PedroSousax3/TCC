@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,47 +10,44 @@ namespace backend.Database
     {
         Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
 
-        public Models.TbGenero CadastrarGenero(Models.TbGenero tabela)
+        public async Task<Models.TbGenero> CadastrarGenero(Models.TbGenero tabela)
         {
-            context.TbGenero.Add(tabela);
-            context.SaveChanges();
+            await context.TbGenero.AddAsync(tabela);
+            await context.SaveChangesAsync();
             return tabela;
         }
-        public Models.TbGenero AlterarGenero(int id,Models.TbGenero novaTabela)
+        public async Task<Models.TbGenero> AlterarGenero(int id,Models.TbGenero novaTabela)
         {
-            Models.TbGenero tabela = ConsultarGeneroPorId(id);
+            Models.TbGenero tabela = await ConsultarGeneroPorId(id);
             tabela.DsFoto = novaTabela.DsFoto;
             tabela.NmGenero = novaTabela.NmGenero;
             tabela.TbLivroGenero = novaTabela.TbLivroGenero;
             tabela.DsGenero = novaTabela.DsGenero;
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
              return tabela;
         }
 
-        public List<Models.TbGenero> ListarGeneros()
+        public Task<List<Models.TbGenero>> ListarGeneros()
         {
-           List<Models.TbGenero> tabela = context.TbGenero.ToList();
-            if(tabela.Count == 0)
-                throw new ArgumentException("Ainda não há registros");
-            
-            return tabela;
+           return context.TbGenero.ToListAsync();
         }
-        public Models.TbGenero ConsultarGeneroPorId(int id)
+
+        public Task<Models.TbGenero> ConsultarGeneroPorId(int id)
         {
-            return context.TbGenero.FirstOrDefault(x => x.IdGenero == id);
+            return context.TbGenero.FirstOrDefaultAsync(x => x.IdGenero == id);
         }
-        public Models.TbGenero DeletarGenero(int id)
+        public async Task<Models.TbGenero> DeletarGenero(int id)
         {
-           Models.TbGenero tabela = ConsultarGeneroPorId(id);
+           Models.TbGenero tabela = await ConsultarGeneroPorId(id);
            context.TbGenero.Remove(tabela);
-            context.SaveChanges();
-            return tabela;
+           await context.SaveChangesAsync();
+           return tabela;
         }
-        public bool VerificarGeneroJaExiste(string genero)
+        public async Task<bool> VerificarGeneroJaExiste(string genero)
         {
             bool resposta = false;
-            Models.TbGenero tabela = context.TbGenero.FirstOrDefault(x => x.NmGenero == genero);
+            Models.TbGenero tabela = await context.TbGenero.FirstOrDefaultAsync(x => x.NmGenero == genero);
             if(tabela != null)
                resposta = true;
             

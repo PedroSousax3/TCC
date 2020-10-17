@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 using System.Collections;
 using System.Linq;
 using System;
@@ -8,31 +11,31 @@ namespace backend.Database
     {
         Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
 
-        public Models.TbLogin CadastrarLogin(Models.TbLogin tabela)
+        public async Task<Models.TbLogin> CadastrarLogin(Models.TbLogin tabela)
         {
-            context.TbLogin.Add(tabela);
-            context.SaveChanges();
+            await context.TbLogin.AddAsync(tabela);
+            await context.SaveChangesAsync();
             return tabela;
         }
 
-        public Models.TbCliente CadastrarClienteParcial(Models.TbCliente tabela)
+        public async Task<Models.TbCliente> CadastrarClienteParcial(Models.TbCliente tabela)
         {
-            context.TbCliente.Add(tabela);
-            context.SaveChanges();
+            await context.TbCliente.AddAsync(tabela);
+            await context.SaveChangesAsync();
             return tabela;
         }
 
-        public bool VerificarSeOUsuarioExiste(string usuario)
+        public async Task<bool> VerificarSeOUsuarioExiste(string usuario)
         {
-            Models.TbLogin tabela = context.TbLogin.FirstOrDefault(x => x.NmUsuario == usuario);
+            Models.TbLogin tabela = await context.TbLogin.FirstOrDefaultAsync(x => x.NmUsuario == usuario);
             bool resposta = true;
             if(tabela == null)
                   resposta = false;
                return resposta;
         }
-        public bool VerificarSeEmailExiste(string usuario)
+        public async Task<bool> VerificarSeEmailExiste(string usuario)
         {
-            Models.TbCliente tabelaCliente = context.TbCliente.FirstOrDefault(x => x.DsEmail == usuario);
+            Models.TbCliente tabelaCliente = await context.TbCliente.FirstOrDefaultAsync(x => x.DsEmail == usuario);
             bool resposta = true;
             if(tabelaCliente  == null)
               resposta = false;
@@ -65,14 +68,14 @@ namespace backend.Database
             return response;
         }
 
-        public Models.TbLogin confirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
+        public async Task<Models.TbLogin> confirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
         {
-           Models.TbLogin tabela = context.TbLogin.FirstOrDefault(x => x.NmUsuario == request.Usuario
+           Models.TbLogin tabela = await context.TbLogin.FirstOrDefaultAsync(x => x.NmUsuario == request.Usuario
                                                                   &&   x.DsSenha == request.Senha);
             
             if(tabela == null)
             {
-                Models.TbCliente cliente = context.TbCliente.FirstOrDefault(x => x.DsEmail == request.Usuario);
+                Models.TbCliente cliente = await context.TbCliente.FirstOrDefaultAsync(x => x.DsEmail == request.Usuario);
                 tabela = context.TbLogin.FirstOrDefault(x =>x.IdLogin == cliente.IdLogin &&
                                                          x.DsSenha == request.Senha);
                 if(tabela == null)
@@ -80,7 +83,7 @@ namespace backend.Database
             }
              
              tabela.DtUltimoLogin = DateTime.Now;
-             context.SaveChanges();
+             await context.SaveChangesAsync();
             
             return tabela;
         }
