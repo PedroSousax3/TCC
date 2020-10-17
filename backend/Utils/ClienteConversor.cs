@@ -19,6 +19,7 @@ namespace backend.Utils
             response.Genero = tabela.TpGenero;
             response.Cpf = tabela.DsCpf;
             response.Celular = tabela.DsCelular;
+            response.Foto = tabela.DsFoto;
             return response;
         }
     }

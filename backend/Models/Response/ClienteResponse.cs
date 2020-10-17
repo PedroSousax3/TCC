@@ -8,5 +8,6 @@ namespace backend.Models.Response
         public string Genero { get; set; }
         public string Cpf { get; set; }
         public string Celular{ get; set; }
+        public string Foto { get; set; }
     }
 }

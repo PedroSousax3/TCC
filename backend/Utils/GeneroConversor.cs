@@ -5,6 +5,13 @@ namespace backend.Utils
 {
     public class GeneroConversor
     {
+        public Models.TbGenero ParaTabelaGenero(Models.Request.GeneroRequest request)
+        {
+            Models.TbGenero tabela = new Models.TbGenero();
+            tabela.NmGenero = request.Nome;
+            tabela.DsGenero = request.Descricao;
+            return tabela;
+        }
         public Models.Response.GeneroResponse.ListarGeneros ParaResponseListarGenero(Models.TbGenero tabela)
         {
             Models.Response.GeneroResponse.ListarGeneros response = new Models.Response.GeneroResponse.ListarGeneros();
