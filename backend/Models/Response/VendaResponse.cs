@@ -15,6 +15,6 @@ namespace backend.Models.Response
         public string codigo_rastreio { get; set; }
         public DateTime? previsao_entrega { get; set; }
         public sbyte? comfirmacao_entraga { get; set; }
-        public string nata_fiscal { get; set; }
+        public string nota_fiscal { get; set; }
     }
 }
