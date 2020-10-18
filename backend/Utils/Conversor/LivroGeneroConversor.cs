@@ -1,6 +1,6 @@
 namespace backend.Utils.Conversor
 {
-    public class LivroGenero
+    public class LivroGeneroConversor
     {
         public Models.TbLivroGenero Conversor(Models.Request.LivroGeneroRequest request)
         {
