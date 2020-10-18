@@ -4,7 +4,8 @@
 
 # CASO DE USO
 
-![image-20201018162148073](C:\Users\pedro\Desktop\TCC\analise\casos de uso\login)![image-20201018162033983](C:\Users\pedro\Desktop\TCC\analise\casos de uso\compra.PNG)
+![image-20201018162148073](analise\casos de uso\login)
+![image-20201018162033983](analise\casos de uso\compra.PNG)
 
 | Usuário  que acessarem o site deve conseguir realizar seu cadastro para terem acesso a  [compra, favoritos, carinho], neste cadastro é obrigatório a coleta no nome  completo, cpf, email, usuário e senha. |
 | ------------------------------------------------------------ |
