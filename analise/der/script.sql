@@ -9,11 +9,11 @@
 -- MySQL Workbench Forward Engineering
 
 -- -----------------------------------------------------
--- DATABASE db_next_gen_books
+-- Database db_next_gen_books
 -- -----------------------------------------------------
 DROP DATABASE IF EXISTS `db_next_gen_books`;
 CREATE DATABASE IF NOT EXISTS `db_next_gen_books`;
-USE `db_next_gen_books` ;
+USE `db_next_gen_books`;
 
 -- -----------------------------------------------------
 -- Table `db_next_gen_books`.`tb_login`
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_funcionario` (
   `ds_endereco` VARCHAR(50) NOT NULL,
   `ds_cep` VARCHAR(10) NOT NULL,
   `nr_residencial` INT NOT NULL,
-  `ds_complemento` VARCHAR(25) NOT NULL,
+  `ds_complemento` VARCHAR(25) NULL,
   PRIMARY KEY (`id_funcionario`),
   INDEX `fk_tb_funcionario_tb_login1_idx` (`id_login` ASC) VISIBLE,
     FOREIGN KEY (`id_login`)
@@ -114,10 +114,24 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `db_next_gen_books`.`tb_medidas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_medidas` (
+  `id_medidas` INT NOT NULL AUTO_INCREMENT,
+  `vl_altura` DECIMAL(10,5) NOT NULL,
+  `vl_largura` DECIMAL(10,5) NOT NULL,
+  `vl_profundidades` DECIMAL(10,5) NOT NULL,
+  `vl_peso` DECIMAL(10,5) NOT NULL,
+  PRIMARY KEY (`id_medidas`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `db_next_gen_books`.`tb_livro`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro` (
   `id_livro` INT NOT NULL AUTO_INCREMENT,
+  `id_medidas` INT NOT NULL,
   `id_editora` INT NOT NULL,
   `nm_livro` VARCHAR(100) NOT NULL,
   `ds_livro` VARCHAR(800) NOT NULL,
@@ -133,8 +147,13 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro` (
   PRIMARY KEY (`id_livro`),
   INDEX `id_editora_idx` (`id_editora` ASC) VISIBLE,
   UNIQUE INDEX `ds_capa_UNIQUE` (`ds_capa` ASC) VISIBLE,
+  INDEX `fk_tb_livro_tb_medidas1_idx` (`id_medidas` ASC) VISIBLE,
     FOREIGN KEY (`id_editora`)
     REFERENCES `db_next_gen_books`.`tb_editora` (`id_editora`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    FOREIGN KEY (`id_medidas`)
+    REFERENCES `db_next_gen_books`.`tb_medidas` (`id_medidas`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -336,26 +355,6 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_venda_status` (
   INDEX `id_venda_idx` (`id_venda` ASC) VISIBLE,
     FOREIGN KEY (`id_venda`)
     REFERENCES `db_next_gen_books`.`tb_venda` (`id_venda`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `db_next_gen_books`.`tb_medidas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_medidas` (
-  `id_medidas` INT NOT NULL AUTO_INCREMENT,
-  `id_livro` INT NOT NULL,
-  `vl_altura` DECIMAL(10,5) NOT NULL,
-  `vl_largura` DECIMAL(10,5) NOT NULL,
-  `vl_profundidades` DECIMAL(10,5) NOT NULL,
-  `vl_peso` DECIMAL(10,5) NOT NULL,
-  PRIMARY KEY (`id_medidas`),
-  INDEX `id_livro_idx` (`id_livro` ASC) VISIBLE,
-  UNIQUE INDEX `id_livro_UNIQUE` (`id_livro` ASC) VISIBLE,
-    FOREIGN KEY (`id_livro`)
-    REFERENCES `db_next_gen_books`.`tb_livro` (`id_livro`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

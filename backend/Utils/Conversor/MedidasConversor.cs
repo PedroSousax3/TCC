@@ -6,7 +6,6 @@ namespace backend.Utils.Conversor
         {
             Models.TbMedidas tabela = new Models.TbMedidas();
 
-            tabela.IdLivro = request.livro;
             tabela.VlAltura = request.altura;
             tabela.VlLargura = request.largura;
             tabela.VlPeso = request.peso;
@@ -19,7 +18,6 @@ namespace backend.Utils.Conversor
         {
             Models.Response.MedidaResponse response = new Models.Response.MedidaResponse();
 
-            response.livro = tabela.IdLivro;
             response.altura = tabela.VlAltura;
             response.largura = tabela.VlLargura;
             response.peso = tabela.VlPeso;
