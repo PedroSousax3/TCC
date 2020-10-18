@@ -33,6 +33,25 @@ namespace backend.Database
             return venda;
         }
 
+        public async Task<Models.TbVenda> AlterarVendaDatabase(int idrecebimento, Models.TbVenda novo)
+        {
+            Models.TbVenda atual = await this.ConsultarVendaPorId(idrecebimento);
+
+            atual.IdCliente = novo.IdCliente;
+            atual.IdEndereco = novo.IdEndereco;
+            atual.BtConfirmacaoEntrega = novo.BtConfirmacaoEntrega;
+            atual.DsCodigoRastreio = novo.DsCodigoRastreio;
+            atual.DsStatusPagamento = novo.DsStatusPagamento;
+            atual.DtPrevistaEntrega = novo.DtPrevistaEntrega;
+            atual.DtVenda = novo.DtVenda;
+            atual.NrParcela = novo.NrParcela;
+            atual.TpPagamento = novo.TpPagamento;
+            atual.VlFrete = novo.VlFrete;
+
+            await db.SaveChangesAsync();
+            return atual;
+        }
+
         public async Task<Models.TbVenda> RemovervendaPorId(int idvenda)
         {
             Models.TbVenda venda = await this.ConsultarVendaPorId(idvenda);
