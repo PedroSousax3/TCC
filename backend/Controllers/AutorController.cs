@@ -14,15 +14,15 @@ namespace backend.Controllers
         Business.GerenciadorFoto gerenciador = new Business.GerenciadorFoto();
         Utils.Conversor.AutorConversor conversor = new Utils.Conversor.AutorConversor();
         [HttpPost("cadastrar")]
-        public async Task<ActionResult<Models.Response.AutorResponse>> CadastrarAutor([FromForm] Models.Request.AutorRequest.CadastrarAutor request)
+        public async Task<ActionResult<Models.Response.AutorResponse>> CadastrarAutor([FromForm] Models.Request.AutorRequest request)
         {
             try
             {
-                Models.TbAutor tabela = conversor.ParaTabelaAutor(request);
-                tabela.DsFoto = gerenciador.GerarNovoNome(request.Foto.FileName);
+                Models.TbAutor tabela = conversor.Conversor(request);
+                tabela.DsFoto = gerenciador.GerarNovoNome(request.foto.FileName);
                 tabela = await business.ValidarCadastro(tabela);
-                gerenciador.SalvarFoto(tabela.DsFoto,request.Foto);
-                return conversor.ParaResponseAutor(tabela);
+                gerenciador.SalvarFoto(tabela.DsFoto,request.foto);
+                return conversor.Conversor(tabela);
             }
             catch (System.Exception ex)
             {
@@ -30,15 +30,15 @@ namespace backend.Controllers
             }
         }
         [HttpPut("alterar/{idautor}")]
-        public async Task<ActionResult<Models.Response.AutorResponse>> AlterarAutor([FromForm] Models.Request.AutorRequest.CadastrarAutor request,int idautor)
+        public async Task<ActionResult<Models.Response.AutorResponse>> AlterarAutor([FromForm] Models.Request.AutorRequest request,int idautor)
         {
             try
             {
-                Models.TbAutor tabela = conversor.ParaTabelaAutor(request);
-                tabela.DsFoto = gerenciador.GerarNovoNome(request.Foto.FileName);
+                Models.TbAutor tabela = conversor.Conversor(request);
+                tabela.DsFoto = gerenciador.GerarNovoNome(request.foto.FileName);
                 tabela =  await business.ValidarAlterar(idautor,tabela);
-                gerenciador.SalvarFoto(tabela.DsFoto,request.Foto);
-                return conversor.ParaResponseAutor(tabela);
+                gerenciador.SalvarFoto(tabela.DsFoto,request.foto);
+                return conversor.Conversor(tabela);
             }
             catch (System.Exception ex)
             {
@@ -51,7 +51,7 @@ namespace backend.Controllers
             try
             {
                 Models.TbAutor tabela = await business.ValidarDeletarAutor(id);
-                return conversor.ParaResponseAutor(tabela);
+                return conversor.Conversor(tabela);
             }
             catch (System.Exception ex)
             {
@@ -64,7 +64,7 @@ namespace backend.Controllers
             try
             {
                 Models.TbAutor tabela = await business.ValidarConsultaPorId(id);
-                return conversor.ParaResponseAutor(tabela);
+                return conversor.Conversor(tabela);
             }
             catch (System.Exception ex)
             {
@@ -78,7 +78,7 @@ namespace backend.Controllers
             try
             {
                 List<Models.TbAutor> tabela = await business.ValidarListarAutores();
-                return conversor.ParaListaResponseAutor(tabela);
+                return tabela.Select(x => conversor.Conversor(x)).ToList();
             }
             catch (System.Exception ex)
             {
