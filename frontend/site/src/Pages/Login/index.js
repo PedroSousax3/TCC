@@ -31,10 +31,11 @@ export default function Logar(props) {
 
       return (
           <div id="login">
-            <Menu> <img src="Logo.jpeg" className="LogoMenu"/> </Menu>
-            <div className="d-flex jutify-content-center aling-items-center">
+            <Menu> <img src="logo-pequena.png" className="LogoMenu"/> </Menu>
+            <div className="">
             <ContainerLogin>
               <LoginCaixa>
+                <span>Entrar</span>
               <div className = "conteiner-dados form-group">
                 <div className=" inputbotao form-group">
                   <label className="usuario">Usuario ou E-mail:</label>
@@ -64,21 +65,21 @@ export default function Logar(props) {
                     </button>
                 
                 <button
-                  className="btn btn-primary"
+                  className="btn"style={{backgroundColor:"#16C823"}}
                     onClick={Logar}
                 >
                     Logar
                 </button>
                 </div>
               </div>
-              <div className = "form-group container-itens">
-                <div className="form-group">
+              <div className = "Links">
+                <div className="link">
                   <Link as = "a" to={{pathname:"/EsqueciSenha"}}>
                       Esqueci a Senha
                   </Link>
                 </div>
 
-                <div className="form-group">
+                <div className="link">
                   <Link as = "a" to={{pathname:"Cadastro"}}>
                       Cadastre-se
                   </Link>

@@ -3,8 +3,9 @@ import styled from 'styled-components'
 export const ContainerLogin = styled.div`
     
     justify-content:center;
-    padding: 12% 25vw 0px 25vw;
-    height:92vh;
+    padding: 15% 25vw 0px 25vw;
+    flex:1;
+    height:93vh;
     aling-items:center;
     display:flex;
     justify-items:center;
@@ -14,22 +15,41 @@ export const ContainerLogin = styled.div`
         justify-content:space-between
     }
     .botao{
-        justify-content:space-around
+        justify-content: flex-end;
+        display:flex;
+        width:100%;
     }
     button{
-        width:100px;
+        width:31.3%;
+        margin-right:0.5%;
+        margin-left:1%;
+        color:#753500;
+        font-weight: bold;
+    }
+    .Links{
+        justify-content: flex-end;
+        display:flex;
+        width:100%;
+        flex-direction:row;
+    }
+    .link{
+        width:31.3%;
+        margin-right:0.5%;
+        margin-left:1%;
     }
     input{
         width:65%;
-        margin-top:12px;
+        margin-top:3%;
         margin-rigth:10%;
     }
     label{
-        margin-top:12px;
-        
+        margin-top:5%;
+        margin-bottom: 1%;
+        font-weight: bold;
+        color:#00870D;
     }
     .usuario{
-        margin-left:10%;
+        margin-left:9%;
     }
     .senha{
         margin-left:22%;

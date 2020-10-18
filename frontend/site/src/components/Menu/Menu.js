@@ -15,6 +15,7 @@ export const Menu = styled.div`
                 right: 0;
                 padding-left: 2%;
                 padding-right: 5%;
+                border-bottom:2px solid #00870D;
                 background-color:#98F0BB;
                 .LogoMenu {
                     height:50px;
