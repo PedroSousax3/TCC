@@ -19,6 +19,23 @@ namespace backend.Database
             context.SaveChanges();
             return tabela;  
         }
+
+
+        public async Task<Models.TbCliente> DeletarCliente(int id)
+        {
+            Models.TbCliente tabela = await ConsultarClientePorId(id);
+            context.TbCliente.Remove(tabela);
+            await context.SaveChangesAsync();
+            return tabela;
+        }
+
+
+        public Task<List<Models.TbCliente>> ListarClientes()
+        {
+            return context.TbCliente.ToListAsync();
+        }
+
+        
         public Task<Models.TbCliente> ConsultarClientePorId(int id)
         {
             return context.TbCliente.FirstOrDefaultAsync(x => x.IdCliente == id);

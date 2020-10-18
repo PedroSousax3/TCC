@@ -26,5 +26,9 @@ namespace backend.Business
       {
          return await database.CadastrarClienteParcial(tabela);
       }
+      public async Task<Models.TbLogin> ValidarDeletarLogin(int id)
+      {
+         return null;
+      }
     }
 }

@@ -11,6 +11,7 @@ namespace backend.Database
     {
         Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
 
+       ///cadastro
         public async Task<Models.TbLogin> CadastrarLogin(Models.TbLogin tabela)
         {
             await context.TbLogin.AddAsync(tabela);
@@ -41,6 +42,10 @@ namespace backend.Database
               resposta = false;
             return resposta;
         }
+        //
+        //
+
+        ///{logar}Melhorar o fluxo da verificacao
       public Models.Response.LoginResponse.ConfirmarLogin VerificarPerfil(int idlogin,Models.Response.LoginResponse.ConfirmarLogin response)
         {
             Models.TbCliente cliente = context.TbCliente.FirstOrDefault(x => x.IdLogin == idlogin);
@@ -87,6 +92,32 @@ namespace backend.Database
             
             return tabela;
         }
+
+        //padrao
+         public Task<Models.TbLogin> ConsultarLoginPorId(int id)
+         {
+            return context.TbLogin.FirstOrDefaultAsync(x => x.IdLogin == id);
+         }
+         public async Task<Models.TbLogin> DeletarLogin(int id)
+         {
+             Models.TbLogin tabela = await ConsultarLoginPorId(id);
+             context.TbLogin.Remove(tabela);
+             await context.SaveChangesAsync();
+             return tabela;
+         }
+         public async Task<Models.TbLogin> AlterarLogin(int id,Models.TbLogin novaTabela)
+         {
+             Models.TbLogin tabela = await ConsultarLoginPorId(id);
+             tabela.NmUsuario = novaTabela.NmUsuario;
+             tabela.DsSenha = novaTabela.DsSenha;
+             await context.SaveChangesAsync();
+             return tabela;
+         }
+         public Task<List<Models.TbLogin>> ListarLogin()
+         {
+             return context.TbLogin.ToListAsync();
+         }
+        //
         
     }
 }
