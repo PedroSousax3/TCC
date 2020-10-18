@@ -4,7 +4,7 @@
 
 # CASO DE USO
 
-![image-20201018162148073](C:\Users\pedro\Desktop\TCC\analise\casos de uso\login)![image-20201018162033983](C:\Users\pedro\Desktop\TCC\analise\casos de uso\compra.PNG)
+![image-20201018162148073](analise\casos de uso\login)![image-20201018162033983](analise\casos de uso\compra.PNG)
 
 | Usuário  que acessarem o site deve conseguir realizar seu cadastro para terem acesso a  [compra, favoritos, carinho], neste cadastro é obrigatório a coleta no nome  completo, cpf, email, usuário e senha. |
 | ------------------------------------------------------------ |
@@ -13,7 +13,7 @@
 | O cadastro de funcionário é permitido apenas aos funcionários  com cargo de administrador do sistema, dados a eles a função de cadastrar  todos os funcionários que adicionaram novos anúncios ao sistema. |
 | Cliente deve poder realizar a alteração de seus dados cadastrais |
 
-![image-20201018162226581](C:\Users\pedro\Desktop\TCC\analise\casos de uso\anuncio)
+![image-20201018162226581](analise\casos de uso\anuncio)
 
 | Não é  necessário ter cadastro de para acessar essa funcionalidade, nela deve ser  possível visualizar todos os livros cadastrados no sistema. Caso o usuário  esteja logado no o sistema poderá se basear em suar ultimas compras, carinhos e  produtos adicionados como favoritos para trazer um catalogo mais utilizado ao  usuário. |
 | ------------------------------------------------------------ |
@@ -22,13 +22,13 @@
 | Não é necessário ter cadastro de para acessar essa  funcionalidade, após consultar o livros no catálogo, deve ser possível  visualizar todas as informações de um livros ao seleciono, tendo também com  adicionar ao carrinho, ler a sinopse do livro, calcular frete. |
 | Funcionários deve conseguir adicionar livros ao sistema, a partir  na pagina de adicionar livro deve ser possível adicionar autor, editora e  total as outra informações de um livro |
 
-![image-20201018162259482](C:\Users\pedro\Desktop\TCC\analise\casos de uso\feedback)
+![image-20201018162259482](analise\casos de uso\feedback)
 
 | Deve  ser possível que a cada livro que um cliente compre ele possa avaliar e  comentar sua experiência com essa compra. |
 | ------------------------------------------------------------ |
 | Clientes devem poder visualizar todos os seu feedback outros  clientes deve também poder consultar os comentários de outros clientes na aba  de consulta os livros para poderem ter conhecimento de outros usuários sobre  o livre que desejam adquirir. |
 
-![DIAGRAMA](C:\Users\pedro\Desktop\TCC\analise\casos de uso\diagrama de classe\diagrama de class.png)
+![DIAGRAMA](analise\casos de uso\diagrama de classe\diagrama de class.png)
 
 
 
