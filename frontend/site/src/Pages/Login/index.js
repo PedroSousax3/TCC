@@ -1,47 +1,57 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-
+import {Menu} from "../../components/Menu/Menu"
 import 'react-toastify/dist/ReactToastify.css';
 
 import { ContainerLogin } from './style.js'
-
+import {LoginCaixa} from "../../components/LoginCaixa/LoginCaixa"
 import nextGenBookAPI from "../../Service/NextGenBookApi";
+import { Rodape } from "../../components/Rodape/Rodape";
 const api = new nextGenBookAPI();
 
 export default function Logar(props) {
     
       // final do login
 
-      const [user, setUser ] = useState("");
+      const navegacao = useHistory()
+      const [usuario, setUser ] = useState("");
       const [ senha, setSenha ] = useState("");
 
-      function Logar(){
-        let request = {
-          user,
+      const Logar = async () => {
+        const request = {
+          usuario,
           senha
         }
         console.log(request);
+        const a = await  api.login(request);
+        navegacao.push("/",a.data);
+        console.log(a);
       }
 
       return (
           <div id="login">
+            <Menu> <img src="Logo.jpeg" className="LogoMenu"/> </Menu>
+            <div className="d-flex jutify-content-center aling-items-center">
             <ContainerLogin>
+              <LoginCaixa>
               <div className = "conteiner-dados form-group">
-                <div className="form-group">
-                  <label>Usuario ou E-mail:</label>
+                <div className=" inputbotao form-group">
+                  <label className="usuario">Usuario ou E-mail:</label>
                     <input type="text"
                       className="form-control"
                        onChange={(u) => setUser(u.target.value)}
                     />
                 </div>
-                <div className="form-group">
-                  <label>Senha:</label>
+                <div className=" inputbotao form-group">
+                  <label className="senha">Senha:</label>
                     <input id="Senha" 
                     className="form-control"
                           type="password"
                      onChange={(s) => setSenha(s.target.value)}
                     />
+                    </div>
+                    <div className="botao">
                     <button
                       className="btn btn-light"
                             onClick={() => document.getElementById("Senha").type === "password" 
@@ -52,13 +62,14 @@ export default function Logar(props) {
                     >
                     Mostar
                     </button>
-                </div>
+                
                 <button
                   className="btn btn-primary"
                     onClick={Logar}
                 >
                     Logar
                 </button>
+                </div>
               </div>
               <div className = "form-group container-itens">
                 <div className="form-group">
@@ -73,8 +84,11 @@ export default function Logar(props) {
                   </Link>
                 </div>
               </div>
+              </LoginCaixa>
             </ContainerLogin>
-            <ToastContainer />
+            </div>
+            <Rodape/>
+          <ToastContainer />
           </div>
       );
 }
