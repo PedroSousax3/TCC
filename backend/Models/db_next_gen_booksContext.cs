@@ -40,8 +40,12 @@ namespace backend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+<<<<<<< HEAD
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySql("server=localhost;user id=root;password=1234;database=db_next_gen_books", x => x.ServerVersion("8.0.18-mysql"));
+=======
+                optionsBuilder.UseMySql("server=localhost;user id=root;password=1234;database=db_next_gen_books", x => x.ServerVersion("8.0.20-mysql"));
+>>>>>>> 69c62aac4b4d70839290ed84690a049eae83e5db
             }
         }
 

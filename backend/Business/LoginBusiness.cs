@@ -28,7 +28,8 @@ namespace backend.Business
       }
       public async Task<Models.TbLogin> ValidarDeletarLogin(int id)
       {
-         return null;
+         validador.ValidarId(id);
+         return await database.DeletarLogin(id);
       }
     }
 }
