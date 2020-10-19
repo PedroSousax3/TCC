@@ -15,6 +15,11 @@ namespace backend.Database
             return tabela;
         }
 
+        public Task<List<Models.TbMedidas>> ListarMedidas()
+        {
+            return context.TbMedidas.ToListAsync();
+        }
+
         public Task<Models.TbMedidas> ConsultarPorIdMedidas(int id)
         {
            return context.TbMedidas.FirstOrDefaultAsync(x => x.IdMedidas == id);
