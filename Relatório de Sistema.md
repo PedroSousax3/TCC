@@ -1,38 +1,55 @@
-# Relatório de Sistema
+# Relatório de Sistema - Livraria
 
 [TOC]
 
-# CASO DE USO
+# DIAGRAMAS
 
-![image-20201018162148073](analise\casos de uso\login)![image-20201018162033983](analise\casos de uso\compra.PNG)
+## CASO DE USO
 
-| Usuário  que acessarem o site deve conseguir realizar seu cadastro para terem acesso a  [compra, favoritos, carinho], neste cadastro é obrigatório a coleta no nome  completo, cpf, email, usuário e senha. |
+## ![image-20201018162148073](analise\casos de uso\login)
+
+| Usuario  que acessarem o site deve conseguir realizar seu cadastro para terem acesso a  [compra, favoritos, carinho], neste cadastro é obrigatório a coleta no nome  completo, cpf, email, usuario e senha. |
 | ------------------------------------------------------------ |
 | Já devidamente cadastrado no sistema deve ser possível realizar  login com seu email ou usuário e senha. |
-| Caso necessário o usuário deve poder realizar o cadastro de sua  senha, para isso deve informar o cpf e numero de telefone ou e-mail  cadastrado, após informar os dados será enviado para ele um código que deverá  digitar no código par pode alterar sua senha, tempo valido do código é de 2  horas. |
-| O cadastro de funcionário é permitido apenas aos funcionários  com cargo de administrador do sistema, dados a eles a função de cadastrar  todos os funcionários que adicionaram novos anúncios ao sistema. |
-| Cliente deve poder realizar a alteração de seus dados cadastrais |
+| Caso necessário o usuário deve poder realizar o cadastro de sua  senha, para isso deve informar o cpf e numero de telefone ou e-mail  cadastrado, após informar os dados será enviado para ele um codigo que deverá  digitar no codigo par pode alterar sua senha, tempo valido do codigo é de 2  horas. |
+| O cadastro de funcionario é permitido apenas aos funcionarios  com cargo de administrador do sistema, dados a eles a função de cadastrar  todos os funcionarios que adicionaram novos anuncios ao sistema. |
+| Cliente deve poder realizar a alteração de seus dados cadastrais. |
+
+![image-20201018162033983](analise\casos de uso\compra.PNG)
+
+| Não é  nescessario ter cadastro de para acessar essa funcionalidade, nela deve ser  possivel visualizar todos os livros cadastrados no sistema. Caso o usuario  esteja logado o sistema poderá se basear em suar ultimas compras, carinhos e  produtos adicionados como favoritos para trazer um catalogo mais utilizado ao  usuario. |
+| ------------------------------------------------------------ |
+| Não é nescessario ter cadastro de para acessar essa  funcionalidade, nela deve ser possivel adicionar filtros a pesquisa[por  genero, ano de lancamento, titulo, autor, editora, edicao ...]. |
+| Nesta funcinalidade usuario deve estar devidamente cadastrado  como listado no requisito 001.Cadastrar Cliente do modulo de acesso, nela o  usuario do sistema poderá adicionar os livros que tem interesse um seu lista  de favoritos facilitando o acesso a ele. |
+| Não é nescessario ter cadastro de para acessar essa  funcionalidade, após consultar o livros no catálogo, deve ser possivel  visualizar todas as informações de um livros ao selecionlo, tendo também com  adicionar ao carrinho, ler a sinopse do livro, calcular frete. |
+| Funcionarios deve conseguir adicionar livros ao sistem, apartir  na pagina de adicionar livro deve ser possivel adicionar autor, editora e  total as outra informaões de um livro |
+| Deve ser permitido ao cliente realizar a consulta e  monitoramento de status de todos os seu pedido. |
+| Cliente deve conseguir realizar o pedido de devolução, podendo  realizar essa devoução dentro de uma prazo de no maximo 10 dias após o  recebimento de pedido. |
+| Cliente deve poder cancelar uma comprar, essa compra não deve  ser comprada caso o item ainda não tenha sido enviado caso já tenha cliente  deve aguarda sua chegada e fazer o pedido de develução . |
 
 ![image-20201018162226581](analise\casos de uso\anuncio)
 
-| Não é  necessário ter cadastro de para acessar essa funcionalidade, nela deve ser  possível visualizar todos os livros cadastrados no sistema. Caso o usuário  esteja logado no o sistema poderá se basear em suar ultimas compras, carinhos e  produtos adicionados como favoritos para trazer um catalogo mais utilizado ao  usuário. |
+| Não é  nescessario ter cadastro de para acessar essa funcionalidade, nela deve ser  possivel visualizar todos os livros cadastrados no sistema. Caso o usuario  esteja logado o sistema poderá se basear em suar ultimas compras, carinhos e  produtos adicionados como favoritos para trazer um catalogo mais utilizado ao  usuario. |
 | ------------------------------------------------------------ |
-| Não é necessário ter cadastro de para acessar essa  funcionalidade, nela deve ser possível adicionar filtros a pesquisa[por  gênero, ano de lançamento, titulo, autor, editora, edição ...]. |
-| Nesta funcionalidade usuário deve estar devidamente cadastrado  como listado no requisito 001.Cadastrar Cliente do modulo de acesso, nela o  usuário do sistema poderá adicionar os livros que tem interesse um seu lista  de favoritos facilitando o acesso a ele. |
-| Não é necessário ter cadastro de para acessar essa  funcionalidade, após consultar o livros no catálogo, deve ser possível  visualizar todas as informações de um livros ao seleciono, tendo também com  adicionar ao carrinho, ler a sinopse do livro, calcular frete. |
-| Funcionários deve conseguir adicionar livros ao sistema, a partir  na pagina de adicionar livro deve ser possível adicionar autor, editora e  total as outra informações de um livro |
+| Não é nescessario ter cadastro de para acessar essa  funcionalidade, nela deve ser possivel adicionar filtros a pesquisa[por  genero, ano de lancamento, titulo, autor, editora, edicao ...]. |
+| Nesta funcinalidade usuario deve estar devidamente cadastrado  como listado no requisito 001.Cadastrar Cliente do modulo de acesso, nela o  usuario do sistema poderá adicionar os livros que tem interesse um seu lista  de favoritos facilitando o acesso a ele. |
+| Funcionario deve conseguir Inserir e realizar a manutencao dos  Autores caastrados no sistema (podendo inserir, excluir e alterar qualquer um  caso nescessario). |
+| Funcionario deve conseguir Inserir e realizar a manutencao dos  Editores caastrados no sistema (podendo inserir, excluir e alterar qualquer  um caso nescessario). |
+| Funcionarios deve conseguir adicionar livros ao sistem, apartir  na pagina de adicionar livro deve ser possivel adicionar autor, editora e  total as outra informaões de um livro |
 
 ![image-20201018162259482](analise\casos de uso\feedback)
 
-| Deve  ser possível que a cada livro que um cliente compre ele possa avaliar e  comentar sua experiência com essa compra. |
+| Deve  ser possivel que acada livro que um cliente compre ele possa avaliar e  comentar sua experiencia com essa compra. |
 | ------------------------------------------------------------ |
-| Clientes devem poder visualizar todos os seu feedback outros  clientes deve também poder consultar os comentários de outros clientes na aba  de consulta os livros para poderem ter conhecimento de outros usuários sobre  o livre que desejam adquirir. |
+| Clientes devem poder visualizar todos os seu feedback outros  clientes deve também poder consultar os comentarios de outros clientes na aba  de consulta os livros para poderem ter conhecimento de outros usuarios sobre  o livre que desejam adquirir. |
+
+---
+
+## DIAGRAMA DE CLASS
 
 ![DIAGRAMA](analise\casos de uso\diagrama de classe\diagrama de class.png)
 
-
-
-
+[Diagrama de class no GitHub](https://github.com/RebeccaSantos/TCC/blob/master/analise/casos%20de%20uso/diagrama%20de%20classe/diagrama%20de%20class.pdf)
 
 # PROTÓTIPO
 
@@ -44,9 +61,9 @@
 
 ![Modelagem de dados](analise\der\modelagem.png) 
 
+[Link da Modelagem de Dados no GitHub](https://github.com/RebeccaSantos/TCC/blob/master/analise/der/modelagem.png)
+
 ## SCRIPT SQL
-
-
 
 ```sql
 -- Mapear banco de dados:
@@ -865,4 +882,12 @@ ENGINE = InnoDB;
 ```
 
 ---
+
+## LINKS ÚTEIS 
+
+[Trello](https://trello.com/invite/b/fWcf3EPE/0e26e34a5929d06bff094019dc16d109/tcc)
+
+[GitHub](https://github.com/RebeccaSantos/TCC/)
+
+[Google Drive](https://drive.google.com/drive/folders/1T98D-_YwmwIDKjH4Pe0EX0sH1IpOx067?usp=sharing)
 
