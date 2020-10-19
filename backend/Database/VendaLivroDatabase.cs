@@ -15,9 +15,9 @@ namespace backend.Database
             return tabela;
         }
 
-        public Task<Models.TbVendaLivro> ConsultarVendaLivroPorId(int id)
+        public async Task<Models.TbVendaLivro> ConsultarVendaLivroPorId(int id)
         {
-            return context.TbVendaLivro.FirstOrDefaultAsync(x => x.IdVendaLivro == id);
+            return await context.TbVendaLivro.FirstOrDefaultAsync(x => x.IdVendaLivro == id);
         }
         
         public Task<List<Models.TbVendaLivro>> ConsultarVendaLivroPorIdVenda(int id)
@@ -26,9 +26,9 @@ namespace backend.Database
                                        .Where(x => x.IdVendaNavigation.IdVenda == id).ToListAsync();
         }
 
-        public Task<List<Models.TbVendaLivro>> ConsultarVendaLivroPorIdLivro(int id)
+        public async Task<List<Models.TbVendaLivro>> ConsultarVendaLivroPorIdLivro(int id)
         {
-            return context.TbVendaLivro.Include(x => x.IdVendaNavigation).Include(x => x.IdLivroNavigation)
+            return await context.TbVendaLivro.Include(x => x.IdVendaNavigation).Include(x => x.IdLivroNavigation)
                                        .Where(x => x.IdLivroNavigation.IdLivro == id).ToListAsync();
         }
         public async Task<Models.TbVendaLivro> DeletarVendaLivro(int id)
