@@ -40,12 +40,7 @@ namespace backend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-<<<<<<< HEAD
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=localhost;user id=root;password=1234;database=db_next_gen_books", x => x.ServerVersion("8.0.18-mysql"));
-=======
-                optionsBuilder.UseMySql("server=localhost;user id=root;password=1234;database=db_next_gen_books", x => x.ServerVersion("8.0.20-mysql"));
->>>>>>> 69c62aac4b4d70839290ed84690a049eae83e5db
+                optionsBuilder.UseMySql("server=localhost;user id=root;password=45923617xx;database=db_next_gen_books", x => x.ServerVersion("8.0.20-mysql"));
             }
         }
 
@@ -74,9 +69,6 @@ namespace backend.Models
                 entity.HasKey(e => e.IdAvaliacaoLivro)
                     .HasName("PRIMARY");
 
-                entity.HasIndex(e => e.IdCliente)
-                    .HasName("id_cliente_idx");
-
                 entity.HasIndex(e => e.IdVendaLivro)
                     .HasName("id_venda_livro_idx");
 
@@ -84,17 +76,11 @@ namespace backend.Models
                     .HasCharSet("utf8mb4")
                     .HasCollation("utf8mb4_0900_ai_ci");
 
-                entity.HasOne(d => d.IdClienteNavigation)
-                    .WithMany(p => p.TbAvaliacaoLivro)
-                    .HasForeignKey(d => d.IdCliente)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("tb_avaliacao_livro_ibfk_1");
-
                 entity.HasOne(d => d.IdVendaLivroNavigation)
                     .WithMany(p => p.TbAvaliacaoLivro)
                     .HasForeignKey(d => d.IdVendaLivro)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("tb_avaliacao_livro_ibfk_2");
+                    .HasConstraintName("tb_avaliacao_livro_ibfk_1");
             });
 
             modelBuilder.Entity<TbCarrinho>(entity =>

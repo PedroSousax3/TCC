@@ -6,6 +6,5 @@ namespace backend.Models.Request
     {
         public int livro { get; set; }
         public int qtd { get; set; }
-        public DateTime atualizacao { get; set; }
     }
 }

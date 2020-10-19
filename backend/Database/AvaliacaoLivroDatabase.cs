@@ -33,8 +33,7 @@ namespace backend.Database
         public async Task<Models.TbAvaliacaoLivro> AlterarAvaliacaoDatabase(int idavaliacao, Models.TbAvaliacaoLivro novo)
         {
             Models.TbAvaliacaoLivro avaliacao = await this.ConsultarAvaliacaoPorIdDatabase(idavaliacao);
-
-            novo.IdCliente = avaliacao.IdCliente;
+            
             novo.VlAvaliacao = avaliacao.VlAvaliacao;
             novo.DsComentario = avaliacao.DsComentario;
             novo.DtComentario = novo.DtComentario;

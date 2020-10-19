@@ -10,7 +10,6 @@ namespace backend.Business
 
         public async Task<Models.TbAvaliacaoLivro> InserirBusiness(Models.TbAvaliacaoLivro novo)
         {
-            ValidarId(novo.IdCliente);
             ValidarId(novo.IdVendaLivro);
             if(novo.VlAvaliacao < 0 || novo.VlAvaliacao > 5)
                 throw new ArgumentException("Valor da avaliação é invalido, valor deve ser maior que 0 e menor ou igual 5");
@@ -37,7 +36,6 @@ namespace backend.Business
         public async Task<Models.TbAvaliacaoLivro> AlterarAvaliacaoBusiness(int idavaliacao, Models.TbAvaliacaoLivro novo)
         {
 
-            ValidarId(novo.IdCliente);
             ValidarId(novo.IdVendaLivro);
             ValidarTexto(novo.DsComentario, "Comentario não foi informado.");
             novo.DtComentario = DateTime.Now;

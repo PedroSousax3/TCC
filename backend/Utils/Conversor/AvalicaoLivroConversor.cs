@@ -7,7 +7,6 @@ namespace backend.Utils.Conversor
             Models.TbAvaliacaoLivro tabela = new Models.TbAvaliacaoLivro();
 
             tabela.VlAvaliacao = request.avaliacao;
-            tabela.IdCliente = request.cliente;
             tabela.IdVendaLivro = request.venda_livro;
             tabela.DsComentario = request.comentario;
             tabela.DtComentario = request.data_publicacao;
@@ -20,7 +19,6 @@ namespace backend.Utils.Conversor
             Models.Response.AvaliacaoLivroResponse response = new Models.Response.AvaliacaoLivroResponse();
 
             response.avaliacao = tabela.VlAvaliacao;
-            response.cliente = tabela.IdCliente;
             response.venda_livro = tabela.IdVendaLivro;
             response.comentario = tabela.DsComentario;
             response.data_publicacao = tabela.DtComentario;

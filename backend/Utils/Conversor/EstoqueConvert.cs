@@ -8,7 +8,7 @@ namespace backend.Utils.Conversor
 
             tabela.IdLivro = request.livro;
             tabela.NrQuantidade = request.qtd;
-            tabela.DtAtualizacao = request.atualizacao;
+            tabela.DtAtualizacao = System.DateTime.Now;
 
             return tabela;
         }

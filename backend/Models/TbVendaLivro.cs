@@ -15,16 +15,18 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_venda_livro", TypeName = "int(11)")]
+        [Column("id_venda_livro")]
         public int IdVendaLivro { get; set; }
-        [Column("id_venda", TypeName = "int(11)")]
+        [Column("id_venda")]
         public int IdVenda { get; set; }
-        [Column("id_livro", TypeName = "int(11)")]
+        [Column("id_livro")]
         public int IdLivro { get; set; }
-        [Column("nr_livros", TypeName = "int(11)")]
+        [Column("nr_livros")]
         public int NrLivros { get; set; }
         [Column("vl_venda_livro", TypeName = "decimal(10,5)")]
         public decimal VlVendaLivro { get; set; }
+        [Column("bt_devolvido")]
+        public sbyte? BtDevolvido { get; set; }
 
         [ForeignKey(nameof(IdLivro))]
         [InverseProperty(nameof(TbLivro.TbVendaLivro))]

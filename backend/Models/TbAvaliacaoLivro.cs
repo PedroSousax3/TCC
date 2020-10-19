@@ -9,11 +9,9 @@ namespace backend.Models
     public partial class TbAvaliacaoLivro
     {
         [Key]
-        [Column("id_avaliacao_livro", TypeName = "int(11)")]
+        [Column("id_avaliacao_livro")]
         public int IdAvaliacaoLivro { get; set; }
-        [Column("id_cliente", TypeName = "int(11)")]
-        public int IdCliente { get; set; }
-        [Column("id_venda_livro", TypeName = "int(11)")]
+        [Column("id_venda_livro")]
         public int IdVendaLivro { get; set; }
         [Column("vl_avaliacao", TypeName = "decimal(10,5)")]
         public decimal VlAvaliacao { get; set; }
@@ -22,9 +20,6 @@ namespace backend.Models
         [Column("dt_comentario", TypeName = "datetime")]
         public DateTime DtComentario { get; set; }
 
-        [ForeignKey(nameof(IdCliente))]
-        [InverseProperty(nameof(TbCliente.TbAvaliacaoLivro))]
-        public virtual TbCliente IdClienteNavigation { get; set; }
         [ForeignKey(nameof(IdVendaLivro))]
         [InverseProperty(nameof(TbVendaLivro.TbAvaliacaoLivro))]
         public virtual TbVendaLivro IdVendaLivroNavigation { get; set; }

@@ -9,11 +9,11 @@ namespace backend.Models
     public partial class TbCarrinho
     {
         [Key]
-        [Column("id_carrinho", TypeName = "int(11)")]
+        [Column("id_carrinho")]
         public int IdCarrinho { get; set; }
-        [Column("id_livro", TypeName = "int(11)")]
+        [Column("id_livro")]
         public int IdLivro { get; set; }
-        [Column("id_cliente", TypeName = "int(11)")]
+        [Column("id_cliente")]
         public int IdCliente { get; set; }
         [Column("dt_atualizacao", TypeName = "datetime")]
         public DateTime DtAtualizacao { get; set; }

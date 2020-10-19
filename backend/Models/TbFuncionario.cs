@@ -9,9 +9,9 @@ namespace backend.Models
     public partial class TbFuncionario
     {
         [Key]
-        [Column("id_funcionario", TypeName = "int(11)")]
+        [Column("id_funcionario")]
         public int IdFuncionario { get; set; }
-        [Column("id_login", TypeName = "int(11)")]
+        [Column("id_login")]
         public int IdLogin { get; set; }
         [Required]
         [Column("nm_funcionario", TypeName = "varchar(100)")]
@@ -38,7 +38,7 @@ namespace backend.Models
         [Required]
         [Column("ds_cep", TypeName = "varchar(10)")]
         public string DsCep { get; set; }
-        [Column("nr_residencial", TypeName = "int(11)")]
+        [Column("nr_residencial")]
         public int NrResidencial { get; set; }
         [Column("ds_complemento", TypeName = "varchar(25)")]
         public string DsComplemento { get; set; }
