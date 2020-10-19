@@ -10,13 +10,13 @@ namespace backend.Business
         public async System.Threading.Tasks.Task<Models.TbMedidas> CadastrarBusiness(Models.TbMedidas novo)
         {
             if(novo.VlAltura <= 0)
-                throw new ArgumentException("Meida da altura do livro não pode ser menor que 0.");
+                throw new ArgumentException("Medida da altura do livro não pode ser menor que 0.");
             if(novo.VlLargura <= 0)
-                throw new ArgumentException("Meida da largura do livro não pode ser menor que 0.");
+                throw new ArgumentException("Medida da largura do livro não pode ser menor que 0.");
             if(novo.VlPeso <= 0)
-                throw new ArgumentException("Meida do peso do livro não pode ser menor que 0.");
+                throw new ArgumentException("Medida do peso do livro não pode ser menor que 0.");
             if(novo.VlProfundidades <= 0)
-                throw new ArgumentException("Meida da profundidade do livro não pode ser menor que 0.");
+                throw new ArgumentException("Medida da profundidade do livro não pode ser menor que 0.");
             
 
             Models.TbMedidas medidas = await database.CadastrarMedidas(novo);
