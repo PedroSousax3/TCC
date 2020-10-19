@@ -15,6 +15,10 @@ namespace backend.Business.Validador
            ValidarCaracteresEspeciaisSenha(senha);
            ValidarNumerosSenha(senha);
         }
+        public void ValidarId(int id)
+        {
+          validador.ValidarId(id);
+        }
 
         public void ValidarConfirmarLogin(string usuario,string senha)
         {
