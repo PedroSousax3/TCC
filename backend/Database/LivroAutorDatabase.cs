@@ -25,6 +25,10 @@ namespace backend.Database
            return await context.TbLivroAutor.Include(x => x.IdLivroNavigation).Include(x => x.IdAutorNavigation)
                                             .Where(x => x.IdAutorNavigation.IdAutor == id).ToListAsync();
         }
+        public Task<List<Models.TbLivroGenero>> ListarLivroGenero()
+        {
+            return context.TbLivroGenero.Include(x => x.IdGeneroNavigation).Include(x => x.IdLivroNavigation).ToListAsync();
+        }
 
         public Task<Models.TbLivroAutor> ConsultarPorIdLivroAutor(int id)
         {
