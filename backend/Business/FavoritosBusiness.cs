@@ -41,7 +41,6 @@ namespace backend.Business
 
             ValidarId(novo.IdCliente);
             ValidarId(novo.IdLivro);
-
             Models.TbFavoritos favorito = await this.AlterarFavoritosPorId(idfavorito, novo);
             if(favorito == null)
                 throw new ArgumentException("Não foi possivel alterar este livro na lista de favoritos.");
