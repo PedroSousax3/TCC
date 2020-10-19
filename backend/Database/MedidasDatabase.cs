@@ -6,8 +6,6 @@ namespace backend.Database
     public class MedidasDatabase
     {
         Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
-
-
         public async Task<Models.TbMedidas> CadastrarMedidas(Models.TbMedidas tabela)
         {
             await context.TbMedidas.AddAsync(tabela);
