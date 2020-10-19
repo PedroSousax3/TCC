@@ -18,6 +18,11 @@ namespace backend.Database
         {
             return context.TbDevolucao.FirstOrDefaultAsync(x => x.IdDevolucao == id);
         }
+        public Task<Models.TbDevolucao> ConsultarDevolucaoPorIdVendaLivro(int id)
+        {
+            return context.TbDevolucao.Include(x => x.IdVendaLivroNavigation)
+                                     .FirstOrDefaultAsync(x => x.IdVendaLivroNavigation.IdVendaLivro == id);
+        }
 
         public async Task<Models.TbDevolucao> AlterarDevolucao(int id,Models.TbDevolucao novaTabela)
         {
