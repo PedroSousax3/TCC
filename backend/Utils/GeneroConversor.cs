@@ -18,6 +18,7 @@ namespace backend.Utils
             response.IdGenero = tabela.IdGenero;
             response.Genero = tabela.NmGenero;
             response.Descricao = tabela.DsGenero;
+            response.Foto = tabela.DsFoto;
 
             return response;
         }

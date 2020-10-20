@@ -35,7 +35,6 @@ namespace backend.Models
         public string NmEstado { get; set; }
         [Column("nr_endereco")]
         public int NrEndereco { get; set; }
-        [Required]
         [Column("ds_complemento", TypeName = "varchar(35)")]
         public string DsComplemento { get; set; }
         [Column("ds_celular", TypeName = "varchar(20)")]

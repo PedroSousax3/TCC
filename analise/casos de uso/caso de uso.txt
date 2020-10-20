@@ -1,7 +1,5 @@
 FUNCIONARIO
 MANTER LIVRO
-funcionario deve poder inserir os livros sendo nescessario os dados (genero, editora, autor) devem estar devidamente cadastrados no sistema, apenas funcionario deve poder realizar a inserção, alteração ou remoção de livros do sistema, na area de alterar deve ser possivel visualzar e poder alterar o número de livros em estoque.
-
 MANTER GENERO
 MANTER EDITORA
 MANTER AUTOR
@@ -9,7 +7,6 @@ CADASTRAR
 LOGAR
 ALTERAR SENHA
 COMFIRMAR DEVOLUÇÃO
-REMOVER FUNVIONARIO
 
 CLIENTE
 MANTER CARRINHO

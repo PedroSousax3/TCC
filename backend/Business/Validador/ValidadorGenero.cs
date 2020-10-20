@@ -1,9 +1,17 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace backend.Business.Validador
 {
     public class ValidadorGenero : Business.Validador.ValidadorPadrao
     {
+
+        public void ValidarListaGenero(List<Models.TbGenero> tabela)
+        {
+            if(tabela.Count == 0)
+              throw new ArgumentException("Ainda não há registros");
+        }
         public void ValidaGenero(bool jaexiste,Models.TbGenero tabela)
         {
             ValidarTexto(tabela.NmGenero,"De Nome do Genero");

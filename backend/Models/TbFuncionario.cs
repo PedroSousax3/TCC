@@ -40,7 +40,6 @@ namespace backend.Models
         public string DsCep { get; set; }
         [Column("nr_residencial")]
         public int NrResidencial { get; set; }
-        [Required]
         [Column("ds_complemento", TypeName = "varchar(25)")]
         public string DsComplemento { get; set; }
 

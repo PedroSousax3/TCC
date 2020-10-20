@@ -8,11 +8,14 @@ namespace backend.Models
     [Table("tb_medidas")]
     public partial class TbMedidas
     {
+        public TbMedidas()
+        {
+            TbLivro = new HashSet<TbLivro>();
+        }
+
         [Key]
         [Column("id_medidas")]
         public int IdMedidas { get; set; }
-        [Column("id_livro")]
-        public int IdLivro { get; set; }
         [Column("vl_altura", TypeName = "decimal(10,5)")]
         public decimal VlAltura { get; set; }
         [Column("vl_largura", TypeName = "decimal(10,5)")]
@@ -22,8 +25,7 @@ namespace backend.Models
         [Column("vl_peso", TypeName = "decimal(10,5)")]
         public decimal VlPeso { get; set; }
 
-        [ForeignKey(nameof(IdLivro))]
-        [InverseProperty(nameof(TbLivro.TbMedidas))]
-        public virtual TbLivro IdLivroNavigation { get; set; }
+        [InverseProperty("IdMedidasNavigation")]
+        public virtual ICollection<TbLivro> TbLivro { get; set; }
     }
 }

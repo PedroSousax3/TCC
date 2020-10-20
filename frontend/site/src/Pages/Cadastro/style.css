@@ -7,6 +7,7 @@
     height: 7vh;
     margin-top: 10px;
     margin-left: 10px;
+    
 }
 .Meio{
     height: 75vh;
@@ -19,8 +20,7 @@
     border-radius: 20px;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    
+    align-items: center;    
 
     align-content: center;
     

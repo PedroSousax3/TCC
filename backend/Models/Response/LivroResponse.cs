@@ -5,6 +5,7 @@ namespace backend.Models.Response
     public class LivroResponse
     {
         public int id { get; set; }
+        public int medida { get; set; }
         public int editora { get; set; }
         public string nome { get; set; }
         public string descricao { get; set; }

@@ -5,6 +5,7 @@ using backend.Models.Request;
 using System.Threading.Tasks;
 using backend.Utils.Conversor;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace backend.Controllers
 {
@@ -36,7 +37,88 @@ namespace backend.Controllers
                 );
             }
         }
-        
-                
+
+        [HttpGet]
+        public async Task<ActionResult<EditoraResponse>> ConsultarEditoraPorIdController(int ideditora)
+        {
+            try
+            {
+                Models.TbEditora editora = await business.ConsultarEditoraPorIdBusiness(ideditora);
+                EditoraResponse response = ConvertEditora.Conversor(editora);
+                return response;
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound(
+                    new ErroResponse(404, ex.Message)
+                );
+            }
+        }
+
+        [HttpGet("foto/{nome}")]
+        public ActionResult ConsultarArquivoPorNomeController(string nome)
+        {
+            try
+            {
+                byte[] arquivo = gerenciadorFoto.LerFoto(nome);
+                string extensao = gerenciadorFoto.GerarContentType(nome);
+                return File(arquivo, extensao);
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound( 
+                    new ErroResponse(404, ex.Message)
+                );
+            }
+        }
+
+        [HttpGet("listar-fotos")]
+        public async Task<ActionResult<List<ArquivoResponse>>> ListarLogoController()
+        {
+            try
+            {
+                List<ArquivoResponse> fotos = new List<ArquivoResponse>();
+                List<Models.TbEditora> editoras = await business.ListarEditoras();
+                foreach(Models.TbEditora item in editoras)
+                {
+                    if(string.IsNullOrEmpty(item.DsLogo))
+                        continue;
+                    else
+                    {
+                        byte[] arquivo = gerenciadorFoto.LerFoto(item.DsLogo);
+                        string extensao = gerenciadorFoto.GerarContentType(item.DsLogo);
+                        var foto = File(arquivo, extensao);
+                        fotos.Add(new ArquivoResponse(item.DsLogo, foto));
+                    }
+                }
+
+                return fotos;
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound( 
+                    new ErroResponse(404, ex.Message)
+                );
+            }
+        }
+
+
+        [HttpDelete]
+        public async Task<ActionResult> RemoverEditoraController(int id)
+        {
+            try
+            {
+                Models.TbEditora editora = await business.ConsultarEditoraPorIdBusiness(id);
+                await business.RemoverEditoraBusiness(id);
+                gerenciadorFoto.RemoverArquivo(editora.DsLogo);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound(
+                    new ErroResponse(404, ex.Message)
+                );
+            }
+        }
     }
 }

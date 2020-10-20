@@ -25,6 +25,8 @@ namespace backend.Models
         public int NrLivros { get; set; }
         [Column("vl_venda_livro", TypeName = "decimal(10,5)")]
         public decimal VlVendaLivro { get; set; }
+        [Column("bt_devolvido")]
+        public sbyte? BtDevolvido { get; set; }
 
         [ForeignKey(nameof(IdLivro))]
         [InverseProperty(nameof(TbLivro.TbVendaLivro))]
