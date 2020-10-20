@@ -4,14 +4,15 @@ import { ToastContainer, toast } from "react-toastify";
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { ContainerLogin } from './style.js'
+import { ContainerLogin } from './style.js';
 
 import nextGenBookAPI from "../../Service/NextGenBookApi";
+
 const api = new nextGenBookAPI();
 
-export default function Logar(props) {
+export default function Logar() {
     
-      // final do login
+      
 
       const [user, setUser ] = useState("");
       const [ senha, setSenha ] = useState("");
@@ -68,7 +69,7 @@ export default function Logar(props) {
                 </div>
 
                 <div className="form-group">
-                  <Link as = "a" to={{pathname:"Cadastro"}}>
+                  <Link as = "a" to={{pathname:"/Cadastro"}}>
                       Cadastre-se
                   </Link>
                 </div>
