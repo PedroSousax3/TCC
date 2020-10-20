@@ -9,6 +9,15 @@ namespace backend.Database
     public class LivroDatabase
     {
         Models.db_next_gen_booksContext db = new Models.db_next_gen_booksContext();
+
+        public async Task<Models.TbLivro> InserirDatabaseAsync (Models.TbLivro livro)
+        {
+            await db.TbLivro.AddAsync(livro);
+            await db.SaveChangesAsync();
+
+            return livro;
+        }
+
         public async Task<List<Models.TbLivro>> LitarLivrosDatabase()
         {
             List<Models.TbLivro> livros = await db.TbLivro.Include(x => x.IdEditoraNavigation).Include(x => x.IdMedidasNavigation).ToListAsync();
