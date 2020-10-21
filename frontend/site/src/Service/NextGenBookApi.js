@@ -12,7 +12,7 @@ export default class NextGenBookApi{
     }
 
     async cadastrar(req){
-    const resp = await api.post('/Cadastrar', req);
-    return resp.data;
-  }
+        const resp = await api.post('/Cadastrar', req);
+        return resp.data;
+    }
 }

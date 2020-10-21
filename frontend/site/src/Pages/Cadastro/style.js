@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
 export const ContainerCadastro = styled.div`
-    
+    justify-content:center;
+    align-items:center;
+    display:flex;
     span{
-        color: aliceblue;
+        
         width:10vw;
         height:5vh;
     }
@@ -14,12 +16,12 @@ export const ContainerCadastro = styled.div`
         height:70vh;
         flex-direction: row;
         display: flex;
-        border-color: green;
+        
     }
 
     label{
         color:black;
-        cursor: pointer;
+        
         
     }
 
@@ -30,13 +32,13 @@ export const ContainerCadastro = styled.div`
 
     .Informacoes{
         
-        width:15vw;
+        width:100vw;
         height:70vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         font-size:20px;
-        border-color: green;
+        
     }
     .Inputs{
         
@@ -57,9 +59,11 @@ export const ContainerCadastro = styled.div`
 
 
     .Caixa-Imagem{
-        background-color:gray;
-        width:10vw;
-        height:20vh;
+        flex-direction:column;
+       
+        display:flex;
+        width:55vw;
+        height:63vh;
         margin-left:50px;
         margin-top:50px;
     }
@@ -67,6 +71,24 @@ export const ContainerCadastro = styled.div`
     //input[type='file'] {
      //   display: none
     //}
+
+    .Caixa-Botao{
+        
+        width:10vw;
+        height:10vh;
+    }
+    
+    .button1{
+        margin-left:100px;
+        margin-top:100px;
+        width:100%;
+        height:100%;
+        align-items:flex-end;
+        display:flex;
+    }
+
+    
+    
   
     @media screen and (max-width: 600px)
     {
