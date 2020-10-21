@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class VendaConversor
     {
-        public Models.TbVenda Conversor(Models.Request.VendaRequest request)
+        public Models.TbVenda ConversorTabela(Models.Request.VendaRequest request)
         {
             Models.TbVenda tabela = new Models.TbVenda();
 
@@ -21,7 +21,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.VendaResponse Conversor(Models.TbVenda tabela)
+        public Models.Response.VendaResponse ConversorResponse(Models.TbVenda tabela)
         {
             Models.Response.VendaResponse response = new Models.Response.VendaResponse();
 

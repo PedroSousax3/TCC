@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class CarrinhoConversor
     {
-        public Models.TbCarrinho Conversor (Models.Request.CarrinhoRequest request)
+        public Models.TbCarrinho ConversorTabela (Models.Request.CarrinhoRequest request)
         {
             Models.TbCarrinho tabela = new Models.TbCarrinho();
             
@@ -13,7 +13,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.CarrinhoResponse Conversor (Models.TbCarrinho tabela)
+        public Models.Response.CarrinhoResponse ConversorResponse (Models.TbCarrinho tabela)
         {
             Models.Response.CarrinhoResponse response = new Models.Response.CarrinhoResponse();
             

@@ -1,8 +1,8 @@
-namespace backend.Storage
+namespace backend.Utils.Conversor
 {
     public class DevolucaoConversor
     {
-        public Models.TbDevolucao Conversor(Models.Request.DevolucaoRequest request)
+        public Models.TbDevolucao ConversorTabela(Models.Request.DevolucaoRequest request)
         {
             Models.TbDevolucao tabela = new Models.TbDevolucao();
 
@@ -17,7 +17,7 @@ namespace backend.Storage
             return tabela;
         }
 
-        public Models.Response.DevolucaoResponse Conversor(Models.TbDevolucao tabela)
+        public Models.Response.DevolucaoResponse ConversorResponse(Models.TbDevolucao tabela)
         {
             Models.Response.DevolucaoResponse response = new Models.Response.DevolucaoResponse();
 

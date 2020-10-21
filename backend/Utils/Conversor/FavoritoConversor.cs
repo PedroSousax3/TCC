@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class FavoritoConversor
     {
-        public Models.TbFavoritos Conversor(Models.Request.FavoritoRequest request)
+        public Models.TbFavoritos ConversorTabela(Models.Request.FavoritoRequest request)
         {
             Models.TbFavoritos tabela = new Models.TbFavoritos();
 
@@ -13,7 +13,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.FavoritoResponse Conversor(Models.TbFavoritos tabela)
+        public Models.Response.FavoritoResponse ConversorResponse(Models.TbFavoritos tabela)
         {
             Models.Response.FavoritoResponse response = new Models.Response.FavoritoResponse();
 

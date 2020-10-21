@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class FuncionarioConversor
     {
-        public Models.TbFuncionario ConversorFuncionario(Models.Request.FuncionarioRequest request)
+        public Models.TbFuncionario ConversorFuncionarioTabela(Models.Request.FuncionarioRequest request)
         {
             Models.TbFuncionario tabela = new Models.TbFuncionario();
 
@@ -22,7 +22,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.FuncionarioResponse ConversorFuncionario(Models.TbFuncionario tabela)
+        public Models.Response.FuncionarioResponse ConversorFuncionarioResponse(Models.TbFuncionario tabela)
         {
             Models.Response.FuncionarioResponse response = new Models.Response.FuncionarioResponse();
             
