@@ -13,6 +13,25 @@ namespace backend.Controllers
         Utils.Conversor.FuncionarioConversor conversor = new Utils.Conversor.FuncionarioConversor();
         Business.FuncionarioBusiness business = new Business.FuncionarioBusiness();
 
+        [HttpPost]
+        public async Task<ActionResult<Models.Response.FuncionarioResponse>> InserirController(Models.Request.FuncionarioRequest novo)
+        {
+            try
+            {
+                Models.TbFuncionario funcionario = conversor.ConversorFuncionarioTabela(novo);
+                Models.TbFuncionario result = await business.CadastrarBusiness(funcionario);
+                Models.Response.FuncionarioResponse response = conversor.ConversorFuncionarioResponse(result);
+                
+                return response;
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(
+                    new Models.Response.ErroResponse(400, ex.Message)
+                );
+            }
+        }
+
         [HttpPut("alterar/{idfuncionario}")]
         public async Task<ActionResult<Models.Response.FuncionarioResponse>> AlterarFuncionario(int idfuncionario,Models.Request.FuncionarioRequest request)
         {
