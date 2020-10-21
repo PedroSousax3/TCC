@@ -15,7 +15,7 @@ namespace backend.Controllers
         Business.GerenciadorFoto gerenciador = new Business.GerenciadorFoto();
         
         [HttpPost("cadastrar")]
-         public async Task<ActionResult<Models.Response.GeneroResponse.ListarGeneros>> CadastrarGenero([FromForm] Models.Request.GeneroRequest request)
+         public async Task<ActionResult<Models.Response.GeneroResponse>> CadastrarGenero([FromForm] Models.Request.GeneroRequest request)
          {
              try
              {
@@ -32,7 +32,7 @@ namespace backend.Controllers
          }
 
          [HttpPut("alterar/{idgenero}")]
-         public async Task<ActionResult<Models.Response.GeneroResponse.ListarGeneros>> AlterarGenero([FromForm] Models.Request.GeneroRequest request,int idgenero)
+         public async Task<ActionResult<Models.Response.GeneroResponse>> AlterarGenero([FromForm] Models.Request.GeneroRequest request,int idgenero)
          {
              try
              {
@@ -49,7 +49,7 @@ namespace backend.Controllers
          }
 
         [HttpGet("Generos")]
-        public async Task<ActionResult<List<Models.Response.GeneroResponse.ListarGeneros>>> ListarGeneros()
+        public async Task<ActionResult<List<Models.Response.GeneroResponse>>> ListarGeneros()
         {
             try
             {
@@ -63,7 +63,7 @@ namespace backend.Controllers
         }
 
         [HttpDelete("deletar/{id}")]
-        public async Task<ActionResult<Models.Response.GeneroResponse.ListarGeneros>> DeletarGenero(int id)
+        public async Task<ActionResult<Models.Response.GeneroResponse>> DeletarGenero(int id)
         {
             try
             {

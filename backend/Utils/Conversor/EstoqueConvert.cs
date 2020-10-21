@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class EstoqueConvert
     {
-        public Models.TbEstoque Conversor(Models.Request.EstoqueRequest request)
+        public Models.TbEstoque ConversorTabela(Models.Request.EstoqueRequest request)
         {
             Models.TbEstoque tabela = new Models.TbEstoque();
 
@@ -13,7 +13,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.EstoqueResponce Conversor(Models.TbEstoque tabela)
+        public Models.Response.EstoqueResponce ConversorResponse(Models.TbEstoque tabela)
         {
             Models.Response.EstoqueResponce responce = new Models.Response.EstoqueResponce();
 

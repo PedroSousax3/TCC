@@ -9,7 +9,6 @@ namespace backend.Database
     public class LivroDatabase
     {
         Models.db_next_gen_booksContext db = new Models.db_next_gen_booksContext();
-
         public async Task<Models.TbLivro> InserirDatabaseAsync (Models.TbLivro livro)
         {
             await db.TbLivro.AddAsync(livro);
@@ -20,8 +19,13 @@ namespace backend.Database
 
         public async Task<List<Models.TbLivro>> LitarLivrosDatabase()
         {
-            List<Models.TbLivro> livros = await db.TbLivro.Include(x => x.IdEditoraNavigation).Include(x => x.IdMedidasNavigation).ToListAsync();
+            List<Models.TbLivro> livros = await db.TbLivro.Include(x => x.IdEditoraNavigation).Include(x => x.IdMedidaNavigation).ToListAsync();
             return livros;
+        }
+
+        public async Task<Models.TbLivro> ConsultarLivroPorId(int idlivro)
+        {
+            return await db.TbLivro.Include(x => x.IdMedidaNavigation).FirstOrDefaultAsync(x => x.IdLivro == idlivro);
         }
 
         public async Task<List<Models.TbLivro>> ListarLivrosFiltro(Models.Request.LivrosFiltrosRequest filtros)
@@ -44,6 +48,43 @@ namespace backend.Database
                                 .ToList();
             
             return livros;
+        }
+
+        public async  Task<Models.TbLivro> AlterarLivroDatabase(int idlivro, Models.TbLivro livro)
+        {
+            Models.TbLivro atual = await this.ConsultarLivroPorId(idlivro);
+
+            atual.NmLivro = livro.NmLivro;
+            atual.NrEdicao = livro.NrEdicao;
+            atual.NrPaginas = livro.NrPaginas;
+            atual.DsIsbn = livro.DsIsbn;
+            atual.DsIdioma = livro.DsIdioma;
+            atual.DsLivro = livro.DsLivro;
+            atual.DtLancamento = livro.DtLancamento;
+            atual.VlPrecoCompra = livro.VlPrecoCompra;
+            atual.VlPrecoVenda = livro.VlPrecoVenda;
+            atual.DsCapa = livro.DsCapa;
+
+            atual.IdMedidaNavigation.VlAltura = livro.IdMedidaNavigation.VlAltura;
+            atual.IdMedidaNavigation.VlLargura = livro.IdMedidaNavigation.VlLargura;
+            atual.IdMedidaNavigation.VlPeso = livro.IdMedidaNavigation.VlPeso;
+            atual.IdMedidaNavigation.VlProfundidades = livro.IdMedidaNavigation.VlProfundidades;
+
+            await db.SaveChangesAsync();
+            return livro;
+        }
+
+        public async Task<Models.TbLivro> RemoverDatabase(int idlivro)
+        {
+            Models.TbLivro livro = await this.ConsultarLivroPorId(idlivro);
+            
+            if(livro == null)
+                return null;
+
+            db.TbLivro.Remove(livro);
+            await db.SaveChangesAsync();
+
+            return livro;
         }
     }
 }

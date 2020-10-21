@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class AvalicaoLivroConversor
     {
-        public Models.TbAvaliacaoLivro Conversor(Models.Request.AvaliacaoLivro request)
+        public Models.TbAvaliacaoLivro ConversorTabela(Models.Request.AvaliacaoLivro request)
         {
             Models.TbAvaliacaoLivro tabela = new Models.TbAvaliacaoLivro();
 
@@ -14,7 +14,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.AvaliacaoLivroResponse Conversor(Models.TbAvaliacaoLivro tabela)
+        public Models.Response.AvaliacaoLivroResponse ConversorResponse(Models.TbAvaliacaoLivro tabela)
         {
             Models.Response.AvaliacaoLivroResponse response = new Models.Response.AvaliacaoLivroResponse();
 

@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class RecebimentoDevolucaoConversor
     {
-        public Models.TbRecebimentoDevolucao Conversor (Models.Request.ReciboDevolucaoRequest request)
+        public Models.TbRecebimentoDevolucao ConversorTabela (Models.Request.ReciboDevolucaoRequest request)
         {
             Models.TbRecebimentoDevolucao tabela = new Models.TbRecebimentoDevolucao();
 
@@ -13,7 +13,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.ReciboDevolucaoResponse Conversor (Models.TbRecebimentoDevolucao tabela)
+        public Models.Response.ReciboDevolucaoResponse ConversorResponse (Models.TbRecebimentoDevolucao tabela)
         {
             Models.Response.ReciboDevolucaoResponse response = new Models.Response.ReciboDevolucaoResponse();
 

@@ -43,7 +43,7 @@ namespace backend.Business
             return funcionario;
         }
 
-        public async Task<Models.TbFuncionario> AlterarBusiness(Models.TbFuncionario novo)
+        public async Task<Models.TbFuncionario> AlterarBusiness(int id,Models.TbFuncionario novo)
         {
             ValidarTexto(novo.NmFuncionario, "Nome do funcionario");
             ValidarTexto(novo.DsCarteiraTrabalho, "carteira de trabalho");
@@ -53,7 +53,7 @@ namespace backend.Business
             ValidarId(novo.IdLogin);
             ValidarTexto(novo.DsCpf, "cpf");
 
-            Models.TbFuncionario funcionario = await database.CadastrarFuncionario(novo);
+            Models.TbFuncionario funcionario = await database.AlterarFuncionario(id,novo);
             if(funcionario == null)
                 throw new ArgumentException("Não fio possivel encontrar o funcionario.");
             return funcionario;

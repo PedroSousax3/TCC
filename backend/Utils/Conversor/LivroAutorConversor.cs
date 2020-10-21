@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class LivroAutorConversor
     {
-        public Models.TbLivroAutor Conversor(Models.Request.LivroAutorRequest request)
+        public Models.TbLivroAutor ConversorTabela(Models.Request.LivroAutorRequest request)
         {
             Models.TbLivroAutor tabela = new Models.TbLivroAutor();
 
@@ -12,7 +12,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.LivroAutorResponse Conversor(Models.TbLivroAutor tabela)
+        public Models.Response.LivroAutorResponse ConversorResponse(Models.TbLivroAutor tabela)
         {
             Models.Response.LivroAutorResponse response = new Models.Response.LivroAutorResponse();
 

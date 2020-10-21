@@ -2,9 +2,9 @@ namespace backend.Utils.Conversor
 {
     public class MedidasConversor
     {
-        public Models.TbMedidas Conversor(Models.Request.MedidaRequest request)
+        public Models.TbMedida Conversor(Models.Request.MedidaRequest request)
         {
-            Models.TbMedidas tabela = new Models.TbMedidas();
+            Models.TbMedida tabela = new Models.TbMedida();
 
             tabela.VlAltura = request.altura;
             tabela.VlLargura = request.largura;
@@ -14,7 +14,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.MedidaResponse Conversor(Models.TbMedidas tabela)
+        public Models.Response.MedidaResponse Conversor(Models.TbMedida tabela)
         {
             Models.Response.MedidaResponse response = new Models.Response.MedidaResponse();
 

@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class LivroGeneroConversor
     {
-        public Models.TbLivroGenero Conversor(Models.Request.LivroGeneroRequest request)
+        public Models.TbLivroGenero ConversorTabela(Models.Request.LivroGeneroRequest request)
         {
             Models.TbLivroGenero tabela = new Models.TbLivroGenero();
 
@@ -12,7 +12,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.LivroGeneroResponse Conversor(Models.TbLivroGenero tabela)
+        public Models.Response.LivroGeneroResponse ConversorResponse(Models.TbLivroGenero tabela)
         {
             Models.Response.LivroGeneroResponse response = new Models.Response.LivroGeneroResponse();
 
