@@ -6,7 +6,6 @@ namespace backend.Models.Request
     public class LivroRequest
     {
         public int editora { get; set; }
-        public int medidas { get; set; }
         public string nome { get; set; }
         public string descricao { get; set; }
         public DateTime lancamento { get; set; }
@@ -18,5 +17,6 @@ namespace backend.Models.Request
         public int edicao { get; set; }
         public double compra { get; set; }
         public double venda { get; set; }
+        public Models.Request.MedidaRequest medidas { get; set; }
     }
 }

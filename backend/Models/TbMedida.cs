@@ -5,17 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace backend.Models
 {
-    [Table("tb_medidas")]
-    public partial class TbMedidas
+    [Table("tb_medida")]
+    public partial class TbMedida
     {
-        public TbMedidas()
+        public TbMedida()
         {
             TbLivro = new HashSet<TbLivro>();
         }
 
         [Key]
-        [Column("id_medidas")]
-        public int IdMedidas { get; set; }
+        [Column("id_medida")]
+        public int IdMedida { get; set; }
         [Column("vl_altura", TypeName = "decimal(10,5)")]
         public decimal VlAltura { get; set; }
         [Column("vl_largura", TypeName = "decimal(10,5)")]
@@ -25,7 +25,7 @@ namespace backend.Models
         [Column("vl_peso", TypeName = "decimal(10,5)")]
         public decimal VlPeso { get; set; }
 
-        [InverseProperty("IdMedidasNavigation")]
+        [InverseProperty("IdMedidaNavigation")]
         public virtual ICollection<TbLivro> TbLivro { get; set; }
     }
 }

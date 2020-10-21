@@ -6,26 +6,26 @@ namespace backend.Database
     public class MedidasDatabase
     {
         Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
-        public async Task<Models.TbMedidas> CadastrarMedidas(Models.TbMedidas tabela)
+        public async Task<Models.TbMedida> CadastrarMedidas(Models.TbMedida tabela)
         {
-            await context.TbMedidas.AddAsync(tabela);
+            await context.TbMedida.AddAsync(tabela);
             await context.SaveChangesAsync();
             return tabela;
         }
 
-        public Task<List<Models.TbMedidas>> ListarMedidas()
+        public Task<List<Models.TbMedida>> ListarMedidas()
         {
-            return context.TbMedidas.ToListAsync();
+            return context.TbMedida.ToListAsync();
         }
 
-        public Task<Models.TbMedidas> ConsultarPorIdMedidas(int id)
+        public Task<Models.TbMedida> ConsultarPorIdMedidas(int id)
         {
-           return context.TbMedidas.FirstOrDefaultAsync(x => x.IdMedidas == id);
+           return context.TbMedida.FirstOrDefaultAsync(x => x.IdMedida == id);
         }
 
-        public async Task<Models.TbMedidas> AlterarMedidas(int id,Models.TbMedidas novaTabela)
+        public async Task<Models.TbMedida> AlterarMedidas(int id,Models.TbMedida novaTabela)
         {
-            Models.TbMedidas tabela = await ConsultarPorIdMedidas(id);
+            Models.TbMedida tabela = await ConsultarPorIdMedidas(id);
             tabela.VlAltura = novaTabela.VlAltura;
             tabela.VlLargura = novaTabela.VlLargura;
             tabela.VlPeso = novaTabela.VlPeso;
@@ -34,10 +34,10 @@ namespace backend.Database
             return tabela;
         }
         
-        public async Task<Models.TbMedidas> DeletarMedidas(int id)
+        public async Task<Models.TbMedida> DeletarMedidas(int id)
         {
-            Models.TbMedidas tabela = await ConsultarPorIdMedidas(id);
-            context.TbMedidas.Remove(tabela);
+            Models.TbMedida tabela = await ConsultarPorIdMedidas(id);
+            context.TbMedida.Remove(tabela);
             await context.SaveChangesAsync();
             return tabela;
         }

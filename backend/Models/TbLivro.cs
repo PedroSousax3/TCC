@@ -20,8 +20,8 @@ namespace backend.Models
         [Key]
         [Column("id_livro")]
         public int IdLivro { get; set; }
-        [Column("id_medidas")]
-        public int IdMedidas { get; set; }
+        [Column("id_medida")]
+        public int IdMedida { get; set; }
         [Column("id_editora")]
         public int IdEditora { get; set; }
         [Required]
@@ -56,9 +56,9 @@ namespace backend.Models
         [ForeignKey(nameof(IdEditora))]
         [InverseProperty(nameof(TbEditora.TbLivro))]
         public virtual TbEditora IdEditoraNavigation { get; set; }
-        [ForeignKey(nameof(IdMedidas))]
-        [InverseProperty(nameof(TbMedidas.TbLivro))]
-        public virtual TbMedidas IdMedidasNavigation { get; set; }
+        [ForeignKey(nameof(IdMedida))]
+        [InverseProperty(nameof(TbMedida.TbLivro))]
+        public virtual TbMedida IdMedidaNavigation { get; set; }
         [InverseProperty("IdLivroNavigation")]
         public virtual TbFavoritos TbFavoritos { get; set; }
         [InverseProperty("IdLivroNavigation")]

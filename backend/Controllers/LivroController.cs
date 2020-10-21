@@ -16,11 +16,11 @@ namespace backend.Controllers
         {
             try
             {
-                Models.TbLivro livro = ConversorLivro.Converter(request);
+                Models.TbLivro livro = ConversorLivro.Conversor(request);
                 livro.DsCapa = gerenciadorFoto.GerarNovoNome(request.foto.FileName);
-                gerenciadorFoto.SalvarFoto(livro.DsCapa, request.foto);
                 Models.TbLivro result = await business.InserirBusinesa(livro);
-                Models.Response.LivroResponse response = ConversorLivro.Converter(result);
+                gerenciadorFoto.SalvarFoto(livro.DsCapa, request.foto);
+                Models.Response.LivroResponse response = ConversorLivro.Conversor(result);
 
                 return response;
             }

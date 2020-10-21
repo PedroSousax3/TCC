@@ -30,7 +30,7 @@ namespace backend.Models
         public virtual DbSet<TbLivroAutor> TbLivroAutor { get; set; }
         public virtual DbSet<TbLivroGenero> TbLivroGenero { get; set; }
         public virtual DbSet<TbLogin> TbLogin { get; set; }
-        public virtual DbSet<TbMedidas> TbMedidas { get; set; }
+        public virtual DbSet<TbMedida> TbMedida { get; set; }
         public virtual DbSet<TbRecebimentoDevolucao> TbRecebimentoDevolucao { get; set; }
         public virtual DbSet<TbVenda> TbVenda { get; set; }
         public virtual DbSet<TbVendaLivro> TbVendaLivro { get; set; }
@@ -359,7 +359,7 @@ namespace backend.Models
                 entity.HasIndex(e => e.IdEditora)
                     .HasName("id_editora_idx");
 
-                entity.HasIndex(e => e.IdMedidas)
+                entity.HasIndex(e => e.IdMedida)
                     .HasName("fk_tb_livro_tb_medidas1_idx");
 
                 entity.Property(e => e.DsCapa)
@@ -392,9 +392,9 @@ namespace backend.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("tb_livro_ibfk_1");
 
-                entity.HasOne(d => d.IdMedidasNavigation)
+                entity.HasOne(d => d.IdMedidaNavigation)
                     .WithMany(p => p.TbLivro)
-                    .HasForeignKey(d => d.IdMedidas)
+                    .HasForeignKey(d => d.IdMedida)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("tb_livro_ibfk_2");
             });
@@ -465,9 +465,9 @@ namespace backend.Models
                     .HasCollation("utf8mb4_0900_ai_ci");
             });
 
-            modelBuilder.Entity<TbMedidas>(entity =>
+            modelBuilder.Entity<TbMedida>(entity =>
             {
-                entity.HasKey(e => e.IdMedidas)
+                entity.HasKey(e => e.IdMedida)
                     .HasName("PRIMARY");
             });
 

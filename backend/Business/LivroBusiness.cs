@@ -7,10 +7,9 @@ namespace backend.Business
     public class LivroBusiness : Business.Validador.ValidadorPadrao
     {
         Database.LivroDatabase database = new Database.LivroDatabase();
+        MedidaBusiness FunctionMedida = new MedidaBusiness();
         public async Task<Models.TbLivro> InserirBusinesa(Models.TbLivro tabela)
-        {
-            ValidarId(tabela.IdEditora);
-            ValidarId(tabela.IdMedidas);
+        {            
             ValidarTexto(tabela.DsIdioma, "idioma");
             ValidarTexto(tabela.DsIsbn, "numero isbn");
             ValidarTexto(tabela.DsLivro, "resumo");
@@ -26,7 +25,7 @@ namespace backend.Business
             if(tabela.DtLancamento > DateTime.Now)
                 throw new ArgumentException("Ano de lancamento do livro é superior a data atual.");
 
-           return await database.InserirDatabaseAsync(tabela);
+            return await database.InserirDatabaseAsync(tabela);
         }
     }
 }
