@@ -29,6 +29,21 @@ namespace backend.Controllers
                 return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
             }
         }
+        [HttpPost("funcionario")]
+        public async Task<ActionResult<Models.Response.LoginResponse.CadastrarLoginFuncionario>> CadastrarFuncionario(Models.Request.LoginRequest.CadastrarLoginFuncionario request)
+        {
+            try
+            {
+                Models.TbLogin tabela = conversor.ParaTabelaCadastrarFuncionarioLogin(request);
+                tabela = await business.ValidarCadastrarLoginFuncionario(tabela,request);
+                return conversor.ParaResponseCadastrarLoginResponse(tabela,request);
+            }
+           catch (System.Exception ex)
+            {
+                return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
+            }
+         
+        }
         
         [HttpPost]
         public async Task<ActionResult<Models.Response.LoginResponse.ConfirmarLogin>> ConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)

@@ -2,11 +2,13 @@ namespace backend.Models.Response
 {
     public class LoginResponse
     {
-        public class CadastrarLogin
+        public class CadastrarLoginFuncionario
         {
             public int Id { get; set; }
             public string Usuario { get; set; }
             public string  Email { get; set; }
+            public string  Nome { get; set; }
+
         }
         
         public class ConfirmarLogin

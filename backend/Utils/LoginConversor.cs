@@ -34,6 +34,23 @@ namespace backend.Utils
               
               return tabela;
         }
+        public Models.TbLogin ParaTabelaCadastrarFuncionarioLogin(Models.Request.LoginRequest.CadastrarLoginFuncionario request)
+        {
+            Models.TbLogin tabela = new Models.TbLogin();
+            tabela.NmUsuario = request.NomeDeUsuario;
+            tabela.DsSenha = request.Senha;
+
+            return tabela;
+        }
+        public Models.Response.LoginResponse.CadastrarLoginFuncionario ParaResponseCadastrarLoginResponse(Models.TbLogin tabela,Models.Request.LoginRequest.CadastrarLoginFuncionario request)
+        {
+           Models.Response.LoginResponse.CadastrarLoginFuncionario response = new Models.Response.LoginResponse.CadastrarLoginFuncionario();
+           response.Email = request.Email;
+           response.Nome = request.Nome;
+           response.Id = tabela.IdLogin;
+           response.Usuario = tabela.NmUsuario;
+           return response;
+        }
         public Models.Response.LoginResponse.ConfirmarLogin ParaResponseCadastrarLogin(Models.TbLogin tabela)
         {
              Models.Response.LoginResponse.ConfirmarLogin response = new Models.Response.LoginResponse.ConfirmarLogin();

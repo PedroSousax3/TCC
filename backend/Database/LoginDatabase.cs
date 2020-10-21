@@ -25,7 +25,6 @@ namespace backend.Database
             await context.SaveChangesAsync();
             return tabela;
         }
-
         public async Task<bool> VerificarSeOUsuarioExiste(string usuario)
         {
             Models.TbLogin tabela = await context.TbLogin.FirstOrDefaultAsync(x => x.NmUsuario == usuario);
@@ -39,6 +38,14 @@ namespace backend.Database
             Models.TbCliente tabelaCliente = await context.TbCliente.FirstOrDefaultAsync(x => x.DsEmail == usuario);
             bool resposta = true;
             if(tabelaCliente  == null)
+              resposta = false;
+            return resposta;
+        }
+        public async Task<bool> VerificarSeEmailFuncionarioExiste(string usuario)
+        {
+            Models.TbFuncionario tabelaFuncionario = await context.TbFuncionario.FirstOrDefaultAsync(x => x.DsEmail == usuario);
+            bool resposta = true;
+            if(tabelaFuncionario  == null)
               resposta = false;
             return resposta;
         }
