@@ -6,7 +6,7 @@ export const ContainerLogin = styled.div`
     padding: 15% 25vw 0px 25vw;
     flex:1;
     height:93vh;
-    aling-items:center;
+    align-items:center;
     display:flex;
     justify-items:center;
     .inputbotao{
@@ -40,7 +40,7 @@ export const ContainerLogin = styled.div`
     input{
         width:65%;
         margin-top:3%;
-        margin-rigth:10%;
+        margin-right:10%;
     }
     label{
         margin-top:5%;
