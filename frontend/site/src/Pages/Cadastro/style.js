@@ -1,15 +1,19 @@
 import styled from 'styled-components'
 
 export const ContainerCadastro = styled.div`
-    justify-content:center;
-    align-items:center;
-    display:flex;
-    span{
-        
-        width:10vw;
-        height:5vh;
-    }
     
+    
+    
+    .Menu-Top{
+        background-color: rgb(152, 240, 187);
+        width:100vw;
+        height:10vh;
+        border-bottom: 3px solid var(--verde-escuro);
+        background-color: var(--verde-claro);
+
+        
+    }
+
     .Caixa-Infomacoes{
        
         width:30vw;
@@ -90,17 +94,5 @@ export const ContainerCadastro = styled.div`
     
     
   
-    @media screen and (max-width: 600px)
-    {
-        & {
-            padding: 0px 10vw 0px 10vw;
-        }
-    }
-
-    @media screen and (max-width: 330px)
-    {
-        & {
-            padding: 0px 5vw 0px 5vw;
-        }
-    }
+    
 `

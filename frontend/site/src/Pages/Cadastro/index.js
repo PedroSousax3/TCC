@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 import { ContainerCadastro } from './style.js';
+import logo from '../../Assets/images/logo/logo-pequena.png';
 import {LoginCaixa} from "../../components/LoginCaixa/LoginCaixa";
 import nextGenBookAPI from "../../Service/NextGenBookApi";
 import { Rodape } from "../../components/Rodape/Rodape";
@@ -68,6 +69,12 @@ export default function Cadastro(props){
     return(
         <div id="cadastro">
             <ContainerCadastro>
+            <div className="Menu-Top">
+                <Link to = "/Master">
+                    <img src={logo} alt = "Next Geen Books" className="LogoMenu"/> 
+                </Link>
+            </div>
+            
             <CadastroCaixa>
                 <div className="Caixa-Infomacoes">
                     
@@ -75,7 +82,7 @@ export default function Cadastro(props){
                         <label className="Nome">Nome completo:</label>
                         <label className="Nascimento">Nascimento:</label>
                         <label className="Genero">Genero:</label>
-                        <label className="Email">Email:</label>
+                        
                         <label className="Usuario">Usuario:</label>
                         <label className="Senha">Senha:</label>
                         <label className="Confirmar-Senha">Confirmar Senha:</label>
@@ -91,7 +98,7 @@ export default function Cadastro(props){
                             <option value="Masculino" value={masculino}>Masculino</option>
                             <option value="Feminuno" value={feminino}>Feminino</option>
                         </select>
-                        <input type="text" className="Email" value={email}></input>
+                        
                         <input type="text" className="Usuario" value={usuario}></input>
                         <input type="password" className="Senha" value={senha}></input>
                         <input type="password" className="Confirmar-Senha" value={confirmarsenha}></input>
