@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import {Menu} from "../../components/Menu/Menu"
 import 'react-toastify/dist/ReactToastify.css';
 
 import { ContainerLogin } from './style.js'
@@ -31,7 +30,6 @@ export default function Logar(props) {
 
       return (
           <div id="login">
-            <Menu> <img src="logo-pequena.png" className="LogoMenu"/> </Menu>
             <div className="">
             <ContainerLogin>
               <LoginCaixa>
