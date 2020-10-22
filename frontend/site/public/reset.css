@@ -1,0 +1,8 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --verde-claro: #98F0BB;
+    --verde-escuro: #00870D;
+}
