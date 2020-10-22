@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 export const LoginCaixaFuncionario = styled.div`
 background-color: rgb(152, 240, 187);
-width: 80vw;
+width: 70vw;
 height: 50vh;
 display: flex;
 text-align: center;
@@ -40,8 +40,8 @@ span{
 
 }
 .textos span{
-    margin-top:7%;
-    margin-bottom:7%;
+    margin-top:6%;
+    margin-bottom:6%;
     margin-right: ;
     width:%;
 }
@@ -64,7 +64,7 @@ span{
     border:none;
     color:white;
     border-radius:6px;
-    height:30px;
+    height:100%;
     margin-top:2%;
     width:25%;
     margin-left: 1%;
@@ -80,8 +80,8 @@ span{
     border:none;
     color:white;
     border-radius:6px;
-    height:40px;
-    width:15%;
+    height:100%;
+    width:18%;
     cursor:pointer;
 }
 `
