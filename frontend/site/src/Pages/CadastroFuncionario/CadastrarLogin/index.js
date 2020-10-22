@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory, Link } from "react-router-dom";
 import PageCadastroFuncionario from "../PageCadastroFuncionario";
 import {LoginCaixaFuncionario} from "./CadastrarLoginFuncionario/style";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
