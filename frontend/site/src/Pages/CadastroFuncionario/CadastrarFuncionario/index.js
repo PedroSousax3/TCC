@@ -1,13 +1,9 @@
 import React from "react";
-import {CaixaFuncionario} from "./style";
-
-
+import {CaixaFuncionario} from "../style.js";
 
 export default function CadastrarFuncionario(props){
     return(
     <div>
-
-        <PageCadastroFuncionario/>
         <div style={{justifyContent:"center",alignItems:"center",paddingTop:"7%",display:"flex",flexDirection:"column"}}>
             <div style={{width:"80%",display:"flex",justifyContent:"flex-start",fontSize:"25px",fontWeight:"bold"}}>
                 <span>CADASTRAR FUNCIONARIOS</span>
@@ -26,7 +22,7 @@ export default function CadastrarFuncionario(props){
                         <span>Admissão:</span>
                     </div>
                     <div className="inputs">
-                        <input type="text" onChange={(n) => setNome(n.target.value)}></input>
+                        {/*<input type="text" onChange={(n) => setNome(n.target.value)}></input>
                         <input type="text" onChange={(e) => setEmail(e.target.value)}></input>
                         <input type="date" onChange={(n) => setNomeDeUsuario(n.target.value)}></input>
                         <input type="date" onChange={(n) => setNomeDeUsuario(n.target.value)}></input>
@@ -34,11 +30,11 @@ export default function CadastrarFuncionario(props){
                         <input type="text" onChange={(n) => setNomeDeUsuario(n.target.value)}></input>
                         <input type="text" onChange={(n) => setNomeDeUsuario(n.target.value)}></input>
                         <input type="number" onChange={(n) => setNomeDeUsuario(n.target.value)}></input>
-                        <input type="text" onChange={(n) => setNomeDeUsuario(n.target.value)}></input>
+                        <input type="text" onChange={(n) => setNomeDeUsuario(n.target.value)}></input>*/}
                      </div>
                 </div> 
                 <div className="botao-next">
-                    <button onClick={CadastrarLogin}>Próximo {">"}</button>    
+                    <button>Próximo {">"}</button>    
                 </div> 
                 </CaixaFuncionario>
         </div>

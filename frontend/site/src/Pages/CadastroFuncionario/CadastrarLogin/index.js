@@ -1,12 +1,9 @@
-import React from "react";
-import PageCadastroFuncionario from "../PageCadastroFuncionario";
-import {LoginCaixaFuncionario} from "./CadastrarLoginFuncionario/style";
+import React, { useState } from "react";
+import {CaixaFuncionario} from "../style";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
 const api = new nextGenBookAPI();
 export default function CadastrarLogin()
-{
-    
-    const navegacao = useHistory()
+{    
     const [Nome, setNome ] = useState("");
     const [ Email, setEmail ] = useState("");
     const [ NomeDeUsuario, setNomeDeUsuario ] = useState("");
@@ -22,18 +19,16 @@ export default function CadastrarLogin()
       }
       console.log(request);
       const a = await  api.cadastrarLoginFuncionario(request);
-      navegacao.push("/",a.data);
       console.log(a);
     }
     return(
         <div>
 
-        <PageCadastroFuncionario/>
         <div style={{justifyContent:"center",alignItems:"center",paddingTop:"7%",display:"flex",flexDirection:"column"}}>
             <div style={{width:"80%",display:"flex",justifyContent:"flex-start",fontSize:"25px",fontWeight:"bold"}}>
                 <span>CADASTRAR FUNCIONARIOS</span>
             </div>
-            <LoginCaixaFuncionario>
+            <CaixaFuncionario>
               <div className="agrupamento">
                     <div className="textos">
                         <span>Nome:</span>
@@ -60,7 +55,7 @@ export default function CadastrarLogin()
                 <div className="botao-next">
                     <button onClick={CadastrarLogin}>Próximo {">"}</button>    
                 </div> 
-            </LoginCaixaFuncionario>
+            </CaixaFuncionario>
         </div>
         </div>
     )
