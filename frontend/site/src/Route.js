@@ -7,7 +7,7 @@ import Cadastro from './Pages/Cadastro';
 import EsqueciSenha from './Pages/EsqueciSenha';
 
 import CadastrarLogin from './Pages/CadastroFuncionario/CadastrarLogin'
-
+import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario"
 import Master from './Pages/Master/index';
 
 import MinhasCompras from './Pages/MinhasCompras';
@@ -25,8 +25,10 @@ function Rotas(){
           <Route path="/Cadastro" component={Cadastro}/>
           <Route path="/EsqueciSenha" component={EsqueciSenha}/>
 
-
+          <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
           <Route path="/Funcionario/Cadastro/Login" component={CadastrarLogin}/>
+
+
 
 
           <Route path="/Master" component={Master}/>

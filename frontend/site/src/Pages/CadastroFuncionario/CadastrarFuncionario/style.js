@@ -2,16 +2,15 @@ import styled from 'styled-components';
 export const CaixaFuncionario = styled.div`
 background-color: rgb(152, 240, 187);
 width: 80vw;
-height: 50vh;
+height: 70vh;
 display: flex;
 text-align: center;
 flex-direction: column;
 justify-content:center;
 padding-left:20px;
 padding-right:40px;
-padding-bottom:5%;
-border:3px 
-solid #00870D;
+padding-bottom:1%;
+border:none;
 border-radius:10px;
 span{
         color:#00870D;
@@ -24,32 +23,34 @@ span{
     justify-content: center;
     align-items: center;
     justify-items: center;
-    height: 100%;
+    height: 90%;
     width:100%
 }
 .textos{
     display:flex;
     flex-direction:column;
     text-align: right;
-    width:%;
+    height:100%;
 }
 .inputs{
     display:flex;
     flex-direction:column;
     width:60%;
-
+    margin-top:1%;
+    height:100%;
 }
 .textos span{
-    margin-top:7%;
-    margin-bottom:7%;
+    margin-top:5%;
+    margin-bottom:3%;
     margin-right: ;
-    width:%;
+    height:100%;
 }
 .inputs input{
-    margin-top:2%;
-    margin-bottom:2%;
+    margin-top:2.5%;
+    margin-bottom:3%;
     margin-left: 3%;
     width:100%;
+    height:100%;
 }
 .input-botao {
     flex-direction: row;
@@ -58,6 +59,7 @@ span{
 }
 .input-botao input{
     width:80%;
+
 }
 .input-botao button{
     background-color:rgb(64,94,198);
@@ -80,8 +82,33 @@ span{
     border:none;
     color:white;
     border-radius:6px;
-    height:40px;
-    width:15%;
+    height:100%;
+    width:20%;
     cursor:pointer;
+}
+@media screen and (max-width: 770px)
+{
+    & {
+        display:flex;
+        padding-bottom:0px;
+    }
+    & > .botao-next button{
+        background-color:rgb(210,110,78);
+        border:none;
+        color:white;
+        border-radius:6px;
+        height:100%;
+        width:100%;
+        cursor:pointer;
+    }
+    .botao-next{
+        margin-top:5%;
+        margin-rigth:10%;
+        display:flex;
+        width:110%;
+        justify-items:flex-end;
+        padding:0px;
+        height:10%;
+    }
 }
 `
