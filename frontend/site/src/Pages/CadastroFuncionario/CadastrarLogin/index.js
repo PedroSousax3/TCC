@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import {LoginCaixaFuncionario} from "./CadastrarLoginFuncionario/style";
+import {CaixaFuncionario} from "../style";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
 import Master from "../../Master";
 const api = new nextGenBookAPI();
 export default function CadastrarLogin()
-{
-    
-    const navegacao = useHistory()
+{    
     const [Nome, setNome ] = useState("");
     const [ Email, setEmail ] = useState("");
     const [ NomeDeUsuario, setNomeDeUsuario ] = useState("");
@@ -23,6 +22,7 @@ export default function CadastrarLogin()
       }
       console.log(request);
       const a = await  api.cadastrarLoginFuncionario(request);
+
       navegacao.push("/Funcionario/Cadastro",a.data);
       console.log(a);
     }
@@ -30,6 +30,7 @@ export default function CadastrarLogin()
         <div>
             <Master children={
                         <div>
+
 
   
                         <div style={{justifyContent:"center",alignItems:"center",paddingTop:"7%",display:"flex",flexDirection:"column"}}>
@@ -68,6 +69,8 @@ export default function CadastrarLogin()
                     </div>
             }
             />
+
+
         </div>
     )
 }

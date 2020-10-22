@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import {CaixaFuncionario} from "./style";
@@ -85,6 +86,7 @@ export default function CadastrarFuncionario(props){
                     </div>
                     </div>
             }/>
+
         </div>
     )
 }
