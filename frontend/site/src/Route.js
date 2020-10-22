@@ -7,11 +7,14 @@ import Home from './Pages/Home/index.js';
 import Login from './Pages/Login/index.js';
 import Cadastro from './Pages/Cadastro/index';
 
-import CadastroLogin from './Pages/CadastroFuncionario/CadastrarLogin/index';
+
+import CadastroLogin from './Pages/CadastroFuncionario/CadastrarLogin' 
+
 import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario"
 
 import Master from './Pages/Master/index';
-
+import Cadastro from './Pages/Cadastro';
+import EsqueciSenha from './Pages/EsqueciSenha';
 import MinhasCompras from './Pages/MinhasCompras';
 import Perfil from './Pages/Perfil';
 import Favoritos from './Pages/Favoritos/index'
