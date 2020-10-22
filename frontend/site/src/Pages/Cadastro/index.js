@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
-import {Menu} from "../../components/Menu/Menu";
 import { ContainerCadastro } from './style.js';
 import {LoginCaixa} from "../../components/LoginCaixa/LoginCaixa";
 import nextGenBookAPI from "../../Service/NextGenBookApi";
@@ -68,7 +67,6 @@ export default function Cadastro(props){
 
     return(
         <div id="cadastro">
-            <Menu> <img src="logo-pequena.png" className="LogoMenu"/> </Menu>
             <ContainerCadastro>
             <CadastroCaixa>
                 <div className="Caixa-Infomacoes">

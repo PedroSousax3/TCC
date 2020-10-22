@@ -15,6 +15,14 @@ namespace backend.Business
           await database.CadastrarLogin(tabela);
           return tabela;
       } 
+      public async Task<Models.TbLogin> ValidarCadastrarLoginFuncionario(Models.TbLogin tabela ,Models.Request.LoginRequest.CadastrarLoginFuncionario request)
+      {
+          bool jaexiste = await database.VerificarSeOUsuarioExiste(tabela.NmUsuario);
+          bool jaexisteEmail = await database.VerificarSeEmailFuncionarioExiste(request.Email);
+          validador.ValidarCadastroLogin(jaexisteEmail,jaexiste,tabela.DsSenha);
+          await database.CadastrarLogin(tabela);
+          return tabela;
+      } 
 
       public async Task<Models.TbLogin> ValidarConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
       {
@@ -26,6 +34,7 @@ namespace backend.Business
       {
          return await database.CadastrarClienteParcial(tabela);
       }
+    
       public async Task<Models.TbLogin> ValidarDeletarLogin(int id)
       {
          validador.ValidarId(id);
