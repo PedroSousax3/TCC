@@ -3,19 +3,20 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 //Paginas:
 //Funcionario
-import Home from './pages/Home/index.js';
-import Login from './pages/Login/index.js';
-import CadastroCliente from './pages/Cadastro/index.js';
-import CadastroFuncionario from './pages/CadastroFuncionario/CadastrarLogin/index.js';
+import Home from './Pages/Home/index.js';
+import Login from './Pages/Login/index.js';
+import Cadastro from './Pages/Cadastro/index';
 
-import CadastrarLogin from './Pages/CadastroFuncionario/CadastrarLogin'
+import CadastroLogin from './Pages/CadastroFuncionario/CadastrarLogin/index';
 import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario"
+
 import Master from './Pages/Master/index';
 
 import MinhasCompras from './Pages/MinhasCompras';
 import Perfil from './Pages/Perfil';
-import Favoritos  from './Pages/Favoritos';
+import Favoritos from './Pages/Favoritos/index'
 import Carrinho from './Pages/Carrinho';
+import EsqueciSenha from './Pages/MinhasCompras';
 
 
 //Cliente
@@ -27,11 +28,10 @@ function Rotas(){
 
           <Route path="/" exact={true} component={Home}/>
           <Route path="/Login" component={Login}/>
-          <Route path="/Cadastro" component={Cadastro}/>
           <Route path="/EsqueciSenha" component={EsqueciSenha}/>
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
-          <Route path="/Funcionario/Cadastro/Login" component={CadastrarLogin}/>
+          <Route path="/Funcionario/Cadastro/Login" component={CadastroLogin}/>
 
 
 
@@ -44,7 +44,7 @@ function Rotas(){
           <Route path="/Carrinho" component={Carrinho}/>
 
           <Route path="/Acesso" component={Login} />
-          <Route path="/Cadastro/Cliente" component={CadastroCliente} />
+          <Route path="/Cadastro/Cliente" component={Cadastro} />
 
         </Switch>
       </BrowserRouter>

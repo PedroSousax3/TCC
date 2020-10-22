@@ -10,14 +10,9 @@ justify-content:center;
 padding-left:20px;
 padding-right:40px;
 padding-bottom:5%;
-border:3px 
-solid #00870D;
 border-radius:10px;
-span{
-        color:#00870D;
-        font-weight: bold;
-        font-size:20px;
-}
+box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
+
 .agrupamento{
     display:flex;
     flex-direction:row;
@@ -32,6 +27,9 @@ span{
     flex-direction:column;
     text-align: right;
     width:%;
+         color:#00870D;
+        font-weight: bold;
+        font-size:20px;
 }
 .inputs{
     display:flex;
@@ -40,8 +38,8 @@ span{
 
 }
 .textos span{
-    margin-top:6%;
-    margin-bottom:6%;
+    margin-top:4%;
+    margin-bottom:5%;
     margin-right: ;
     width:%;
 }
@@ -69,11 +67,13 @@ span{
     width:25%;
     margin-left: 1%;
     cursor:pointer;
+    min-width:80px;
 }
 .botao-next{
     width:91%;
     display:flex;
     justify-content:flex-end;
+    height:10%;
 }
 .botao-next button{
     background-color:rgb(210,110,78);
@@ -81,7 +81,9 @@ span{
     color:white;
     border-radius:6px;
     height:100%;
-    width:18%;
+    width:50%;
     cursor:pointer;
+
 }
+
 `

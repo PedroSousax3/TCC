@@ -13,7 +13,8 @@ export default function CadastrarLogin()
     const [ Senha, setSenha ] = useState("");
 
 
-    const CadastrarLogin = async () => {
+    const navegacao = useHistory();
+    const Login = async () => {
       const request = {
         Nome,
         Email,
@@ -30,8 +31,6 @@ export default function CadastrarLogin()
         <div>
             <Master children={
                         <div>
-
-
   
                         <div style={{justifyContent:"center",alignItems:"center",paddingTop:"7%",display:"flex",flexDirection:"column"}}>
                             <div style={{width:"70%",display:"flex",justifyContent:"flex-start",fontSize:"25px",fontWeight:"bold"}}>
@@ -57,12 +56,12 @@ export default function CadastrarLogin()
                                                     : document.getElementById("Senha").type = "password"
                 
                                                     }
-                                            >Mostrar</button>
+                                            ><h6>Mostrar</h6></button>
                                         </div>
                                     </div>
                                 </div> 
                                 <div className="botao-next">
-                                    <button onClick={CadastrarLogin}>Próximo {">"}</button>    
+                                    <button onClick={Login}>Próximo {">"}</button>    
                                 </div> 
                             </LoginCaixaFuncionario>
                         </div>
@@ -72,5 +71,7 @@ export default function CadastrarLogin()
 
 
         </div>
+
+
     )
 }
