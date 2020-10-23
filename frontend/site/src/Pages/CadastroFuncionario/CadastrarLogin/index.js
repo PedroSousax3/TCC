@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import PageCadastroFuncionario from "../PageCadastroFuncionario";
+import PageCadastroFuncionario from "/Pages/CadastroFuncionario";
 import {LoginCaixaFuncionario} from "./CadastrarLoginFuncionario/style";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
 const api = new nextGenBookAPI();
+
+
+
 export default function CadastrarLogin()
 {
     
