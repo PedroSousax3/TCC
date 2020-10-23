@@ -5,19 +5,19 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 //Funcionario
 import Home from './pages/Home/index.js';
 import Login from './pages/Login/index.js';
-import CadastroCliente from './pages/Cadastro/index.js';
-import CadastroFuncionario from './pages/CadastroFuncionario/CadastrarLogin/index.js';
+import Cadastro from './pages/Cadastro/index';
 
-import CadastrarLogin from './Pages/CadastroFuncionario/CadastrarLogin' 
-import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario"
-import Master from './Pages/Master/index';
-import Cadastro from './Pages/Cadastro';
-import EsqueciSenha from './Pages/EsqueciSenha';
-import MinhasCompras from './Pages/MinhasCompras';
-import Perfil from './Pages/Perfil';
-import Favoritos  from './Pages/Favoritos';
-import Carrinho from './Pages/Carrinho';
 
+import CadastroLogin from './pages/CadastroFuncionario/CadastrarLogin' 
+
+import CadastrarFuncionario from "./pages/CadastroFuncionario/CadastrarFuncionario"
+
+import Master from './pages/Master/index';
+import EsqueciSenha from './pages/EsqueciSenha';
+import MinhasCompras from './pages/MinhasCompras';
+import Perfil from './pages/Perfil';
+import Favoritos from './pages/Favoritos/index'
+import Carrinho from './pages/Carrinho/index.js';
 
 //Cliente
 
@@ -27,14 +27,10 @@ function Rotas(){
         <Switch>
 
           <Route path="/" exact={true} component={Home}/>
-          <Route path="/Login" component={Login}/>
-          <Route path="/Cadastro" component={Cadastro}/>
           <Route path="/EsqueciSenha" component={EsqueciSenha}/>
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
-          <Route path="/Funcionario/Cadastro/Login" component={CadastrarLogin}/>
-
-
+          <Route path="/Funcionario/Cadastro/Login" component={CadastroLogin}/>
 
 
           <Route path="/Master" component={Master}/>
@@ -45,7 +41,9 @@ function Rotas(){
           <Route path="/Carrinho" component={Carrinho}/>
 
           <Route path="/Acesso" component={Login} />
-          <Route path="/Cadastro/Cliente" component={CadastroCliente} />
+          <Route path="/Cadastro/Cliente" component={Cadastro} />
+
+
 
         </Switch>
       </BrowserRouter>

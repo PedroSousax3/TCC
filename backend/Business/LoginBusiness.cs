@@ -12,6 +12,7 @@ namespace backend.Business
           bool jaexiste = await database.VerificarSeOUsuarioExiste(tabela.NmUsuario);
           bool jaexisteEmail = await database.VerificarSeEmailExiste(request.Email);
           validador.ValidarCadastroLogin(jaexisteEmail,jaexiste,tabela.DsSenha);
+          validador.ValidarConfirmarLogin(request.Usuario,request.Senha);
           await database.CadastrarLogin(tabela);
           return tabela;
       } 
@@ -20,6 +21,7 @@ namespace backend.Business
           bool jaexiste = await database.VerificarSeOUsuarioExiste(tabela.NmUsuario);
           bool jaexisteEmail = await database.VerificarSeEmailFuncionarioExiste(request.Email);
           validador.ValidarCadastroLogin(jaexisteEmail,jaexiste,tabela.DsSenha);
+          validador.ValidarConfirmarLogin(request.NomeDeUsuario,request.Senha);
           await database.CadastrarLogin(tabela);
           return tabela;
       } 

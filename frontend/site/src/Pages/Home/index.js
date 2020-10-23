@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 
-export default function Home(props){
+//Master
+import Master from '../Master/index.js'
 
-    const [infos, setInfos] = useState(props.location.state);
-
-    return(
-        <div>Home</div>
-    )
+export default function Home(){
+    return (
+        <Master>
+            
+        </Master>
+    );
 }

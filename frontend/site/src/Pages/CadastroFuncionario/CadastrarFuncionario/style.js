@@ -12,6 +12,7 @@ padding-right:40px;
 padding-bottom:1%;
 border:none;
 border-radius:10px;
+box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
 span{
         color:#00870D;
         font-weight: bold;
@@ -86,29 +87,5 @@ span{
     width:20%;
     cursor:pointer;
 }
-@media screen and (max-width: 770px)
-{
-    & {
-        display:flex;
-        padding-bottom:0px;
-    }
-    & > .botao-next button{
-        background-color:rgb(210,110,78);
-        border:none;
-        color:white;
-        border-radius:6px;
-        height:100%;
-        width:100%;
-        cursor:pointer;
-    }
-    .botao-next{
-        margin-top:5%;
-        margin-rigth:10%;
-        display:flex;
-        width:110%;
-        justify-items:flex-end;
-        padding:0px;
-        height:10%;
-    }
-}
+
 `
