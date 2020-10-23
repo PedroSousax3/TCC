@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const MenuSpaceTop = styled.div`
-    margin-bottom: 60px;
-`;
-
-export const MenuSpaceBotton = styled.div`
-    margin-top: 100px;
-`;
-
 export const MenuStyled = styled.div`   
     width: 100%;
     height: 60px;

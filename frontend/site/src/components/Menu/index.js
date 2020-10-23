@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import logo from '../../Assets/images/logo/logo-pequena.png';
-import { MenuStyled, ConteinerItensMenu, MenuSpaceTop, MenuSpaceBotton } from './style.js';
+import { MenuStyled, ConteinerItensMenu } from './style.js';
+
+import { MenuSpace } from '../Utils/index.js';
 
 export default function Menu(props){
     return (
         <div>
-            <MenuSpaceTop />
+            <MenuSpace theme={{sc_height : "60px"}}/>
             <MenuStyled> 
                 <Link to = "/Master">
                     <img src={logo} alt = "Next Geen Books" className="LogoMenu"/> 
@@ -31,7 +33,6 @@ export default function Menu(props){
                     </li>
                 </ConteinerItensMenu>
             </MenuStyled>
-            <MenuSpaceBotton />
         </div>
     );
 }

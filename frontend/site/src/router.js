@@ -8,9 +8,9 @@ import Login from './pages/Login/index.js';
 import Cadastro from './pages/Cadastro/index';
 
 
-import CadastroLogin from './Pages/CadastroFuncionario/CadastrarLogin' 
+import CadastroLogin from './pages/CadastroFuncionario/CadastrarLogin' 
 
-import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario"
+import CadastrarFuncionario from "./pages/CadastroFuncionario/CadastrarFuncionario"
 
 import Master from './pages/Master/index';
 import EsqueciSenha from './pages/EsqueciSenha';
