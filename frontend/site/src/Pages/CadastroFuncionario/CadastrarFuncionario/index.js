@@ -4,13 +4,16 @@ import { useHistory, Link } from "react-router-dom";
 import {CaixaFuncionario} from "./style";
 import nextGenBookAPI from "../../../Service/NextGenBookApi"
 import Master from "../../Master";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const api = new nextGenBookAPI();
 
 
 export default function CadastrarFuncionario(props){
+ 
    const navegacao = useHistory()
-    const [Login, setLogin ] = useState(props.location.state.id);
+   const [Login, setLogin ] = useState(props.location.state.id);
     const [Nome, setNome] = useState(props.location.state.nome);
     console.log(Nome)
     const [CarteiraTrabalho, setCarteiraTrabalho ] = useState("");
@@ -26,24 +29,29 @@ const [ Complemento, setComplemento ] = useState("");
 
 
     const CadastrarFuncionario = async () => {
-      const request = {
-        Login,
-        Nome,
-        CarteiraTrabalho,
-        Cpf,
-        Email,
-        Nascimento,
-        Admissao,
-        Cargo,
-        Endereco,
-        Cep,
-        NumeroResidencial,
-        Complemento
-      }
-      console.log(request);
-      const a = await  api.cadastrarFuncionario(request);
-      navegacao.push("/",a.data);
-      console.log(a);
+        try{
+            const request = {
+                Login,
+                Nome,
+                CarteiraTrabalho,
+                Cpf,
+                Email,
+                Nascimento,
+                Admissao,
+                Cargo,
+                Endereco,
+                Cep,
+                NumeroResidencial,
+                Complemento
+              }
+              console.log(request);
+              const a = await  api.cadastrarFuncionario(request);
+              toast.dark("Cadastrado com Sucesso")
+              navegacao.push("/",a.data);
+              console.log(a);
+        }catch(e){
+            toast.error(e.response.data.erro);
+        }
     }
 
     return(
@@ -69,7 +77,7 @@ const [ Complemento, setComplemento ] = useState("");
                                 </div>
                                 <div className="inputs">
                                     <input type="text" onChange={(n) => setCarteiraTrabalho(n.target.value)}></input>
-                                    <input type="text" onChange={(e) => setCpf(e.target.value)}></input>
+                                    <input  type="text" onChange={(e) => setCpf(e.target.value)}></input>
                                     <input type="date" onChange={(n) => setNascimento(n.target.value)}></input>
                                     <input type="date" onChange={(n) => setAdimissao(n.target.value)}></input>
                                     <input type="text" onChange={(n) => setCargo(n.target.value)}></input>
@@ -83,10 +91,10 @@ const [ Complemento, setComplemento ] = useState("");
                                 <button onClick={CadastrarFuncionario}>Próximo {">"}</button>    
                             </div> 
                             </CaixaFuncionario>
+                    <ToastContainer />
                     </div>
-                    </div>
+                </div>
             }/>
-
         </div>
     )
 }

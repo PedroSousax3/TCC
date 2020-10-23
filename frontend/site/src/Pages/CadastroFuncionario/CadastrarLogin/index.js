@@ -2,29 +2,38 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import {LoginCaixaFuncionario} from "./CadastrarLoginFuncionario/style";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
+import Master from "../../Master";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const api = new nextGenBookAPI();
 export default function CadastrarLogin()
 {
     
-    const navegacao = useHistory()
+    
     const [Nome, setNome ] = useState("");
     const [ Email, setEmail ] = useState("");
     const [ NomeDeUsuario, setNomeDeUsuario ] = useState("");
     const [ Senha, setSenha ] = useState("");
 
-
     const navegacao = useHistory();
+
     const Login = async () => {
-      const request = {
-        Nome,
-        Email,
-        NomeDeUsuario,
-        Senha
-      }
-      console.log(request);
-      const a = await  api.cadastrarLoginFuncionario(request);
-      navegacao.push("/",a.data);
-      console.log(a);
+        try{
+            const request = {
+              Nome,
+              Email,
+              NomeDeUsuario,
+              Senha
+            }
+            console.log(request);
+            const a = await  api.cadastrarLoginFuncionario(request);
+            navegacao.push("/Funcionario/cadastro",a.data);
+            console.log(a);
+
+        }catch(e){
+            toast.error(e.response.data.erro);
+        }
     }
     return(
         <div>
@@ -63,6 +72,7 @@ export default function CadastrarLogin()
                                     <button onClick={Login}>Próximo {">"}</button>    
                                 </div> 
                             </LoginCaixaFuncionario>
+            <ToastContainer />
         </div>
         </div>
 

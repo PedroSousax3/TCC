@@ -13,13 +13,12 @@ import CadastroLogin from './Pages/CadastroFuncionario/CadastrarLogin'
 import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario"
 
 import Master from './Pages/Master/index';
-import Cadastro from './Pages/Cadastro';
-import EsqueciSenha from './Pages/EsqueciSenha';
+import EsqueciSenha from './Pages/EsqueciSenha/index';
 import MinhasCompras from './Pages/MinhasCompras';
 import Perfil from './Pages/Perfil';
 import Favoritos from './Pages/Favoritos/index'
 import Carrinho from './Pages/Carrinho';
-import EsqueciSenha from './Pages/MinhasCompras';
+
 
 
 //Cliente
@@ -37,8 +36,6 @@ function Rotas(){
           <Route path="/Funcionario/Cadastro/Login" component={CadastroLogin}/>
 
 
-
-
           <Route path="/Master" component={Master}/>
 
           <Route path="/MinhasCompras" component={MinhasCompras}/>
@@ -48,6 +45,8 @@ function Rotas(){
 
           <Route path="/Acesso" component={Login} />
           <Route path="/Cadastro/Cliente" component={Cadastro} />
+
+
 
         </Switch>
       </BrowserRouter>

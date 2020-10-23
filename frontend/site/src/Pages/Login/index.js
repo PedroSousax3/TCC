@@ -18,14 +18,18 @@ export default function Logar(props) {
       const [ senha, setSenha ] = useState("");
 
       const Logar = async () => {
-        const request = {
-          usuario,
-          senha
-        }
-        console.log(request);
-        const a = await  api.login(request);
-        navegacao.push("/",a.data);
-        console.log(a);
+            try{
+              const request = {
+                usuario,
+                senha
+              }
+              console.log(request);
+              const a = await  api.login(request);
+              navegacao.push("/",a.data);
+              console.log(a);
+            }catch(e){
+              toast.error(e.response.data.erro);
+          }
       }
 
       return (
@@ -91,72 +95,3 @@ export default function Logar(props) {
           </div>
       );
 }
-
-/*
-//login
-    const navegacao = useHistory();
-    const [infos, setInfos] = useState(props.location.state);
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    const logar = async (e) => {
-        e.preventDefault();
-        try {
-          const m = {
-            username:username,
-            email:email,
-            senha:senha
-          };
-          const a = await api.login(m);
-          console.log(e);
-          if(a.data.clienteFuncionario == "Cliente"){
-            navegacao.push("/Home",a.data);
-          }else{
-            navegacao.push("/Login", a.data);
-          }
-        } catch (e) {
-          toast.error("Algum dado pode estar incorreto, verifique por favor.");
-        }
-     }
-      <div className="Caixa-Login">
-                <h1>ENTRAR</h1>
-                <div className="dados" >
-                  <div className="form-group">
-                    <label>Username ou Email:</label>
-                      <input id="Username" 
-                            type="text"
-                          value={username} 
-                        onChange={(m) => setUsername(m.target.value)} 
-                      className="form-control"
-                      />
-                  </div>    
-                
-                  <div className="form-group">
-                    <label > Senha: </label>
-                    <input id="Senha" 
-                          type="password" 
-                        value={senha} 
-                      onChange={(m) => setSenha(m.target.value)} 
-                    className="form-control"/>
-                  </div>
-                </div>
-                <div>
-                  <button
-                      className="btn btn-primary" 
-                        onClick={logar}>
-                    Logar
-                  </button>
-                </div>
-                <div className="Links">
-                  <h5>
-                    <Link to={{pathname:"/EsqueciSenha", state: infos}}>
-                      Esqueci a Senha
-                    </Link>
-                  </h5>
-                  <h5>
-                    <Link to={{pathname:"Cadastro", state: infos}}>
-                      Cadastre-se
-                    </Link>
-                  </h5>
-                </div>   
-              </div>*/
