@@ -3,12 +3,11 @@ import styled from 'styled-components'
 export const ContainerLogin = styled.div`
     
     justify-content:center;
-    padding: 15% 25vw 0px 25vw;
     flex:1;
-    height:93vh;
+    height:80vh;
     align-items:center;
     display:flex;
-    justify-items:center;
+    justify-content:center;
     .inputbotao{
         display:flex;
         flex-direction:row;
@@ -23,7 +22,7 @@ export const ContainerLogin = styled.div`
         width:31.3%;
         margin-right:0.5%;
         margin-left:1%;
-        color:#753500;
+        color:white;
         font-weight: bold;
     }
     .Links{
