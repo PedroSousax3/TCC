@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import {LoginCaixaFuncionario} from "./CadastrarLoginFuncionario/style";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
+import Master from '../../Master/index.js'
 const api = new nextGenBookAPI();
 export default function CadastrarLogin()
 {
@@ -12,8 +13,6 @@ export default function CadastrarLogin()
     const [ NomeDeUsuario, setNomeDeUsuario ] = useState("");
     const [ Senha, setSenha ] = useState("");
 
-
-    const navegacao = useHistory();
     const Login = async () => {
       const request = {
         Nome,
