@@ -7,8 +7,8 @@ using Microsoft.Extensions.Logging;
 namespace backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class AutorController:ControllerBase
+    [Route("[Controller]")]
+    public class AutorController : ControllerBase
     {
         Business.AutorBusiness business = new Business.AutorBusiness();
         Business.GerenciadorFoto gerenciador = new Business.GerenciadorFoto();
@@ -19,9 +19,9 @@ namespace backend.Controllers
             try
             {
                 Models.TbAutor tabela = conversor.Conversor(request);
-                tabela.DsFoto = gerenciador.GerarNovoNome(request.foto.FileName);
+                tabela.DsFoto = gerenciador.GerarNovoNome(request.foto.FileName.ToString());
                 tabela = await business.ValidarCadastro(tabela);
-                gerenciador.SalvarFoto(tabela.DsFoto,request.foto);
+                gerenciador.SalvarFoto(tabela.DsFoto, request.foto);
                 return conversor.Conversor(tabela);
             }
             catch (System.Exception ex)

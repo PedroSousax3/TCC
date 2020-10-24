@@ -25,12 +25,37 @@ namespace backend.Database
 
         public async Task<Models.TbLivro> ConsultarLivroPorId(int idlivro)
         {
+            return await db.TbLivro.Include(x => x.IdMedidaNavigation)
+                                    .Include(x => x.IdEditoraNavigation)
+                                    .Include(x => x.TbLivroAutor)
+                                    .Include(x => x.TbLivroGenero)
+                                    .Include(x => x.TbEstoque)
+                                    .FirstOrDefaultAsync(x => x.IdLivro == idlivro);
+        }
+
+        public async Task<List<Models.TbLivro>> ListarLivroCompleto()
+        {
+            return await db.TbLivro.Include(x => x.IdMedidaNavigation)
+                                    .Include(x => x.IdEditoraNavigation)
+                                    .Include(x => x.TbLivroAutor)
+                                    .Include(x => x.TbLivroGenero)
+                                    .Include(x => x.TbEstoque)
+                                    .ToListAsync();
+        }
+
+        public async Task<Models.TbLivro> ConsultarLivroPorIdUnico(int idlivro)
+        {
             return await db.TbLivro.Include(x => x.IdMedidaNavigation).FirstOrDefaultAsync(x => x.IdLivro == idlivro);
         }
 
+        /*public async Task<Models.TbLivro> ConsultarLivroCompleto (int idlivro) 
+        {
+            List<Models.TbLivro> livros = await db.TbLivro.Include(x => x.IdEditoraNavigation).Include(x => x.IdMedidaNavigation).ToListAsync();
+        }*/
+
         public async Task<List<Models.TbLivro>> ListarLivrosFiltro(Models.Request.LivrosFiltrosRequest filtros)
         {
-            List<Models.TbLivro> livros = await db.TbLivro.Include(x => x.IdEditoraNavigation).ToListAsync();
+            List<Models.TbLivro> livros = await this.ListarLivroCompleto();
             
             if(string.IsNullOrEmpty(filtros.acabamento))
                 livros = livros.Where(x => x.TpAcabamento.Contains(filtros.acabamento))
@@ -40,7 +65,7 @@ namespace backend.Database
                                             x.NmLivro.Contains(filtros.nome))
                                             .ToList();
             if(filtros.valor_maximo >= 0 || filtros.valor_minimo >= 0)
-                livros = livros.Where(x => x.VlPrecoVenda >= Convert.ToDecimal(filtros.valor_minimo) || 
+                livros = livros.Where(x => x.VlPrecoVenda >= Convert.ToDecimal(filtros.valor_minimo) && 
                                             x.VlPrecoVenda <= Convert.ToDecimal(filtros.valor_maximo))
                                             .ToList(); 
             if(filtros.data_publicacao != null)

@@ -32,6 +32,12 @@ namespace backend.Controllers
             }
         }
 
+        public async Task<Models.Response.LivroCompleto> ConsultarLivroId (int idlivro)
+        {
+            Models.TbLivro livro = await business.ConsultarLivroIdBusiness(idlivro);
+            return ConversorLivro.ConversorCompleto(livro);
+        }
+
         [HttpPut("{idlivro}")]
         public async Task<ActionResult<Models.Response.LivroResponse>> Alterar(int idlivro, [FromForm] Models.Request.LivroRequest request)
         {

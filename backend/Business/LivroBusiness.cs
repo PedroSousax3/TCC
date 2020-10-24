@@ -48,6 +48,18 @@ namespace backend.Business
             return await database.AlterarLivroDatabase(idlivro, tabela);
         }
 
+        public async Task<Models.TbLivro> ConsultarLivroIdBusiness (int id) 
+        {
+            ValidarId(id);
+            return await database.ConsultarLivroPorId(id);
+        }
+
+        public async Task<Models.TbLivro> ConsultarLivroCompletoBusiness (int id) 
+        {
+            ValidarId(id);
+            return await database.ConsultarLivroPorIdUnico(id);
+        }
+
         public async Task<Models.TbLivro> RemoverBusiness(int idlivro)
         {
             ValidarId(idlivro);

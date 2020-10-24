@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace backend.Utils.Conversor
 {
@@ -28,7 +29,6 @@ namespace backend.Utils.Conversor
             Models.Response.LivroResponse livro = new Models.Response.LivroResponse();
 
             livro.id = tabela.IdLivro;
-            livro.editora = tabela.IdEditora;
             livro.nome = tabela.NmLivro;
             livro.descricao = tabela.DsLivro;
             livro.lancamento = tabela.DtLancamento;
@@ -40,9 +40,27 @@ namespace backend.Utils.Conversor
             livro.edicao = tabela.NrEdicao;
             livro.compra = Convert.ToDouble(tabela.VlPrecoCompra);
             livro.venda = Convert.ToDouble(tabela.VlPrecoVenda);
-            livro.medidas = Conversor(tabela.IdMedidaNavigation);
 
             return livro;
+        }
+
+        public Models.Response.LivroCompleto ConversorCompleto(Models.TbLivro tabela)
+        {
+            Models.Response.LivroCompleto response = new Models.Response.LivroCompleto();
+
+            EditoraConversor EditoraConvert = new EditoraConversor();
+            LivroAutorConversor LivroAutorConvert = new LivroAutorConversor();
+            LivroGeneroConversor LivroGeneroConvert = new LivroGeneroConversor();
+            EstoqueConvert EstoqueConversor = new EstoqueConvert();
+            
+            response.idlivro = tabela.IdLivro;
+            response.livro = this.Conversor(tabela);
+            response.livro.editora = EditoraConvert.Conversor(tabela.IdEditoraNavigation);
+            response.autores = tabela.TbLivroAutor.Select(x => LivroAutorConvert.ConversorResponse(x)).ToList();
+            response.generos = tabela.TbLivroGenero.Select(x => LivroGeneroConvert.ConversorResponse(x)).ToList();
+            response.estoque_livro = tabela.TbEstoque.Select(x => EstoqueConversor.ConversorResponse(x)).FirstOrDefault(y => y.id >= 1);
+
+            return response;
         }
     }
 }

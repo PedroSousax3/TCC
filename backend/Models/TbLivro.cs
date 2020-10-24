@@ -30,6 +30,12 @@ namespace backend.Models
         [Required]
         [Column("ds_livro", TypeName = "varchar(800)")]
         public string DsLivro { get; set; }
+
+        internal object Select()
+        {
+            throw new NotImplementedException();
+        }
+
         [Column("dt_lancamento", TypeName = "datetime")]
         public DateTime DtLancamento { get; set; }
         [Required]

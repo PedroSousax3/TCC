@@ -3,58 +3,105 @@ import styled from 'styled-components'
 export const CarrinhoStyled = styled.div``;
 
 export const ConteinerItens = styled.div`
-    display: flex;
-    justify-content: space-between; 
-    width: ${props => props.theme.sc_width};
-    height: ${props => props.theme.sc_height};
-    min-height: ${props => props.theme.sc_min_height};
-    padding: ${props => props.theme.sc_padding};
-    margin: ${props => props.theme.sc_margin};
-    background-color: ${props => props.theme.sc_bg_color};
+    min-height: calc(100vh - 60px);
+    width: auto;
+    
+    padding: 10px;
+    margin-right: 300px;
 
-    #conteudo {
-        flex-direction: column;
-        padding: 10px 0px 0px 10px;
+    display: flex;
+    flex-direction: column;
+
+    & > .card {
+        width: 100%;
+        margin-bottom: 15px;
     }
 
-    @media screen and (max-width: 850px)
+    & > .card > .card-header {
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    & > .card > .container {
+        padding: 10px 5px;
+        background-color: var(--verde-claro);
+    }
+
+    & > .card > .container > .card-body{
+        padding: 0px;
+    }
+
+    & > .card > .container > .img-thumbnail{
+        float: left;
+        height: 200px;
+        width: 160px;
+        margin-right: 10px;
+    }
+
+    & h6, & p {
+        margin-bottom: 3px;
+    }
+
+    @media screen and (max-width: 770px)
     {
-        &#container-itens {
-            flex-direction: column-reverse;
-            justify-content: center;
-            align-items: center;
-        }
+        margin-right: 0px;
+    }
 
-        &#container-itens > #conteudo {
-            width: 80%;
-            margin: 0px 20px;
-        }
-
-        &#container-itens > #container-pesquisa {
-            height: 100px;
+    @media screen and (max-width: 400px)
+    {
+        & > .card > .container > .img-thumbnail{
             width: 100%;
-            justify-content: center;
-        }
-
-        * {
-            box-sizing: border-box;
         }
     }
 `;
 
 export const Pesquisa = styled.div`
+
     position: fixed;
+    right: 0px;
+    bottom: 0px;
 
-    width: calc(250px - 20px);
-    height: calc(100vh - 80px);
+    height: calc(100vh - 60px);
+    width: 300px;  
+    background-color: var(--marrom-medio);
 
-    background-color: ${props => props.theme.sc_bg_color};
+    padding: 5px;
 
-    @media screen and (max-width: 850px)
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+
+    & > #btcompra
+    {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    @media screen and (max-width: 770px)
     {
         & {
-            height: 30px;
-            width: 90%;
+            position: static;
+            width: 100%;
+            margin-bottom: 60px;
+            height: auto;
+        }
+
+        & > .container {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        & > .container > .form-group {
+            margin: 5px;
+        }
+
+        & > #btcompra {
+            position: static;
+            width: 100%;
         }
     }
 `;

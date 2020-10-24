@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class LivroAutorController:ControllerBase
     {
         Utils.Conversor.LivroAutorConversor conversor = new Utils.Conversor.LivroAutorConversor();
