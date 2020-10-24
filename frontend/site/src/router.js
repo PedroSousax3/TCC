@@ -28,6 +28,7 @@ function Rotas(){
         <Switch>
 
           <Route path="/" exact={true} component={Home}/>
+          <Route path="/Cadastro" component={Cadastro}/>
           <Route path="/EsqueciSenha" component={EsqueciSenha}/>
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>

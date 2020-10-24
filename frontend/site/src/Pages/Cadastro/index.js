@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
 import { ContainerCadastro } from './style.js';
@@ -13,24 +13,29 @@ import UploadPhoto from '../../components/UploadPhoto/UploadPhoto';
 
 const api = new nextGenBookAPI();
 
+
+
 export default function Cadastro(props){
 
     const [infos, setInfos] = useState(props.location.state);
 
     const [foto, setFoto] = useState();
-    const [nome, setNome] = useState();
-    const [nascimento, setNascimento] = useState(new Date().toISOString().substr(0, 10));
-    const [genero, setGenero] = useState();
-    const [masculino, setMasculino] = useState();
-    const [feminino, setFeminino] = useState();
-    const [email, setEmail] = useState();
-    const [usuario, setUsuario] = useState();
-    const [senha, setSenha] = useState();
-    const [confirmarsenha, setConfirmarSenha] = useState();
-    const [cpf, setCPF] = useState();
-    const [celular, setCelular] = useState();
+    const [nome, setNome] = useState(props.location.state.nome);
+    const [nascimento, setNascimento] = useState("");
+    const [genero, setGenero] = useState("");
+    const [masculino, setMasculino] = useState("");
+    const [feminino, setFeminino] = useState("");
+    const [usuario, setUsuario] = useState("");
+    const [senha, setSenha] = useState("");
+    const [confirmarsenha, setConfirmarSenha] = useState("");
+    const [cpf, setCPF] = useState("");
+    const [celular, setCelular] = useState("");
+
+    const navegacao = useHistory();
+
 
     const salvarClick = async () => {
+        try{
         const resp = await api.cadastrar({
             
                 nome: nome,
@@ -49,6 +54,10 @@ export default function Cadastro(props){
         });
         toast.dark("Cadastro completo");
         handleReset();
+        navegacao.push("/", resp.data);
+        }catch(e){
+            toast.error(e.response.data.erro);
+        }
     }
 
     const handleReset = () => {
@@ -57,7 +66,7 @@ export default function Cadastro(props){
         setGenero();
         setMasculino();
         setFeminino();
-        setEmail();
+        
         setUsuario();
         setSenha();
         setConfirmarSenha();
@@ -91,19 +100,19 @@ export default function Cadastro(props){
                     </div>
 
                     <div className="Inputs">
-                        <input type="text" className="Nome" value={nome} ></input>
-                        <input type="date" className="Nascimento" value={nascimento}></input>
-                        <select name="Genero" className="Genero" value={genero} >
+                        <input type="text" className="Nome" onChange={(n) => setNome(n.target.value)} ></input>
+                        <input type="date" className="Nascimento" onChange={(n) => setNascimento(n.target.value)}></input>
+                        <select name="Genero" className="Genero" onChange={(n) => setGenero(n.target.value)} >
                             
-                            <option value="Masculino" value={masculino}>Masculino</option>
-                            <option value="Feminuno" value={feminino}>Feminino</option>
+                            <option value="Masculino" onChange={(n) => setMasculino(n.target.value)}>Masculino</option>
+                            <option value="Feminuno" onChange={(n) => setFeminino(n.target.value)}>Feminino</option>
                         </select>
                         
-                        <input type="text" className="Usuario" value={usuario}></input>
-                        <input type="password" className="Senha" value={senha}></input>
-                        <input type="password" className="Confirmar-Senha" value={confirmarsenha}></input>
-                        <input type="text" className="CPF" value={cpf}></input>
-                        <input type="text" className="Celular" value={celular}></input>
+                        <input type="text" className="Usuario" onChange={(n) => setUsuario(n.target.value)}></input>
+                        <input type="password" className="Senha" onChange={(n) => setSenha(n.target.value)}></input>
+                        <input type="password" className="Confirmar-Senha" onChange={(n) => setConfirmarSenha(n.target.value)}></input>
+                        <input type="text" className="CPF" onChange={(n) => setCPF(n.target.value)}></input>
+                        <input type="text" className="Celular" onChange={(n) => setCelular(n.target.value)}></input>
                         
                     </div>
                         </div>   
