@@ -7,7 +7,7 @@ namespace backend.Models.Request
     {
         public string nome { get; set; }
         public DateTime nascimento { get; set; }
-        public string  descricao { get; set; }
-        public FormFile foto { get; set; }
+        public string descricao { get; set; }
+        public IFormFile foto { get; set; }
     }
 }

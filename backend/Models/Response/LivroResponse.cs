@@ -1,11 +1,11 @@
 using System;
+using System.Collections.Generic;
 
 namespace backend.Models.Response
 {
     public class LivroResponse
     {
         public int id { get; set; }
-        public int editora { get; set; }
         public string nome { get; set; }
         public string descricao { get; set; }
         public DateTime lancamento { get; set; }
@@ -17,6 +17,8 @@ namespace backend.Models.Response
         public int edicao { get; set; }
         public double compra { get; set; }
         public double venda { get; set; }
+        public List<Models.Response.LivroAutorResponse> autores { get; set; }
         public Models.Response.MedidaResponse medidas { get; set; }
+        public Models.Response.EditoraResponse editora { get; set; }
     }
 }

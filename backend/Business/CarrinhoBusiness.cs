@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace backend.Business
 {
     public class CarrinhoBusiness : Validador.ValidadorCarrinho
@@ -27,7 +29,7 @@ namespace backend.Business
         public List<Models.TbCarrinho> ValidarListarCarrinhoCliente(int id)
         {
             ValidarId(id);
-             return  database.ListarCarrinhoCliente(id);
+            return database.ListarCarrinhoCliente(id);
         }
 
         public async Task<Models.TbCarrinho> ValidarAlterarCarrinho(int id,Models.TbCarrinho tabela)

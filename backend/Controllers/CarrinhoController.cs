@@ -27,6 +27,23 @@ namespace backend.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult<List<Models.Response.CarrinhoResponse >> ListarCarrinhoCliente(int idcliente) 
+        {
+            try 
+            {
+                List<Models.TbCarrinho> carrinho =  business.ValidarListarCarrinhoCliente(idcliente);
+
+                return carrinho.Select(x => conversor.ConversorResponse(x)).ToList();
+            }
+            catch (System.Exception ex) 
+            {
+                return NotFound(
+                    new Models.Response.ErroResponse(400, ex.Message)
+                );
+            }
+        }
+
         [HttpPut("alterar/{idcarrinho}")]
         public async Task<ActionResult<Models.Response.CarrinhoResponse>> AlterarCarrinho(int idcarrinho,Models.Request.CarrinhoRequest request)
         {
