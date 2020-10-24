@@ -8,11 +8,7 @@ export const ContainerLogin = styled.div`
     align-items:center;
     display:flex;
     justify-content:center;
-    .inputbotao{
-        display:flex;
-        flex-direction:row;
-        justify-content:space-between
-    }
+  
     .botao{
         justify-content: flex-end;
         display:flex;
@@ -25,6 +21,7 @@ export const ContainerLogin = styled.div`
         color:white;
         font-weight: bold;
     }
+
     .Links{
         justify-content: flex-end;
         display:flex;
@@ -35,28 +32,6 @@ export const ContainerLogin = styled.div`
         width:31.3%;
         margin-right:0.5%;
         margin-left:1%;
-    }
-    input{
-        width:65%;
-        margin-top:3%;
-        margin-right:10%;
-    }
-    label{
-        margin-top:5%;
-        margin-bottom: 1%;
-        font-weight: bold;
-        color:#00870D;
-    }
-    .usuario{
-        margin-left:9%;
-    }
-    .senha{
-        margin-left:22%;
-    }
-    .container-itens{
-        text-align: center;
-        justify-content:center;
-
     }
   
     @media screen and (max-width: 600px)
