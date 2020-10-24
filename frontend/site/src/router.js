@@ -18,6 +18,7 @@ import MinhasCompras from './Pages/MinhasCompras';
 import Perfil from './Pages/Perfil';
 import Favoritos from './Pages/Favoritos/index'
 import Carrinho from './Pages/Carrinho/index.js';
+import FinalizarCompra from './Pages/FinalizarCompra'
 
 //Cliente
 
@@ -39,6 +40,8 @@ function Rotas(){
           <Route path="/Favoritos" component={Favoritos}/>
           <Route path="/Perfil" component={Perfil}/>
           <Route path="/Carrinho" component={Carrinho}/>
+          <Route path="/FinalizarCompra" component={FinalizarCompra}/>
+
 
           <Route path="/Acesso" component={Login} />
           <Route path="/Cadastro/Cliente" component={Cadastro} />
