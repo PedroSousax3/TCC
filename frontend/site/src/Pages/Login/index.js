@@ -32,78 +32,69 @@ export default function Logar(props) {
               toast.error(e.response.data.erro);
           }
       }
-      function mostrar() {
-        var tipo = document.getElementById("Senha");
-    
-        if (tipo.type == "password") {
-          tipo.type = "text";
-        } else {
-          tipo.type = "password";
-        }
-    
-        tipo.type = tipo.type; 
-    
-    
-        var botao = document.querySelector(".btn.btn-sm"); 
-    
-        if (botao.classList.contains("fa-eye")) { 
-          botao.classList.remove("fa-eye"); 
-          botao.classList.add("fa-eye-slash"); 
-        } else { 
-          botao.classList.remove("fa-eye-slash"); 
-          botao.classList.add("fa-eye"); 
-        }
-    
-      }
 
       return (
-      <div id="login">
-              <Master children={
-                                 <ContainerLogin>
-                                    <LoginCaixa>
-                                        <span>Entrar</span>
-                                        <div className="centro">
-                                            <div className = "form-group">
-                                              <div className="input-alinhamento">
-                                                <div className="coluna-alinhamento">
-                                                    <label className="usuario">Usuario ou E-mail:</label>
-                                                    <label className="senha">Senha:</label> 
-                                                </div>
-                                                    <div className="coluna-alinhamento">
-                                                          <div className="form-group">
-                                                      <input type="text"
-                                                        className="form-control"
-                                                        onChange={(u) => setUser(u.target.value)}
-                                                      />
-                                                        <div className=" inputbotao form-group">
-                                                          <input id="Senha" 
-                                                          className="form-control"
-                                                                type="password"
-                                                          onChange={(s) => setSenha(s.target.value)}
-                                                          />
-                                                          <i className="icone btn btn-sm fas fa-eye"
-                                                                  onClick={mostrar}
-                                                       ></i>
-                                                          </div>
-                                                  </div>
-                                                    </div>
-                                                    </div>
-                                                  </div>
-                                                  <div className="botao">
-                                
-                             
-                            
-                            <button
-                              className="btn"
-                                onClick={Logar}
-                            >
-                                Logar
-                            </button>
-                            </div>
+          <div id="login">
+                  <Master children={
+                                <div className="">
+                                <ContainerLogin>
+                                  <LoginCaixa>
+                                    <span>Entrar</span>
+                                  <div className = "conteiner-dados form-group">
+                                    <div className=" inputbotao form-group">
+                                      <label className="usuario">Usuario ou E-mail:</label>
+                                        <input type="text"
+                                          className="form-control"
+                                           onChange={(u) => setUser(u.target.value)}
+                                        />
+                                    </div>
+                                    <div className=" inputbotao form-group">
+                                      <label className="senha">Senha:</label>
+                                        <input id="Senha" 
+                                        className="form-control"
+                                              type="password"
+                                         onChange={(s) => setSenha(s.target.value)}
+                                        />
                                         </div>
-                                    </LoginCaixa>
+                                        <div className="botao">
+                                        <button
+                                          className="btn btn-light"
+                                                onClick={() => document.getElementById("Senha").type === "password" 
+                                                                                                          ? document.getElementById("Senha").type = "text"
+                                                                                                          : document.getElementById("Senha").type = "password"
+                                                      
+                                                        }
+                                        >
+                                        Mostar
+                                        </button>
+                                    
+                                    <button
+                                      className="btn"style={{backgroundColor:"#16C823"}}
+                                        onClick={Logar}
+                                    >
+                                        Logar
+                                    </button>
+                                    </div>
+                                  </div>
+                                  <div className = "Links">
+                                    <div className="link">
+                                      <Link as = "a" to={{pathname:"/EsqueciSenha"}}>
+                                          Esqueci a Senha
+                                      </Link>
+                                    </div>
+                    
+                                    <div className="link">
+                                      <Link as = "a" to={{pathname:"Cadastro"}}>
+                                          Cadastre-se
+                                      </Link>
+                                    </div>
+                                  </div>
+                                  </LoginCaixa>
                                 </ContainerLogin>
-                          }/>
-      </div>
+                                <ToastContainer />
+                              </div>
+                                
+                  }/>
+          </div>
       );
 }

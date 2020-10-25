@@ -13,7 +13,7 @@ namespace backend.Business.Validador
              if(id <= 0)
               throw new ArgumentException("O campo Id não pode ser menor que ou igual a zero");
         }
-        public void ValidarData(DateTime data,string descricao)
+        public void ValidarData(DateTime? data,string descricao)
         {
             if(data == new DateTime() || data == null)
               throw new ArgumentException("O Campo " + descricao + "é obrigatorio");

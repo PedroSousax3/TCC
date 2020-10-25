@@ -25,7 +25,13 @@ namespace backend.Database
 
         public List<Models.TbCarrinho> ListarCarrinhoCliente (int idcliente)
         {
-            List<Models.TbCarrinho> carrinhos = db.TbCarrinho.Include(x => x.IdLivroNavigation).ThenInclude(y => y.IdEditoraNavigation).Include(z => z.IdLivroNavigation.TbLivroAutor).Where(x => x.IdCliente == idcliente).ToList();
+            List<Models.TbCarrinho> carrinhos = db.TbCarrinho.Include(x => x.IdLivroNavigation)
+                                                                .Include(x => x.IdLivroNavigation.IdEditoraNavigation)
+                                                                .Include(x => x.IdLivroNavigation.TbEstoque)
+                                                                .Include(x => x.IdLivroNavigation.TbLivroAutor)
+                                                                .ThenInclude(x => x.IdAutorNavigation)
+                                                                .Where(x => x.IdCliente == idcliente)
+                                                                .ToList();
 
             return carrinhos;
         }

@@ -16,20 +16,20 @@ export default function Menu(props){
 
                 <ConteinerItensMenu>
                     <li>
-                        <Link to = "/Favoritos" class="texto">Favoritos</Link>
-                        <Link to = "/Master" class="fas fa-heart"></Link>
+                        <Link to = "/Favoritos" className="texto">Favoritos</Link>
+                        <Link to = "/Master" className="fas fa-heart"></Link>
                     </li>
                     <li>
-                        <Link to = "/Carrinho" class="texto">Carrinho</Link>
-                        <Link to = "/Master" class="fas fa-shopping-cart"></Link>
+                        <Link to = "/Carrinho" className="texto">Carrinho</Link>
+                        <Link to = "/Master" className="fas fa-shopping-cart"></Link>
                     </li>
                     <li>
-                        <Link to = "/MinhasCompras" class="texto">Minhas Compras</Link>
-                        <Link to = "/Master" class="far fa-handshake"></Link>
+                        <Link to = "/MinhasCompras" className="texto">Minhas Compras</Link>
+                        <Link to = "/Master" className="far fa-handshake"></Link>
                     </li>
                     <li>
-                        <Link to = "/Perfil" class="texto">Perfil</Link>
-                        <Link to = "/Perfil" class="far fa-user-circle"></Link>
+                        <Link to = "/Perfil" className="texto">Perfil</Link>
+                        <Link to = "/Perfil" className="far fa-user-circle"></Link>
                     </li>
                 </ConteinerItensMenu>
             </MenuStyled>

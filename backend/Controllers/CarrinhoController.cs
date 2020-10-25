@@ -28,7 +28,7 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Models.Response.CarrinhoResponse >> ListarCarrinhoCliente(int idcliente) 
+        public ActionResult<List<Models.Response.CarrinhoResponse>> ListarCarrinhoCliente(int idcliente) 
         {
             try 
             {
@@ -58,5 +58,22 @@ namespace backend.Controllers
                 return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
             }
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Remover(int id)
+        {
+            try
+            {
+                await business.ValidarDeletarCarrinho(id);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound(
+                    new Models.Response.ErroResponse(404,ex.Message)
+                );
+            }
+        }
+
     }
 }
