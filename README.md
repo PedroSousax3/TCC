@@ -1,6 +1,6 @@
 # Relatório de Sistema - Livraria
 
-[TOC]
+<!-- toc -->
 
 # DIAGRAMAS
 
