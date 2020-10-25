@@ -91,7 +91,10 @@ export const ContainerCadastro = styled.div`
         display:flex;
     }
 
-    
+    .image-preview__image{
+        display:none;
+        width:100%;
+    }
     
   
     
