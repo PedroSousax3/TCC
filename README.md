@@ -2,9 +2,9 @@
 
 [TOC]
 
-# DIAGRAMAS
+- # DIAGRAMAS
 
-## CASO DE USO
+- ## CASO DE USO
 
 ## ![Caso de Uso - Login](https://github.com/RebeccaSantos/TCC/blob/master/analise/casos%20de%20uso/login.PNG)
 
