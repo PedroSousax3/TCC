@@ -26,7 +26,7 @@ namespace backend.Business
             ValidarId(idcliente);
             List<Models.TbVenda> vendas = await database.ListarVendasPorCliente(idcliente);
             if(vendas ==  null)
-                throw new ArgumentException("Não foi ossivel consultar as vendas deste cliente.");
+                throw new ArgumentException("Não foi possivel consultar as vendas deste cliente.");
             return vendas;
         }
 
