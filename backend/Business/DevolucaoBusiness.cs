@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 namespace backend.Business
 {
-    public class DevolucaoBusiness:Validador.ValidadorDevolucao
+    public class DevolucaoBusiness : Validador.ValidadorDevolucao
     {
         Database.DevolucaoDatabase database = new Database.DevolucaoDatabase();
         public async Task<Models.TbDevolucao> ValidarCadastrarDevoucao(Models.TbDevolucao tabela)

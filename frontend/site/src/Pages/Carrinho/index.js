@@ -20,23 +20,23 @@ export default function Carrinho(props){
 
     const RemoverItem = async (id) => {
         await Remover(id);
+        await ConsultarCarrinho(1);
     }
     
-    useEffect(() => {
-        const ConsultarCarrinho = async (id) => {
-    
-            const result = await ListarCarrinho(id);
-            setRegistros([...result]);
-            
-            result.map(x => {
-                setValorLivros((x.qtd * x.informacoes.venda) + valorlivros);
-                setTotalCompra(x.informacoes.totalcompra + x.informacoes.valorlivros);
-            });
+    const ConsultarCarrinho = async (id) => {
 
-            setTotalCompra(valorlivros + valorfrete);
-    
-        };
+        const result = await ListarCarrinho(id);
+        setRegistros([...result]);
         
+        result.map(x => {
+            setValorLivros((x.qtd * x.informacoes.venda) + valorlivros);
+            setTotalCompra(x.informacoes.totalcompra + x.informacoes.valorlivros);
+        });
+
+        setTotalCompra(valorlivros + valorfrete);
+    };
+
+    useEffect(() => {  
         ConsultarCarrinho(1);
     }, []);
 
