@@ -9,7 +9,8 @@ namespace backend.Models.Response
         public int cliente { get; set; }
         public DateTime atualizacao { get; set; }
         public string qtd { get; set; }
-        public Models.Response.LivroResponse livro { get; set; }
+        public Models.Response.LivroResponse informacoes { get; set; }
+        public List<Models.Response.AutorResponse> autores { get; set; }
         public Models.Response.EstoqueResponce estoque { get; set; }
     }
 }

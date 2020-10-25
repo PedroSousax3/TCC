@@ -10,19 +10,7 @@ import Cadastro from './pages/Cadastro/index';
 
 import CadastroLogin from './pages/CadastroFuncionario/CadastrarLogin' 
 
-<<<<<<< HEAD
 import CadastrarFuncionario from "./pages/CadastroFuncionario/CadastrarFuncionario"
-=======
-import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario"
-
-import Master from './Pages/Master/index';
-import EsqueciSenha from './Pages/EsqueciSenha';
-import MinhasCompras from './Pages/MinhasCompras';
-import Perfil from './Pages/Perfil';
-import Favoritos from './Pages/Favoritos/index'
-import Carrinho from './Pages/Carrinho/index.js';
-import FinalizarCompra from './Pages/FinalizarCompra'
->>>>>>> 955d095b9680d1b27a70e56390c17086e003b4a7
 
 //Cliente
 import Master from './pages/Master/index';
@@ -51,7 +39,6 @@ function Rotas(){
           <Route path="/Favoritos" component={Favoritos}/>
           <Route path="/Perfil" component={Perfil}/>
           <Route path="/Carrinho" component={Carrinho}/>
-          <Route path="/FinalizarCompra" component={FinalizarCompra}/>
 
 
           <Route path="/Acesso" component={Login} />

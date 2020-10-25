@@ -26,6 +26,9 @@ namespace backend.Utils.Conversor
 
         public Models.Response.LivroResponse Conversor(Models.TbLivro tabela)
         {
+            if(tabela == null)
+                return null;
+                
             Models.Response.LivroResponse livro = new Models.Response.LivroResponse();
 
             livro.id = tabela.IdLivro;

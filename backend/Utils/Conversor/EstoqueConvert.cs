@@ -15,6 +15,9 @@ namespace backend.Utils.Conversor
 
         public Models.Response.EstoqueResponce ConversorResponse(Models.TbEstoque tabela)
         {
+            if(tabela == null)
+                return null;
+                
             Models.Response.EstoqueResponce responce = new Models.Response.EstoqueResponce();
 
             responce.id = tabela.IdEstoque;

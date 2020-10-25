@@ -17,8 +17,6 @@ namespace backend.Models.Response
         public int edicao { get; set; }
         public double compra { get; set; }
         public double venda { get; set; }
-        public List<Models.Response.LivroAutorResponse> autores { get; set; }
-        public Models.Response.MedidaResponse medidas { get; set; }
         public Models.Response.EditoraResponse editora { get; set; }
     }
 }

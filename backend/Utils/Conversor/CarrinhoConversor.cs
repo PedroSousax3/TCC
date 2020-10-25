@@ -29,13 +29,15 @@ namespace backend.Utils.Conversor
             response.atualizacao = tabela.DtAtualizacao;
             
             LivroConversor LivroConvert = new LivroConversor();
-            EstoqueConvert EstoqueConversor = new EstoqueConvert();
-
-            if(tabela.IdLivroNavigation.TbEstoque.FirstOrDefault(x => x.IdLivro == tabela.IdLivro) != null)
-                response.estoque = EstoqueConversor.ConversorResponse(tabela.IdLivroNavigation.TbEstoque.FirstOrDefault(x => x.IdLivro == tabela.IdLivro));
-            if(tabela.IdLivroNavigation != null)
-                response.livro = LivroConvert.Conversor(tabela.IdLivroNavigation);
-
+            AutorConversor AutorConvert = new AutorConversor();
+            EstoqueConvert EstoqueConvert = new EstoqueConvert();
+            EditoraConversor EditoraConvert = new EditoraConversor();
+            
+            response.informacoes = LivroConvert.Conversor(tabela.IdLivroNavigation);
+            response.autores = tabela.IdLivroNavigation.TbLivroAutor.Select(x => AutorConvert.Conversor(x.IdAutorNavigation)).ToList();
+            response.estoque = EstoqueConvert.ConversorResponse(tabela.IdLivroNavigation.TbEstoque.FirstOrDefault(x => x.IdLivro == response.informacoes.id));
+            response.informacoes.editora = EditoraConvert.Conversor(tabela.IdLivroNavigation.IdEditoraNavigation);
+            
             return response;
         }
     }

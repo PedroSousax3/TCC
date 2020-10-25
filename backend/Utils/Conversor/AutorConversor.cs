@@ -15,6 +15,9 @@ namespace backend.Utils.Conversor
 
         public Models.Response.AutorResponse Conversor(Models.TbAutor tabela)
         {
+            if(tabela == null)
+                return null;
+            
             Models.Response.AutorResponse response = new Models.Response.AutorResponse();
 
             response.id = tabela.IdAutor;
