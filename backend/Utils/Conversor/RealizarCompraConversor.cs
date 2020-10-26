@@ -21,21 +21,18 @@ namespace backend.Utils.Conversor
                 
                 tabela.DsStatusPagamento = "Pago";
             }
-            else{
-                tabela.DsStatusPagamento = "redbf";
-            }
             tabela.VlFrete = request.ValorFrete;
             tabela.DtVenda = DateTime.Now;
             tabela.DsCodigoRastreio = "a definir";
             tabela.DtPrevistaEntrega = request.DataPrevistaEntrega;
             tabela.BtConfirmacaoEntrega = 0;
-            tabela.DsNf = "dsjf9d";
+            tabela.DsNf = "..";
 
             tabela.TbVendaStatus = new List<Models.TbVendaStatus>();
             tabela.TbVendaStatus.Add(new Models.TbVendaStatus()
                     {
-                        NmStatus = "dfd",
-                        DsVendaStatus = "..fdsf",
+                        NmStatus = "Aguardando Pagamento",
+                        DsVendaStatus = "Pagamento não Identificado",
                         DtAtualizacao = DateTime.Now
 
                     }
