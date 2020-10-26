@@ -10,12 +10,15 @@ import 'react-toastify/dist/ReactToastify.css';
 const api = new nextGenBookAPI();
 
 
-export default function CadastrarFuncionario(props){
+export default function CadastrarFuncionario(){
  
+<<<<<<< HEAD
     const navegacao = useHistory()
+=======
+   const navegacao = useHistory()
+>>>>>>> 89b946d853c27cefff60902538d1b677e9016c1d
     const [Login, setLogin ] = useState(props.location.state.id);
     const [Nome, setNome] = useState(props.location.state.nome);
-    console.log(Nome)
     const [CarteiraTrabalho, setCarteiraTrabalho ] = useState("");
     const [Cpf, setCpf ] = useState("");
     const [ Email, setEmail ] = useState(props.location.state.email);
@@ -58,39 +61,58 @@ export default function CadastrarFuncionario(props){
         <div>
             <Master children={
                     <div>
-                    <div style={{justifyContent:"center",alignItems:"center",paddingTop:"4%",display:"flex",flexDirection:"column"}}>
+                    <div style={{justifyContent:"center",alignItems:"center",paddingTop:"3%",display:"flex",flexDirection:"column"}}>
                         <div style={{width:"80%",display:"flex",justifyContent:"flex-start",fontSize:"25px",fontWeight:"bold"}}>
-                            <span>CADASTRAR FUNCIONARIOS</span>
                         </div>
+                            <span>CADASTRAR FUNCIONARIOS</span>
                         <CaixaFuncionario>
-                          <div className="agrupamento">
-                                <div className="textos">
-                                    <span>Carteira de Trabalho:</span>
-                                    <span>Cpf:</span>
-                                    <span>Nascimento:</span>
-                                    <span>Admissão:</span>
-                                    <span>Cargo:</span>
-                                    <span>Endereço:</span>
-                                    <span>Cep:</span>
-                                    <span>Numero Residencial:</span>
-                                    <span>Complemento:</span>
+                            <form>
+                                <div className="inputs form-group">
+                                <label for="formGroupExampleInput">Carteira De Trabalho:</label>
+                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setCarteiraTrabalho(e.target.value)}/>
                                 </div>
-                                <div className="inputs">
-                                    <input type="text" onChange={(n) => setCarteiraTrabalho(n.target.value)}></input>
-                                    <input  type="text" onChange={(e) => setCpf(e.target.value)}></input>
-                                    <input type="date" onChange={(n) => setNascimento(n.target.value)}></input>
-                                    <input type="date" onChange={(n) => setAdimissao(n.target.value)}></input>
-                                    <input type="text" onChange={(n) => setCargo(n.target.value)}></input>
-                                    <input type="text" onChange={(n) => setEndereco(n.target.value)}></input>
-                                    <input type="text" onChange={(n) => setCep(n.target.value)}></input>
-                                    <input type="number" onChange={(n) => setNumeroResidencial(n.target.value)}></input>
-                                    <input type="text" onChange={(n) => setComplemento(n.target.value)}></input>
-                                 </div>
-                            </div> 
-                            <div className="botao-next">
-                                <button onClick={CadastrarFuncionario}>Próximo {">"}</button>    
-                            </div> 
-                            </CaixaFuncionario>
+                                <div className="inputs form-group">
+                                <label for="formGroupExampleInput">Cpf:</label>
+                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setCpf(e.target.value)}/>
+                                </div>
+                                <div className="inputs form-group">
+                                <label for="formGroupExampleInput">Nascimento:</label>
+                                <input type="date" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setNascimento(e.target.value)}/>
+                                </div>
+                                <div className="inputs form-group">
+                                <label for="formGroupExampleInput">Admissão:</label>
+                                <input type="date" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setAdimissao(e.target.value)}/>
+                                </div>
+                                <div className="inputs form-group">
+                                <label for="formGroupExampleInput">Cargo:</label>
+                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setCargo(e.target.value)}/>
+                                </div>
+                                <div className="inputs form-group">
+                                <label for="formGroupExampleInput">Endereço:</label>
+                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setEndereco(e.target.value)}/>
+                                </div>
+                                <div className="inputs form-group">
+                                <label for="formGroupExampleInput">Cep:</label>
+                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setCep(e.target.value)}/>
+                                </div>
+                                <div className="inputs form-group">
+                                <label for="formGroupExampleInput">Numero Residencial:</label>
+                                <input type="number" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setNumeroResidencial(e.target.value)}/>
+                                </div>
+                                <div className="inputs form-group">
+                                <label for="formGroupExampleInput">Complemento:</label>
+                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setComplemento(e.target.value)}/>
+                                </div>
+                                <div className="botao">
+                                                      <button
+                                                        className="btn"
+                                                          onClick={CadastrarFuncionario}
+                                                      >
+                                                          Finalizar Cadastro
+                                                      </button>
+                                                </div>
+                            </form>
+                        </CaixaFuncionario>
                     <ToastContainer />
                     </div>
                 </div>

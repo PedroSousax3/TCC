@@ -1,91 +1,77 @@
 import styled from 'styled-components';
 export const CaixaFuncionario = styled.div`
 background-color: rgb(152, 240, 187);
-width: 80vw;
-height: 70vh;
+width: 80%;
+height: 80vh;
 display: flex;
-text-align: center;
 flex-direction: column;
 justify-content:center;
-padding-left:20px;
-padding-right:40px;
-padding-bottom:1%;
-border:none;
+align-items:center;
 border-radius:10px;
 box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
-span{
-        color:#00870D;
-        font-weight: bold;
-        font-size:20px;
-}
-.agrupamento{
-    display:flex;
-    flex-direction:row;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    height: 90%;
-    width:100%
-}
-.textos{
-    display:flex;
-    flex-direction:column;
-    text-align: right;
-    height:100%;
+text-align:left;
+font-weight:bold;
+font-size:1rem;
+label{
+    margin-bottom:1%;
 }
 .inputs{
-    display:flex;
-    flex-direction:column;
-    width:60%;
-    margin-top:1%;
-    height:100%;
+    height:6%;
 }
-.textos span{
-    margin-top:5%;
-    margin-bottom:3%;
-    margin-right: ;
-    height:100%;
-}
-.inputs input{
-    margin-top:2.5%;
-    margin-bottom:3%;
-    margin-left: 3%;
-    width:100%;
-    height:100%;
-}
-.input-botao {
-    flex-direction: row;
-    display: flex;
-    justify-content: space-around;
-}
-.input-botao input{
-    width:80%;
 
+.botao{
+    width:100%;
 }
-.input-botao button{
-    background-color:rgb(64,94,198);
-    border:none;
+.botao button{
+    margin-top:5%;
+    width:100%;
+    background-color:#D26E4E;
     color:white;
-    border-radius:6px;
-    height:30px;
-    margin-top:2%;
-    width:25%;
-    margin-left: 1%;
-    cursor:pointer;
+    font-weight:bold;
 }
-.botao-next{
-    width:91%;
-    display:flex;
-    justify-content:flex-end;
+form{
+    color:#00870D;
+    font-weight:bold;
+    font-size:1.0rem;
+    width:80%;
+    margin-top:16%;
 }
-.botao-next button{
-    background-color:rgb(210,110,78);
-    border:none;
-    color:white;
-    border-radius:6px;
-    height:100%;
-    width:20%;
-    cursor:pointer;
+
+
+@media screen and (max-width: 600px)
+{
+ 
+    & {
+        padding: 200px 5vw 0px 0vw;
+        heigth:70vh;
+        width:100%;
+        background-color:white;
+        box-shadow:none;
+      
+    }
+    & > form > input{
+        font-size:10px;
+        margin:0px;
+    }
+   & >.botao > button{
+        width:100%;
+    }
+    & > .botao {
+        display:flex;
+        width:100%;
+    }
+    & > label{
+        font-size:0.6rem;
+        margin-top:10px;
+    }
+    & >.inputs{
+        height:4%;
+    }
+  
+}
+
+
+
 }
 
 `

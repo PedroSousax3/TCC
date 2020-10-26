@@ -2,72 +2,88 @@ import styled from 'styled-components';
 
 export const LoginCaixa = styled.div`
 background-color: rgb(152, 240, 187);
-width: 50%;
-height: 40vh;
+width: 40%;
+height: 50vh;
 display: flex;
-text-align: center;
-padding-right:7%;
 flex-direction: column;
 justify-content:center;
+align-items:center;
 border-radius:10px;
 box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
-button:hover {
-        background-color: var(--verde-escuro);
-        color: white;
-    }
-button{
-        background-color:#16C823;
+.input-icone{
+        display:flex;
+        flex-direction:row;
 }
-        border-radius:10px;
-       label{
-                color:#00870D;
-                font-weight: bold;
-                font-size:20px;
-        }
-        span{
-                color:#00870D;
-                font-weight: bold;
-                font-size:20px;
-                margin-bottom:5%;
-        }
-        .input-alinhamento{
-                display:flex;
-                flex-direction:row;
-                width:100%;
-        }
-        .input-alinhamento input{
-                width:150%;
-        }
-        .centro{
-                heght:100%;
-                width:100%;
-                display:flex;
-                flex-direction:column;
-                justify-content:center;
-                align-items:center;
-        }
-        .coluna-alinhamento
-        {
-                display:flex;
-                flex-direction:column;
-                text-align:right;
-                width:100%;
-        }
-        .coluna-alinhamento .senha{
-                margin-top:10%;
-                margin-right:5%;
-        }
+.centro{
+        display:flex;
+        flex-direction:column;
+        width:80%;
+}
+.botao{
+        width:100%;
+}
+.botao button{
+        margin-top:10%;
+        width:100%;
+        background-color:#D26E4E;
+        color:white;
+        font-weight:bold;
+}
+form{
+        color:#00870D;
+        font-weight:bold;
+        font-size:1.2rem;
+}
+.titulo{
+        width:100%;
+        text-align:center;
+}
+.titulo label{
+        font-size:1.6rem;
+        color:#D26E4E;
+        font-weight:bold;
+}
+.Links{
+        width:100%;
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        font-size:0.9rem;
+}
+.Links link{
+        text-align:center;
+        width:100%;
+}
 
-        .inputbotao input{
-                margin-top:10%;
-        }
-        .inputbotao{
-                display:flex;
-                flex-direction:row;
-                width:100%
-        }
-        .icone{
-                margin-top:13%;
-                width:1%;
-        }
+@media screen and (max-width: 600px)
+{
+ 
+    & {
+        padding: 25px 5vw 0px 0vw;
+        heigth:80vh;
+        width:100%;
+        background-color:white;
+        box-shadow:none;
+      
+    }
+    & > form > input{
+        font-size:10px;
+        margin:0px;
+    }
+   & >.botao > button{
+        width:100%;
+    }
+    & > .botao {
+        display:flex;
+        width:100%;
+    }
+    & > label{
+        font-size:0.6rem;
+        margin-top:10px;
+    }
+}
+
+
+
+}
 `
