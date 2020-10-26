@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function EsqueciSenha(props){
 
-    const [infos, setInfos] = useState(props.location.state);
+
+
+import Master from "../Master";
+
+
+export default function EsqueciSenha(){
+
+  
 
     return(
-       <div>Esqueci minha senha</div>
+       <div>
+           <Master />
+            
+       </div>
     );
 }

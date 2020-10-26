@@ -38,6 +38,8 @@ export default function Cadastro(props) {
         setFile(URL.createObjectURL(arquivo));
     }
 
+    
+
     const salvarClick = async () => {
         try {
             const resp = await api.cadastrar({
@@ -92,7 +94,7 @@ export default function Cadastro(props) {
                         <input className="form-control" onChange={(x) => setGenero(x.target.value)} list="generos" name="genero" id="genero" />
                         <datalist id="generos">
                             <option value="Masculino"  />
-                            <option value="Feminuno" />
+                            <option value="Feminino" />
                             <option value="Outro" />
                         </datalist>
                     </div>

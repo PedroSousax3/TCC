@@ -10,13 +10,11 @@ import 'react-toastify/dist/ReactToastify.css';
 const api = new nextGenBookAPI();
 
 
-export default function CadastrarFuncionario(){
+export default function CadastrarFuncionario(props){
  
-<<<<<<< HEAD
+
     const navegacao = useHistory()
-=======
-   const navegacao = useHistory()
->>>>>>> 89b946d853c27cefff60902538d1b677e9016c1d
+
     const [Login, setLogin ] = useState(props.location.state.id);
     const [Nome, setNome] = useState(props.location.state.nome);
     const [CarteiraTrabalho, setCarteiraTrabalho ] = useState("");
