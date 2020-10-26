@@ -1,6 +1,6 @@
 import axios from 'axios';
 const api = axios.create({
-    baseURL:"http://localhost:5000"
+    baseURL:"http://3.87.226.24:5000"
 })
 
 export default class NextGenBookApi{
