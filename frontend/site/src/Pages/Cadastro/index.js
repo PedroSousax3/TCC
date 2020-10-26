@@ -18,6 +18,7 @@ const api = new nextGenBookAPI();
 export default function Cadastro(props) {
 
     const [infos, setInfos] = useState(props.location.state);
+    console.log(infos)
 
     const navegacao = useHistory();
 
@@ -55,10 +56,10 @@ export default function Cadastro(props) {
             });
                 toast.dark("Cadastro completo");
                 handleReset();
-                navegacao.push("/Login", resp.data);;
+                navegacao.push("/Login", resp.data);
         }
         catch(e) {
-            toast.error(e.response.data.erro);
+            console.log(e.response.data.erro);
         }
     }
 

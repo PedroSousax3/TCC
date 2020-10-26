@@ -25,13 +25,13 @@ export const CaixaImage = styled.div`
     height: auto;
     align-items: center;
 
-
     & > .button1 {
         margin: auto 0px 0px auto;
     }
 
     #preview {
         width: 200px;
+        margin-bottom:20px;
     }
 `
 
