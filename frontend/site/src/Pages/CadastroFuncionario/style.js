@@ -1,95 +1,72 @@
 import styled from 'styled-components';
 export const CaixaFuncionario = styled.div`
 
-    background-color: rgb(152, 240, 187);
-    width: 80vw;
-    height: 50vh;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content:center;
-    padding-left:20px;
-    padding-right:40px;
-    padding-bottom:5%;
-    border:3px 
-    solid #00870D;
-    border-radius:10px;
+background-color: rgb(152, 240, 187);
+width: 60%;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content:center;
+align-items:center;
+border-radius:10px;
+box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
+text-align:left;
+font-weight:bold;
+font-size:1.3rem;
+.botao{
+    width:100%;
+}
+.botao button{
+    margin-top:6%;
+    width:100%;
+    background-color:#D26E4E;
+    color:white;
+    font-weight:bold;
+}
+form{
+    color:#00870D;
+    font-weight:bold;
+    font-size:1.2rem;
+}
+.titulo{
+    width:100%;
+    text-align:center;
+}
+.titulo label{
+    font-size:1.6rem;
+    color:#D26E4E;
+    font-weight:bold;
+}
 
-    span{
-            color:#00870D;
-            font-weight: bold;
-            font-size:20px;
+@media screen and (max-width: 600px)
+{
+ 
+    & {
+        padding: 25px 5vw 0px 0vw;
+        heigth:80vh;
+        width:100%;
+        background-color:white;
+        box-shadow:none;
+      
     }
-
-    .agrupamento{
-        display:flex;
-        flex-direction:row;
-        justify-content: center;
-        align-items: center;
-        justify-items: center;
-        height: 100%;
-        width:100%
+    & > form > input{
+        font-size:10px;
+        margin:0px;
     }
-
-    .textos{
-        display:flex;
-        flex-direction:column;
-        text-align: right;
-    }
-
-    .inputs{
-        display:flex;
-        flex-direction:column;
-        width:60%;
-
-    }
-    .textos span{
-        margin-top:7%;
-        margin-bottom:7%;
-    }
-
-    .inputs input{
-        margin-top:2%;
-        margin-bottom:2%;
-        margin-left: 3%;
+   & >.botao > button{
         width:100%;
     }
-
-    .input-botao {
-        flex-direction: row;
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .input-botao input{
-        width:80%;
-    }
-
-    .input-botao button{
-        background-color:rgb(64,94,198);
-        border:none;
-        color:white;
-        border-radius:6px;
-        height:30px;
-        margin-top:2%;
-        width:25%;
-        margin-left: 1%;
-        cursor:pointer;
-    }
-
-    .botao-next{
-        width:91%;
+    & > .botao {
         display:flex;
-        justify-content:flex-end;
+        width:100%;
     }
+    & > label{
+        font-size:0.6rem;
+        margin-top:10px;
+    }
+}
 
-    .botao-next button{
-        background-color:rgb(210,110,78);
-        border:none;
-        color:white;
-        border-radius:6px;
-        height:40px;
-        width:15%;
-        cursor:pointer;
-    }
+
+
+}
 `;

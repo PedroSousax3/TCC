@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import {LoginCaixaFuncionario} from "./CadastrarLoginFuncionario/style";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
 
 import Master from "../../Master";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { LoginCaixaFuncionario } from "./CadastrarLoginFuncionario/style";
+
 
 
 const api = new nextGenBookAPI();
@@ -38,43 +39,73 @@ export default function CadastrarLogin()
             toast.error(e.response.data.erro);
         }
     }
+    function mostrar() {	
+        var tipo = document.getElementById("formGroupExampleInput2");	
+
+        if (tipo.type == "password") {	
+          tipo.type = "text";	
+        } else {	
+          tipo.type = "password";	
+        }	
+
+        tipo.type = tipo.type; 	
+
+
+        var botao = document.querySelector(".btn.btn-sm"); 	
+
+        if (botao.classList.contains("fa-eye")) { 	
+          botao.classList.remove("fa-eye"); 	
+          botao.classList.add("fa-eye-slash"); 	
+        } else { 	
+          botao.classList.remove("fa-eye-slash"); 	
+          botao.classList.add("fa-eye"); 	
+        }	
+
+      }
     return(
         <div>
             <Master children={
                         <div>
   
-                        <div style={{justifyContent:"center",alignItems:"center",paddingTop:"7%",display:"flex",flexDirection:"column"}}>
-                            <div style={{width:"70%",display:"flex",justifyContent:"flex-start",fontSize:"25px",fontWeight:"bold"}}>
-                                <span>CADASTRAR FUNCIONARIOS</span>
+                        <div style={{justifyContent:"center",alignItems:"center",paddingTop:"5%",display:"flex",flexDirection:"column"}}>
+                            <div style={{width:"58%",display:"flex",justifyContent:"flex-start",fontSize:"1.4rem",fontWeight:"bolder"}}>
                             </div>
                             <LoginCaixaFuncionario>
-                              <div className="agrupamento">
-                                    <div className="textos">
-                                        <span>Nome:</span>
-                                        <span>E-mail:</span>
-                                        <span>Nome do Usuario:</span>
-                                        <span>Senha:</span>
-                                    </div>
-                                    <div className="inputs">
-                                        <input type="text" onChange={(n) => setNome(n.target.value)}></input>
-                                        <input type="text" onChange={(e) => setEmail(e.target.value)}></input>
-                                        <input type="text" onChange={(n) => setNomeDeUsuario(n.target.value)}></input>
-                                        <div className="input-botao">
-                                        <input id="Senha" type="password"onChange={(s) => setSenha(s.target.value)}></input>
-                                            <button
-                                                    onClick={() => document.getElementById("Senha").type === "password" 
-                                                    ? document.getElementById("Senha").type = "text"
-                                                    : document.getElementById("Senha").type = "password"
-                
-                                                    }
-                                            ><h6>Mostrar</h6></button>
+                                <span>CADASTRAR FUNCIONARIO</span>
+                                        <div className="centro">
+                                            <form>
+                                            <div className="form-group">
+                                                <label for="formGroupExampleInput">Nome:</label>
+                                                <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNome(e.target.value)}/>
+                                              </div>
+                                              <div className="form-group">
+                                                <label for="formGroupExampleInput">E-mail:</label>
+                                                <input type="email" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setEmail(e.target.value)}/>
+                                              </div>
+                                              <div className="form-group">
+                                                <label for="formGroupExampleInput">Usuario:</label>
+                                                <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNomeDeUsuario(e.target.value)}/>
+                                              </div>
+                                              <div className="form-group">
+                                                <label for="formGroupExampleInput2">Senha:</label>
+                                                <div className="input-icone">
+                                                  <input type="password" className="form-control" id="formGroupExampleInput2"  onChange = {(e) => setSenha(e.target.value)}/>
+                                                      <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
+                                                                        onClick={mostrar}
+                                                            ></i>
+                                                </div>
+                                              </div>
+                                                  <div className="botao">
+                                                      <button
+                                                        className="btn"
+                                                          onClick={Login}
+                                                      >
+                                                          Proximo
+                                                      </button>
+                                                </div>
+                                            </form>
                                         </div>
-                                    </div>
-                                </div> 
-                                <div className="botao-next">
-                                    <button onClick={Login}>Próximo {">"}</button>    
-                                </div> 
-                            </LoginCaixaFuncionario>
+                                  </LoginCaixaFuncionario>
             <ToastContainer />
         </div>
         </div>

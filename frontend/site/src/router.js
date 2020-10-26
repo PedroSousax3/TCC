@@ -3,22 +3,23 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 //Paginas:
 //Funcionario
-import Home from './pages/Home/index.js';
-import Login from './pages/Login/index.js';
-import Cadastro from './pages/Cadastro/index';
+import Home from './Pages/Home/index.js';
+import Login from './Pages/Login/index.js';
+import Cadastro from './Pages/Cadastro/index';
 
 
-import CadastroLogin from './pages/CadastroFuncionario/CadastrarLogin' 
+import CadastroLogin from './Pages/CadastroFuncionario/CadastrarLogin' 
 
-import CadastrarFuncionario from "./pages/CadastroFuncionario/CadastrarFuncionario"
+import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario"
 
 //Cliente
-import Master from './pages/Master/index';
-import EsqueciSenha from './pages/EsqueciSenha';
-import MinhasCompras from './pages/MinhasCompras';
-import Perfil from './pages/Perfil';
-import Favoritos from './pages/Favoritos/index'
-import Carrinho from './pages/Carrinho/index.js';
+import Master from './Pages/Master/index';
+import EsqueciSenha from './Pages/EsqueciSenha';
+import MinhasCompras from './Pages/MinhasCompras';
+import Perfil from './Pages/Perfil';
+import Favoritos from './Pages/Favoritos/index'
+import Carrinho from './Pages/Carrinho/index.js';
+import FinalizarCompra from './Pages/FinalizarCompra/index.js';
 
 
 function Rotas(){
@@ -39,6 +40,8 @@ function Rotas(){
           <Route path="/Favoritos" component={Favoritos}/>
           <Route path="/Perfil" component={Perfil}/>
           <Route path="/Carrinho" component={Carrinho}/>
+          <Route path="/Finalizar/Compra" component={FinalizarCompra}/>
+
 
 
           <Route path="/Acesso" component={Login} />
