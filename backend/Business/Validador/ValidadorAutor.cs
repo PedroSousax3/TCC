@@ -1,6 +1,6 @@
 namespace backend.Business.Validador
 {
-    public class ValidadorAutor:Validador.ValidadorPadrao
+    public class ValidadorAutor : Validador.ValidadorPadrao
     {
         public void ValidarAutor(Models.TbAutor tabela,string descricao,int id)
         {

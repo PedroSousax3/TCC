@@ -12,15 +12,22 @@ import CadastroLogin from './Pages/CadastroFuncionario/CadastrarLogin'
 
 import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario"
 
+
 //Cliente
+
 import Master from './Pages/Master/index';
 import EsqueciSenha from './Pages/EsqueciSenha';
 import MinhasCompras from './Pages/MinhasCompras';
 import Perfil from './Pages/Perfil';
 import Favoritos from './Pages/Favoritos/index'
 import Carrinho from './Pages/Carrinho/index.js';
+
 import FinalizarCompra from './Pages/FinalizarCompra/index.js';
 
+import FinalizarCompra from './Pages/FinalizarCompra'
+
+
+//Cliente
 
 function Rotas(){
     return(
@@ -28,6 +35,8 @@ function Rotas(){
         <Switch>
 
           <Route path="/" exact={true} component={Home}/>
+          <Route path="/Cadastro" component={Cadastro}/>
+          <Route path="/Login" component={Login}/>
           <Route path="/EsqueciSenha" component={EsqueciSenha}/>
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
@@ -40,7 +49,11 @@ function Rotas(){
           <Route path="/Favoritos" component={Favoritos}/>
           <Route path="/Perfil" component={Perfil}/>
           <Route path="/Carrinho" component={Carrinho}/>
-          <Route path="/Finalizar/Compra" component={FinalizarCompra}/>
+
+        
+
+
+          <Route path="/FinalizarCompra" component={FinalizarCompra}/>
 
 
 
