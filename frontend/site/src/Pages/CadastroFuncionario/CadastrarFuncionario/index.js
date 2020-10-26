@@ -12,8 +12,8 @@ const api = new nextGenBookAPI();
 
 export default function CadastrarFuncionario(props){
  
-   const navegacao = useHistory()
-   const [Login, setLogin ] = useState(props.location.state.id);
+    const navegacao = useHistory()
+    const [Login, setLogin ] = useState(props.location.state.id);
     const [Nome, setNome] = useState(props.location.state.nome);
     console.log(Nome)
     const [CarteiraTrabalho, setCarteiraTrabalho ] = useState("");
@@ -25,7 +25,7 @@ export default function CadastrarFuncionario(props){
     const [ Endereco, setEndereco ] = useState("");
     const [ Cep, setCep] = useState("");
     const [ NumeroResidencial, setNumeroResidencial ] = useState();
-const [ Complemento, setComplemento ] = useState("");
+    const [ Complemento, setComplemento ] = useState("");
 
 
     const CadastrarFuncionario = async () => {

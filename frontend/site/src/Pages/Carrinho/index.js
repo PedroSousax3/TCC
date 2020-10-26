@@ -13,7 +13,6 @@ import { ListarCarrinho, Remover } from '../../Service/carrinhoApi.js';
 
 export default function Carrinho(props){
     const [ registros, setRegistros ] = useState([]);
-
     const [ valorlivros, setValorLivros ] = useState(0);
     const [ valorfrete, setValorFrete ] = useState(0);    
     const [ totalcompra, setTotalCompra ] = useState(0);
@@ -44,13 +43,13 @@ export default function Carrinho(props){
         <Master>
             <ConteinerItens>
                 {registros.map((x, i) => 
-                    <div className="card" Key={x.id}>
-                        <div className="card-header">
+                    <div className="card">
+                        <div className="card-header" Key={x.id}>
                             {x.informacoes.nome}
                         </div>
-                        <div className="container">
+                        <div className="container" Key={x.id}>
                             <img src="..." alt="..." className="img-thumbnail" />
-                            <div className="card-body">
+                            <div className="card-body" Key={x.id}>
                                 <h6 className="card-title">Resumo</h6>
                                 <p className="card-text">{x.informacoes.descricao}</p>
                                 <h6 className="card-title">Autor</h6>
@@ -61,7 +60,7 @@ export default function Carrinho(props){
                                 <p className="card-text">{x.informacoes.lancamento}</p>
                             </div>
                         </div>
-                        <div className="card-header">
+                        <div className="card-header" Key={x.id}>
                             <button className="btn btn-danger" onClick={() => RemoverItem(x.id)}>Remover</button>
                         </div>
                     </div>

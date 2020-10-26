@@ -11,7 +11,7 @@ namespace backend.Database
         {
             Models.TbLogin login = await db.TbLogin.Include(x => x.TbCliente)
                                                     .Include(x => x.TbFuncionario)
-                                                    .FirstOrDefaultAsync(x => x.NmUsuario == user
+                                                    .FirstOrDefaultAsync(x =>   x.NmUsuario == user
                                                                             && x.DsSenha == senha);
             if(login == null)
                 throw new ArgumentException("Usuario não cadastrado.");

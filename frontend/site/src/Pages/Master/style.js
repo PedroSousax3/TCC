@@ -6,7 +6,7 @@ export const MasterPage = styled.div`
 
     @media screen and (max-width: 770px)
     {
-        
+        margin-bottom: 60px;
     }
 `;
 
