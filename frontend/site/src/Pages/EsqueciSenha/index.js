@@ -5,13 +5,15 @@ import { Link } from "react-router-dom";
 
 import { CaixaEsqueciSenha } from './style';
 import Master from "../Master";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import nextGenBookAPI from '../../Service/NextGenBookApi'
 
+const api = new nextGenBookAPI();
 
+export default function EsqueciSenha(props){
 
-export default function EsqueciSenha(){
-
-  
+  const [email, setEmail] = useState();
+  const [codigo, setCodigo] = useState();
 
     return(
        <div>
@@ -23,14 +25,17 @@ export default function EsqueciSenha(){
 
                     <CaixaEsqueciSenha>
                         <form>
-                                <div className="inputs form-group">
-                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="INFORME SEU EMAIL"/>
+                                <div className="inputs form-group" style={{flexDirection:"row", display:"flex"}}>
+                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="INFORME SEU E-MAIL"
+                                onChange = {(e) => setEmail(e.target.value)}/>
+                                <button type="button" class="btn btn-light">Enviar Código</button>
                                 </div>
                                 <div className="inputs form-group">
-                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="CODIGO"/>
+                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="CóDIGO"
+                                onChange = {(e) => setCodigo(e.target.value)}/>
                                 </div>
 
-                                <div className="botao">
+                                <div className="botao" style={{alignItems:"center", display:"flex", justifyContent:"center"}}>
                                     <button type="button" class="btn btn-success">
                                     Prosseguir
                                     </button>

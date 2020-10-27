@@ -61,7 +61,7 @@ export default function Cadastro(props) {
 
     return(
         <Master>
-            <h2>Cadastro de Funcionario</h2>
+            <h2>Cadastro de Cliente</h2>
             <CadastroCaixa>
                 <CaixaInformacoes>
                     <div className="form-group">

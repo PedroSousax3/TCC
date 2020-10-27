@@ -16,4 +16,14 @@ box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
 text-align:left;
 font-weight:bold;
 font-size:1rem;
+
+
+input{
+    border-radius:5px;
+}
+
+button{
+    border-radius:10px;
+    margin-left:10px;
+}
 `;
