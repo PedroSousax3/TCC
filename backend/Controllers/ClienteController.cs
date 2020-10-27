@@ -13,8 +13,9 @@ namespace backend.Controllers
         Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
         Business.ClienteBusiness business = new Business.ClienteBusiness();
         Utils.ClienteConversor conversor = new Utils.ClienteConversor(); 
+        
         [HttpPut("cadastrar/{idcliente}")]
-        public async Task<ActionResult<Models.Response.ClienteResponse>> CadastrarCliente([FromForm] Models.Request.ClienteRequest.CadastrarCliente request,int idcliente)
+        public async Task<ActionResult<Models.Response.ClienteResponse>> CadastrarCliente([FromForm] Models.Request.ClienteRequest.CadastrarCliente request, int idcliente)
         {
           try
           {
@@ -31,6 +32,7 @@ namespace backend.Controllers
               return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
           }   
         }
+
         [HttpGet("foto/{nome}")]
         public ActionResult ConsultarArquivoPorNomeController(string nome)
         {

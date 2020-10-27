@@ -17,8 +17,7 @@ const api = new nextGenBookAPI();
 
 export default function Cadastro(props) {
 
-    const [infos, setInfos] = useState(props.location.state);
-    console.log(infos)
+    const [acesso, setAcesso] = useState(props.location.state);
 
     const navegacao = useHistory();
 
@@ -38,42 +37,27 @@ export default function Cadastro(props) {
         setFoto(arquivo);
         setFile(URL.createObjectURL(arquivo));
     }
-
     
 
     const salvarClick = async () => {
         try {
-            const resp = await api.cadastrar({
-                nome: nome,
-                nascimento: nascimento,
-                genero: genero,
-                usuario: usuario,
-                senha: senha,
-                confirmarsenha: confirmarsenha,
-                cpf: cpf,
-                celular: celular,
-                foto: foto
-            });
-                toast.dark("Cadastro completo");
-                handleReset();
-                navegacao.push("/Login", resp.data);
+            let request = {
+                idcliente : 1, 
+                Nome: nome,
+                Sobrenome : "",
+                Genero: genero,
+                Cpf: cpf,
+                Celular: celular,
+                Foto: foto
+            }
+            const response = await api.cadastrar(request);
+            toast.dark("Cadastro completo " + response.data.Nome);
+            navegacao.push("/Acesso", acesso);
         }
         catch(e) {
-            console.log(e.response.data.erro);
+            console.log("erro");
         }
-    }
-
-    const handleReset = () => {
-        setNome("");
-        setNascimento(new Date());    
-        setGenero('');   
-        setUsuario("");
-        setSenha("");
-        setConfirmarSenha("");
-        setCPF("");
-        setCelular("");
-        setFoto();
-    };           
+    } 
 
     return(
         <Master>
@@ -91,7 +75,7 @@ export default function Cadastro(props) {
                     </div>
                     
                     <div className="form-group">
-                        <label for="genero">Genero:</label>
+                        <label>Genero:</label>
                         <input className="form-control" onChange={(x) => setGenero(x.target.value)} list="generos" name="genero" id="genero" />
                         <datalist id="generos">
                             <option value="Masculino"  />
@@ -127,7 +111,7 @@ export default function Cadastro(props) {
                 </CaixaInformacoes>  
 
                 <CaixaImage>
-                    <label for='input-file'>
+                    <label>
                         <span>Selecionar uma imagem de perfil</span>
                         <br />
                         <input type="file" id="img-input" name="image"

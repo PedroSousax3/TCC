@@ -1,11 +1,11 @@
 import axios from 'axios';
 const api = axios.create(
-    { baseURL:"http://3.87.226.24:5000" }
+    { baseURL:"http://localhost:5000" }
 );
 
 export default class NextGenBookApi{
     async login(req){
-        console.log(req);
+        console.log("OL");
         const resp = await api.post('/Login', req);
         
         return resp;
@@ -24,9 +24,8 @@ export default class NextGenBookApi{
     }
 
     async cadastrar(req){
-        console.log(req);
-
-        let formData = new formData();
+        let formData = new FormData();
+        
         formData.append('nome', req.nome);
         formData.append('nascimento', req.nascimento);
         formData.append('genero', req.genero);
@@ -37,10 +36,12 @@ export default class NextGenBookApi{
         formData.append('celular', req.celular);
         formData.append('foto', req.foto);
 
-        const resp = await api.post('/Cadastro', formData, {
+        console.log(formData);
+
+        const resp = await api.put('Cliente/Cadastro/' + req.idcliente , formData, {
             headers: { 'content-type': 'multipart/form-data' }
         });
         
-        return resp.data;
+        return resp;
     }
 }

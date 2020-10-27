@@ -10,23 +10,22 @@ import Master from "../Master";
 
 const api = new nextGenBookAPI();
 
-export default function Logar(props) {
-    
+export default function Logar(e) {
       // final do login
 
       const navegacao = useHistory()
-      const [user, setUser ] = useState("");
+      const [ usuario, setUsuario ] = useState("");
       const [ senha, setSenha ] = useState("");
 
       const Logar = async () => {
             try{
               const request = {
-                user,
+                usuario,
                 senha
               }
               console.log(request);
-              const a = await  api.login(request);
-              navegacao.push("/",a.data);
+              const a = await api.login(request);
+              navegacao.push("/", a.data);
               console.log(a);
             }catch(e){
               toast.error(e.response.data.erro);
@@ -34,26 +33,17 @@ export default function Logar(props) {
       }
       function mostrar() {	
         var tipo = document.getElementById("formGroupExampleInput2");	
-
-        if (tipo.type == "password") {	
-          tipo.type = "text";	
-        } else {	
-          tipo.type = "password";	
-        }	
-
-        tipo.type = tipo.type; 	
-
-
         var botao = document.querySelector(".btn.btn-sm"); 	
 
-        if (botao.classList.contains("fa-eye")) { 	
+        if (tipo.type === "password") {	
+          tipo.type = "text";
           botao.classList.remove("fa-eye"); 	
           botao.classList.add("fa-eye-slash"); 	
-        } else { 	
+        } else {	
+          tipo.type = "password";	
           botao.classList.remove("fa-eye-slash"); 	
           botao.classList.add("fa-eye"); 	
-        }	
-
+        }
       }
 
       return (
@@ -65,13 +55,12 @@ export default function Logar(props) {
                                             <div className="titulo">
                                                 <label>ENTRAR</label>
                                             </div>
-                                            <form>
                                               <div className="form-group">
-                                                <label for="formGroupExampleInput">Usuario:</label>
-                                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setUser(e.target.value)}/>
+                                                <label>Usuario:</label>
+                                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setUsuario(e.target.value)}/>
                                               </div>
                                               <div className="form-group">
-                                                <label for="formGroupExampleInput2">Senha:</label>
+                                                <label>Senha:</label>
                                                 <div className="input-icone">
                                                   <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="Outro input" onChange = {(e) => setSenha(e.target.value)}/>
                                                       <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
@@ -100,7 +89,6 @@ export default function Logar(props) {
                                                           Logar
                                                       </button>
                                                 </div>
-                                            </form>
                                         </div>
                                   </LoginCaixa>
                                 </ContainerLogin>
