@@ -20,6 +20,7 @@ namespace backend.Utils
             response.IdCliente = tabela.IdCliente;
             response.Genero = tabela.TpGenero;
             response.Cpf = tabela.DsCpf;
+            response.Email = tabela.DsEmail;
             response.Celular = tabela.DsCelular;
             response.Foto = tabela.DsFoto;
             return response;
