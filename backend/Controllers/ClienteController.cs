@@ -24,7 +24,7 @@ namespace backend.Controllers
                 
                 Models.TbCliente cliente = await business.CadastrarCliente(tabela);
 
-                string corpo = $"Bem vindo [nome] a Next Gen Books! Aqui você poderá encontrar a maior variedade de livros para que já viu, para todos os tipos de leitores";
+                string corpo = $"Bem vindo {cliente.NmCliente} a Next Gen Books! Aqui você poderá encontrar a maior variedade de livros para que já viu, para todos os tipos de leitores";
                 gerenciadorEmail.EnvioEmail(cliente.DsEmail, "Bem Vindo " +  cliente.NmCliente + " a Next Gen Books!!!", corpo);
 
                 Business.Acesso.AcessoBusiness gerartoken = new Business.Acesso.AcessoBusiness();
