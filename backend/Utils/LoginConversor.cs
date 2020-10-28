@@ -18,22 +18,7 @@ namespace backend.Utils
             
            return tabela;
         }
-        public Models.TbCliente ParaTabelaClienteCadastroParcial(int idLogin,Models.Request.LoginRequest.CadastrarLogin request)
-        {
-            Models.TbCliente tabela = new Models.TbCliente();
-            if(request.Email == request.ConfirmarEmail)
-            {
-              
-                    tabela.DsEmail = request.Email;
-                    tabela.IdLogin = idLogin;
-                    tabela.NmCliente = "ainda não definido";
-                    tabela.DsCpf = "ainda não definido";
-            }
-            else
-              throw new ArgumentException("Confirmação de Email incorreta");
-              
-              return tabela;
-        }
+ 
         public Models.TbLogin ParaTabelaCadastrarFuncionarioLogin(Models.Request.LoginRequest.CadastrarLoginFuncionario request)
         {
             Models.TbLogin tabela = new Models.TbLogin();
@@ -70,5 +55,12 @@ namespace backend.Utils
             
             return response;
         }
+
+        public Models.Response.EmailResponse.RecuperarSenhar ParaResponse(Models.TbLogin tabela)
+        {
+            Models.Response.EmailResponse.RecuperarSenhar response = new Models.Response.EmailResponse.RecuperarSenhar();
+            response.IdLogin = tabela.IdLogin;
+            return response;
+        }    
     }
 }

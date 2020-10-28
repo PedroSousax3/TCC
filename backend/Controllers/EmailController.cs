@@ -8,6 +8,7 @@ namespace backend.Controllers
     public class EmailController : ControllerBase
     {
         Business.EnviarEmailBusiness gerenciadorEmail = new Business.EnviarEmailBusiness();
+        Utils.LoginConversor conversor = new Utils.LoginConversor();
         [HttpPost]
         public ActionResult EnviarEmailController(Models.Request.EmailRequest.EnvioEmailRequest request)
         {
@@ -25,12 +26,12 @@ namespace backend.Controllers
         }
 
         [HttpPost("resetar")]
-        public ActionResult ResetarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request)
+        public async Task<ActionResult<Models.Response.EmailResponse.RecuperarSenhar>> ResetarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request)
         {
             try
             {
-                 gerenciadorEmail.EnviarCodigoRecuperarSenha(request);
-                 return Ok();
+                 Models.TbLogin tabela = await gerenciadorEmail.EnviarCodigoRecuperarSenha(request);
+                 return conversor.ParaResponse(tabela);
             }
             catch (System.Exception ex)
             {

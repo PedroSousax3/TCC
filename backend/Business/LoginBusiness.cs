@@ -16,8 +16,17 @@ namespace backend.Business
           validador.ValidarConfirmarLogin(request.NomeDeUsuario,request.Senha);
           await database.CadastrarLogin(tabela);
           return tabela;
-      } 
-
+      }
+      
+      public async Task<Models.TbLogin> ValidarConfirmarCodigoRecuperarSenha(string codigo,int idLogin)
+      {
+        return await database.ConfirmarCodigoRecuperarSenha(codigo,idLogin); 
+      }
+      public async Task<Models.TbLogin> ValidarResetarSenha(string senha,int idLogin)
+      {
+         validador.ValidarSenha(senha);
+         return await database.ResetarSenha(idLogin,senha);
+      }
       public async Task<Models.TbLogin> ValidarConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
       {
          validador.ValidarConfirmarLogin(request.Usuario,request.Senha);

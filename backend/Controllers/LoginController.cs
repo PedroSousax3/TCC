@@ -29,6 +29,33 @@ namespace backend.Controllers
             }
          
         }
+        [HttpPost("codigo/{idLogin}")]
+        public async Task<ActionResult<Models.Response.EmailResponse.RecuperarSenhar>> ConfirmarCodigo(int idLogin,Models.Request.LoginRequest.RecuperarSenha request)
+        {
+            try
+            {
+                Models.TbLogin tabela = await business.ValidarConfirmarCodigoRecuperarSenha(request.Codigo,idLogin);
+                return conversor.ParaResponse(tabela);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
+            }
+        }
+
+        [HttpPost("novaSenha/{idLogin}")]
+        public async Task<ActionResult> ResetarSenha(int idLogin,Models.Request.LoginRequest.ResetarSenha request)
+        {
+            try
+            {
+                Models.TbLogin tabela = await business.ValidarResetarSenha(request.Senha,idLogin);
+                return Ok();   
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
+            }
+        }
         
         [HttpPost]
         public async Task<ActionResult<Models.Response.LoginResponse.ConfirmarLogin>> ConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)

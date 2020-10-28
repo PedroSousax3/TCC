@@ -12,30 +12,57 @@ namespace backend.Database
         Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
 
 
-        //recuperar senha
-        public void VerificarEmailRecuperarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request,string codigo)
+        //recuperar senha etapa1
+        public async Task<Models.TbLogin> VerificarEmailRecuperarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request,string codigo)
         {
+            Models.TbLogin login = new Models.TbLogin();  
             Models.TbCliente tabela =  context.TbCliente.Include(x => x.IdLoginNavigation)
-                                                       .FirstOrDefault(x => x.DsEmail == request.Email);
+                                            .FirstOrDefault(x => x.DsEmail == request.Email);
             
-            Models.TbFuncionario tabelaFuncionario =  context.TbFuncionario.Include(x =>x.IdLoginNavigation)
-                                                                                .FirstOrDefault(x => x.DsEmail == request.Email); 
+            Models.TbFuncionario tabelaFuncionario = context.TbFuncionario.Include(x =>x.IdLoginNavigation)
+                                                            .FirstOrDefault(x => x.DsEmail == request.Email); 
             if(tabela != null)
                {
                    tabela.IdLoginNavigation.DsCodigoVerificacao = codigo;
                    tabela.IdLoginNavigation.DtCodigoVerificacao = DateTime.Now;
+                   login = await ConsultarLoginPorId(tabela.IdLogin);
                }
+
             else if(tabelaFuncionario != null)
             {
                  tabelaFuncionario.IdLoginNavigation.DsCodigoVerificacao = codigo;
                  tabelaFuncionario.IdLoginNavigation.DtCodigoVerificacao = DateTime.Now;
+                 login = await ConsultarLoginPorId(tabelaFuncionario.IdLogin);
             }
+
             else {
                 throw new ArgumentException("Esse email ainda não esta cadastrado.");
             }
-             context.SaveChangesAsync();
+             await context.SaveChangesAsync();
+             return login;
 
         }
+        
+        //etapa2
+      public async Task<Models.TbLogin> ConfirmarCodigoRecuperarSenha(string codigo,int idLogin)
+      {
+          Models.TbLogin tabela = await ConsultarLoginPorId(idLogin);
+          if(tabela.DsCodigoVerificacao != codigo)
+             throw new ArgumentException("Codigo inválido");
+          if(tabela.DtCodigoVerificacao.Value.AddHours(2) < DateTime.Now)
+             throw new ArgumentException("Esse codigo já expirou");
+
+          return tabela;
+      }
+
+      //etapa3
+      public async Task<Models.TbLogin> ResetarSenha(int id,string senha)
+      {
+          Models.TbLogin tabela = await ConsultarLoginPorId(id);
+          tabela.DsSenha = senha;
+          await context.SaveChangesAsync();
+          return tabela;
+      }
 
        ///cadastro
         public async Task<Models.TbLogin> CadastrarLogin(Models.TbLogin tabela)

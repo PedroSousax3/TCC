@@ -26,21 +26,25 @@ namespace backend.Business
                 smtpClient.Send(mensagem);
             }
         }
-
-        public void EnviarEmailBoasVindas(Models.Response.ClienteResponse response)
-        {
-            string titulo = "Bem Vindo " + response.Nome;
-            string corpo ="Estamos muito animados com o seu cadastro e agradecemos pela sua preferência. " + 
-            "Estabelecemos a empresa NextGenBooks com a missão de disponibilizar aprendizado " + 
-            "e cultura por um preço que cabe no seu bolso.";
-            
-             this.EnvioEmail(response.Email,titulo,corpo);
-        }
-
-        public void EnviarCodigoRecuperarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request)
+      
+      public async Task<Models.TbLogin> EnviarCodigoRecuperarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request)
         {
             Database.LoginDatabase database = new Database.LoginDatabase();
+            string codigo = GerarCodigolAleatorio();
 
+           Models.TbLogin login = await database.VerificarEmailRecuperarSenha(request,codigo);
+           string titulo = "Resetar Senha";
+           string corpo = $"<div><h3>Paresce que você esqueceu sua senha :(</h3></div>"+$"<div>não se preocupe, basta digitar esse código {codigo}</div>"+
+           $"<div>na pagina para qual foi direcionado.</div>";
+           
+           this.EnvioEmail(request.Email,titulo,corpo);
+           
+           return login;
+        
+        }
+
+        private string GerarCodigolAleatorio()
+        {
             int Tamanho = 10;
             string codigoFinal = string.Empty;
             for (int i = 0; i < Tamanho; i++)
@@ -65,10 +69,8 @@ namespace backend.Business
                     i--;
                 }
             }
-           database.VerificarEmailRecuperarSenha(request,codigoFinal);
-           string titulo = "Resetar Senha";
-           string corpo = "Dígite esse código " + codigoFinal + " para recuperar sua senha";
-            this.EnvioEmail(request.Email,titulo,corpo);
+            return codigoFinal;
         }
     }
 }
+            
