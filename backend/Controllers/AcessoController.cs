@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +16,10 @@ namespace backend.Controllers
             try
             {
                 Models.TbLogin login = await business.ConsultarLoginBusiness(request.user, request.senha);
-                string token = business.GerarToken(login);
+                string token = business.GerarToken(login, login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin) != null ? 
+                                                                                                                                    login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdCliente 
+                                                                                                                                  : 
+                                                                                                                                    login.TbFuncionario.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdFuncionario);
                 
                 Models.Response.AcessoResponse response = acessoConversor.Conversor(login, token);
 
