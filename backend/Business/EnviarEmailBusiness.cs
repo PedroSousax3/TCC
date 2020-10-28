@@ -4,6 +4,7 @@ using System.Net.Mail;
 using System.Net.Mime;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 namespace backend.Business
 {
     public class EnviarEmailBusiness
@@ -34,6 +35,40 @@ namespace backend.Business
             "e cultura por um preço que cabe no seu bolso.";
             
              this.EnvioEmail(response.Email,titulo,corpo);
+        }
+
+        public void EnviarCodigoRecuperarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request)
+        {
+            Database.LoginDatabase database = new Database.LoginDatabase();
+
+            int Tamanho = 10;
+            string codigoFinal = string.Empty;
+            for (int i = 0; i < Tamanho; i++)
+            {
+                Random random = new Random();
+                int codigo = Convert.ToInt32(random.Next(48, 122).ToString());
+
+                if ((codigo >= 48 && codigo <= 57) || (codigo >= 97 && codigo <= 122))
+                {
+                    string _char = ((char)codigo).ToString();
+                    if (!codigoFinal.Contains(_char))
+                    {
+                        codigoFinal += _char;
+                    }
+                    else
+                    {
+                        i--;
+                    }
+                }
+                else
+                {
+                    i--;
+                }
+            }
+           database.VerificarEmailRecuperarSenha(request,codigoFinal);
+           string titulo = "Resetar Senha";
+           string corpo = "Dígite esse código " + codigoFinal + " para recuperar sua senha";
+            this.EnvioEmail(request.Email,titulo,corpo);
         }
     }
 }

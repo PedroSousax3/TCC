@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace backend.Controllers
 {
@@ -8,7 +9,7 @@ namespace backend.Controllers
     {
         Business.EnviarEmailBusiness gerenciadorEmail = new Business.EnviarEmailBusiness();
         [HttpPost]
-        public ActionResult EnviarEmailController(Models.Request.EmailRequest request)
+        public ActionResult EnviarEmailController(Models.Request.EmailRequest.EnvioEmailRequest request)
         {
             try
             {
@@ -22,5 +23,20 @@ namespace backend.Controllers
                 );
             }
         }
+
+        [HttpPost("resetar")]
+        public ActionResult ResetarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request)
+        {
+            try
+            {
+                 gerenciadorEmail.EnviarCodigoRecuperarSenha(request);
+                 return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
+            }
+        }
+
     }
 }
