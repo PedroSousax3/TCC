@@ -11,6 +11,7 @@ display: flex;
 flex-direction: column;
 justify-content:center;
 align-items:center;
+margin-top:9%;
 border-radius:10px;
 box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
 text-align:left;

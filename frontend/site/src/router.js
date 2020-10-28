@@ -2,29 +2,26 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 //Paginas:
-//Funcionario
 import Home from './Pages/Home/index.js';
 import Login from './Pages/Login/index.js';
-import Cadastro from './Pages/Cadastro/index';
-import EsqueciSenha from './Pages/EsqueciSenha';
-import TrocarSenha from './Pages/EsqueciSenha/TrocarSenha/index.js';
+import Perfil from './Pages/Perfil';
 
-import CadastroLogin from './Pages/CadastroFuncionario/CadastrarLogin' 
 
-import CadastrarFuncionario from "./Pages/CadastroFuncionario/CadastrarFuncionario/index.js"
+//Funcionario
+import CadastroLogin from './Pages/Funcionario/CadastroFuncionario/CadastrarLogin' 
+import CadastrarFuncionario from "./Pages/Funcionario/CadastroFuncionario/CadastrarFuncionario/index.js"
 
 
 import Master from './Pages/Master/index';
 
-import MinhasCompras from './Pages/MinhasCompras';
-import Perfil from './Pages/Perfil';
-import Favoritos from './Pages/Favoritos/index'
-import Carrinho from './Pages/Carrinho/index.js';
-import FinalizarCompra from './Pages/FinalizarCompra'
-
-
-
-//Cliente
+//cliente
+import EsqueciSenha from './Pages/Cliente/EsqueciSenha';
+import TrocarSenha from './Pages/Cliente/EsqueciSenha/TrocarSenha/index.js';
+import Cadastro from './Pages/Cliente/Cadastro/index';
+import MinhasCompras from './Pages/Cliente/MinhasCompras';
+import Favoritos from './Pages/Cliente/Favoritos/index'
+import Carrinho from './Pages/Cliente/Carrinho/index.js';
+import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
 
 function Rotas(){
     return(

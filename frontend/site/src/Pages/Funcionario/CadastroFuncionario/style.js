@@ -1,18 +1,22 @@
 import styled from 'styled-components';
-export const CaixaFuncionario = styled.div`
-
-background-color: rgb(152, 240, 187);
-width: 60%;
-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content:center;
+export const CaixaInfos = styled.div`
+width:100%;
+heigth:100%;
 align-items:center;
-border-radius:10px;
-box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
-text-align:left;
-font-weight:bold;
-font-size:1.3rem;
+justify-content:center;
+display:flex;
+padding-top:5%;
+.input-icone{
+    display:flex;
+    flex-direction:row;
+}
+.centro{
+    display:flex;
+    flex-direction:column;
+    width:80%;
+    heigth:100%;
+    
+}
 .botao{
     width:100%;
 }
@@ -23,11 +27,7 @@ font-size:1.3rem;
     color:white;
     font-weight:bold;
 }
-form{
-    color:#00870D;
-    font-weight:bold;
-    font-size:1.2rem;
-}
+
 .titulo{
     width:100%;
     text-align:center;

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 
 import { CaixaEsqueciSenha } from './style';
-import Master from "../Master";
+import Master from "../../Master";
 import { ToastContainer, toast } from "react-toastify";
-import nextGenBookAPI from '../../Service/NextGenBookApi'
+import nextGenBookAPI from '../../../Service/NextGenBookApi'
 
 const api = new nextGenBookAPI();
 
@@ -24,7 +24,6 @@ export default function EsqueciSenha(props){
                         </div>
 
                     <CaixaEsqueciSenha>
-                        <form>
                                 <div className="inputs form-group" style={{flexDirection:"row", display:"flex"}}>
                                 <input type="text" className="form-control" id="formGroupExampleInput" placeholder="INFORME SEU E-MAIL"
                                 onChange = {(e) => setEmail(e.target.value)}/>
@@ -40,7 +39,6 @@ export default function EsqueciSenha(props){
                                     Prosseguir
                                     </button>
                                 </div>
-                        </form>
                     </CaixaEsqueciSenha>
                     <ToastContainer />
                         

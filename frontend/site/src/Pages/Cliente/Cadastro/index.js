@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
-import Master from '../Master/index.js';
+import Master from '../../Master/index.js';
 
 
 //import {LoginCaixa} from "../../components/LoginCaixa/LoginCaixa";
-import nextGenBookAPI from "../../Service/NextGenBookApi";
+import nextGenBookAPI from "../../../Service/NextGenBookApi";
 import { CaixaImage, CaixaInformacoes, CadastroCaixa } from './style.js';
 
-import UploadPhoto from '../../components/UploadPhoto/UploadPhoto';
+import UploadPhoto from '../../../components/UploadPhoto/UploadPhoto';
 
 const api = new nextGenBookAPI();
 

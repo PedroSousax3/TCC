@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import { Pesquisa, ConteinerItens } from './style.js';
 
 //Components
-import Master from '../Master/index.js'
+import Master from '../../Master/index.js'
 
 //Api 
-import { ListarCarrinho, Remover } from '../../Service/carrinhoApi.js';
+import { ListarCarrinho, Remover } from '../../../Service/carrinhoApi.js';
 
 
 export default function Carrinho(props){

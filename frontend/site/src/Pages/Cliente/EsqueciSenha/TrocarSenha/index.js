@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import 'react-toastify/dist/ReactToastify.css';
 import { CaixaEsqueciSenha } from '../style';
-import Master from "../../Master/index";
+import Master from "../../../Master/index";
 import { ToastContainer } from "react-toastify";
 
 
@@ -14,15 +14,20 @@ export default function TrocarSenha(){
     const [senha, setSenha] = useState("");
 
     function mostrar() {	
-        var tipo = document.getElementById("formGroupExampleInput2");	
-
-        if (tipo.type == "password") {	
+        var tipo = document.getElementById("formGroupExampleInput");	
+        var tipo2 = document.getElementById("formGroupExampleInput2");	
+        
+        if (tipo.type == "password" && tipo2.type == "password") {	
           tipo.type = "text";	
+          tipo2.type = "text";	
         } else {	
           tipo.type = "password";	
+          tipo2.type = "password";	
         }	
 
-            tipo.type = tipo.type; 	
+            tipo.type = tipo.type;
+            tipo2.type = tipo2.type; 	
+
 
 
         var botao = document.querySelector(".btn.btn-sm"); 	
@@ -46,7 +51,6 @@ export default function TrocarSenha(){
                          </div>
  
                      <CaixaEsqueciSenha>
-                         <form>
                                  <div className="inputs form-group">
                                  <input type="password" className="form-control" id="formGroupExampleInput" placeholder="SENHA NOVA"/>
                                  <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
@@ -54,7 +58,7 @@ export default function TrocarSenha(){
                                  ></i>
                                  </div>
                                  <div className="inputs form-group">
-                                 <input type="password" className="form-control" id="formGroupExampleInput" placeholder="CONFIRMAR SENHA NOVA"/>
+                                 <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="CONFIRMAR SENHA NOVA"/>
                                  </div>
  
                                  <div className="botao">
@@ -62,7 +66,6 @@ export default function TrocarSenha(){
                                         Trocar senha
                                      </button>
                                  </div>
-                         </form>
                      </CaixaEsqueciSenha>
                      <ToastContainer />
                          
