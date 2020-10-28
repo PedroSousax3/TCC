@@ -1,8 +1,27 @@
+using System;
+
 namespace backend.Utils
 {
     public class ClienteConversor
     {
-        public Models.TbCliente ParaTabelaCadastrarCliente(Models.Request.ClienteRequest.CadastrarCliente request)
+        public Models.TbCliente Conversor (Models.Request.ClienteRequest.CadastroCliente request)
+        {
+            Models.TbCliente tabela = new Models.TbCliente();
+            //Cliente
+            tabela.DsCpf = request.cpf;
+            tabela.DsEmail = request.email;
+            tabela.NmCliente = request.nome;
+            //Login
+            Models.TbLogin login = new Models.TbLogin();
+            login.NmUsuario = request.usuario;
+            login.DsSenha = request.senha;
+            login.DtUltimoLogin = DateTime.Now;
+
+            tabela.IdLoginNavigation = login;
+
+            return tabela;
+        }
+        public Models.TbCliente ParaTabelaCadastrarCliente(Models.Request.ClienteRequest.Cliente request)
         {
             Models.TbCliente tabela = new Models.TbCliente();
             tabela.NmCliente = request.Nome + " " + request.Sobrenome;

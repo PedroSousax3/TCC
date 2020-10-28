@@ -4,7 +4,17 @@ namespace backend.Models.Request
 {
     public class ClienteRequest
     {
-        public class CadastrarCliente
+        public class CadastroCliente 
+        {
+            public string usuario { get; set; }
+            public string email { get; set; }
+            public string senha { get; set; }
+            public string cpf { get; set; }
+            public string nome { get; set; }
+        }
+
+
+        public class Cliente
         {
             public string Nome { get; set; }
             public string Sobrenome { get; set; }

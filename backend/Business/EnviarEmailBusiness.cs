@@ -12,7 +12,7 @@ namespace backend.Business
         {
 
             MailMessage mensagem = new MailMessage("nextgenbooks3@gmail.com", destinatario, titulo, corpo);
-
+            mensagem.IsBodyHtml = true;
             using (var smtpClient = new SmtpClient())
             {
                 smtpClient.UseDefaultCredentials = false;

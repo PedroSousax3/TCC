@@ -8,15 +8,17 @@ namespace backend.Database
     public class ClienteDatabase
     {
         Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
-        public async  Task<Models.TbCliente> CadastrarCliente(int idCliente,Models.TbCliente tabelaCliente)
+        public async  Task<Models.TbCliente> CadastrarCliente(Models.TbCliente tabela)
         {
-            Models.TbCliente tabela = await ConsultarClientePorId(idCliente);
+            /*Models.TbCliente tabela = await ConsultarClientePorId(idCliente);
             tabela.NmCliente = tabelaCliente.NmCliente;
             tabela.DsCelular = tabelaCliente.DsCelular;
             tabela.DsCpf = tabelaCliente.DsCpf;
             tabela.DsFoto = tabelaCliente.DsFoto;
-            tabela.TpGenero = tabelaCliente.TpGenero;
-            context.SaveChanges();
+            tabela.TpGenero = tabelaCliente.TpGenero;*/
+
+            await context.AddAsync(tabela);
+            await context.SaveChangesAsync();
             return tabela;  
         }
 

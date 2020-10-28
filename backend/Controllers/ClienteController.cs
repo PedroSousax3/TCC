@@ -11,11 +11,38 @@ namespace backend.Controllers
     public class ClienteController:ControllerBase
     {
         Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
+        Business.EnviarEmailBusiness gerenciadorEmail = new Business.EnviarEmailBusiness();
         Business.ClienteBusiness business = new Business.ClienteBusiness();
         Utils.ClienteConversor conversor = new Utils.ClienteConversor(); 
+
+        [HttpPost]
+        public async Task<ActionResult<Models.Response.AcessoResponse>> CadastrarCliente(Models.Request.ClienteRequest.CadastroCliente request)
+        {
+            try
+            {
+                Models.TbCliente tabela = conversor.Conversor(request);
+                
+                Models.TbCliente cliente = await business.CadastrarCliente(tabela);
+
+                string corpo = $"<p>Estamos muito animados com o seu cadastro e agradecemos pela sua preferência.</p> <br /> <p>Estabelecemos a empresa NextGenBooks com a missão de disponibilizar aprendizado  e cultura por um preço que cabe no seu bolso.</p >";
+                gerenciadorEmail.EnvioEmail(cliente.DsEmail, "Bem Vindo " +  cliente.NmCliente + " a Next Gen Books!!!", corpo);
+
+                Business.Acesso.AcessoBusiness gerartoken = new Business.Acesso.AcessoBusiness();
+                Utils.Conversor.AcessoConversor acessoConversor = new Utils.Conversor.AcessoConversor();
+
+                string token = gerartoken.GerarToken(cliente.IdLoginNavigation);
+                return acessoConversor.Conversor(cliente.IdLoginNavigation, token);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(
+                    new Models.Response.ErroResponse(400, ex.Message)
+                );
+            }
+        }
         
-        [HttpPut("cadastrar/{idcliente}")]
-        public async Task<ActionResult<Models.Response.ClienteResponse>> CadastrarCliente([FromForm] Models.Request.ClienteRequest.CadastrarCliente request, int idcliente)
+        /*[HttpPut("cadastrar/{idcliente}")]
+        public async Task<ActionResult<Models.Response.ClienteResponse>> CadastrarCliente([FromForm] Models.Request.ClienteRequest.Cliente request, int idcliente)
         {
           try
           {
@@ -31,7 +58,7 @@ namespace backend.Controllers
               
               return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
           }   
-        }
+        }*/
 
         [HttpGet("foto/{nome}")]
         public ActionResult ConsultarArquivoPorNomeController(string nome)

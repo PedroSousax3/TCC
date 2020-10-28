@@ -63,5 +63,12 @@ namespace backend.Business.Validador
             if(contador < 2)
                throw new ArgumentException("Acrescente no minímo dois numeros para deixar sua senha mais forte");
         }
+
+        public void ValidarSenha (string senha)
+        {
+          this.ValidarQuantideDeCaracteresSenha(senha);
+          this.ValidarNumerosSenha(senha);
+          this.ValidarCaracteresEspeciaisSenha(senha);
+        }
     }
 }

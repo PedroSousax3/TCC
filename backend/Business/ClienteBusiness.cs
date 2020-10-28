@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 namespace backend.Business
 {
-    public class ClienteBusiness:Validador.ValidadorCliente
+    public class ClienteBusiness : Validador.ValidadorCliente
     {
           Database.ClienteDatabase database = new Database.ClienteDatabase(); 
-        public async Task<Models.TbCliente> CadastrarCliente(Models.TbCliente tabela,int idcliente)
+        public async Task<Models.TbCliente> CadastrarCliente(Models.TbCliente tabela)
         {
-            ValidarCliente(idcliente,tabela);
-            return  await database.CadastrarCliente(idcliente,tabela);
+            ValidarCliente(tabela);
+            return await database.CadastrarCliente(tabela);
         }
         public async Task<Models.TbCliente> ValidarDeletarCliente(int id)
         {
