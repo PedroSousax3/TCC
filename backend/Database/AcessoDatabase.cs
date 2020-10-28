@@ -15,6 +15,10 @@ namespace backend.Database
                                                                             && x.DsSenha == senha);
             if(login == null)
                 throw new ArgumentException("Usuario não cadastrado.");
+            
+            login.DtUltimoLogin = DateTime.Now;
+
+            await db.SaveChangesAsync();
 
             return login;
         }
