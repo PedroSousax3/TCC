@@ -22,6 +22,7 @@ import MinhasCompras from './Pages/Cliente/MinhasCompras';
 import Favoritos from './Pages/Cliente/Favoritos/index'
 import Carrinho from './Pages/Cliente/Carrinho/index.js';
 import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
+import CadastrarEndereco from './Pages/Cliente/Endereco';
 
 function Rotas(){
     return(
@@ -33,6 +34,8 @@ function Rotas(){
           <Route path="/Login" component={Login}/>
           <Route path="/EsqueciSenha" exact={true} component={EsqueciSenha}/>
           <Route path="/EsqueciSenha/TrocarSenha" component={TrocarSenha}></Route>
+          <Route path="/Endereco" component={CadastrarEndereco}/>
+
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
           <Route path="/Funcionario/Cadastro/Login" component={CadastroLogin}/>
