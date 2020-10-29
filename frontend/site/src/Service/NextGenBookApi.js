@@ -1,3 +1,4 @@
+import { Email } from '@material-ui/icons';
 import axios from 'axios';
 const api = axios.create(
     { baseURL:"http://localhost:5000" }
@@ -46,5 +47,21 @@ export default class NextGenBookApi{
     }
 
 
+    //TELA DE RECUPERAR SENHA
+    async enviarEmail(req){
+        const resp = await api.post('/EsqueciSenha', req);
+
+        return resp;
+    }
+
+    async confirmarCodigo(req){
+        const resp = await api.get('/EsqueciSenha', req);
+
+        return resp;
+    }
+
+    async trocarSenha(req){
+        const resp = await api.post('/EsqueciSenha/TrocarSenha', req)
+    }
     
 }
