@@ -1,12 +1,12 @@
 import axios from 'axios';
 const api = axios.create(
-    { baseURL:"https://viacep.com.br/ws/" }
+    { baseURL:"https://viacep.com.br/" }
 );
 
 
-export const buscarEndereco = async (req) => {
-    console.log("OL");
-    const resp = await api.get(req.cep + '/json/');
-    console.log(resp.data);
+export const buscarEndereco = async (cep) => {
+    console.log(cep);
+    const resp = await api.get("ws/" + cep + '/json');
+    console.log(resp);
     return resp;
 }

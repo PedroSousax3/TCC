@@ -43,7 +43,11 @@ export default class NextGenBookApi{
         
         return resp;
     }
-
+   async cadastrarEndereco(req){
+       const resp = await api.post('/Endereco',req);
+       console.log(resp.data);
+       return resp
+   }
 
     
 }
