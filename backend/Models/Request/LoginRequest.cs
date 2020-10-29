@@ -22,5 +22,13 @@ namespace backend.Models.Request
             public string Usuario { get; set; }
             public string Senha { get; set; }
         }
+        public class RecuperarSenha
+        {
+            public string Codigo { get; set; }
+        }
+        public class ResetarSenha
+        {
+            public string Senha { get; set; }
+        }
     }
 }

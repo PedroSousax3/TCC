@@ -1,6 +1,6 @@
-using System;  
-using System.Text;  
-using System.Security.Cryptography;  
+using System;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace backend.Utils.Criptografia
 {
@@ -10,11 +10,11 @@ namespace backend.Utils.Criptografia
         {
             RijndaelManaged rijndael = new RijndaelManaged();
             rijndael.Mode = CipherMode.CBC;
-            rijndael.KeySize = 128;
+            rijndael.KeySize = 192;
+            rijndael.GenerateIV();
 
             return rijndael;
         }
-
         private void ValidarChave(string chave)
         {
             if (
@@ -25,36 +25,46 @@ namespace backend.Utils.Criptografia
                 throw new ArgumentException("Chave Invalida.");
         }
 
-        private string Criptografar(string chave, string valor)
+        public string Criptografar(string chave, string mensagem)
         {
             ValidarChave(chave);
-
+            
             RijndaelManaged rijndael = this.gerarRijndael();
 
-            byte[] chaveBytes = Encoding.UTF8.GetBytes(chave);
-            byte[] mensagemBytes = Encoding.UTF8.GetBytes(valor);
+            byte[] chaveBytes;
             byte[] criptografiaBytes;
+            byte[] mensagemBytes;
             string criptografia;
 
-            ICryptoTransform cryptor = rijndael.CreateEncryptor(chaveBytes, chaveBytes);
+            chaveBytes = Encoding.UTF8.GetBytes(chave);
+            mensagemBytes = Encoding.UTF8.GetBytes(mensagem);
+
+            // Realiza criptografia
+            ICryptoTransform cryptor = rijndael.CreateEncryptor(chaveBytes, rijndael.IV);
             criptografiaBytes = cryptor.TransformFinalBlock(mensagemBytes, 0, mensagemBytes.Length);
             cryptor.Dispose();
 
+            // Transforma criptografia em string
             criptografia = Convert.ToBase64String(criptografiaBytes);
             return criptografia;
         }
+
         private string Descriptografar(string chave, string valor)
         {
             ValidarChave(chave);
 
             RijndaelManaged rijndael = this.gerarRijndael();
 
-            byte[] chaveBytes = Encoding.UTF8.GetBytes(chave);
+            byte[] chaveBytes;
             byte[] criptografiaBytes;
-            byte[] mensagemBytes = Convert.FromBase64String(valor);
+            byte[] mensagemBytes;
             string mensagem;
 
-            ICryptoTransform cryptor = rijndael.CreateDecryptor(chaveBytes, chaveBytes);
+            // Transforma chave e mensagem em array de byts
+            chaveBytes = Encoding.UTF8.GetBytes(chave);
+            mensagemBytes = Convert.FromBase64String(valor);
+
+            ICryptoTransform cryptor = rijndael.CreateDecryptor(chaveBytes, rijndael.IV);
             criptografiaBytes = cryptor.TransformFinalBlock(mensagemBytes, 0, mensagemBytes.Length);
             cryptor.Dispose();
 

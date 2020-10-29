@@ -23,7 +23,7 @@ export default function Cadastro(props) {
 
     const [foto, setFoto] = useState();
     const [nome, setNome] = useState("");
-    const [nascimento, setNascimento] = useState("");
+    const [email, setEmail] = useState("");
     const [genero, setGenero] = useState('');
     const [usuario, setUsuario] = useState("");
     const [senha, setSenha] = useState("");
@@ -42,13 +42,14 @@ export default function Cadastro(props) {
     const salvarClick = async () => {
         try {
             let request = {
-                idcliente : 1, 
-                Nome: nome,
-                Sobrenome : "",
-                Genero: genero,
-                Cpf: cpf,
-                Celular: celular,
-                Foto: foto
+                usuario,
+                email, 
+                senha, 
+                cpf,
+                nome,
+                celular,
+                foto,
+                genero
             }
             const response = await api.cadastrar(request);
             toast.dark("Cadastro completo " + response.data.Nome);
@@ -70,8 +71,8 @@ export default function Cadastro(props) {
                     </div>
                     
                     <div className="form-group">
-                        <label className="Nascimento">Nascimento:</label>
-                        <input className="form-control" type="date" onChange={(n) => setNascimento(n.target.value)}/>
+                        <label className="">Email:</label>
+                        <input className="form-control" type="email" onChange={(n) => setEmail(n.target.value)}/>
                     </div>
                     
                     <div className="form-group">

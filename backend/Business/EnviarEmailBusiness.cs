@@ -4,6 +4,7 @@ using System.Net.Mail;
 using System.Net.Mime;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 namespace backend.Business
 {
     public class EnviarEmailBusiness
@@ -25,15 +26,51 @@ namespace backend.Business
                 smtpClient.Send(mensagem);
             }
         }
-
-        public void EnviarEmailBoasVindas(Models.Response.ClienteResponse response)
+      
+      public async Task<Models.TbLogin> EnviarCodigoRecuperarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request)
         {
-            string titulo = "Bem Vindo " + response.Nome;
-            string corpo ="Estamos muito animados com o seu cadastro e agradecemos pela sua preferência. " + 
-            "Estabelecemos a empresa NextGenBooks com a missão de disponibilizar aprendizado " + 
-            "e cultura por um preço que cabe no seu bolso.";
-            
-             this.EnvioEmail(response.Email,titulo,corpo);
+            Database.LoginDatabase database = new Database.LoginDatabase();
+            string codigo = GerarCodigolAleatorio();
+
+           Models.TbLogin login = await database.VerificarEmailRecuperarSenha(request,codigo);
+           string titulo = "Resetar Senha";
+           string corpo = $"<div><h3>Paresce que você esqueceu sua senha :(</h3></div>"+$"<div>não se preocupe, basta digitar esse código {codigo}</div>"+
+           $"<div>na pagina para qual foi direcionado.</div>";
+           
+           this.EnvioEmail(request.Email,titulo,corpo);
+           
+           return login;
+        
+        }
+
+        private string GerarCodigolAleatorio()
+        {
+            int Tamanho = 10;
+            string codigoFinal = string.Empty;
+            for (int i = 0; i < Tamanho; i++)
+            {
+                Random random = new Random();
+                int codigo = Convert.ToInt32(random.Next(48, 122).ToString());
+
+                if ((codigo >= 48 && codigo <= 57) || (codigo >= 97 && codigo <= 122))
+                {
+                    string _char = ((char)codigo).ToString();
+                    if (!codigoFinal.Contains(_char))
+                    {
+                        codigoFinal += _char;
+                    }
+                    else
+                    {
+                        i--;
+                    }
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            return codigoFinal;
         }
     }
 }
+            

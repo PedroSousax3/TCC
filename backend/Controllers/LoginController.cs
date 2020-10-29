@@ -13,22 +13,7 @@ namespace backend.Controllers
         Business.LoginBusiness business = new Business.LoginBusiness();
         Utils.LoginConversor conversor = new Utils.LoginConversor();
         Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
-        [HttpPost("cadastrar")]
-        public async Task<ActionResult<Models.Response.LoginResponse.ConfirmarLogin>> CadastrarLogin(Models.Request.LoginRequest.CadastrarLogin request)
-        {
-            try
-            {
-                Models.TbLogin tabela = conversor.ParaTabelaCadastrarLogin(request);
-                tabela = await business.ValidarCadastrarLogin(tabela,request);
-                Models.TbCliente cliente = conversor.ParaTabelaClienteCadastroParcial(tabela.IdLogin,request);
-                await business.cadastrarCliente(cliente);
-                return conversor.ParaResponseCadastrarLogin(tabela);
-            }
-            catch (System.Exception ex)
-            {
-                return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
-            }
-        }
+
         [HttpPost("funcionario")]
         public async Task<ActionResult<Models.Response.LoginResponse.CadastrarLoginFuncionario>> CadastrarFuncionario(Models.Request.LoginRequest.CadastrarLoginFuncionario request)
         {
@@ -43,6 +28,33 @@ namespace backend.Controllers
                 return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
             }
          
+        }
+        [HttpPost("codigo/{idLogin}")]
+        public async Task<ActionResult<Models.Response.EmailResponse.RecuperarSenhar>> ConfirmarCodigo(int idLogin,Models.Request.LoginRequest.RecuperarSenha request)
+        {
+            try
+            {
+                Models.TbLogin tabela = await business.ValidarConfirmarCodigoRecuperarSenha(request.Codigo,idLogin);
+                return conversor.ParaResponse(tabela);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
+            }
+        }
+
+        [HttpPost("novaSenha/{idLogin}")]
+        public async Task<ActionResult> ResetarSenha(int idLogin,Models.Request.LoginRequest.ResetarSenha request)
+        {
+            try
+            {
+                Models.TbLogin tabela = await business.ValidarResetarSenha(request.Senha,idLogin);
+                return Ok();   
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
+            }
         }
         
         [HttpPost]

@@ -4,15 +4,15 @@ namespace backend.Business.Acesso
     {
         private string GerarKey (Models.TbLogin login) 
         {
-            string key = $"{login.IdLogin}|{login.DtUltimoLogin}".Replace("/", "").Replace(":", "").Replace(" ", "");
+            string key = $"{login.IdLogin}|{login.DtUltimoLogin.ToString()}".Replace("/", "").Replace(":", "").Replace("-", "").Replace(" ", "");
 
-            return key;            
+            return key.PadRight(24, '#');            
         }
 
-        public string GerarToken (Models.TbLogin login) 
+        public string GerarToken (Models.TbLogin login, int idperfil) 
         {
             string key = this.GerarKey(login);
-            string valor = $"{login.IdLogin}|{login.DsSenha}|{login.NmUsuario}|{login.DtUltimoLogin}";
+            string valor = $"{login.IdLogin}|{idperfil}|{login.NmUsuario}|{login.DtUltimoLogin}";
             string token = Encrypt(key, valor);
 
             return token;

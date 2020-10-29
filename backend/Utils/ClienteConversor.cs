@@ -11,6 +11,9 @@ namespace backend.Utils
             tabela.DsCpf = request.cpf;
             tabela.DsEmail = request.email;
             tabela.NmCliente = request.nome;
+            tabela.DsCelular =  request.celular;
+            tabela.TpGenero = request.genero;
+
             //Login
             Models.TbLogin login = new Models.TbLogin();
             login.NmUsuario = request.usuario;

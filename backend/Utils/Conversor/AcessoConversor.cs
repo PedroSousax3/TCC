@@ -13,16 +13,17 @@ namespace backend.Utils.Conversor
             
             if(cliente != null)
             {
+                response.id = cliente.IdCliente;
                 response.nome = cliente.NmCliente;
                 response.perfil = "cliente";
             }
             else
             {
+                response.id = funcionario.IdFuncionario;
                 response.nome = funcionario.NmFuncionario;
                 response.perfil = "funcionario";
             }
 
-            response.id = tabela.IdLogin;
             response.token = token;
     
             return response;

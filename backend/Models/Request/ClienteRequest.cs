@@ -11,6 +11,9 @@ namespace backend.Models.Request
             public string senha { get; set; }
             public string cpf { get; set; }
             public string nome { get; set; }
+            public string celular { get; set; }
+            public IFormFile foto { get; set; }
+            public string genero { get; set; }
         }
 
 
