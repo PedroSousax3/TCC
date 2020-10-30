@@ -7,8 +7,7 @@ import Login from './Pages/Login/index.js';
 import Perfil from './Pages/Perfil';
 
 
-//Funcionario
-import CadastroLogin from './Pages/Funcionario/CadastroFuncionario/CadastrarLogin' 
+//Funcionario 
 import CadastrarFuncionario from "./Pages/Funcionario/CadastroFuncionario/CadastrarFuncionario/index.js"
 
 //cliente
@@ -35,7 +34,6 @@ function Rotas(){
 
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
-          <Route path="/Funcionario/Cadastro/Login" component={CadastroLogin}/>
 
           <Route path="/MinhasCompras" component={MinhasCompras}/>
           <Route path="/Favoritos" component={Favoritos}/>

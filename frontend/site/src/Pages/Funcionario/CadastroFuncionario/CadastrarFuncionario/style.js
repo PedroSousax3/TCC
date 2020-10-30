@@ -2,16 +2,8 @@ import styled from 'styled-components';
 
 
 export const CaixaInformacoes = styled.div`
-    min-width: 100%;
-    input{
-        width:70%;
-    }
-    .botao{
-        width:90%;
-        display:flex;
-        justify-content:flex-end;
-        align-items:flex-end;
-    }
+    min-width: 50%;
+  
  
 `
 export const CaixaInput = styled.div`
@@ -20,7 +12,9 @@ export const CaixaInput = styled.div`
     height: auto;
     align-items: center;
 
- 
+    & > .button1 {
+        margin: auto 0px 0px auto;
+    }
 
 
 `

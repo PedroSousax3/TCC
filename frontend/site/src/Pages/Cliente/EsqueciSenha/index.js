@@ -40,9 +40,9 @@ export default function EsqueciSenha(props){
         let request = {
             Codigo
         }
-        const idLogin = 22;
+        const idLogin = props.location.state.idlogin;
         const response = await api.confirmarCodigo(request,idLogin);
-        navegacao.push("/EsqueciSenha/TrocarSenha");
+        navegacao.push("/EsqueciSenha/TrocarSenha",response.data);
     }catch(e){
         toast.dark("Codigo invalido")
     }
@@ -58,20 +58,21 @@ export default function EsqueciSenha(props){
 
                     <CaixaEsqueciSenha>
                         
-                                <div className="inputs form-group" style={{flexDirection:"row", display:"flex"}}>
-                                <input type="email" className="form-control" id="email" placeholder="INFORME SEU E-MAIL"
+                                <div className="inputs form-row" >
+                                <input type="email" className="form-control col-7" id="email" placeholder="INFORME SEU E-MAIL"
                                 onChange = {(e) => setEmail(e.target.value)}  />
-                                <button type="button" clasName="btn btn-light" 
+                                <button type="button" clasName="btn btn-light col" 
                                     onClick={verificarEmail}
                                 >Enviar Código</button>
                                 </div>
-                                <div className="inputs form-group">
+                                <div className="form-group row" style={{marginTop:"2%",width:"61%",marginLeft:"8%"}}>
+                                <div className="col-sm-10">
                                 <input type="text" className="form-control" id="codigo" placeholder="CÓDIGO"
                                 onChange = {(e) => setCodigo(e.target.value)}/>
                                 </div>
-
-                                <div className="botao" style={{alignItems:"center", display:"flex", justifyContent:"center"}}>
-                                    <button type="button" className="btn btn-success" onClick={validarCodigo}>
+                                </div>
+                                <div className="botao" style={{alignItems:"center", display:"flex", justifyContent:"center",width:"61%"}}>
+                                    <button type="button" style={{width:"100%"}}className="btn btn-success" onClick={validarCodigo}>
                                     Prosseguir
                                     </button>
                                 </div>
