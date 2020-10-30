@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import emailjs from 'emailjs-com';
-
 
 
 import { CaixaEsqueciSenha } from './style';
@@ -9,15 +7,14 @@ import Master from "../../Master";
 import { ToastContainer, toast } from "react-toastify";
 import nextGenBookAPI from '../../../Service/NextGenBookApi'
 
+
+
 const api = new nextGenBookAPI();
 
 export default function EsqueciSenha(props){
   const navegacao = useHistory();
-  const [email, setEmail] = useState("");
-  const [destinario, setDestinario] = useState("");
-  const [titulo, setTitulo] = useState("");
-  const [corpo, setCorpo] = useState("");
-  const [codigo, setCodigo] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Codigo, setCodigo] = useState("");
 
 
 
@@ -26,30 +23,28 @@ export default function EsqueciSenha(props){
 
     try{
         let request = {
-            email: email,
-            destinario: destinario,
-            titulo: titulo,
-            dorpo: corpo
-        }
-        const response = await api.enviarEmail(request);
-        if(tipo.type === "email"){
-            
+            Email
         }
         
+   
+          const response = await api.enviarEmail(request);
+      
+        
     }catch(e){
-        console.log("ero")
+        console.log("erro")
     }
   }
     
   const validarCodigo = async() =>{
     try{
         let request = {
-            codigo: codigo
+            Codigo
         }
-        const response = await api.confirmarCodigo(request);
+        const idLogin = 22;
+        const response = await api.confirmarCodigo(request,idLogin);
         navegacao.push("/EsqueciSenha/TrocarSenha");
     }catch(e){
-        toast.dark("Codigo Invalido")
+        toast.dark("Codigo invalido")
     }
   }
 
@@ -66,7 +61,7 @@ export default function EsqueciSenha(props){
                                 <div className="inputs form-group" style={{flexDirection:"row", display:"flex"}}>
                                 <input type="email" className="form-control" id="email" placeholder="INFORME SEU E-MAIL"
                                 onChange = {(e) => setEmail(e.target.value)}  />
-                                <button type="button" class="btn btn-light" 
+                                <button type="button" clasName="btn btn-light" 
                                     onClick={verificarEmail}
                                 >Enviar Código</button>
                                 </div>
@@ -76,7 +71,7 @@ export default function EsqueciSenha(props){
                                 </div>
 
                                 <div className="botao" style={{alignItems:"center", display:"flex", justifyContent:"center"}}>
-                                    <button type="button" class="btn btn-success" onClick={validarCodigo}>
+                                    <button type="button" className="btn btn-success" onClick={validarCodigo}>
                                     Prosseguir
                                     </button>
                                 </div>

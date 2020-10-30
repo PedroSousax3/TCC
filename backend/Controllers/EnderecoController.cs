@@ -15,7 +15,7 @@ namespace backend.Controllers
         Utils.Conversor.EnderecoConversor ConversorEndereco = new Utils.Conversor.EnderecoConversor();
         Business.EnderecoBusiness business = new Business.EnderecoBusiness();
         [HttpPost]
-        public async Task<ActionResult<EnderecoResponse>> InserirEnderecoController(EnderecoRequest novo)
+        public async Task<ActionResult<EnderecoResponse>> InserirEnderecoController(Models.Request.EnderecoRequest novo)
         {
             try
             {

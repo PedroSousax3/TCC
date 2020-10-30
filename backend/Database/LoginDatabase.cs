@@ -96,56 +96,6 @@ namespace backend.Database
               resposta = false;
             return resposta;
         }
-        //
-        //
-
-        ///{logar}Melhorar o fluxo da verificacao
-      public Models.Response.LoginResponse.ConfirmarLogin VerificarPerfil(int idlogin,Models.Response.LoginResponse.ConfirmarLogin response)
-        {
-            Models.TbCliente cliente = context.TbCliente.FirstOrDefault(x => x.IdLogin == idlogin);
-            Models.TbFuncionario funcionario = context.TbFuncionario.FirstOrDefault(x => x.IdLogin == idlogin);
-            if(cliente != null)
-               {
-                   response.DescricaoPerfil = "Cliente";
-                   response.Nome = cliente.NmCliente;
-                   response.Id = cliente.IdCliente;
-                   response.NomeFoto = cliente.DsFoto;
-                   response.Email = cliente.DsEmail;
-               }
-            else if(funcionario != null)
-            {
-               response.DescricaoPerfil = "Funcionario";
-               response.Nome = funcionario.NmFuncionario;
-               response.Id = funcionario.IdFuncionario;
-               response.NomeFoto = "user.jpg";
-               response.Email = funcionario.DsEmail;
-            }
-            else
-            {
-                response.DescricaoPerfil = "O cadastro ainda não esta completo";
-            }
-            return response;
-        }
-
-        public async Task<Models.TbLogin> confirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
-        {
-           Models.TbLogin tabela = await context.TbLogin.FirstOrDefaultAsync(x => x.NmUsuario == request.Usuario
-                                                                  &&   x.DsSenha == request.Senha);
-            
-            if(tabela == null)
-            {
-                Models.TbCliente cliente = await context.TbCliente.FirstOrDefaultAsync(x => x.DsEmail == request.Usuario);
-                tabela = context.TbLogin.FirstOrDefault(x =>x.IdLogin == cliente.IdLogin &&
-                                                         x.DsSenha == request.Senha);
-                if(tabela == null)
-                    throw new ArgumentException("Usuario ou senha incorretos");
-            }
-             
-             tabela.DtUltimoLogin = DateTime.Now;
-             await context.SaveChangesAsync();
-            
-            return tabela;
-        }
 
         //padrao
          public Task<Models.TbLogin> ConsultarLoginPorId(int id)

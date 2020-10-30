@@ -78,7 +78,7 @@ export default function CadastrarLogin()
                                                 <label>E-mail:</label>
                                                 <input type="email" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setEmail(e.target.value)}/>
                                               </div>
-                                              <div className="form-group">
+                                      <div className="form-group">
                                                 <label>Usuario:</label>
                                                 <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNomeDeUsuario(e.target.value)}/>
                                               </div>
@@ -90,7 +90,7 @@ export default function CadastrarLogin()
                                                                         onClick={mostrar}
                                                             ></i>
                                                 </div>
-                                              </div>
+                                              </div>        
                                                   <div className="botao">
                                                       <button
                                                         className="btn"

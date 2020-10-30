@@ -5,8 +5,6 @@ namespace backend.Utils.Conversor
         public Models.TbFuncionario ConversorFuncionarioTabela(Models.Request.FuncionarioRequest request)
         {
             Models.TbFuncionario tabela = new Models.TbFuncionario();
-
-            tabela.IdLogin = request.login;
             tabela.NmFuncionario = request.nome;
             tabela.DsCarteiraTrabalho = request.carteiratrabalho;
             tabela.DsCpf = request.cpf;
@@ -18,6 +16,12 @@ namespace backend.Utils.Conversor
             tabela.DsCep = request.cep;
             tabela.NrResidencial = request.numeroresidencial;
             tabela.DsComplemento = request.complemento;
+
+            Models.TbLogin login = new Models.TbLogin();
+            login.NmUsuario = request.nomedeusuario;
+            login.DsSenha = request.senha;
+
+            tabela.IdLoginNavigation = login;
 
             return tabela;
         }

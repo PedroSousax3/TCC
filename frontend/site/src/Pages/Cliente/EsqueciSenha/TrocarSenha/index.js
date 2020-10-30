@@ -13,15 +13,22 @@ const api = new NextGenBookApi();
 export default function TrocarSenha(){
   const navegacao = useHistory();
     const [senha, setSenha] = useState("");
+    const [confirmarsenha,setConfirmarSenha] = useState("")
 
     const salvarSenha =  async() => {
       try{
         let request = {
-          senha: senha
+          senha
         }
-        const response = await api.trocarSenha(request);
-        toast.dark("Senha trocada")
-        navegacao.push("/acesso");
+        if(senha == confirmarsenha){
+          let idLogin = 23;
+          const response = await api.trocarSenha(request,idLogin);
+          toast.dark("Senha trocada")
+          navegacao.push("/acesso");
+        }else{
+          toast.error("confirmação de senha incorreta")
+        }
+
       }catch(e){
         toast.dark("deu erro querido");
       }
@@ -67,13 +74,15 @@ export default function TrocarSenha(){
                      <CaixaEsqueciSenha>
                                  <div className="inputs form-group" style={{display:"flex", }}>
                                  <input type="password" className="form-control" id="formGroupExampleInput" placeholder="SENHA NOVA"
-                                 style={{marginLeft:"33px"}}/>
+                                 style={{marginLeft:"33px"}} onChange ={(e) => setSenha(e.target.value)}/>
                                  <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
                                                                         onClick={mostrar}
                                  ></i>
                                  </div>
                                  <div className="inputs form-group">
-                                 <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="CONFIRMAR SENHA NOVA"/>
+                                 <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="CONFIRMAR SENHA NOVA"
+                                  onChange={(e) => setConfirmarSenha(e.target.value)}
+                                 />
                                  
                                  </div>
  

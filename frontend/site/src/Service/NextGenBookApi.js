@@ -45,6 +45,7 @@ export default class NextGenBookApi{
         return resp;
     }
    async cadastrarEndereco(req){
+       console.log(req)
        const resp = await api.post('/Endereco',req);
        console.log(resp.data);
        return resp
@@ -52,19 +53,21 @@ export default class NextGenBookApi{
 
     //TELA DE RECUPERAR SENHA
     async enviarEmail(req){
-        const resp = await api.post('/EsqueciSenha', req);
+        console.log("oie")
+        const resp = await api.post('/Email/resetar', req);
 
         return resp;
     }
 
-    async confirmarCodigo(req){
-        const resp = await api.get('/EsqueciSenha', req);
-
+    async confirmarCodigo(req,idLogin){
+        console.log("hi")
+        const resp = await api.post('/Login/codigo/'+ 23, req);
+        console.log(resp.data)
         return resp;
     }
 
-    async trocarSenha(req){
-        const resp = await api.post('/EsqueciSenha/TrocarSenha', req)
+    async trocarSenha(req,idLogin){
+        const resp = await api.put('/Login/novaSenha/'+ idLogin, req)
     }
     
 }

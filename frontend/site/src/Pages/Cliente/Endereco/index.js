@@ -9,7 +9,7 @@ import nextGenBookAPI from "../../../Service/NextGenBookApi";
 const api = new nextGenBookAPI();
 export default function CadastrarEndereco()
 {
-    const [idcliente,setIdCliente] = useState();
+    const [cliente,setCliente] = useState();
     const [nome,setNome] = useState("");
     const [endereco,setEndereco] = useState("");
     const [numero,setNumero] = useState();
@@ -29,9 +29,12 @@ export default function CadastrarEndereco()
         if (!("erro" in conteudo.data) ){
             
         document.getElementById('cidade').value=(conteudo.data.localidade);
+        setCidade(conteudo.data.localidade);
         document.getElementById('endereco').value=(conteudo.data.bairro + " " 
         + conteudo.data.logradouro );
+        setEndereco(conteudo.data.bairro + " " + conteudo.data.logradouro );
         document.getElementById('estado').value=(conteudo.data.uf);
+        setEstado(conteudo.data.uf);
     } 
     else {
         limpa_formulário_cep();
@@ -48,7 +51,7 @@ const preencherCampos = async () =>{
 }
 const cadastrar = async () =>{
     let request = {
-        idcliente,
+        cliente:23,
         nome,
         endereco,
         numero,

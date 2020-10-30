@@ -14,15 +14,17 @@ namespace backend.Controllers
         Business.FuncionarioBusiness business = new Business.FuncionarioBusiness();
 
         [HttpPost]
-        public async Task<ActionResult<Models.Response.FuncionarioResponse>> InserirController(Models.Request.FuncionarioRequest novo)
+        public async Task<ActionResult<Models.Response.AcessoResponse>> InserirController(Models.Request.FuncionarioRequest novo)
         {
             try
             {
                 Models.TbFuncionario funcionario = conversor.ConversorFuncionarioTabela(novo);
                 Models.TbFuncionario result = await business.CadastrarBusiness(funcionario);
-                Models.Response.FuncionarioResponse response = conversor.ConversorFuncionarioResponse(result);
+                Business.Acesso.AcessoBusiness gerartoken = new Business.Acesso.AcessoBusiness();
+                Utils.Conversor.AcessoConversor acessoConversor = new Utils.Conversor.AcessoConversor();
+                string token = gerartoken.GerarToken(result.IdLoginNavigation,result.IdFuncionario);
                 
-                return response;
+                return acessoConversor.Conversor(result.IdLoginNavigation, token);
             }
             catch (System.Exception ex)
             {

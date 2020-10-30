@@ -14,3 +14,13 @@ export const CaixaInformacoes = styled.div`
     }
  
 `
+export const CaixaInput = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+
+ 
+
+
+`

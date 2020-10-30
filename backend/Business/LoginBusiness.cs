@@ -27,11 +27,6 @@ namespace backend.Business
          validador.ValidarSenha(senha);
          return await database.ResetarSenha(idLogin,senha);
       }
-      public async Task<Models.TbLogin> ValidarConfirmarLogin(Models.Request.LoginRequest.ConfirmarLogin request)
-      {
-         validador.ValidarConfirmarLogin(request.Usuario,request.Senha);
-         return await database.confirmarLogin(request);
-      }
     
       public async Task<Models.TbLogin> ValidarDeletarLogin(int id)
       {

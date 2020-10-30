@@ -6,21 +6,44 @@ import nextGenBookAPI from "../../../../Service/NextGenBookApi"
 import Master from "../../../Master";
 import {CaixaInformacoes} from "./style"
 import { ToastContainer, toast } from "react-toastify";
-
+import {CaixaInput} from "./style"
 
 const api = new nextGenBookAPI();
 
 
-export default function CadastrarFuncionario(props){
+export default function CadastrarFuncionario(){
  
+    function mostrar() {	
+        var tipo = document.getElementById("formGroupExampleInput2");	
 
+        if (tipo.type == "password") {	
+          tipo.type = "text";	
+        } else {	
+          tipo.type = "password";	
+        }	
+
+        tipo.type = tipo.type; 	
+
+
+        var botao = document.querySelector(".btn.btn-sm"); 	
+
+        if (botao.classList.contains("fa-eye")) { 	
+          botao.classList.remove("fa-eye"); 	
+          botao.classList.add("fa-eye-slash"); 	
+        } else { 	
+          botao.classList.remove("fa-eye-slash"); 	
+          botao.classList.add("fa-eye"); 	
+        }	
+
+      }
+    
     const navegacao = useHistory()
-
-    //const [Login, setLogin ] = useState(props.location.state.id);
-    //const [Nome, setNome] = useState(props.location.state.nome);
+    const [ NomeDeUsuario, setNomeDeUsuario ] = useState("");
+    const [ Senha, setSenha ] = useState("");
+    const [Nome, setNome] = useState("");
     const [CarteiraTrabalho, setCarteiraTrabalho ] = useState("");
     const [Cpf, setCpf ] = useState("");
-   // const [ Email, setEmail ] = useState(props.location.state.email);
+    const [ Email, setEmail ] = useState("");
     const [ Nascimento, setNascimento ] = useState("");
     const [ Admissao, setAdimissao ] = useState("");
     const [ Cargo, setCargo ] = useState("");
@@ -33,11 +56,12 @@ export default function CadastrarFuncionario(props){
     const CadastrarFuncionario = async () => {
         try{
             const request = {
-               // Login,
-               // Nome,
+                NomeDeUsuario,
+                Senha,
+                Nome,
                 CarteiraTrabalho,
                 Cpf,
-                //Email,
+                Email,
                 Nascimento,
                 Admissao,
                 Cargo,
@@ -103,13 +127,27 @@ export default function CadastrarFuncionario(props){
                                         <div className="botao button1" >
                                                         <button type="button" className="btn btn-success" onClick={CadastrarFuncionario} >Confirmar cadastro</button>
                                                     </div>
-                          </CaixaInformacoes>
-                         
+                        </CaixaInformacoes>
+                                <CaixaInput>
+                                <div className="form-group">
+                                                        <label>Usuario:</label>
+                                                        <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNomeDeUsuario(e.target.value)}/>
+                                                    </div>
+                                                    <div className="form-group">
+                                                        <label>Senha:</label>
+                                                        <div className="input-icone">
+                                                        <input type="password" className="form-control" id="formGroupExampleInput2"  onChange = {(e) => setSenha(e.target.value)}/>
+                                                            <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
+                                                                                onClick={mostrar}
+                                                                    ></i>
+                                                        </div>
+                                                    </div>
+                                    </CaixaInput>
                             <ToastContainer />
-                    </CadastroCaixa>
-            
+                        </CadastroCaixa>
           </Master>
         </div>
                     
     )
 }
+            

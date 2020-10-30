@@ -36,25 +36,6 @@ namespace backend.Utils
            response.Usuario = tabela.NmUsuario;
            return response;
         }
-        public Models.Response.LoginResponse.ConfirmarLogin ParaResponseCadastrarLogin(Models.TbLogin tabela)
-        {
-             Models.Response.LoginResponse.ConfirmarLogin response = new Models.Response.LoginResponse.ConfirmarLogin();
-             response.IdLogin = tabela.IdLogin;
-             response.NomeUsuario = tabela.NmUsuario;
-             database.VerificarPerfil(tabela.IdLogin,response);
-
-             return response;
-        }
-
-        public Models.Response.LoginResponse.ConfirmarLogin ParaResponseConfirmarLogin(Models.TbLogin tabela)
-        {
-            Models.Response.LoginResponse.ConfirmarLogin response = new Models.Response.LoginResponse.ConfirmarLogin();
-            response.IdLogin = tabela.IdLogin;
-            response.NomeUsuario = tabela.NmUsuario;
-            database.VerificarPerfil(tabela.IdLogin,response);
-            
-            return response;
-        }
 
         public Models.Response.EmailResponse.RecuperarSenhar ParaResponse(Models.TbLogin tabela)
         {
