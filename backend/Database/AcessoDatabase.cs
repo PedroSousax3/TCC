@@ -22,5 +22,16 @@ namespace backend.Database
 
             return login;
         }
+
+        public async Task<Models.TbLogin> ConsultarPerfil(string user)
+        {
+            Models.TbLogin login = await db.TbLogin.Include(x => x.TbCliente)
+                                                    .Include(x => x.TbFuncionario)
+                                                    .FirstOrDefaultAsync(x => x.NmUsuario == user);
+            if(login == null)
+                throw new ArgumentException("Usuario não cadastrado.");
+
+            return login;
+        }
     }
 }

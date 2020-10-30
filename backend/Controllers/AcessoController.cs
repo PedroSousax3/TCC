@@ -34,5 +34,21 @@ namespace backend.Controllers
                 );
             }
         }
+
+        [HttpPost("validar")]
+        public async Task<ActionResult<Models.TbLogin>> ValidarUser(Models.Response.AcessoResponse acesso)
+        {
+            try
+            {
+                Business.Acesso.ValidadorToken businessValidar = new Business.Acesso.ValidadorToken();
+                return await businessValidar.ValidarUser(acesso);
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound(
+                    new Models.Response.ErroResponse(404, ex.Message)
+                );
+            }
+        }
     }
 }
