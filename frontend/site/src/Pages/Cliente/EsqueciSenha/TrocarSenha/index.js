@@ -1,17 +1,31 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 
 import 'react-toastify/dist/ReactToastify.css';
 import { CaixaEsqueciSenha } from '../style';
 import Master from "../../../Master/index";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
-
+import NextGenBookApi from '../../../../Service/NextGenBookApi';
+const api = new NextGenBookApi();
 
 export default function TrocarSenha(){
-
+  const navegacao = useHistory();
     const [senha, setSenha] = useState("");
+
+    const salvarSenha =  async() => {
+      try{
+        let request = {
+          senha: senha
+        }
+        const response = await api.trocarSenha(request);
+        toast.dark("Senha trocada")
+        navegacao.push("/acesso");
+      }catch(e){
+        toast.dark("deu erro querido");
+      }
+    }
 
     function mostrar() {	
         var tipo = document.getElementById("formGroupExampleInput");	
@@ -51,18 +65,21 @@ export default function TrocarSenha(){
                          </div>
  
                      <CaixaEsqueciSenha>
-                                 <div className="inputs form-group">
-                                 <input type="password" className="form-control" id="formGroupExampleInput" placeholder="SENHA NOVA"/>
+                                 <div className="inputs form-group" style={{display:"flex", }}>
+                                 <input type="password" className="form-control" id="formGroupExampleInput" placeholder="SENHA NOVA"
+                                 style={{marginLeft:"33px"}}/>
                                  <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
                                                                         onClick={mostrar}
                                  ></i>
                                  </div>
                                  <div className="inputs form-group">
                                  <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="CONFIRMAR SENHA NOVA"/>
+                                 
                                  </div>
  
                                  <div className="botao">
-                                     <button type="button" class="btn btn-success">
+                                     <button type="button" class="btn btn-success"
+                                        onClick={salvarSenha}>
                                         Trocar senha
                                      </button>
                                  </div>

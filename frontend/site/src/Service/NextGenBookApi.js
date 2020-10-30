@@ -1,3 +1,4 @@
+import { Email } from '@material-ui/icons';
 import axios from 'axios';
 const api = axios.create(
     { baseURL:"http://localhost:5000" }
@@ -26,25 +27,44 @@ export default class NextGenBookApi{
     async cadastrar(req){
         let formData = new FormData();
         
-        formData.append('nome', req.nome);
-        formData.append('nascimento', req.nascimento);
-        formData.append('genero', req.genero);
         formData.append('usuario', req.usuario);
+        formData.append('email', req.email);
         formData.append('senha', req.senha);
-        formData.append('confirmarsenha', req.confirmarsenha);
         formData.append('cpf', req.cpf);
+        formData.append('nome', req.nome);
         formData.append('celular', req.celular);
         formData.append('foto', req.foto);
+        formData.append('genero', req.genero);
 
         console.log(formData);
 
-        const resp = await api.put('Cliente/Cadastro/' + req.idcliente , formData, {
+        const resp = await api.post('/Cliente' , formData, {
             headers: { 'content-type': 'multipart/form-data' }
         });
         
         return resp;
     }
+   async cadastrarEndereco(req){
+       const resp = await api.post('/Endereco',req);
+       console.log(resp.data);
+       return resp
+   }
 
+    //TELA DE RECUPERAR SENHA
+    async enviarEmail(req){
+        const resp = await api.post('/EsqueciSenha', req);
 
+        return resp;
+    }
+
+    async confirmarCodigo(req){
+        const resp = await api.get('/EsqueciSenha', req);
+
+        return resp;
+    }
+
+    async trocarSenha(req){
+        const resp = await api.post('/EsqueciSenha/TrocarSenha', req)
+    }
     
 }
