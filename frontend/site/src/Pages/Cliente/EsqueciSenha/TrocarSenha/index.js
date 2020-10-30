@@ -10,7 +10,7 @@ import { toast, ToastContainer } from "react-toastify";
 import NextGenBookApi from '../../../../Service/NextGenBookApi';
 const api = new NextGenBookApi();
 
-export default function TrocarSenha(){
+export default function TrocarSenha(props){
   const navegacao = useHistory();
     const [senha, setSenha] = useState("");
     const [confirmarsenha,setConfirmarSenha] = useState("")
@@ -20,8 +20,8 @@ export default function TrocarSenha(){
         let request = {
           senha
         }
-        if(senha == confirmarsenha){
-          let idLogin = 23;
+        if(senha === confirmarsenha){
+          let idLogin = props.location.state.idlogin;
           const response = await api.trocarSenha(request,idLogin);
           toast.dark("Senha trocada")
           navegacao.push("/acesso");

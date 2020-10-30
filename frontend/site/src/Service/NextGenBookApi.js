@@ -11,12 +11,7 @@ export default class NextGenBookApi{
         
         return resp;
     }
-    async cadastrarLoginFuncionario(req){
-        console.log(req);
-        const resp = await api.post('/Login/funcionario', req);
-        
-        return resp;
-    }
+
     async cadastrarFuncionario(req){
         console.log(req);
         const resp = await api.post('/Funcionario', req);
@@ -59,7 +54,7 @@ export default class NextGenBookApi{
 
     async confirmarCodigo(req,idLogin){
         console.log("hi")
-        const resp = await api.post('/Login/codigo/'+ 23, req);
+        const resp = await api.post('/Login/codigo/'+ idLogin, req);
         console.log(resp.data)
         return resp;
     }

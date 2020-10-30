@@ -16,7 +16,7 @@ export default function CadastrarFuncionario(){
     function mostrar() {	
         var tipo = document.getElementById("formGroupExampleInput2");	
 
-        if (tipo.type == "password") {	
+        if (tipo.type === "password") {	
           tipo.type = "text";	
         } else {	
           tipo.type = "password";	
@@ -38,37 +38,37 @@ export default function CadastrarFuncionario(){
       }
     
     const navegacao = useHistory()
-    const [ NomeDeUsuario, setNomeDeUsuario ] = useState("");
-    const [ Senha, setSenha ] = useState("");
-    const [Nome, setNome] = useState("");
-    const [CarteiraTrabalho, setCarteiraTrabalho ] = useState("");
-    const [Cpf, setCpf ] = useState("");
-    const [ Email, setEmail ] = useState("");
-    const [ Nascimento, setNascimento ] = useState("");
-    const [ Admissao, setAdimissao ] = useState("");
-    const [ Cargo, setCargo ] = useState("");
-    const [ Endereco, setEndereco ] = useState("");
-    const [ Cep, setCep] = useState("");
-    const [ NumeroResidencial, setNumeroResidencial ] = useState();
-    const [ Complemento, setComplemento ] = useState("");
+    const [ nomedeusuario, setNomeDeUsuario ] = useState("");
+    const [ senha, setSenha ] = useState("");
+    const [nome, setNome] = useState("");
+    const [carteiratrabalho, setCarteiraTrabalho ] = useState("");
+    const [cpf, setCpf ] = useState("");
+    const [ email, setEmail ] = useState("");
+    const [ nascimento, setNascimento ] = useState("");
+    const [ admissao, setAdimissao ] = useState("");
+    const [ cargo, setCargo ] = useState("");
+    const [ endereco, setEndereco ] = useState("");
+    const [ cep, setCep] = useState("");
+    const [ numeroresidencial, setNumeroResidencial ] = useState();
+    const [ complemento, setComplemento ] = useState("");
 
 
     const CadastrarFuncionario = async () => {
         try{
             const request = {
-                NomeDeUsuario,
-                Senha,
-                Nome,
-                CarteiraTrabalho,
-                Cpf,
-                Email,
-                Nascimento,
-                Admissao,
-                Cargo,
-                Endereco,
-                Cep,
-                NumeroResidencial,
-                Complemento
+                nome,
+                email,
+                nomedeusuario,
+                senha,
+                carteiratrabalho,
+                cpf,
+                nascimento,
+                admissao,
+                cargo,
+                endereco,
+                cep,
+                numeroresidencial,
+                complemento
               }
               console.log(request);
               const a = await  api.cadastrarFuncionario(request);
@@ -88,6 +88,10 @@ export default function CadastrarFuncionario(){
                     <h3 style={{marginTop:"6%"}}>CADASTRAR FUNCIONARIOS</h3>
                     <CadastroCaixa>
                        <CaixaInformacoes>
+                                        <div className="form-group">
+                                          <label>Nome:</label>
+                                          <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNome(e.target.value)}/>
+                                        </div>
                                         <div className="inputs form-group">
                                         <label>Carteira De Trabalho:</label>
                                         <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite a carteira de trabalho" onChange = {(e) => setCarteiraTrabalho(e.target.value)}/>
@@ -124,12 +128,13 @@ export default function CadastrarFuncionario(){
                                         <label>Complemento:</label>
                                         <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite um complemento" onChange = {(e) => setComplemento(e.target.value)}/>
                                         </div>
-                                        <div className="botao button1" >
-                                                        <button type="button" className="btn btn-success" onClick={CadastrarFuncionario} >Confirmar cadastro</button>
-                                                    </div>
                         </CaixaInformacoes>
                                 <CaixaInput>
                                 <div className="form-group">
+                                              <div className="form-group">
+                                                        <label>E-mail:</label>
+                                                        <input type="email" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setEmail(e.target.value)}/>
+                                                      </div>
                                                         <label>Usuario:</label>
                                                         <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNomeDeUsuario(e.target.value)}/>
                                                     </div>
@@ -141,6 +146,9 @@ export default function CadastrarFuncionario(){
                                                                                 onClick={mostrar}
                                                                     ></i>
                                                         </div>
+                                                    </div>
+                                                    <div className="botao button1" >
+                                                        <button type="button" className="btn btn-success" onClick={CadastrarFuncionario} >Confirmar cadastro</button>
                                                     </div>
                                     </CaixaInput>
                             <ToastContainer />
