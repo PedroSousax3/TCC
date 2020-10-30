@@ -7,6 +7,7 @@ export const CadastroCaixa = styled.div`
         flex-direction: row;
         display:flex;
         padding: 20px 30px;
+        
         span{
                 color:#00870D;
                 font-weight: bold;

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const CarrinhoStyled = styled.div``;
 
 export const ConteinerItens = styled.div`
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 296px);
     width: auto;
     
     padding: 10px;

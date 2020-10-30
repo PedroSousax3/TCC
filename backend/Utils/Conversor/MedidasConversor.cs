@@ -18,6 +18,7 @@ namespace backend.Utils.Conversor
         {
             Models.Response.MedidaResponse response = new Models.Response.MedidaResponse();
 
+            response.id = tabela.IdMedida;
             response.altura = tabela.VlAltura;
             response.largura = tabela.VlLargura;
             response.peso = tabela.VlPeso;

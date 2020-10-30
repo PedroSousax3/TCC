@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-
-
 import { CaixaEsqueciSenha } from './style';
 import Master from "../../Master";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,8 +10,8 @@ const api = new nextGenBookAPI();
 
 export default function EsqueciSenha(props){
 
-  const [email, setEmail] = useState();
-  const [codigo, setCodigo] = useState();
+    const [email, setEmail] = useState("");
+    const [codigo, setCodigo] = useState("");
 
     return(
        <div>
@@ -36,7 +34,7 @@ export default function EsqueciSenha(props){
 
                                 <div className="botao" style={{alignItems:"center", display:"flex", justifyContent:"center"}}>
                                     <button type="button" class="btn btn-success">
-                                    Prosseguir
+                                        Prosseguir
                                     </button>
                                 </div>
                     </CaixaEsqueciSenha>

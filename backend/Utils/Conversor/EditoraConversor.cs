@@ -4,6 +4,9 @@ namespace backend.Utils.Conversor
     {
         public Models.TbEditora Conversor (Models.Request.EditoraRequest editora)
         {
+            if(editora == null)
+                return null;
+
             Models.TbEditora tabela = new Models.TbEditora();
 
             tabela.NmEditora = editora.nome;
@@ -15,6 +18,9 @@ namespace backend.Utils.Conversor
 
         public Models.Response.EditoraResponse Conversor (Models.TbEditora tabela)
         {
+            if(tabela == null)
+                return null;
+                
             Models.Response.EditoraResponse editora = new Models.Response.EditoraResponse();
 
             editora.id = tabela.IdEditora;

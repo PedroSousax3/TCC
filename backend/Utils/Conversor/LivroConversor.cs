@@ -44,6 +44,17 @@ namespace backend.Utils.Conversor
             livro.compra = Convert.ToDouble(tabela.VlPrecoCompra);
             livro.venda = Convert.ToDouble(tabela.VlPrecoVenda);
 
+            MedidasConversor MedidaConvert = new MedidasConversor();
+            if(tabela.IdMedidaNavigation == null)
+                livro.medida = null;
+            else
+                livro.medida = MedidaConvert.Conversor(tabela.IdMedidaNavigation);
+            EditoraConversor EditoraConvert = new EditoraConversor();
+            if(tabela.IdMedidaNavigation == null)
+                livro.editora = null;
+            else
+            livro.editora = EditoraConvert.Conversor(tabela.IdEditoraNavigation);
+
             return livro;
         }
 

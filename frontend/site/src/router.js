@@ -11,9 +11,6 @@ import Perfil from './Pages/Perfil';
 import CadastroLogin from './Pages/Funcionario/CadastroFuncionario/CadastrarLogin' 
 import CadastrarFuncionario from "./Pages/Funcionario/CadastroFuncionario/CadastrarFuncionario/index.js"
 
-
-import Master from './Pages/Master/index';
-
 //cliente
 import EsqueciSenha from './Pages/Cliente/EsqueciSenha';
 import TrocarSenha from './Pages/Cliente/EsqueciSenha/TrocarSenha/index.js';
@@ -36,9 +33,6 @@ function Rotas(){
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
           <Route path="/Funcionario/Cadastro/Login" component={CadastroLogin}/>
-
-
-          <Route path="/Master" component={Master}/>
 
           <Route path="/MinhasCompras" component={MinhasCompras}/>
           <Route path="/Favoritos" component={Favoritos}/>

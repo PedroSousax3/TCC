@@ -12,18 +12,48 @@ namespace backend.Controllers
     {
         Utils.Conversor.FavoritoConversor conversor = new Utils.Conversor.FavoritoConversor();
         Business.FavoritosBusiness business = new Business.FavoritosBusiness();
-        [HttpPost("cadastrar")]
-        public async Task<ActionResult<Models.Response.FavoritoResponse>> CadastrarFavorito(Models.Request.FavoritoRequest request)
+        [HttpPost]
+        public async Task<ActionResult> InserirFavarito(Models.Request.FavoritoRequest request)
         {
             try
             {
                 Models.TbFavoritos tabela = conversor.ConversorTabela(request);
                 tabela = await business.InserirBusiness(tabela);
-                return conversor.ConversorResponse(tabela); 
+                return Ok();
             }
             catch (System.Exception ex)
             {
                 return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
+            }
+        }
+
+        [HttpGet("{idcliente}")]
+        public async Task<ActionResult<List<Models.Response.FavoritoResponse>>> Listar (int idcliente)
+        {
+            try
+            {
+                List<Models.TbFavoritos> favoritos = await business.ListarfavoritosBusiness(idcliente);
+                return favoritos.Select(x => conversor.ConversorResponse(x)).ToList();
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
+            }
+        }
+
+        [HttpDelete("/{idfavorito}")]
+        public async Task<ActionResult> RemoverFavorito(int idfavorito)
+        {
+            try
+            {
+                Models.TbFavoritos favorito = await business.RemoverFavoritosPorId(idfavorito);
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound(
+                    new Models.Response.ErroResponse(404, ex.Message)
+                );
             }
         }
 

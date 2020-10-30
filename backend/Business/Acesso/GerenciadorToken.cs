@@ -9,10 +9,10 @@ namespace backend.Business.Acesso
             return key.PadRight(24, '#');            
         }
 
-        public string GerarToken (Models.TbLogin login, int idperfil) 
+        public string GerarToken (Models.TbLogin login, int idperfil = 0) 
         {
             string key = this.GerarKey(login);
-            string valor = $"{login.IdLogin}|{idperfil}|{login.NmUsuario}|{login.DtUltimoLogin}";
+            string valor = $"{idperfil}|{login.NmUsuario}|{login.DtUltimoLogin}";
             string token = Encrypt(key, valor);
 
             return token;

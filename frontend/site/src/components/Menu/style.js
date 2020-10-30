@@ -14,8 +14,8 @@ export const MenuStyled = styled.div`
     right: 0;
 
     padding: 0px 20px;
-    border-bottom: 3px solid var(--verde-escuro);
-    background-color: var(--verde-claro);
+    border-bottom: 3px solid #00870D;
+    background-color: #98F0BB;
 
     .LogoMenu {
         height:50px;
@@ -44,10 +44,10 @@ export const ConteinerItensMenu = styled.ul`
         border-radius: 4px;
         font-size: 18px;
         font-weight: 600;
-        color: var(--verde-escuro);
+        color: #00870D;
 
         :hover {
-            background-color: var(--verde-escuro);
+            background-color: #00870D;
             color: white;
         }
     }
@@ -70,8 +70,8 @@ export const ConteinerItensMenu = styled.ul`
             
             height: 60px;
             width: 100vw;
-            border-top: 3px solid var(--verde-escuro);
-            background-color: var(--verde-claro);
+            border-top: 3px solid #00870D;
+            background-color: #98F0BB;
 
             z-index: 100;
 
@@ -87,7 +87,7 @@ export const ConteinerItensMenu = styled.ul`
         & > li > a.fas, & > li > a.far {
             display: block;
             font-size: 30px;
-            color: var(--verde-escuro);
+            color: #00870D;
 
             :hover {
                 color: white;

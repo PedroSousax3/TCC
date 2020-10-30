@@ -16,9 +16,9 @@ namespace backend.Utils.Conversor
         {
             Models.Response.LivroGeneroResponse response = new Models.Response.LivroGeneroResponse();
 
-            tabela.IdLivroGenero = response.id;
-            tabela.IdLivro = response.livro;
-            tabela.IdGenero = response.genero;
+            response.id = tabela.IdLivroGenero;
+            response.livro = tabela.IdLivro;
+            response.genero = tabela.IdGenero;
 
             return response;
         }

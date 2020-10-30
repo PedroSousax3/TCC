@@ -19,8 +19,14 @@ namespace backend.Database
         public async Task<List<Models.TbFavoritos>> ListarfavoritosPorCliente (int idcliente)
         {
             List<Models.TbFavoritos> favoritos = await db.TbFavoritos.Where(x => x.IdCliente == idcliente)
-                                                                     .Include(x => x.IdLivroNavigation)
-                                                                     .ToListAsync();
+                                                                        .Include(x => x.IdLivroNavigation.TbEstoque)
+                                                                        .Include(x => x.IdLivroNavigation.TbLivroAutor)
+                                                                        .ThenInclude(x => x.IdAutorNavigation)
+                                                                        .Include(x => x.IdLivroNavigation)
+                                                                        .Include(x => x.IdLivroNavigation.TbLivroGenero)
+                                                                        .ThenInclude(x => x.IdGeneroNavigation)
+                                                                        .Include(x => x.IdLivroNavigation.IdEditoraNavigation)
+                                                                        .ToListAsync();
             return favoritos;
         }
 

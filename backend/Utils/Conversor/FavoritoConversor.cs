@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 namespace backend.Utils.Conversor
 {
     public class FavoritoConversor
@@ -8,7 +11,7 @@ namespace backend.Utils.Conversor
 
             tabela.IdLivro = request.livro;
             tabela.IdCliente = request.cliente;
-            tabela.DtInclusao = request.inclusao;
+            tabela.DtInclusao = DateTime.Now;
             
             return tabela;
         }
@@ -19,8 +22,12 @@ namespace backend.Utils.Conversor
 
             response.id = tabela.IdFavoritos;
             response.livro = tabela.IdLivro;
-            response.cliente = tabela.IdCliente;
-            response.inclusao = tabela.DtInclusao;
+            response.nome = tabela.IdLivroNavigation.NmLivro;
+            response.descricao = tabela.IdLivroNavigation.DsLivro;
+            response.editora = tabela.IdLivroNavigation.IdEditoraNavigation.NmEditora;
+            response.lancamento = tabela.IdLivroNavigation.DtLancamento;
+            response.atores = tabela.IdLivroNavigation.TbLivroAutor.Select(x => x.IdAutorNavigation.NmAutor).ToList();
+            response.qtd = tabela.IdLivroNavigation.TbEstoque.FirstOrDefault(x => x.IdLivro == response.livro).NrQuantidade;
 
             return response;
         }

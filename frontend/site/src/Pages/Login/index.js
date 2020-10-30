@@ -52,7 +52,7 @@ export default function Logar(e) {
                                     <LoginCaixa>
                                         <div className="centro">
                                             <div className="titulo">
-                                                <label>ENTRAR</label>
+                                                <label style={{margin: "15px 5px"}}>ENTRAR</label>
                                             </div>
                                               <div className="form-group">
                                                 <label>Usuario:</label>
@@ -62,12 +62,12 @@ export default function Logar(e) {
                                                 <label>Senha:</label>
                                                 <div className="input-icone">
                                                   <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="Outro input" onChange = {(e) => setSenha(e.target.value)}/>
-                                                      <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
+                                                      <i className="icone btn btn-sm fas fa-eye" style={{margin:"auto"}}
                                                                         onClick={mostrar}
                                                             ></i>
                                                 </div>
                                               </div>
-                                              <div className = "Links">
+                                              <div className = "Links" style={{margin: "10px 5px"}}>
                                                     <div className="link">
                                                       <Link as = "a" to={{pathname:"/EsqueciSenha"}}>
                                                           Esqueci a Senha &#160;|

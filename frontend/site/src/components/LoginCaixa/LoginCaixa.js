@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const LoginCaixa = styled.div`
-background-color: rgb(152, 240, 187);
-width: 40%;
-height: 50vh;
-display: flex;
-flex-direction: column;
-justify-content:center;
-align-items:center;
-border-radius:10px;
-box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
+        width: 40vw;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items:center;
+
 .input-icone{
         display:flex;
         flex-direction:row;
@@ -17,7 +15,7 @@ box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
 .centro{
         display:flex;
         flex-direction:column;
-        width:80%;
+        width:100%;
 }
 .botao{
         width:100%;
@@ -59,16 +57,15 @@ form{
 {
  
     & {
-        padding: 25px 5vw 0px 0vw;
-        heigth:80vh;
+        padding: 0;
         width:100%;
         background-color:white;
-        box-shadow:none;
-      
+        box-shadow:none;      
     }
     & > form > input{
         font-size:10px;
         margin:0px;
+        width: 100%;
     }
    & >.botao > button{
         width:100%;
@@ -81,9 +78,4 @@ form{
         font-size:0.6rem;
         margin-top:10px;
     }
-}
-
-
-
-}
-`
+}`

@@ -10,22 +10,22 @@ export default function Menu(props){
         <div>
             <MenuSpace theme={{sc_height : "60px"}}/>
             <MenuStyled> 
-                <Link to = "/Master">
+                <Link to = "/">
                     <img src={logo} alt = "Next Geen Books" className="LogoMenu"/> 
                 </Link>
 
                 <ConteinerItensMenu>
                     <li>
                         <Link to = "/Favoritos" className="texto">Favoritos</Link>
-                        <Link to = "/Master" className="fas fa-heart"></Link>
+                        <Link to = "/Favoritos" className="fas fa-heart"></Link>
                     </li>
                     <li>
                         <Link to = "/Carrinho" className="texto">Carrinho</Link>
-                        <Link to = "/Master" className="fas fa-shopping-cart"></Link>
+                        <Link to = "/Carrinho" className="fas fa-shopping-cart"></Link>
                     </li>
                     <li>
                         <Link to = "/MinhasCompras" className="texto">Minhas Compras</Link>
-                        <Link to = "/Master" className="far fa-handshake"></Link>
+                        <Link to = "/MinhasCompras" className="far fa-handshake"></Link>
                     </li>
                     <li>
                         <Link to = "/Perfil" className="texto">Perfil</Link>
@@ -33,6 +33,7 @@ export default function Menu(props){
                     </li>
                 </ConteinerItensMenu>
             </MenuStyled>
+            <MenuSpace theme={{sc_height : "60px"}}/>
         </div>
     );
 }

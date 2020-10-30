@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace backend.Models.Response
 {
@@ -6,7 +7,11 @@ namespace backend.Models.Response
     {
         public int id { get; set; }
         public int livro { get; set; }
-        public int cliente { get; set; }
-        public DateTime inclusao { get; set; }
+        public string nome { get; set; }
+        public string descricao { get; set; }
+        public DateTime lancamento { get; set; }
+        public string editora { get; set; }
+        public List<string> atores { get; set; }
+        public int qtd { get; set; }
     }
 }

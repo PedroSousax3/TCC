@@ -9,7 +9,7 @@ export default function Master(props) {
         <MasterPage>
             <Menu />
             
-            <ContainerPage >
+            <ContainerPage>
                 {props.children}
             </ContainerPage>
         </MasterPage>

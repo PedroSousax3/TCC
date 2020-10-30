@@ -11,7 +11,6 @@ namespace backend.Business
         {
             ValidarId(novo.IdLivro);
             ValidarId(novo.IdCliente);
-            novo.DtInclusao = DateTime.Now;
             Models.TbFavoritos favoritos = await database.InserirFavoritos(novo);
             if(favoritos == null)
                 throw new ArgumentException("Não foi possivel adicionar o livro aos favoritos.");

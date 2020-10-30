@@ -18,5 +18,6 @@ namespace backend.Models.Response
         public double compra { get; set; }
         public double venda { get; set; }
         public Models.Response.EditoraResponse editora { get; set; }
+        public Models.Response.MedidaResponse medida { get; set; }
     }
 }
