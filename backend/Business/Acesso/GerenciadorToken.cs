@@ -18,7 +18,7 @@ namespace backend.Business.Acesso
         public string GerarToken (Models.TbLogin login, int idperfil = 0) 
         {
             string key = this.GerarKey(login);
-            string valor = $"{idperfil}|{login.NmUsuario}|{login.DtUltimoLogin}";
+            string valor = $"{idperfil}#$|#${login.NmUsuario}#$|#${login.DtCodigoVerificacao.ToString()}#$|#$Next-Gen-Books";
             string token = Encrypt(key, valor);
 
             return token;

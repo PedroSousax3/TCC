@@ -36,8 +36,6 @@ export default class NextGenBookApi{
         formData.append('foto', req.foto);
         formData.append('genero', req.genero);
 
-        console.log(formData);
-
         const resp = await api.post('/Cliente' , formData, {
             headers: { 'content-type': 'multipart/form-data' }
         });
