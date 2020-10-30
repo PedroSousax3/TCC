@@ -27,7 +27,8 @@ export default function Logar(e) {
               navegacao.push("/", a.data);
               console.log(a);
             }catch(e){
-              toast.error(e.response.data.erro);
+              console.log(e)
+              toast.error("Usuario ou Senha incorretos");
           }
       }
       function mostrar() {	

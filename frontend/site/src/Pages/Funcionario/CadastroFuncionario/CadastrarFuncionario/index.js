@@ -87,70 +87,82 @@ export default function CadastrarFuncionario(){
                     
                     <h3 style={{marginTop:"6%"}}>CADASTRAR FUNCIONARIOS</h3>
                     <CadastroCaixa>
-                       <CaixaInformacoes>
+                            <CaixaInformacoes>
                                         <div className="form-group">
-                                          <label>Nome:</label>
-                                          <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNome(e.target.value)}/>
+                                            <label>Nome:</label>
+                                            <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNome(e.target.value)}/>
                                         </div>
+
+                                            <div className="inputs form-group">
+                                            <label>Carteira De Trabalho:</label>
+                                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite a carteira de trabalho" onChange = {(e) => setCarteiraTrabalho(e.target.value)}/>
+                                        </div>
+
                                         <div className="inputs form-group">
-                                        <label>Carteira De Trabalho:</label>
-                                        <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite a carteira de trabalho" onChange = {(e) => setCarteiraTrabalho(e.target.value)}/>
+                                            <label>Cpf:</label>
+                                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite o cpf" onChange = {(e) => setCpf(e.target.value)}/>
                                         </div>
+
                                         <div className="inputs form-group">
-                                        <label>Cpf:</label>
-                                        <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite o cpf" onChange = {(e) => setCpf(e.target.value)}/>
+                                            <label>Nascimento:</label>
+                                            <input type="date" className="form-control" id="formGroupExampleInput" onChange = {(e) => setNascimento(e.target.value)}/>
                                         </div>
+
                                         <div className="inputs form-group">
-                                        <label>Nascimento:</label>
-                                        <input type="date" className="form-control" id="formGroupExampleInput" onChange = {(e) => setNascimento(e.target.value)}/>
+                                            <label>Admissão:</label>
+                                            <input type="date" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setAdimissao(e.target.value)}/>
                                         </div>
+
                                         <div className="inputs form-group">
-                                        <label>Admissão:</label>
-                                        <input type="date" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setAdimissao(e.target.value)}/>
+                                            <label>Cargo:</label>
+                                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite o cargo" onChange = {(e) => setCargo(e.target.value)}/>
                                         </div>
+
                                         <div className="inputs form-group">
-                                        <label>Cargo:</label>
-                                        <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite o cargo" onChange = {(e) => setCargo(e.target.value)}/>
+                                            <label>Endereço:</label>
+                                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite Endereco" onChange = {(e) => setEndereco(e.target.value)}/>
                                         </div>
+
                                         <div className="inputs form-group">
-                                        <label>Endereço:</label>
-                                        <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite Endereco" onChange = {(e) => setEndereco(e.target.value)}/>
+                                            <label>Cep:</label>
+                                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite seu cep" onChange = {(e) => setCep(e.target.value)}/>
                                         </div>
+
                                         <div className="inputs form-group">
-                                        <label>Cep:</label>
-                                        <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite seu cep" onChange = {(e) => setCep(e.target.value)}/>
+                                            <label>Numero Residencial:</label>
+                                            <input type="number" className="form-control" id="formGroupExampleInput" placeholder="Digite seu numero residencial" onChange = {(e) => setNumeroResidencial(e.target.value)}/>
                                         </div>
+
                                         <div className="inputs form-group">
-                                        <label>Numero Residencial:</label>
-                                        <input type="number" className="form-control" id="formGroupExampleInput" placeholder="Digite seu numero residencial" onChange = {(e) => setNumeroResidencial(e.target.value)}/>
+                                            <label>Complemento:</label>
+                                            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite um complemento" onChange = {(e) => setComplemento(e.target.value)}/>
                                         </div>
-                                        <div className="inputs form-group">
-                                        <label>Complemento:</label>
-                                        <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite um complemento" onChange = {(e) => setComplemento(e.target.value)}/>
-                                        </div>
-                        </CaixaInformacoes>
+                                        
+                              </CaixaInformacoes>
                                 <CaixaInput>
-                                <div className="form-group">
+                                    <div className="form-group">
+                                            <div className="form-group">
+                                                <label>E-mail:</label>
+                                                <input type="email" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setEmail(e.target.value)}/>
+                                            </div>
+
+                                              <label>Usuario:</label>
+                                              <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNomeDeUsuario(e.target.value)}/>
+                                      </div>
                                               <div className="form-group">
-                                                        <label>E-mail:</label>
-                                                        <input type="email" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setEmail(e.target.value)}/>
-                                                      </div>
-                                                        <label>Usuario:</label>
-                                                        <input type="text" className="form-control" id="formGroupExampleInput"  onChange = {(e) => setNomeDeUsuario(e.target.value)}/>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label>Senha:</label>
-                                                        <div className="input-icone">
-                                                        <input type="password" className="form-control" id="formGroupExampleInput2"  onChange = {(e) => setSenha(e.target.value)}/>
-                                                            <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
-                                                                                onClick={mostrar}
-                                                                    ></i>
-                                                        </div>
-                                                    </div>
-                                                    <div className="botao button1" >
-                                                        <button type="button" className="btn btn-success" onClick={CadastrarFuncionario} >Confirmar cadastro</button>
-                                                    </div>
-                                    </CaixaInput>
+                                                  <label>Senha:</label>
+                                                  <div className="input-icone">
+                                                  <input type="password" className="form-control" id="formGroupExampleInput2"  onChange = {(e) => setSenha(e.target.value)}/>
+                                                      <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
+                                                                          onClick={mostrar}
+                                                              ></i>
+                                                  </div>
+                                              </div>
+
+                                              <div className="botao button1" >
+                                                  <button type="button" className="btn btn-success" onClick={CadastrarFuncionario} >Confirmar cadastro</button>
+                                              </div>
+                                 </CaixaInput>
                             <ToastContainer />
                         </CadastroCaixa>
           </Master>
