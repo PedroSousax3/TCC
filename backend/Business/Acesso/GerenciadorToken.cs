@@ -1,11 +1,17 @@
+using System;
+
 namespace backend.Business.Acesso
 {
     public class GerenciadorToken : Utils.Criptografia.AES
     {
         private string GerarKey (Models.TbLogin login) 
         {
-            string key = $"{login.IdLogin}|{login.DtUltimoLogin.ToString()}".Replace("/", "").Replace(":", "").Replace("-", "").Replace(" ", "");
-
+            string cod = "47W%A3%9";
+            string key = $"{cod}|{login.DtUltimoLogin.ToString("dd/MM/yyyy HH:mm:ss")}".Replace("/", "")
+                                                                                        .Replace(":", "")
+                                                                                        .Replace("-", "")
+                                                                                        .Replace(" ", "");
+            
             return key.PadRight(24, '#');            
         }
 
