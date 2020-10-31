@@ -20,7 +20,8 @@ export default class NextGenBookApi{
     }
 
     async cadastrar(req){
-        let formData = new FormData();
+        let formData = 
+            new FormData();
         
         formData.append('usuario', req.usuario);
         formData.append('email', req.email);
