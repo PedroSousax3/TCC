@@ -9,7 +9,7 @@ using System.Linq;
 namespace backend.Controllers
 {
     [ApiController]
-    [Route("Controller")]
+    [Route("[Controller]")]
     public class EnderecoController : ControllerBase
     {
         Utils.Conversor.EnderecoConversor ConversorEndereco = new Utils.Conversor.EnderecoConversor();

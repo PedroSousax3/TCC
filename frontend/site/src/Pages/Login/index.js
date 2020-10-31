@@ -92,6 +92,8 @@ export default function Logar(e) {
                                   </LoginCaixa>
                                 </ContainerLogin>
                               }/>
+
+                              <ToastContainer />
                       </div>
                   );
             }

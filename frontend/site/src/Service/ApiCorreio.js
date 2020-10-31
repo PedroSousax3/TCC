@@ -5,8 +5,6 @@ const api = axios.create(
 
 
 export const buscarEndereco = async (cep) => {
-    console.log(cep);
-    const resp = await api.get("ws/" + cep + '/json');
-    console.log(resp);
-    return resp;
+    const resp = await api.get(`ws/${cep}/json`);
+    return resp.data;
 }

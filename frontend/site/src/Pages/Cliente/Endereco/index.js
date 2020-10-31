@@ -9,7 +9,7 @@ import nextGenBookAPI from "../../../Service/NextGenBookApi";
 const api = new nextGenBookAPI();
 export default function CadastrarEndereco()
 {
-    const [cliente,setCliente] = useState();
+    const [conteudo, setConteudo] = useState();
     const [nome,setNome] = useState("");
     const [endereco,setEndereco] = useState("");
     const [numero,setNumero] = useState();
@@ -19,48 +19,47 @@ export default function CadastrarEndereco()
     const [estado,setEstado] = useState("");
     const [celular,setCelular] = useState("");
 
-
     function limpa_formulário_cep() {
         document.getElementById('estado').value=("");
         document.getElementById('cidade').value=("");
     }
     
     function meu_callback(conteudo) {
-        if (!("erro" in conteudo.data) ){
-            
-        document.getElementById('cidade').value=(conteudo.data.localidade);
-        setCidade(conteudo.data.localidade);
-        document.getElementById('endereco').value=(conteudo.data.bairro + " " 
-        + conteudo.data.logradouro );
-        setEndereco(conteudo.data.bairro + " " + conteudo.data.logradouro );
-        document.getElementById('estado').value=(conteudo.data.uf);
-        setEstado(conteudo.data.uf);
-    } 
-    else {
-        limpa_formulário_cep();
-        alert("CEP não encontrado.");
+        if (!("erro" in conteudo) ) {
+            setCidade(conteudo.localidade);
+            setEndereco(conteudo.bairro + " " + conteudo.logradouro );
+            setEstado(conteudo.uf);
+        } 
+        else {
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
     }
-}
-const preencherCampos = async () =>{
-    let conteudo;
-    
-    conteudo = await buscarEndereco(cep);
-    
-    if(conteudo != null)
-    meu_callback(conteudo);
-}
-const cadastrar = async () =>{
-    let request = {
-        cliente:23,
-        nome,
-        endereco,
-        numero,
-        complemento,
-        cep,
-        cidade,
-        estado,
-        celular
-        
+    const preencherCampos = async () =>{
+        if(cep.length >= 8)
+        {
+            let response = await buscarEndereco(cep);
+
+            if(response != null)
+            {
+                meu_callback(response);
+                setConteudo(response);
+            }
+        }   
+    }
+
+    const cadastrar = async () =>{
+        let request = {
+            cliente: 1,
+            nome,
+            endereco,
+            numero,
+            complemento,
+            cep,
+            cidade,
+            estado,
+            celular
+            
     }
      let resp = await api.cadastrarEndereco(request);
 }
@@ -72,23 +71,20 @@ const cadastrar = async () =>{
                     <ContainerEndereco>
                         <CaixaPadrao>
                             <h3 style={{marginBottom:"5%"}}>Cadastrar Endereço</h3>
-                        <div className="form-row">
+                            <div className="form-row">
                                 <div class="col-2" style={{marginLeft:"7%"}}>
-                                <input type="text" id="cidade" className="form-control" placeholder="Cidade" onChange={(e) => setCidade(e.target.value)} />
+                                <input type="text" id="cidade" className="form-control" placeholder="Cidade" value={cidade} onChange={(e) => setCidade(e.target.value)} />
                                 </div>
                                 <div className="col">
-                                <input type="text" id="estado" className="form-control" placeholder="Estado"  onChange={(e) => setEstado(e.target.value)}/>
+                                <input type="text" id="estado" className="form-control" placeholder="Estado" value={estado}  onChange={(e) => setEstado(e.target.value)}/>
                                 </div>
                                 <div className="col">
-                                <input type="text" id="cep" name="cep" className="form-control" placeholder="CEP" maxLength="8" onChange={(e) => setCep(e.target.value)}/>
-                                </div>
-                                <div className="col button1">
-                                        <button type="button" className="btn btn-success" onClick={preencherCampos} >Preencher</button>
+                                <input type="text" id="cep" name="cep" className="form-control" placeholder="CEP" maxLength="10" onChange={(e) => setCep(e.target.value) } onKeyPress={preencherCampos}/>
                                 </div>
                             </div>
                                 <div className="form-group row" style={{width:"94%",marginTop:"2%",marginLeft:"10%"}}>
                                 <div className="col-sm-10">
-                                <input type="text" className="form-control" id="endereco" placeholder="Endereço"  onChange={(e) => setEndereco(e.target.value)}/>
+                                <input type="text" className="form-control" id="endereco" placeholder="Endereço" value={endereco}  onChange={(e) => setEndereco(e.target.value)}/>
                                 </div>
                                 </div>
                             <div className="form-group row" style={{width:"94%",marginLeft:"10%"}}>
