@@ -25,9 +25,11 @@ export default function Logar(e) {
               console.log(request);
               const a = await api.login(request);
               navegacao.push("/", a.data);
+              window.cookies = a.data;
               console.log(a);
             }catch(e){
-              toast.error(e.response.data.erro);
+              console.log(e)
+              toast.error("Usuario ou Senha incorretos");
           }
       }
       function mostrar() {	

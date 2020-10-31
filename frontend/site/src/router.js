@@ -1,5 +1,7 @@
+//Biblioteca
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { withCookies } from 'react-cookie';
 
 //Paginas:
 import Home from './Pages/Home/index.js';
@@ -27,10 +29,10 @@ function Rotas(){
 
           <Route path="/" exact={true} component={Home}/>
           <Route path="/Cadastro" component={Cadastro}/>
-          <Route path="/Login" component={Login}/>
+          <Route path="/Login" component={Login} />
           <Route path="/EsqueciSenha" exact={true} component={EsqueciSenha}/>
           <Route path="/EsqueciSenha/TrocarSenha" component={TrocarSenha}></Route>
-          <Route path="/Endereco" component={CadastrarEndereco}/>
+          <Route path="/Endereco" render = {() => (<CadastrarEndereco cookies = {this.props.cookies} />)} />
 
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
@@ -57,4 +59,4 @@ function Rotas(){
     )
 }
 
-export default Rotas;
+export default withCookies(Rotas);

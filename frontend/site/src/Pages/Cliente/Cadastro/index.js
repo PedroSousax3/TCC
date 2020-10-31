@@ -56,7 +56,7 @@ export default function Cadastro(props) {
             navegacao.push("/Acesso", acesso);
         }
         catch(e) {
-            console.log("erro");
+            toast.error(e.response.data.erro);
         }
     } 
 
@@ -128,6 +128,7 @@ export default function Cadastro(props) {
                     </div>
                 </CaixaImage>              
             </CadastroCaixa>
+            <ToastContainer />
         </Master>
     );
 }
