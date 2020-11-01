@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
 export const BoxContainer = styled.div`
-    * {
-        border: 1px solid black;
-    }
     margin : ${props => props.theme.sc_espace};
     padding: ${props => props.theme.sc_padding};
 
