@@ -20,8 +20,10 @@ export default function CadastrarEndereco(props)
     const [celular,setCelular] = useState("");
 
     function limpa_formulário_cep() {
-        document.getElementById('estado').value=("");
-        document.getElementById('cidade').value=("");
+        setCidade("");
+        setEstado("");
+        setEndereco("");
+        setCep("");
     }
     
     function meu_callback(conteudo) {

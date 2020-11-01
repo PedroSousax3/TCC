@@ -47,7 +47,6 @@ export default class NextGenBookApi{
 
     //TELA DE RECUPERAR SENHA
     async enviarEmail(req){
-        console.log("oie")
         const resp = await api.post('/Email/resetar', req);
 
         return resp;

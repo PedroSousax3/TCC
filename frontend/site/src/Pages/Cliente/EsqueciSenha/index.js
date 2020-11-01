@@ -12,31 +12,43 @@ import nextGenBookAPI from '../../../Service/NextGenBookApi'
 const api = new nextGenBookAPI();
 
 export default function EsqueciSenha(){
-  const navegacao = useHistory();
-  const [Email, setEmail] = useState("");
-  const [Codigo, setCodigo] = useState("");
-  const [id,setId] = useState();
+    const navegacao = useHistory();
+    const [Email, setEmail] = useState("");
+    const [Codigo, setCodigo] = useState("");
+    const [id,setId] = useState();
 
-
-
-    const verificarEmail = async() => {
-    var tipo = document.getElementById("email");	
-
-    try{
-        let request = {
-            Email
-        }
-        const response = await api.enviarEmail(request);
-        toast.dark("Email enviado");
-        setId(response.data.idLogin)
-    }catch(e){
-        toast.error(e.response.data.erro);
+    const verificarEmail = () => {
+        if( Email==="" 
+            || 
+            Email.indexOf('@')===-1 
+            || 
+            Email.indexOf('.')===-1 
+        ) return false;
+        else return true;
     }
-      
-        
-  }
-    
-  const validarCodigo = async() =>{
+
+    const enviarEmailRecuperacao = async () => {
+        let valido = verificarEmail();
+        try {
+            if(valido)
+            {
+                let request = {
+                    Email
+                }
+                const response = await api.enviarEmail(request);
+                toast.dark("Email enviado");
+                setId(response.data.idLogin)
+            }
+            else
+                toast.error("Campo e-mail não foi preenchido corretamente.");
+        } 
+        catch (ex) 
+        {
+            toast.error(ex.response.data.erro);
+        }
+    }
+
+  const validarCodigo = async() => {
     try{
         let request = {
             Codigo
@@ -62,7 +74,7 @@ export default function EsqueciSenha(){
                                         onChange = {(e) => setEmail(e.target.value)}  />
                                         <button type="button" clasName="btn btn-light col" 
                                         style={{cursor:"pointer"}}
-                                            onClick={verificarEmail}
+                                            onClick={enviarEmailRecuperacao}
                                         >Enviar Código</button>
                                     </div>
 
