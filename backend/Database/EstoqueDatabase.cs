@@ -1,7 +1,8 @@
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace backend.Database
 {
@@ -14,6 +15,23 @@ namespace backend.Database
             await db.SaveChangesAsync();
 
             return tabela;
+        }
+        public async Task RetirarQuantidadeVendida(List<Models.TbVendaLivro> tabela)
+        {
+            foreach(Models.TbVendaLivro item  in tabela)
+            {
+                Models.TbEstoque estoque = await db.TbEstoque.Include(x => x.IdLivroNavigation)
+                                                             .FirstOrDefaultAsync(x => x.IdLivro == item.IdLivro);
+                if(estoque.NrQuantidade < item.NrLivros)
+                {
+                  throw new ArgumentException("Infelizmente o livro" + estoque.IdLivroNavigation.NmLivro.ToUpper() + " não tem "
+                                                             + item.NrLivros + " unidades disponíveis no estoque.");
+                }
+                estoque.NrQuantidade -= item.NrLivros;
+                estoque.DtAtualizacao = DateTime.Now;
+            }
+          await db.SaveChangesAsync();
+
         }
 
         public async Task<Models.TbEstoque> ConsultarEstoquePorId (int idestoque)

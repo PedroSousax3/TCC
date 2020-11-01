@@ -45,16 +45,14 @@ namespace backend.Business
 
         private string GerarCodigolAleatorio()
         {
-            int Tamanho = 10;
+            int Tamanho = 6;
             string codigoFinal = string.Empty;
             for (int i = 0; i < Tamanho; i++)
             {
                 Random random = new Random();
-                int codigo = Convert.ToInt32(random.Next(48, 122).ToString());
+                int codigo = random.Next(0, 10);
 
-                if ((codigo >= 48 && codigo <= 57) || (codigo >= 97 && codigo <= 122))
-                {
-                    string _char = ((char)codigo).ToString();
+                    string _char = codigo.ToString();
                     if (!codigoFinal.Contains(_char))
                     {
                         codigoFinal += _char;
@@ -64,13 +62,10 @@ namespace backend.Business
                         i--;
                     }
                 }
-                else
-                {
-                    i--;
-                }
-            }
             return codigoFinal;
         }
     }
 }
+               
+              
             

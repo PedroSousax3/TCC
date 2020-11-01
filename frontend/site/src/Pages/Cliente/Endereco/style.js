@@ -35,17 +35,15 @@ export const ContainerBotao = styled.div`
         color:white;
         font-weight:bold;
 }
+      
       @media screen and (max-width: 600px)
     {
         & {
             padding: 0px 10vw 0px 10vw;
+            flex-direction: column;
         }
+     
+    
     }
 
-    @media screen and (max-width: 330px)
-    {
-        & {
-            padding: 0px 5vw 0px 5vw;
-        }
-    }
 `

@@ -44,8 +44,8 @@ namespace backend.Models
                 //string conn = "server=localhost;user id=administrador;password=5J9yGqxqt&37L97y;database=db_next_gen_books";
 
                 optionsBuilder.UseMySql(conn, x => x.ServerVersion("8.0.20-mysql"));
-
             }
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

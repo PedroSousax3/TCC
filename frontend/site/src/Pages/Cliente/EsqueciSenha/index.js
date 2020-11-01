@@ -27,7 +27,7 @@ export default function EsqueciSenha(){
             Email
         }
         const response = await api.enviarEmail(request);
-        console.log(response.data.idLogin)
+        toast.dark("Email enviado");
         setId(response.data.idLogin)
     }catch(e){
         toast.error(e.response.data.erro);
@@ -61,6 +61,7 @@ export default function EsqueciSenha(){
                                         <input type="email" className="form-control col-7" id="email" placeholder="INFORME SEU E-MAIL"
                                         onChange = {(e) => setEmail(e.target.value)}  />
                                         <button type="button" clasName="btn btn-light col" 
+                                        style={{cursor:"pointer"}}
                                             onClick={verificarEmail}
                                         >Enviar Código</button>
                                     </div>
@@ -72,7 +73,7 @@ export default function EsqueciSenha(){
                                         </div>
                                     </div>
                                     <div className="botao" style={{alignItems:"center", display:"flex", justifyContent:"center",width:"61%"}}>
-                                        <button type="button" style={{width:"100%"}}className="btn btn-success" onClick={validarCodigo}>
+                                        <button type="button" style={{width:"77%"}}className="btn btn-success" onClick={validarCodigo}>
                                         Prosseguir
                                         </button>
                                     </div>
