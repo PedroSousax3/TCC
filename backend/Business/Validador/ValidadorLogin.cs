@@ -46,7 +46,9 @@ namespace backend.Business.Validador
             int contador = 0;
             foreach(char caracter in senha)
             {
-                if(caracter == '@' || caracter == '#' || caracter == '$' || caracter == '&')
+                if(caracter == '@' || caracter == '#' || caracter == '$' 
+                                   || caracter == '&'|| caracter == '%'
+                                                     || caracter == '!')
                   contador++;
             }
              if(contador < 2)

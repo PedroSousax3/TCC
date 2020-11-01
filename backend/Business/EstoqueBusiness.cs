@@ -7,6 +7,11 @@ namespace backend.Business
     public class EstoqueBusiness : Business.Validador.ValidadorPadrao
     {
         Database.EstoqueDatabase database = new Database.EstoqueDatabase();
+
+        public async Task RetirarQuantidadeVendidaBusiness(List<Models.TbVendaLivro> tabela)
+        {
+            await database.RetirarQuantidadeVendida(tabela);
+        }
         public async Task<Models.TbEstoque> InserirBusiness (Models.TbEstoque novo)
         {
             ValidarId(novo.IdLivro);

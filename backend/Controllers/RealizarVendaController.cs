@@ -12,6 +12,7 @@ namespace backend.Controllers
     public class RealizarVendaController:ControllerBase
     {
         Business.VendaBusiness business = new Business.VendaBusiness();
+        Business.EstoqueBusiness estoquebusiness = new Business.EstoqueBusiness();
         Utils.Conversor.RealizarCompraConversor conversor = new Utils.Conversor.RealizarCompraConversor();
         [HttpPost]
         public async Task<ActionResult<Models.Response.RealizarVendaResponse>> RealizarVenda(Models.Request.RealizarVendaRequest.RealizarVendaPersonalizado request)
@@ -19,6 +20,7 @@ namespace backend.Controllers
             try
             {
                 Models.TbVenda tabela = conversor.ParaTabelaVenda(request);
+                await estoquebusiness.RetirarQuantidadeVendidaBusiness(tabela.TbVendaLivro.ToList());
                 tabela = await business.InserirBusiness(tabela);
                 return conversor.ParaResponseRealizarVenda(tabela);
             }
