@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { withCookies } from 'react-cookie';
 
 //Paginas:
+import MostrarLivro from './Pages/MostrarLivro/index';
 import Home from './Pages/Home/index.js';
 import Login from './Pages/Login/index.js';
 import Perfil from './Pages/Perfil';
@@ -34,6 +35,7 @@ function Rotas(){
           <Route path="/EsqueciSenha/TrocarSenha" component={TrocarSenha}></Route>
           <Route path="/Endereco" component={CadastrarEndereco} />
 
+          <Route path='/MostrarLivro' component={MostrarLivro} />
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
 
@@ -51,7 +53,6 @@ function Rotas(){
 
           <Route path="/Acesso" component={Login} />
           <Route path="/Cadastro/Cliente" component={Cadastro} />
-
 
 
         </Switch>

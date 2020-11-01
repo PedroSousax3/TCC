@@ -10,7 +10,6 @@ import { ToastContainer, toast } from "react-toastify";
 const api = new nextGenBookAPI();
 export default function CadastrarEndereco(props)
 {
-    const [conteudo, setConteudo] = useState();
     const [nome,setNome] = useState("");
     const [endereco,setEndereco] = useState("");
     const [numero,setNumero] = useState();
@@ -28,40 +27,52 @@ export default function CadastrarEndereco(props)
     function meu_callback(conteudo) {
         if (!("erro" in conteudo) ) {
             setCidade(conteudo.localidade);
-            setEndereco(conteudo.bairro + " " + conteudo.logradouro );
+            setEndereco(conteudo.logradouro + " - " + conteudo.bairro);
             setEstado(conteudo.uf);
+            setCep(conteudo.cep)
         } 
         else {
             limpa_formulário_cep();
             alert("CEP não encontrado.");
         }
     }
-    const preencherCampos = async () =>{
-        if(cep.length >= 8)
-        {
-            let response = await buscarEndereco(cep);
 
+    const preencherCampos = async (e) => {
+        if(e.target.value.length === 8)
+        {
+            let response = await buscarEndereco(e.target.value);
             if(response != null)
             {
                 meu_callback(response);
-                setConteudo(response);
             }
-        }   
-    }
+        }
+    }           
 
     const cadastrar = async () =>{
-        let request = {
-            cliente: 1,
-            nome,
-            endereco,
-            numero,
-            complemento,
-            cep,
-            cidade,
-            estado,
-            celular
+        try
+        {
+            let request = {
+                cliente: 1,
+                nome,
+                endereco,
+                numero,
+                complemento,
+                cep,
+                cidade,
+                estado,
+                celular
+            }
+            let response  = await api.cadastrarEndereco(request);
+            if(response.status === 200)
+                toast.success("Endereço cadastrado com sucesso, você pode verificar em seu perfil.");
+            else
+                toast.error(response.statusText);
+        }
+        catch (ex) 
+        {
+            toast.error(ex.response.data.erro);
+        }
     }
-}
 
  
     return(
@@ -72,7 +83,7 @@ export default function CadastrarEndereco(props)
                             <h3 style={{marginBottom:"5%",color:"#D26E4E",fontWeight:"bold" }}>CADASTRAR ENDEREÇO</h3>
                             <div className="form-row">
                                 <div className="col-4">
-                                <input type="text" id="cep" name="cep" className="form-control" placeholder="CEP" maxLength="10" onChange={(e) => setCep(e.target.value) } onKeyPress={preencherCampos}/>
+                                <input type="text" id="cep" name="cep" className="form-control" placeholder="CEP" maxLength="10" onChange={(e) => preencherCampos(e) } /*onKeyPress={preencherCampos}*/ />
                                 </div>
 
                                 <div class="col">
