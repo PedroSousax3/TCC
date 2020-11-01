@@ -18,11 +18,11 @@ namespace backend.Controllers
         {
             try
             {
-                Models.TbAutor tabela = conversor.Conversor(request);
+                Models.TbAutor tabela = conversor.ConversorRequest(request);
                 tabela.DsFoto = gerenciador.GerarNovoNome(request.foto.FileName.ToString());
                 tabela = await business.ValidarCadastro(tabela);
                 gerenciador.SalvarFoto(tabela.DsFoto, request.foto);
-                return conversor.Conversor(tabela);
+                return conversor.ConversorResponse(tabela);
             }
             catch (System.Exception ex)
             {
@@ -34,11 +34,11 @@ namespace backend.Controllers
         {
             try
             {
-                Models.TbAutor tabela = conversor.Conversor(request);
+                Models.TbAutor tabela = conversor.ConversorRequest(request);
                 tabela.DsFoto = gerenciador.GerarNovoNome(request.foto.FileName);
                 tabela =  await business.ValidarAlterar(idautor,tabela);
                 gerenciador.SalvarFoto(tabela.DsFoto,request.foto);
-                return conversor.Conversor(tabela);
+                return conversor.ConversorResponse(tabela);
             }
             catch (System.Exception ex)
             {
@@ -51,7 +51,7 @@ namespace backend.Controllers
             try
             {
                 Models.TbAutor tabela = await business.ValidarDeletarAutor(id);
-                return conversor.Conversor(tabela);
+                return conversor.ConversorResponse(tabela);
             }
             catch (System.Exception ex)
             {
@@ -64,7 +64,7 @@ namespace backend.Controllers
             try
             {
                 Models.TbAutor tabela = await business.ValidarConsultaPorId(id);
-                return conversor.Conversor(tabela);
+                return conversor.ConversorResponse(tabela);
             }
             catch (System.Exception ex)
             {
@@ -78,7 +78,7 @@ namespace backend.Controllers
             try
             {
                 List<Models.TbAutor> tabela = await business.ValidarListarAutores();
-                return tabela.Select(x => conversor.Conversor(x)).ToList();
+                return tabela.Select(x => conversor.ConversorResponse(x)).ToList();
             }
             catch (System.Exception ex)
             {

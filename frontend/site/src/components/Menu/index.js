@@ -8,7 +8,6 @@ import { MenuSpace } from '../Utils/index.js';
 export default function Menu(props){
     return (
         <div>
-            <MenuSpace theme={{sc_height : "60px"}}/>
             <MenuStyled> 
                 <Link to = "/">
                     <img src={logo} alt = "Next Geen Books" className="LogoMenu"/> 
@@ -33,7 +32,6 @@ export default function Menu(props){
                     </li>
                 </ConteinerItensMenu>
             </MenuStyled>
-            <MenuSpace theme={{sc_height : "60px"}}/>
         </div>
     );
 }

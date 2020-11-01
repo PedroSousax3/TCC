@@ -7,8 +7,8 @@ namespace backend.Models.Response
     {
         public int idlivro { get; set; }
         public LivroResponse livro { get; set; }
-        public List<LivroAutorResponse> autores { get; set; }
-        public List<LivroGeneroResponse> generos { get; set; }
+        public List<AutorResponse> autores { get; set; }
+        public List<GeneroResponse> generos { get; set; }
         public EstoqueResponce estoque_livro { get; set; }
     }
 }

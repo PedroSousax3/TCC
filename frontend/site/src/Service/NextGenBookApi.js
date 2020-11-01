@@ -1,7 +1,7 @@
 import { Email } from '@material-ui/icons';
 import axios from 'axios';
 const api = axios.create(
-    { baseURL:"http://3.87.226.24:5000" }
+    { baseURL:"http://localhost:5000" }
 );
 
 export default class NextGenBookApi{
@@ -38,16 +38,15 @@ export default class NextGenBookApi{
         
         return resp;
     }
-   async cadastrarEndereco(req){
-       console.log(req)
-       const resp = await api.post('/Endereco',req);
-       console.log(resp.data);
-       return resp
-   }
+
+    async cadastrarEndereco(req){
+        const resp = await api.post('/Endereco', req);
+        console.log(resp);
+        return resp;
+    }
 
     //TELA DE RECUPERAR SENHA
     async enviarEmail(req){
-        console.log("oie")
         const resp = await api.post('/Email/resetar', req);
 
         return resp;

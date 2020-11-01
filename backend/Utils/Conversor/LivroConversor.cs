@@ -63,15 +63,15 @@ namespace backend.Utils.Conversor
             Models.Response.LivroCompleto response = new Models.Response.LivroCompleto();
 
             EditoraConversor EditoraConvert = new EditoraConversor();
-            LivroAutorConversor LivroAutorConvert = new LivroAutorConversor();
-            LivroGeneroConversor LivroGeneroConvert = new LivroGeneroConversor();
+            AutorConversor AutorConvert = new AutorConversor();
+            GeneroConversor GeneroConvert = new GeneroConversor();
             EstoqueConvert EstoqueConversor = new EstoqueConvert();
             
             response.idlivro = tabela.IdLivro;
             response.livro = this.Conversor(tabela);
             response.livro.editora = EditoraConvert.Conversor(tabela.IdEditoraNavigation);
-            response.autores = tabela.TbLivroAutor.Select(x => LivroAutorConvert.ConversorResponse(x)).ToList();
-            response.generos = tabela.TbLivroGenero.Select(x => LivroGeneroConvert.ConversorResponse(x)).ToList();
+            response.autores = tabela.TbLivroAutor.Select(x => AutorConvert.ConversorResponse(x.IdAutorNavigation)).ToList();
+            response.generos = tabela.TbLivroGenero.Select(x => GeneroConvert.ParaResponseListarGenero(x.IdGeneroNavigation)).ToList();
             response.estoque_livro = tabela.TbEstoque.Select(x => EstoqueConversor.ConversorResponse(x)).FirstOrDefault(y => y.id >= 1);
 
             return response;

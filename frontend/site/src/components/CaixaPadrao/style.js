@@ -20,7 +20,7 @@ box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
  
     & {
         padding: 0px 0vw 0px 0vw;
-        heigth:100vh;
+        height: 100vh;
         width:100%;
         background-color:white;
         box-shadow:none;
@@ -52,18 +52,17 @@ box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
     & > .form-row > .col-4{
         max-width:100.333333%;
     }
-    & > .row > .col-sm-10 > .form-control{
+    & > .row > .col-sm-10 > .form-control {
         margin-right:0px;
         margin-left: -45px;
         width: 110%;
         margin-top:2px;
         margin-bottom:-11px;
+    }
    
 }
 & > .form-control{
     margin-top:5px;
     margin-bottom:7px;
 }
-
-
-`
+`;
