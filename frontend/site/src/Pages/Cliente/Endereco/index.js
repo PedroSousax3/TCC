@@ -69,38 +69,40 @@ export default function CadastrarEndereco(props)
                 <Master>
                     <ContainerEndereco>
                         <CaixaPadrao>
-                            <h3 style={{marginBottom:"5%"}}>Cadastrar Endereço</h3>
+                            <h3 style={{marginBottom:"5%",color:"#D26E4E",fontWeight:"bold" }}>CADASTRAR ENDEREÇO</h3>
                             <div className="form-row">
-                                <div class="col-2" style={{marginLeft:"7%"}}>
-                                    <input type="text" id="cidade" className="form-control" placeholder="Cidade" onChange={(e) => setCidade(e.target.value)} />
+                                <div className="col-4">
+                                <input type="text" id="cep" name="cep" className="form-control" placeholder="CEP" maxLength="10" onChange={(e) => setCep(e.target.value) } onKeyPress={preencherCampos}/>
                                 </div>
+
+                                <div class="col">
+                                    <input type="text" id="cidade" className="form-control" placeholder="Cidade" value={cidade}  onChange={(e) => setCidade(e.target.value)} />
+                                </div>
+
                                 <div className="col">
                                 <input type="text" id="estado" className="form-control" placeholder="Estado" value={estado}  onChange={(e) => setEstado(e.target.value)}/>
                                 </div>
 
-                                <div className="col">
-                                <input type="text" id="cep" name="cep" className="form-control" placeholder="CEP" maxLength="10" onChange={(e) => setCep(e.target.value) } onKeyPress={preencherCampos}/>
-                                </div>
                             </div>
 
-                                <div className="form-group row" style={{width:"94%",marginTop:"2%",marginLeft:"10%"}}>
+                                <div className="form-group row" style={{width:"97%",marginTop:"2%",marginLeft:"14%"}}>
                                 <div className="col-sm-10">
                                 <input type="text" className="form-control" id="endereco" placeholder="Endereço" value={endereco}  onChange={(e) => setEndereco(e.target.value)}/>
                                 </div>
 
                                 </div>
 
-                            <div className="form-group row" style={{width:"94%",marginLeft:"10%"}}>
+                            <div className="form-group row" style={{width:"97%",marginLeft:"14%"}}>
                                 <div className="col-sm-10">
                                     <input type="text" className="form-control" id="endereco" placeholder="Celular"  onChange={(e) => setCelular(e.target.value)}/>
                                 </div>
                             </div>
 
-                            <div className="form-group row" style={{width:"78%",marginLeft:"-5%"}}>
-                                <div className="col-5">
+                            <div className="form-row" >
+                                <div className="col-4">
                                     <input type="text" className="form-control" placeholder="Complemento"  onChange={(e) => setComplemento(e.target.value)}/>
                                 </div>
-                                <div className="col-2">
+                                <div className="col-4">
                                     <input type="number" className="form-control" placeholder="Numero"  onChange={(e) => setNumero(e.target.value)}/>
                                 </div>
                                 <div className="col">

@@ -27,11 +27,7 @@ export const LoginCaixa = styled.div`
         color:white;
         font-weight:bold;
 }
-form{
-        color:#00870D;
-        font-weight:bold;
-        font-size:1.2rem;
-}
+
 .titulo{
         width:100%;
         text-align:center;

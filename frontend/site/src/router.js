@@ -32,7 +32,7 @@ function Rotas(){
           <Route path="/Login" component={Login} />
           <Route path="/EsqueciSenha" exact={true} component={EsqueciSenha}/>
           <Route path="/EsqueciSenha/TrocarSenha" component={TrocarSenha}></Route>
-          <Route path="/Endereco" render = {() => (<CadastrarEndereco cookies = {this.props.cookies} />)} />
+          <Route path="/Endereco" component={CadastrarEndereco} />
 
 
           <Route path="/Funcionario/Cadastro"  exact={true} component={CadastrarFuncionario}/>
