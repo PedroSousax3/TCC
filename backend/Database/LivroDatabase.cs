@@ -27,8 +27,8 @@ namespace backend.Database
         {
             return await db.TbLivro.Include(x => x.IdMedidaNavigation)
                                     .Include(x => x.IdEditoraNavigation)
-                                    .Include(x => x.TbLivroAutor)
-                                    .Include(x => x.TbLivroGenero)
+                                    .Include(x => x.TbLivroAutor).ThenInclude(y => y.IdAutorNavigation)
+                                    .Include(x => x.TbLivroGenero).ThenInclude(z => z.IdGeneroNavigation)
                                     .Include(x => x.TbEstoque)
                                     .FirstOrDefaultAsync(x => x.IdLivro == idlivro);
         }

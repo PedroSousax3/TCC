@@ -34,7 +34,7 @@ namespace backend.Utils.Conversor
             EditoraConversor EditoraConvert = new EditoraConversor();
             
             response.informacoes = LivroConvert.Conversor(tabela.IdLivroNavigation);
-            response.autores = tabela.IdLivroNavigation.TbLivroAutor.Select(x => AutorConvert.Conversor(x.IdAutorNavigation)).ToList();
+            response.autores = tabela.IdLivroNavigation.TbLivroAutor.Select(x => AutorConvert.ConversorResponse(x.IdAutorNavigation)).ToList();
             response.estoque = EstoqueConvert.ConversorResponse(tabela.IdLivroNavigation.TbEstoque.FirstOrDefault(x => x.IdLivro == response.informacoes.id));
             response.informacoes.editora = EditoraConvert.Conversor(tabela.IdLivroNavigation.IdEditoraNavigation);
             

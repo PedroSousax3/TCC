@@ -2,7 +2,7 @@ namespace backend.Utils.Conversor
 {
     public class AutorConversor
     {
-        public Models.TbAutor Conversor(Models.Request.AutorRequest request)
+        public Models.TbAutor ConversorRequest(Models.Request.AutorRequest request)
         {
             Models.TbAutor tabela = new Models.TbAutor();
 
@@ -13,7 +13,7 @@ namespace backend.Utils.Conversor
             return tabela;
         }
 
-        public Models.Response.AutorResponse Conversor(Models.TbAutor tabela)
+        public Models.Response.AutorResponse ConversorResponse(Models.TbAutor tabela)
         {
             if(tabela == null)
                 return null;
