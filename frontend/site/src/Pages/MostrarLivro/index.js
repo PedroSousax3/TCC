@@ -1,18 +1,45 @@
-import React from 'react'
+import React, { useHistory, useState, useEffect } from 'react'
 
 //Master
 import Master from '../Master/index'
 
-//Components:</img>
+import { toast } from "react-toastify";
+
+//Components:
 import { BoxContainer } from './styled.js';
 import teste from '../../Assets/images/logo/Pedro - Perfil.jpg'
 
-export default function MostrarLivro() {
+import { ConsultarPorIdLivro } from '../../Service/LivroApi.js';
+
+export default function MostrarLivro(props) {
+    class Registro {
+        set registro(l){
+            this._registro = l;
+        }
+        get registro(){
+            return this._registro;
+        }
+    }
+    const [use, setUse] = useState();
+    let result = new Registro();
+
+    async function Consultar(id = 1){
+        try {
+            result.livro = await ConsultarPorIdLivro(id);
+            console.log(result);
+            setUse(result.livro);
+            console.log(use);
+        } catch (ex) {
+            toast.error(ex.response.data.erro);
+        }
+    }
+
+    useEffect(() => Consultar(), []);
     return (
         <Master>
             <BoxContainer id="livro" theme={{ sc_border : "3.5px solid #00870D", sc_espace : "80px 80px", sc_padding : "10px", sc_direction : "column"}}>
                 <BoxContainer id="titulo" theme={{sc_espace : "10px 0px", sc_direction : "row"}}>
-                    <h2>Nome do Livro</h2>
+                    <h2>Nome</h2>
                     <i class="fa fa-star estrela"></i>
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{sc_espace : "10px 0px", sc_direction : "row"}}>

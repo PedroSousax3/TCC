@@ -17,6 +17,8 @@ export const BoxContainer = styled.div`
 
     &#titulo {
         justify-content: space-between;
+        position: sticky;
+        top: 59px;
     }
 
         &#titulo > h2 {
@@ -68,15 +70,20 @@ export const BoxContainer = styled.div`
             margin: 0;
         }
 
-    &#informacoes > ul  {
-        width: 100%;
-        list-style-type: none;
-        justify-content: space-between;
-        margin: 0;
+    &#informacoes {
+        border: 1px solid black;
+        padding: 4px;
     }
-    &#informacoes > ul:first-child  {
-        padding: 0;
-    }
+    
+        &#informacoes > ul  {
+            width: 100%;
+            list-style-type: none;
+            justify-content: space-between;
+            margin: 0;
+        }
+        &#informacoes > ul:first-child  {
+            padding: 0;
+        }
 
     @media screen and (max-width: 775px)
     {
@@ -120,6 +127,13 @@ export const BoxContainer = styled.div`
         &#acoes > button  {
             width: 100%;
             margin: 5px 0px;
+        }
+    }
+
+    @media screen and (max-width: 300px)
+    {
+        &#generico > #imagem > img {
+            width: 100%;
         }
     }
 `;

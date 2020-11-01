@@ -33,10 +33,20 @@ namespace backend.Controllers
         }
 
         [HttpGet("{idlivro}")]
-        public async Task<Models.Response.LivroCompleto> ConsultarLivroId (int idlivro)
+        public async Task<ActionResult<Models.Response.LivroCompleto>> ConsultarLivroId (int idlivro)
         {
-            Models.TbLivro livro = await business.ConsultarLivroIdBusiness(idlivro);
-            return ConversorLivro.ConversorCompleto(livro);
+
+            try
+            {
+                Models.TbLivro livro = await business.ConsultarLivroIdBusiness(idlivro);
+                return ConversorLivro.ConversorCompleto(livro);
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound(
+                    new Models.Response.ErroResponse(404, ex.Message)
+                );
+            }
         }
 
         [HttpPut("{idlivro}")]
