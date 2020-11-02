@@ -12,6 +12,7 @@ namespace backend.Models
         {
             TbCarrinho = new HashSet<TbCarrinho>();
             TbEstoque = new HashSet<TbEstoque>();
+            TbFavoritos = new HashSet<TbFavoritos>();
             TbLivroAutor = new HashSet<TbLivroAutor>();
             TbLivroGenero = new HashSet<TbLivroGenero>();
             TbVendaLivro = new HashSet<TbVendaLivro>();
@@ -30,12 +31,6 @@ namespace backend.Models
         [Required]
         [Column("ds_livro", TypeName = "varchar(800)")]
         public string DsLivro { get; set; }
-
-        internal object Select()
-        {
-            throw new NotImplementedException();
-        }
-
         [Column("dt_lancamento", TypeName = "datetime")]
         public DateTime DtLancamento { get; set; }
         [Required]
@@ -66,11 +61,11 @@ namespace backend.Models
         [InverseProperty(nameof(TbMedida.TbLivro))]
         public virtual TbMedida IdMedidaNavigation { get; set; }
         [InverseProperty("IdLivroNavigation")]
-        public virtual TbFavoritos TbFavoritos { get; set; }
-        [InverseProperty("IdLivroNavigation")]
         public virtual ICollection<TbCarrinho> TbCarrinho { get; set; }
         [InverseProperty("IdLivroNavigation")]
         public virtual ICollection<TbEstoque> TbEstoque { get; set; }
+        [InverseProperty("IdLivroNavigation")]
+        public virtual ICollection<TbFavoritos> TbFavoritos { get; set; }
         [InverseProperty("IdLivroNavigation")]
         public virtual ICollection<TbLivroAutor> TbLivroAutor { get; set; }
         [InverseProperty("IdLivroNavigation")]

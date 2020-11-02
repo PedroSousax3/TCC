@@ -40,12 +40,9 @@ namespace backend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //string conn = "server=localhost;user id=root;password=45923617xx;database=db_next_gen_books";
-                string conn = "server=3.87.226.24;user id=administrador;password=5J9yGqxqt&37L97y;database=db_next_gen_books";
-
-                optionsBuilder.UseMySql(conn, x => x.ServerVersion("8.0.20-mysql"));
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseMySql("server=localhost;user id=root;password=45923617xx;database=db_next_gen_books", x => x.ServerVersion("8.0.22-mysql"));
             }
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -270,8 +267,7 @@ namespace backend.Models
                     .HasName("id_cliente_idx");
 
                 entity.HasIndex(e => e.IdLivro)
-                    .HasName("id_livro_UNIQUE")
-                    .IsUnique();
+                    .HasName("id_livro");
 
                 entity.HasOne(d => d.IdClienteNavigation)
                     .WithMany(p => p.TbFavoritos)
@@ -280,8 +276,8 @@ namespace backend.Models
                     .HasConstraintName("tb_favoritos_ibfk_1");
 
                 entity.HasOne(d => d.IdLivroNavigation)
-                    .WithOne(p => p.TbFavoritos)
-                    .HasForeignKey<TbFavoritos>(d => d.IdLivro)
+                    .WithMany(p => p.TbFavoritos)
+                    .HasForeignKey(d => d.IdLivro)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("tb_favoritos_ibfk_2");
             });
