@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create(
-    { baseURL:"http://3.87.226.24:5000/Carrinho" }
+    { baseURL:'http://3.87.226.24:5000/Carrinho' }
 );
 
 export const ListarCarrinho = async (cliente) => {
@@ -11,5 +11,10 @@ export const ListarCarrinho = async (cliente) => {
 
 export const Remover = async (id) => {
     const resp = await api.delete('/' + id);
-    return console.log(resp);
+    console.log(resp);
+}
+
+export const InserirCarrinhoApi = async (request) => {
+    let response = await api.post('/cadastrar', request);
+    return response;
 }
