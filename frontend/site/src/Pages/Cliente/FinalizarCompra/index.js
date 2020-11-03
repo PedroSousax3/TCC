@@ -21,7 +21,6 @@ export default function FinalizarCompra(props){
     const [totalcompra,setTotalCompra] = useState(0);
     const [respCorreio,setRespCorreio] = useState([]);
 
-    const { calcularPrecoPrazo } = require("correios-brasil");
     const listarEndereco = async () =>{
         let resp = await api.listarEndereco(1);
         setListaDeEndereco([...resp]);
@@ -35,58 +34,29 @@ export default function FinalizarCompra(props){
           return resp[0].cep;
           console.log(resp[0]);
        }
-
-function calcularFrete(){
-
-    const  requests = [];
-    registros.map((item) => {
-        requests.push({
-            sCepOrigem: "04890300",
-            sCepDestino:"04890300",
-            nVlPeso: "1",
-            nCdFormato:  "1",
-            nVlComprimento:  "10",
-            nVlAltura: "10",
-            nVlLargura: "10",
-            nCdServico:  "04014",
-            nVlDiametro:  "0",
-            
-        });
-    })
-   requests.map((item) =>{
-
-       calcularPrecoPrazo(item).then((response) => {
-           console.log(response);
-          let resp = response;
-          setValorFrete(valorfrete+resp.Valor);
-          respCorreio.push(resp.Codigo);
-    });
-})
-
-}
-    
+       const calcularFrete = () =>{
+           registros.map(x =>{
+            setValorFrete(valorfrete+=10);
+           })
+       }
 
     const calcular = () =>{
         registros.map(x => {
-            setValorLivros((x.qtd * x.informacoes.venda) + valorlivros);
+            setValorLivros((x.qtd+1 * x.informacoes.venda) + valorlivros);
             setTotalCompra(totalcompra+valorfrete);
         });
-    
-            setValorPorParcela(totalcompra / numeroParcela);
         }
        
     const realizarCompra = async () =>{
         registros.map(x =>{
-            respCorreio.map(y =>{
-
-                livros.push({
-                   IdLivro:x.informacoes.id,
-                   NumeroLivro:x.qtd,
-                   VendaLivro:x.informacoes.venda,
-                   CodigoRastreio:y
-                })
-            })
+            livros.push({
+               IdLivro:x.informacoes.id,
+               NumeroLivro:x.qtd,
+               VendaLivro:x.informacoes.venda,
         })
+    })
+           
+
         let request = {
               idCliente:1,
               enderecoId : PegarIdEndereco(),
@@ -166,7 +136,7 @@ function calcularFrete(){
                                   <span className="col">Numero de Parcelas</span>
                                   <input type="number" className="form-control col-1"  onChange={(x) => setNumeroParcela(x.target.value)}/>
                                   <span  className="col">Valor das Parcelas :
-                                {numeroParcela} x R$ {valorPorParcela}
+                                {numeroParcela} x R$ {totalcompra / numeroParcela}
                                 </span>
                             </div>
                              }
