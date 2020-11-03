@@ -398,7 +398,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_carrinho` (
   `id_livro` INT NOT NULL,
   `id_cliente` INT NOT NULL,
   `dt_atualizacao` DATETIME NOT NULL,
-  `nr_livro` VARCHAR(45) NOT NULL,
+  `nr_livro` INT NOT NULL,
   PRIMARY KEY (`id_carrinho`),
   INDEX `id_cliente_idx` (`id_cliente` ASC),
   INDEX `id_livro_idx` (`id_livro` ASC),

@@ -1,7 +1,6 @@
 //Biblioteca
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { withCookies } from 'react-cookie';
 
 //Paginas:
 import MostrarLivro from './Pages/MostrarLivro/index';
@@ -23,14 +22,14 @@ import Carrinho from './Pages/Cliente/Carrinho/index.js';
 import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
 import CadastrarEndereco from './Pages/Cliente/Endereco';
 
-function Rotas(){
+export default function Rotas(){
     return(
       <BrowserRouter>
         <Switch>
 
           <Route path="/" exact={true} component={Home}/>
           <Route path="/Cadastro" component={Cadastro}/>
-          <Route path="/Login" component={Login} />
+          <Route path="/Acesso" component={Login} />
           <Route path="/EsqueciSenha" exact={true} component={EsqueciSenha}/>
           <Route path="/EsqueciSenha/TrocarSenha" component={TrocarSenha}></Route>
           <Route path="/Endereco" component={CadastrarEndereco} />
@@ -51,7 +50,6 @@ function Rotas(){
 
 
 
-          <Route path="/Acesso" component={Login} />
           <Route path="/Cadastro/Cliente" component={Cadastro} />
 
 
@@ -59,5 +57,3 @@ function Rotas(){
       </BrowserRouter>
     )
 }
-
-export default withCookies(Rotas);

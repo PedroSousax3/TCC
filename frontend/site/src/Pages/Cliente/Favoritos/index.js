@@ -17,6 +17,7 @@ export default function EsqueciSenha(){
     const listarFavoritos = async (idcliente) => {
         const response = await listarApi(idcliente);
         setRegistros([...response]);
+        console.log(response);
     }
 
     useEffect(() => {  

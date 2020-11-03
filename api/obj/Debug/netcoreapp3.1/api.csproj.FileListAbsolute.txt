@@ -1,0 +1,147 @@
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/appsettings.Development.json
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/appsettings.json
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/api
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/api.deps.json
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/api.runtimeconfig.json
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/api.runtimeconfig.dev.json
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/api.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/api.pdb
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.csprojAssemblyReference.cache
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.AssemblyInfoInputs.cache
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.AssemblyInfo.cs
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.csproj.CoreCompileInputs.cache
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.MvcApplicationPartsAssemblyInfo.cache
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.RazorTargetAssemblyInfo.cache
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/staticwebassets/api.StaticWebAssets.Manifest.cache
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/staticwebassets/api.StaticWebAssets.xml
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.dll
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.pdb
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.genruntimeconfig.cache
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.JsonPatch.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Bcl.AsyncInterfaces.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Bcl.HashCode.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Design.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Relational.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Caching.Abstractions.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Logging.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Logging.Abstractions.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Options.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Primitives.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/MySqlConnector.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Newtonsoft.Json.Bson.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Pomelo.EntityFrameworkCore.MySql.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Pomelo.JsonObject.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/System.Collections.Immutable.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/System.ComponentModel.Annotations.dll
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
+/home/pedro/Área de Trabalho/api/obj/Debug/netcoreapp3.1/api.csproj.CopyComplete
+/home/pedro/Área de Trabalho/api/bin/Debug/netcoreapp3.1/Storage/Fotos/user.jpg
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/appsettings.Development.json
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/appsettings.json
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/api
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Storage/Fotos/user.jpg
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/api.deps.json
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/api.runtimeconfig.json
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/api.runtimeconfig.dev.json
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/api.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/api.pdb
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.JsonPatch.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Bcl.AsyncInterfaces.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Bcl.HashCode.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Design.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Relational.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Caching.Abstractions.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Logging.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Logging.Abstractions.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Options.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Primitives.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/MySqlConnector.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Newtonsoft.Json.Bson.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Pomelo.EntityFrameworkCore.MySql.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/Pomelo.JsonObject.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/System.Collections.Immutable.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/System.ComponentModel.Annotations.dll
+/home/pedro/Área de Trabalho/TCC/api/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.csprojAssemblyReference.cache
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.AssemblyInfoInputs.cache
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.AssemblyInfo.cs
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.csproj.CoreCompileInputs.cache
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.MvcApplicationPartsAssemblyInfo.cache
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.RazorTargetAssemblyInfo.cache
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.csproj.CopyComplete
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/staticwebassets/api.StaticWebAssets.Manifest.cache
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/staticwebassets/api.StaticWebAssets.xml
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.dll
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.pdb
+/home/pedro/Área de Trabalho/TCC/api/obj/Debug/netcoreapp3.1/api.genruntimeconfig.cache
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/appsettings.Development.json
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/appsettings.json
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/api
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Storage/Fotos/user.jpg
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/api.deps.json
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/api.runtimeconfig.json
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/api.runtimeconfig.dev.json
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/api.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/api.pdb
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.JsonPatch.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Bcl.AsyncInterfaces.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Bcl.HashCode.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Abstractions.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Design.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Relational.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Caching.Abstractions.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Logging.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Logging.Abstractions.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Options.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Primitives.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/MySqlConnector.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Newtonsoft.Json.Bson.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Pomelo.EntityFrameworkCore.MySql.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/Pomelo.JsonObject.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/System.Collections.Immutable.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/System.ComponentModel.Annotations.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.csprojAssemblyReference.cache
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.AssemblyInfoInputs.cache
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.AssemblyInfo.cs
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.csproj.CoreCompileInputs.cache
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.MvcApplicationPartsAssemblyInfo.cache
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.RazorTargetAssemblyInfo.cache
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.csproj.CopyComplete
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/staticwebassets/api.StaticWebAssets.Manifest.cache
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/staticwebassets/api.StaticWebAssets.xml
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.dll
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.pdb
+/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/Debug/netcoreapp3.1/api.genruntimeconfig.cache
