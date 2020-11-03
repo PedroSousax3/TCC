@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class VendaLivroController:ControllerBase
     {
         Utils.Conversor.VendaLivroConversor conversor = new Utils.Conversor.VendaLivroConversor();

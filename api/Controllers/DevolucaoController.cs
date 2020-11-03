@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class DevolucaoController:ControllerBase
     {
         Utils.Conversor.DevolucaoConversor conversor = new Utils.Conversor.DevolucaoConversor();

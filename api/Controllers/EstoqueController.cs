@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class EstoqueController:ControllerBase
     {
         Utils.Conversor.EstoqueConvert conversor = new Utils.Conversor.EstoqueConvert();

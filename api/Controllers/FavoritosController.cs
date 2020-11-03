@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class FavoritosController:ControllerBase
     {
         Utils.Conversor.FavoritoConversor conversor = new Utils.Conversor.FavoritoConversor();

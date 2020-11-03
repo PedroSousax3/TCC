@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class GeneroController : ControllerBase
     {
         Business.GeneroBusiness business = new Business.GeneroBusiness();
