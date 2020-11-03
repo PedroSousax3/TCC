@@ -5,11 +5,7 @@ import nextGenBookAPI from "../../../Service/NextGenBookApi";
 
 const api = new nextGenBookAPI();
 export default function FinalizarCompra(props){
-    return <div>Ok</div>
-}
-
-/*
-const [registros,setRegistros] = useState([...props.location.state]);
+    const [registros,setRegistros] = useState([...props.location.state]);
     const [idCliente,setIdCliente] = useState(registros[0].cliente);;
     console.log(registros[0].cliente);
     const [enderecoId,setEnderecoId] = useState();
@@ -166,4 +162,10 @@ const [registros,setRegistros] = useState([...props.location.state]);
                  </div>
             }/>
         </div>
-*/                            
+    )
+}
+                    
+
+                             
+
+                          
