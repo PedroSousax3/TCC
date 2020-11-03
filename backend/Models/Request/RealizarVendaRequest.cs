@@ -18,6 +18,7 @@ namespace backend.Models.Request
             public int IdLivro { get; set; }
             public int NumeroLivro { get; set; }
             public decimal VendaLivro { get; set; }
+            public string CodigoRastreio { get; set; }
         }
     }
 }

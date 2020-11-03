@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 
 //Style
 import { Pesquisa, ConteinerItens } from './style.js';
@@ -12,6 +12,7 @@ import { ListarCarrinho, Remover } from '../../../Service/carrinhoApi.js';
 
 
 export default function Carrinho(props){
+    const navegacao = useHistory()
     const [ registros, setRegistros ] = useState([]);
     const [ valorlivros, setValorLivros ] = useState(0);
     const [ valorfrete, setValorFrete ] = useState(0);    
@@ -34,6 +35,9 @@ export default function Carrinho(props){
 
         setTotalCompra(valorlivros + valorfrete);
     };
+    const Comprar = () => {
+        navegacao.push("/FinalizarCompra", registros);
+    }
 
     useEffect(() => {  
         ConsultarCarrinho(1);
@@ -82,7 +86,7 @@ export default function Carrinho(props){
                     </div>
                 </div>
 
-                <button id="btcompra" type="button" className="btn btn-success">COMPRAR</button>
+                <button id="btcompra" type="button" className="btn btn-success" onClick={Comprar}>COMPRAR</button>
             </Pesquisa>
         </Master>
     );

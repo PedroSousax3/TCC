@@ -39,28 +39,39 @@ export default class NextGenBookApi{
         return resp;
     }
 
-    async cadastrarEndereco(req){
-        const resp = await api.post('/Endereco', req);
-        console.log(resp);
-        return resp;
-    }
-
+    
     //TELA DE RECUPERAR SENHA
     async enviarEmail(req){
         const resp = await api.post('/Email/resetar', req);
-
+        
         return resp;
     }
-
+    
     async confirmarCodigo(req,idLogin){
         console.log("hi")
         const resp = await api.post('/Login/codigo/'+ idLogin, req);
         console.log(resp.data)
         return resp;
     }
-
+    
     async trocarSenha(req,idLogin){
         const resp = await api.put('/Login/novaSenha/'+ idLogin, req)
     }
+    async cadastrarEndereco(req){
+        const resp = await api.post('/Endereco', req);
+        console.log(resp);
+        return resp;
+    }
     
+    async realizarVenda(req){
+        console.log("hi")
+        const resp = await api.post('/RealizarVenda',req);
+        console.log(resp.data)
+        return resp;
+    }
+    async listarEndereco(cliente)
+    {
+        const resp = await api.get('/Endereco/'+cliente);
+        return resp.data;
+    }
 }

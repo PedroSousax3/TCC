@@ -47,10 +47,10 @@ namespace backend.Controllers
                 );
             }
         }
-
-        public async Task<List<EnderecoResponse>> ListarEnderecoClienteDatabase(int cliente)
+        [HttpGet("{cliente}")]
+        public async Task<List<Models.Response.EnderecoResponse>> ListarEnderecoClienteDatabase(int cliente)
         {
-            List<TbEndereco> enderecos = await business.ListarEnderecoClienteDatabase(cliente);
+            List<Models.TbEndereco> enderecos = await business.ListarEnderecoClienteDatabase(cliente);
             return enderecos.Select(x => ConversorEndereco.Conversor(x)).ToList();
         }
 

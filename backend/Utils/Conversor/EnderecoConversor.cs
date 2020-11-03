@@ -22,7 +22,7 @@ namespace backend.Utils.Conversor
         public Models.Response.EnderecoResponse Conversor(Models.TbEndereco tabela)
         {
             Models.Response.EnderecoResponse response = new Models.Response.EnderecoResponse();
-
+            response.id = tabela.IdEndereco;
             response.cliente = tabela.IdCliente;
             response.nome = tabela.NmEndereco;
             response.endereco = tabela.DsEndereco;

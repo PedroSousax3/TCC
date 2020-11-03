@@ -58,12 +58,12 @@ export default function Logar(e) {
                                             </div>
                                               <div className="form-group">
                                                 <label>Usuario:</label>
-                                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Input exemplo" onChange = {(e) => setUser(e.target.value)}/>
+                                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="" onChange = {(e) => setUser(e.target.value)}/>
                                               </div>
                                               <div className="form-group">
                                                 <label>Senha:</label>
                                                 <div className="input-icone">
-                                                  <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="Outro input" onChange = {(e) => setSenha(e.target.value)}/>
+                                                  <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="" onChange = {(e) => setSenha(e.target.value)}/>
                                                       <i className="icone btn btn-sm fas fa-eye" style={{margin:"auto"}}
                                                                         onClick={mostrar}
                                                             ></i>
