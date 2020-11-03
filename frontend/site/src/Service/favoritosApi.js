@@ -9,6 +9,6 @@ export const listarApi = async (idcliente) => {
     return response.data;
 }
 
-export const inserirFavorito = async (request) => {
+export const inserirFavoritoApi = async (request) => {
     return await api.post('', request);
 }

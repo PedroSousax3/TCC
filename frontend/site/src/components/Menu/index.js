@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import logo from '../../Assets/images/logo/logo-pequena.png';
 import { MenuStyled, ConteinerItensMenu } from './style.js';
 
-import { MenuSpace } from '../Utils/index.js';
-
 export default function Menu(props){
     return (
         <div>

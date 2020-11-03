@@ -87,7 +87,7 @@ export default function TrocarSenha(props){
                                   </div>
 
                                   <div className="botao">
-                                      <button type="button" class="btn btn-success"
+                                      <button type="button" className="btn btn-success"
                                           onClick={salvarSenha}>
                                           Trocar senha
                                       </button>
