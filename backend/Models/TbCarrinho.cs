@@ -17,9 +17,8 @@ namespace backend.Models
         public int IdCliente { get; set; }
         [Column("dt_atualizacao", TypeName = "datetime")]
         public DateTime DtAtualizacao { get; set; }
-        [Required]
-        [Column("nr_livro", TypeName = "varchar(45)")]
-        public string NrLivro { get; set; }
+        [Column("nr_livro")]
+        public int NrLivro { get; set; }
 
         [ForeignKey(nameof(IdCliente))]
         [InverseProperty(nameof(TbCliente.TbCarrinho))]

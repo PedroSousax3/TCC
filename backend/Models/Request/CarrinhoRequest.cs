@@ -4,6 +4,6 @@ namespace backend.Models.Request
     {
         public int livro { get; set; }
         public int cliente { get; set; }
-        public string qtd { get; set; }
+        public int qtd { get; set; }
     }
 }

@@ -40,7 +40,6 @@ namespace backend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySql("server=localhost;user id=root;password=45923617xx;database=db_next_gen_books", x => x.ServerVersion("8.0.22-mysql"));
             }
         }
@@ -94,10 +93,6 @@ namespace backend.Models
 
                 entity.HasIndex(e => e.IdLivro)
                     .HasName("id_livro_idx");
-
-                entity.Property(e => e.NrLivro)
-                    .HasCharSet("utf8mb4")
-                    .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.HasOne(d => d.IdClienteNavigation)
                     .WithMany(p => p.TbCarrinho)

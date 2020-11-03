@@ -8,9 +8,9 @@ namespace backend.Database
     public class CarrinhoDatabase
     {
         Models.db_next_gen_booksContext db = new Models.db_next_gen_booksContext();
-        public async Task<Models.TbCarrinho> InserirCarrinho (Models.TbCarrinho tabela)
+        public async Task<Models.TbCarrinho> InserirCarrinhoDatabase (Models.TbCarrinho tabela)
         {
-            await db.TbCarrinho.AddAsync(tabela);
+            await db.AddAsync(tabela);
             await db.SaveChangesAsync();
 
             return tabela;
