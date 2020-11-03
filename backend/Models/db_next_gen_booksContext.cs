@@ -42,7 +42,7 @@ namespace backend.Models
             {
                 //string conn = "server=localhost;user id=root;password=45923617xx;database=db_next_gen_books";
                 string conn = "server=3.87.226.24;user id=administrador;password=5J9yGqxq&37L97y;database=db_next_gen_books";
-                optionsBuilder.UseMySql(conn, x => x.ServerVersion("8.0.22-mysql"));
+                optionsBuilder.UseMySql(conn, x => x.ServerVersion("8.0.20-mysql"));
             }
         }
 
