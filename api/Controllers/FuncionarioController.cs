@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class FuncionarioController:ControllerBase
     {
         Utils.Conversor.FuncionarioConversor conversor = new Utils.Conversor.FuncionarioConversor();

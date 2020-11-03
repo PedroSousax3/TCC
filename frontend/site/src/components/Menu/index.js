@@ -27,8 +27,8 @@ export default function Menu(props){
                         <Link to = "/MinhasCompras" className="far fa-handshake"></Link>
                     </li>
                     <li>
-                        <Link to = "/Perfil" className="texto">Perfil</Link>
-                        <Link to = "/Perfil" className="far fa-user-circle"></Link>
+                        <Link to = "/Acesso" className="texto">Perfil</Link>
+                        <Link to = "/Acesso" className="far fa-user-circle"></Link>
                     </li>
                 </ConteinerItensMenu>
             </MenuStyled>

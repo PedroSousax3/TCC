@@ -17,15 +17,29 @@ export default function MostrarLivro(props) {
     const [ id, setId ] = useState();
     const [nome, setNome] = useState("");
     const [ valor, setValor ] = useState();
+    const [ edicao, setEdicao ] = useState();
+    const [ acabamento, setAcabamento ] = useState("");
+    const [ altura, setAltura ] = useState();
+    const [ peso, setpeso ] = useState();
+    const [ largura, setLargura ] = useState();
+    const [ lancamento, setLancamento ]= useState();
     const [descricao, setDescricao] = useState("");
+    const [ paginas, setPaginas ] = useState();
     const [ editora, setEditora ] = useState("");
     const [ autores, setAutores ] = useState([]);
     const [ qtd, setQtd ] = useState(0);
 
     function popularLivro (dados) {
         setId(dados.id);
+        setLancamento(new Date(dados.livro.lancamento).toLocaleDateString());
         setNome(dados.livro.nome);
         setValor(dados.livro.venda);
+        setAltura(dados.livro.medida.altura)
+        setLargura(dados.livro.medida.largura)
+        setpeso(dados.livro.medida.peso)
+        setEdicao(dados.livro.edicao);
+        setAcabamento(dados.livro.encapamento);
+        setPaginas(dados.livro.paginas)
         setDescricao(dados.livro.descricao);
         setEditora(dados.livro.editora.nome);
         setQtd(dados.estoque_livro.qtd);
@@ -42,12 +56,29 @@ export default function MostrarLivro(props) {
     }
 
     async function inserirCarrinho(){
-        let request = {
-            livro : 2,
-            cliente : 1,
-            qtd : 1
+        try {
+            let request = {
+                livro : 2,
+                cliente : 1,
+            }
+            await InserirCarrinhoApi(request);
+            toast.success('Livro foi adicionado ao carrinho com sucesso');
         }
-        await InserirCarrinhoApi(request);
+        catch (ex) {
+            toast.error(ex.response.data.erro);
+        }
+    }
+
+    async function inserirFavorito(){
+        try {
+            await inserirFavorito({
+                livro : 2,
+                cliente : 1
+            });
+            toast.success('Livro foi adicionado a lista de favoritos com sucesso');
+        } catch (ex) {
+            toast.error(ex.response.data.erro);    
+        }
     }
 
     useEffect(() => Consultar(), []);
@@ -56,12 +87,7 @@ export default function MostrarLivro(props) {
             <BoxContainer id="livro" theme={{ sc_border : "3.5px solid #00870D", sc_espace : "80px 80px", sc_padding : "10px", sc_direction : "column"}}>
                 <BoxContainer id="titulo" theme={{sc_espace : "10px 0px", sc_direction : "row"}}>
                     <h2>{nome}</h2>
-                    <i class="fa fa-star estrela" onClick={
-                        async () => await inserirFavorito({
-                            livro : 1,
-                            cliente : 2
-                        })
-                    }></i>
+                    <i class="fa fa-star estrela" onClick={inserirFavorito}></i>
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{sc_espace : "10px 0px", sc_direction : "row"}}>
                     <BoxContainer id="imagem" theme={{sc_espace : "10px 0px", sc_direction : "column"}}>
@@ -76,7 +102,7 @@ export default function MostrarLivro(props) {
                             <div className="style-text-descr">Autor: Autor A e Autor B</div>
                             <div className="style-text-descr">Generos: Ação, Comedia, Romance e Aventura</div>
                         </div>
-                        <div className="style-text-descr finalitem">Valor Unitario: 25.75</div>
+                        <div className="style-text-descr finalitem">Valor Unitario: {valor}</div>
                     </BoxContainer>
                 </BoxContainer>
                 <BoxContainer id="acoes" theme={{sc_espace : "10px 0px"}}>
@@ -101,16 +127,16 @@ export default function MostrarLivro(props) {
                 <h5 style={{marginTop: "15px", marginBottom: "5px"}}>Informações do Livro</h5>
                 <BoxContainer id="informacoes" theme={{sc_espace : "10px 0px"}}>
                     <ul>
-                        <li>Número de paginas: 320</li>
-                        <li>Edição: 1º</li>
-                        <li>Tipo de Acabamento: Couro</li>
+                        <li>Número de paginas: {paginas}</li>
+                        <li>Edição: {edicao}º</li>
+                        <li>Tipo de Acabamento: {acabamento}</li>
                         <li>ISBN: 123456789</li>
-                        <li>Data de Lançamento: 2020-02-15</li>
+                        <li>Data de Lançamento: {lancamento}</li>
                     </ul>
                     <ul>
-                        <li>Altura: 12.5</li>
-                        <li>Largura: 4.2</li>
-                        <li>Peso: 500g</li>
+                        <li>Altura: {altura}</li>
+                        <li>Largura: {largura}</li>
+                        <li>Peso: {peso}g</li>
                         <li></li>
                     </ul>
                 </BoxContainer>

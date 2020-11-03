@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class LoginController:ControllerBase
     {
         Business.LoginBusiness business = new Business.LoginBusiness();

@@ -30,7 +30,7 @@ function Rotas(){
 
           <Route path="/" exact={true} component={Home}/>
           <Route path="/Cadastro" component={Cadastro}/>
-          <Route path="/Login" component={Login} />
+          <Route path="/Acesso" component={Login} />
           <Route path="/EsqueciSenha" exact={true} component={EsqueciSenha}/>
           <Route path="/EsqueciSenha/TrocarSenha" component={TrocarSenha}></Route>
           <Route path="/Endereco" component={CadastrarEndereco} />
@@ -51,7 +51,6 @@ function Rotas(){
 
 
 
-          <Route path="/Acesso" component={Login} />
           <Route path="/Cadastro/Cliente" component={Cadastro} />
 
 

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class ClienteController:ControllerBase
     {
         Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();

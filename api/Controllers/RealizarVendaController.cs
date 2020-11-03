@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class RealizarVendaController:ControllerBase
     {
         Business.VendaBusiness business = new Business.VendaBusiness();

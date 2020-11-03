@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[Controller]")]
     public class AvaliacaoLivroController:ControllerBase
     {
         Utils.Conversor.AvalicaoLivroConversor conversor = new Utils.Conversor.AvalicaoLivroConversor();
