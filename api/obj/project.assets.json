@@ -999,19 +999,19 @@
     ]
   },
   "packageFolders": {
-    "/home/pedro/.nuget/packages/": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/pedro/Área de Trabalho/TCC/api/api.csproj",
+      "projectUniqueName": "/var/snap/amazon-ssm-agent/2012/services/TCC/api/api.csproj",
       "projectName": "api",
-      "projectPath": "/home/pedro/Área de Trabalho/TCC/api/api.csproj",
-      "packagesPath": "/home/pedro/.nuget/packages/",
-      "outputPath": "/home/pedro/Área de Trabalho/TCC/api/obj/",
+      "projectPath": "/var/snap/amazon-ssm-agent/2012/services/TCC/api/api.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/var/snap/amazon-ssm-agent/2012/services/TCC/api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/pedro/.nuget/NuGet/NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
