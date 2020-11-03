@@ -1,10 +1,7 @@
-
--- Mapear banco de dados:
--- dotnet ef dbcontext scaffold "server=localhost;user id=root;password=45923617xx;database=db_next_gen_books" Pomelo.EntityFrameworkCore.MySql -o Models --data-annotations --force
-
 DROP DATABASE IF EXISTS `db_next_gen_books`;
-CREATE DATABASE IF NOT EXISTS `db_next_gen_books` DEFAULT CHARACTER SET utf8 ;
+CREATE DATABASE IF NOT EXISTS `db_next_gen_books`;
 USE `db_next_gen_books` ;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_login` (
   `id_login` INT NOT NULL AUTO_INCREMENT,
   `nm_usuario` VARCHAR(50) NOT NULL,
@@ -14,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_login` (
   `dt_codigo_verificacao` DATETIME NULL,
   PRIMARY KEY (`id_login`))
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_funcionario` (
   `id_funcionario` INT NOT NULL AUTO_INCREMENT,
   `id_login` INT NOT NULL,
@@ -35,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_funcionario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_cliente` (
   `id_cliente` INT NOT NULL AUTO_INCREMENT,
   `id_login` INT NOT NULL,
@@ -52,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_cliente` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_endereco` (
   `id_endereco` INT NOT NULL AUTO_INCREMENT,
   `id_cliente` INT NOT NULL,
@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_endereco` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_editora` (
   `id_editora` INT NOT NULL AUTO_INCREMENT,
   `nm_editora` VARCHAR(100) NOT NULL,
@@ -78,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_editora` (
   `ds_sigla` VARCHAR(10) NULL,
   PRIMARY KEY (`id_editora`))
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_medida` (
   `id_medida` INT NOT NULL AUTO_INCREMENT,
   `vl_altura` DECIMAL(10,5) NOT NULL,
@@ -86,6 +88,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_medida` (
   `vl_peso` DECIMAL(10,5) NOT NULL,
   PRIMARY KEY (`id_medida`))
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro` (
   `id_livro` INT NOT NULL AUTO_INCREMENT,
   `id_medida` INT NOT NULL,
@@ -114,6 +117,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_autor` (
   `id_autor` INT NOT NULL AUTO_INCREMENT,
   `nm_autor` VARCHAR(100) NOT NULL,
@@ -122,6 +126,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_autor` (
   `ds_foto` VARCHAR(150) NULL,
   PRIMARY KEY (`id_autor`))
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro_autor` (
   `id_livro_autor` INT NOT NULL AUTO_INCREMENT,
   `id_livro` INT NOT NULL,
@@ -138,6 +143,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro_autor` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_genero` (
   `id_genero` INT NOT NULL AUTO_INCREMENT,
   `nm_genero` VARCHAR(70) NOT NULL,
@@ -145,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_genero` (
   `ds_foto` VARCHAR(150) NULL,
   PRIMARY KEY (`id_genero`))
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro_genero` (
   `id_livro_genero` INT NOT NULL AUTO_INCREMENT,
   `id_livro` INT NOT NULL,
@@ -161,6 +168,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_livro_genero` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_venda` (
   `id_venda` INT NOT NULL AUTO_INCREMENT,
   `id_cliente` INT NOT NULL,
@@ -186,6 +194,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_venda` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_venda_livro` (
   `id_venda_livro` INT NOT NULL AUTO_INCREMENT,
   `id_venda` INT NOT NULL,
@@ -205,6 +214,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_venda_livro` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_avaliacao_livro` (
   `id_avaliacao_livro` INT NOT NULL AUTO_INCREMENT,
   `id_venda_livro` INT NOT NULL,
@@ -218,6 +228,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_avaliacao_livro` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_estoque` (
   `id_estoque` INT NOT NULL AUTO_INCREMENT,
   `id_livro` INT NOT NULL,
@@ -230,13 +241,13 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_estoque` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_favoritos` (
   `id_favoritos` INT NOT NULL AUTO_INCREMENT,
   `id_livro` INT NOT NULL,
   `id_cliente` INT NOT NULL,
   `dt_inclusao` DATETIME NOT NULL,
   PRIMARY KEY (`id_favoritos`),
-  UNIQUE INDEX `id_livro_UNIQUE` (`id_livro` ASC),
   INDEX `id_cliente_idx` (`id_cliente` ASC),
     FOREIGN KEY (`id_cliente`)
     REFERENCES `db_next_gen_books`.`tb_cliente` (`id_cliente`)
@@ -247,6 +258,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_favoritos` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_venda_status` (
   `id_venda_status` INT NOT NULL AUTO_INCREMENT,
   `id_venda` INT NOT NULL,
@@ -260,6 +272,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_venda_status` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_devolucao` (
   `id_devolucao` INT NOT NULL AUTO_INCREMENT,
   `id_venda_livro` INT NOT NULL,
@@ -276,6 +289,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_devolucao` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_recebimento_devolucao` (
   `id_livro_devolvido` INT NOT NULL AUTO_INCREMENT,
   `id_devolucao` INT NOT NULL,
@@ -288,6 +302,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_recebimento_devolucao` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_carrinho` (
   `id_carrinho` INT NOT NULL AUTO_INCREMENT,
   `id_livro` INT NOT NULL,

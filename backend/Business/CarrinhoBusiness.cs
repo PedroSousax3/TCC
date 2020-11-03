@@ -10,7 +10,7 @@ namespace backend.Business
         public async Task<Models.TbCarrinho> ValidarInserirCarrinho(Models.TbCarrinho tabela)
         {
             ValidarCarrinho(tabela);
-            return await database.InserirCarrinho(tabela);
+            return await database.InserirCarrinhoDatabase(tabela);
         }
 
         public async Task<Models.TbCarrinho> ValidarConsultaPorId(int id)

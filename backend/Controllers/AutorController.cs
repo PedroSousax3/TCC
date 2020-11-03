@@ -51,6 +51,7 @@ namespace backend.Controllers
             try
             {
                 Models.TbAutor tabela = await business.ValidarDeletarAutor(id);
+                Models.db_next_gen_booksContext db = new Models.db_next_gen_booksContext();
                 return conversor.ConversorResponse(tabela);
             }
             catch (System.Exception ex)

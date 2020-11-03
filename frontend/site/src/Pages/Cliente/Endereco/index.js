@@ -1,4 +1,4 @@
-import React,{useState, useEffect } from "react";
+import React,{useState } from "react";
 import Master from "../../Master";
 import {CaixaPadrao} from "../../../components/CaixaPadrao/style";
 import {ContainerEndereco} from "./style";
