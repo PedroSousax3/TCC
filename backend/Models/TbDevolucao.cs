@@ -14,9 +14,9 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_devolucao")]
+        [Column("id_devolucao", TypeName = "int(11)")]
         public int IdDevolucao { get; set; }
-        [Column("id_venda_livro")]
+        [Column("id_venda_livro", TypeName = "int(11)")]
         public int IdVendaLivro { get; set; }
         [Required]
         [Column("ds_motivo", TypeName = "varchar(1000)")]
@@ -31,7 +31,7 @@ namespace backend.Models
         public string DsComprovante { get; set; }
         [Column("dt_previsao_entrega", TypeName = "datetime")]
         public DateTime? DtPrevisaoEntrega { get; set; }
-        [Column("bt_devolvido")]
+        [Column("bt_devolvido", TypeName = "tinyint(4)")]
         public sbyte? BtDevolvido { get; set; }
 
         [ForeignKey(nameof(IdVendaLivro))]

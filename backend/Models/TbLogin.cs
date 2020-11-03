@@ -15,7 +15,7 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_login")]
+        [Column("id_login", TypeName = "int(11)")]
         public int IdLogin { get; set; }
         [Required]
         [Column("nm_usuario", TypeName = "varchar(50)")]

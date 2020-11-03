@@ -14,7 +14,7 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_medida")]
+        [Column("id_medida", TypeName = "int(11)")]
         public int IdMedida { get; set; }
         [Column("vl_altura", TypeName = "decimal(10,5)")]
         public decimal VlAltura { get; set; }

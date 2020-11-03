@@ -15,16 +15,16 @@ namespace backend.Models
         }
 
         [Key]
-        [Column("id_venda")]
+        [Column("id_venda", TypeName = "int(11)")]
         public int IdVenda { get; set; }
-        [Column("id_cliente")]
+        [Column("id_cliente", TypeName = "int(11)")]
         public int IdCliente { get; set; }
-        [Column("id_endereco")]
+        [Column("id_endereco", TypeName = "int(11)")]
         public int IdEndereco { get; set; }
         [Required]
         [Column("tp_pagamento", TypeName = "varchar(50)")]
         public string TpPagamento { get; set; }
-        [Column("nr_parcela")]
+        [Column("nr_parcela", TypeName = "int(11)")]
         public int? NrParcela { get; set; }
         [Required]
         [Column("ds_status_pagamento", TypeName = "varchar(100)")]
@@ -37,7 +37,7 @@ namespace backend.Models
         public string DsCodigoRastreio { get; set; }
         [Column("dt_prevista_entrega", TypeName = "datetime")]
         public DateTime? DtPrevistaEntrega { get; set; }
-        [Column("bt_confirmacao_entrega")]
+        [Column("bt_confirmacao_entrega", TypeName = "tinyint(4)")]
         public sbyte? BtConfirmacaoEntrega { get; set; }
         [Required]
         [Column("ds_nf", TypeName = "varchar(150)")]
