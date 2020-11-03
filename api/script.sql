@@ -1,4 +1,3 @@
-
 -- Mapear banco de dados:
 -- dotnet ef dbcontext scaffold "server=localhost;user id=root;password=45923617xx;database=db_next_gen_books" Pomelo.EntityFrameworkCore.MySql -o Models --data-annotations --force
 
