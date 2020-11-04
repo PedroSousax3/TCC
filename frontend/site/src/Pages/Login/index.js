@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import Cookies from 'js-cookie';
+
 import { ToastContainer, toast } from "react-toastify";
 
 import { ContainerLogin } from './style.js'
@@ -17,21 +19,39 @@ export default function Logar(e) {
       const [ senha, setSenha ] = useState("");
 
       const Logar = async () => {
-            try{
-              const request = {
-                user,
-                senha
-              }
-              console.log(request);
-              const a = await api.login(request);
-              navegacao.push("/", a.data);
-              window.cookies = a.data;
-              console.log(a);
-            }catch(e){
-              console.log(e)
-              toast.error("Usuario ou Senha incorretos");
+        try {
+          const request = {
+            user,
+            senha
           }
+
+          const a = await api.login(request);
+          gerarCookies(a.data)
+          navegacao.push("/", a.data);
+        } catch(e) {
+          toast.error("Usuario ou Senha incorretos");
+        }
       }
+
+      function gerarCookies(response) {
+        Cookies.set('id', response.id, {
+          expires : 1,
+          path : '/',
+        });
+        Cookies.set('token', response.token, {
+          expires : 1,
+          path : '/',
+        })
+        Cookies.set('usuario', response.nome, {
+          expires : 1,
+          path : '/',
+        })
+        Cookies.set('perfil', response.perfil, {
+          expires : 1,
+          path : '/',
+        })
+      }
+
       function mostrar() {	
         var tipo = document.getElementById("formGroupExampleInput2");	
         var botao = document.querySelector(".btn.btn-sm"); 	
