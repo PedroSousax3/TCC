@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+
+import Cookies from 'js-cookie';
+
 import { toast, ToastContainer } from "react-toastify";
 
 import Master from '../../Master/index.js';
@@ -53,12 +56,32 @@ export default function Cadastro(props) {
             }
             const response = await api.cadastrar(request);
             toast.dark("Cadastro completo " + response.data.Nome);
-            navegacao.push("/Acesso", acesso);
+            gerarCookies(response.data);
+            navegacao.push("/Perfil", acesso);
         }
         catch(e) {
             toast.error(e.response.data.erro);
         }
     } 
+
+    function gerarCookies(response) {
+        Cookies.set('id', response.id, {
+          expires : 1,
+          path : '/',
+        });
+        Cookies.set('token', response.token, {
+          expires : 1,
+          path : '/',
+        })
+        Cookies.set('usuario', response.nome, {
+          expires : 1,
+          path : '/',
+        })
+        Cookies.set('perfil', response.perfil, {
+          expires : 1,
+          path : '/',
+        })
+      }
 
     return(
         <Master>

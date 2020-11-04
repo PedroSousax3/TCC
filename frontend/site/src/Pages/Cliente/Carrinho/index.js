@@ -5,7 +5,7 @@ import { Link,useHistory } from "react-router-dom";
 import { Pesquisa, ConteinerItens } from './style.js';
 
 //Components
-import Master from '../../Master/index.js'
+import Master from '../../Master/index.js';
 
 //Api 
 import { ListarCarrinho, Remover } from '../../../Service/carrinhoApi.js';

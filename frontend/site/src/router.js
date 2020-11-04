@@ -18,7 +18,7 @@ import TrocarSenha from './Pages/Cliente/EsqueciSenha/TrocarSenha/index.js';
 import Cadastro from './Pages/Cliente/Cadastro/index';
 import MinhasCompras from './Pages/Cliente/MinhasCompras/index.js';
 import Favoritos from './Pages/Cliente/Favoritos/index'
-import Carrinho from './Pages/Cliente/Carrinho/index.js';
+import Carrinho from './Pages/Cliente/Carrinho/index';
 import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
 import CadastrarEndereco from './Pages/Cliente/Endereco';
 
