@@ -14,7 +14,8 @@ import { inserirFavoritoApi } from '../../Service/favoritosApi.js';
 import { ConsultarPorIdLivro } from '../../Service/LivroApi.js';
 
 export default function MostrarLivro(props) {
-    const [ id, setId ] = useState();
+    props.location.state = { idlivro: 1}
+    const [ id, setId ] = useState(props.location.state.idlivro);
     const [nome, setNome] = useState("");
     const [idcliente, setIdCliente] = useState("");
     const [ valor, setValor ] = useState();
@@ -27,16 +28,16 @@ export default function MostrarLivro(props) {
     const [descricao, setDescricao] = useState("");
     const [ paginas, setPaginas ] = useState();
     const [ editora, setEditora ] = useState("");
-    const [ autores, setAutores ] = useState([]);
+    const [ autor, setAutor ] = useState([]);
+    const [ genero, setGenero ] = useState("");
     const [ qtd, setQtd ] = useState(0);
 
     useEffect(() => {
         async function Consultar (){
-            const response = await ConsultarPorIdLivro(1);
-            console.log(response.data)
+            const response = await ConsultarPorIdLivro(id);
             popularLivro(response.data);
         }
-        Consultar(1);
+        Consultar();
     }, [])
 
     function popularLivro (dados) {
@@ -54,6 +55,8 @@ export default function MostrarLivro(props) {
         setDescricao(dados.livro.descricao);
         setEditora(dados.livro.editora.nome);
         setQtd(dados.estoque_livro.qtd);
+        setAutor([...dados.autores]);
+        setGenero(dados.generos.map(x => x.genero + " ").toString());
     }
 
     async function inserirCarrinho(){
@@ -100,8 +103,8 @@ export default function MostrarLivro(props) {
                     <BoxContainer id="itemgenerico" theme={{sc_width: "100%", sc_espace : "10px 0px", sc_direction : "column"}}>                        
                         <div>
                             <div className="style-text-descr">Editora: {editora}</div>
-                            <div className="style-text-descr">Autor: Autor A e Autor B</div>
-                            <div className="style-text-descr">Generos: Ação, Comedia, Romance e Aventura</div>
+                            <div className="style-text-descr">Autor: {autor.map(x => x.nome + " ").toString()}</div>
+                            <div className="style-text-descr">Generos: {genero}</div>
                         </div>
                         <div className="style-text-descr finalitem">Valor Unitario: {valor}</div>
                     </BoxContainer>
@@ -120,9 +123,16 @@ export default function MostrarLivro(props) {
 
                     <h5 style={{marginTop: "15px", marginBottom: "5px"}}>Sobre o Escritor</h5>
                     <div>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suo genere perveniant ad extremum; Praeclare enim Plato: Beatum, cui etiam in senectute contigerit, ut sapientiam verasque opiniones assequi possit. Rationis enim perfectio est virtus; Stuprata per vim Lucretia a regis filio testata civis se ipsa interemit. 
-                        Itaque vides, quo modo loquantur, nova verba fingunt, deserunt usitata. Quod autem ratione actum est, id officium appellamus. Potius inflammat, ut coercendi magis quam dedocendi esse videantur. Cuius similitudine perspecta in formarum specie ac dignitate transitum est ad honestatem dictorum atque factorum. Sed quia studebat laudi et dignitati, multum in virtute processerat. Nummus in Croesi divitiis obscuratur, pars est tamen divitiarum. Potius inflammat, ut coercendi magis quam dedocendi esse videantur. Egone quaeris, inquit, quid sentiam? 
-                        Conferam tecum, quam cuique verso rem subicias; Egone non intellego, quid sit don Graece, Latine voluptas? Itaque in rebus minime obscuris non multus est apud eos disserendi labor. Nec lapathi suavitatem acupenseri Galloni Laelius anteponebat, sed suavitatem ipsam neglegebat; At tu eadem ista dic in iudicio aut, si coronam times, dic in senatu. Quid in isto egregio tuo officio et tanta fide-sic enim existimo-ad corpus refers? 
+                        {autor.map(x =>
+                            <div>
+                                <h6>
+                                    {x.nome}
+                                </h6>
+                                <div>
+                                    {x.descricao}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </BoxContainer>
                 <h5 style={{marginTop: "15px", marginBottom: "5px"}}>Informações do Livro</h5>
