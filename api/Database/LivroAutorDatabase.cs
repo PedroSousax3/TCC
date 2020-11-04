@@ -10,7 +10,7 @@ namespace api.Database
 
         public async Task<Models.TbLivroAutor> CadastrarLivroAutor(Models.TbLivroAutor tabela)
         {
-            await context.TbLivroAutor.AddAsync(tabela);
+            await context.AddAsync(tabela);
             await context.SaveChangesAsync();
             return tabela;
         }

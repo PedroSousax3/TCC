@@ -88,7 +88,7 @@ export default function CadastrarEndereco(props)
                                 <input type="text" id="cep" name="cep" className="form-control" placeholder="CEP" maxLength="10" onChange={(e) => preencherCampos(e) } /*onKeyPress={preencherCampos}*/ />
                                 </div>
 
-                                <div class="col">
+                                <div className="col">
                                     <input type="text" id="cidade" className="form-control" placeholder="Cidade" value={cidade}  onChange={(e) => setCidade(e.target.value)} />
                                 </div>
 

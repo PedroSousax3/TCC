@@ -1,7 +1,6 @@
 //Biblioteca
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { withCookies } from 'react-cookie';
 
 //Paginas:
 import MostrarLivro from './Pages/MostrarLivro/index';
@@ -19,11 +18,11 @@ import TrocarSenha from './Pages/Cliente/EsqueciSenha/TrocarSenha/index.js';
 import Cadastro from './Pages/Cliente/Cadastro/index';
 import MinhasCompras from './Pages/Cliente/MinhasCompras';
 import Favoritos from './Pages/Cliente/Favoritos/index'
-import Carrinho from './Pages/Cliente/Carrinho/index.js';
+import Carrinho from './Pages/Cliente/Carrinho/index';
 import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
 import CadastrarEndereco from './Pages/Cliente/Endereco';
 
-function Rotas(){
+export default function Rotas(){
     return(
       <BrowserRouter>
         <Switch>
@@ -58,5 +57,3 @@ function Rotas(){
       </BrowserRouter>
     )
 }
-
-export default withCookies(Rotas);

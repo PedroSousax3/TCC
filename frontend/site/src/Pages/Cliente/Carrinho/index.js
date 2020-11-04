@@ -5,7 +5,7 @@ import { Link,useHistory } from "react-router-dom";
 import { Pesquisa, ConteinerItens } from './style.js';
 
 //Components
-import Master from '../../Master/index.js'
+import Master from '../../Master/index.js';
 
 //Api 
 import { ListarCarrinho, Remover } from '../../../Service/carrinhoApi.js';
@@ -27,9 +27,9 @@ export default function Carrinho(props){
 
         const result = await ListarCarrinho(id);
         setRegistros([...result]);
-        
+        console.log(result);
         result.map(x => {
-            setValorLivros((x.qtd * x.informacoes.venda) + valorlivros);
+            setValorLivros(((x.qtd * x.informacoes.venda) + valorlivros));
             setTotalCompra(x.informacoes.totalcompra + x.informacoes.valorlivros);
         });
 
@@ -78,7 +78,7 @@ export default function Carrinho(props){
                     </div>
                     <div className="form-group">
                         <label>Valor do frete: </label>
-                        <span> {300.45} </span>
+                        <span> {48.12} </span>
                     </div>
                     <div className="form-group">
                         <label>Total da compra: </label>
