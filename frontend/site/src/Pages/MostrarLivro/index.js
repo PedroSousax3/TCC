@@ -6,7 +6,7 @@ import Master from '../Master/index'
 import { toast } from "react-toastify";
 
 //Components:
-import { BoxContainer } from './styled.js';
+import { BoxContainer } from '../../components/Card/styled.js';
 import teste from '../../Assets/images/logo/Logo.jpeg'
 
 import { InserirCarrinhoApi } from '../../Service/carrinhoApi.js';
@@ -33,7 +33,7 @@ export default function MostrarLivro(props) {
     useEffect(() => {
         async function Consultar (){
             const response = await ConsultarPorIdLivro(1);
-            console.log(response)
+            console.log(response.data)
             popularLivro(response.data);
         }
         Consultar(1);
@@ -63,7 +63,6 @@ export default function MostrarLivro(props) {
                 cliente : idcliente,
                 qtd : 1
             }
-            console.log(request);
             await InserirCarrinhoApi(request);
             toast.success('Livro foi adicionado ao carrinho com sucesso');
         }
