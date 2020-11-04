@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/pedro/Área de Trabalho/TCC/api/api.csproj": {}
+    "/home/pedro/Documentos/Projetos/TCC/api/api.csproj": {}
   },
   "projects": {
-    "/home/pedro/Área de Trabalho/TCC/api/api.csproj": {
+    "/home/pedro/Documentos/Projetos/TCC/api/api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/pedro/Área de Trabalho/TCC/api/api.csproj",
+        "projectUniqueName": "/home/pedro/Documentos/Projetos/TCC/api/api.csproj",
         "projectName": "api",
-        "projectPath": "/home/pedro/Área de Trabalho/TCC/api/api.csproj",
+        "projectPath": "/home/pedro/Documentos/Projetos/TCC/api/api.csproj",
         "packagesPath": "/home/pedro/.nuget/packages/",
-        "outputPath": "/home/pedro/Área de Trabalho/TCC/api/obj/",
+        "outputPath": "/home/pedro/Documentos/Projetos/TCC/api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/pedro/.nuget/NuGet/NuGet.Config"
