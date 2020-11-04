@@ -5,9 +5,9 @@ import nextGenBookAPI from "../../../Service/NextGenBookApi";
 
 const api = new nextGenBookAPI();
 export default function FinalizarCompra(props){
-    const [registros,setRegistros] = useState([...props.location.state]);
-    const [idCliente,setIdCliente] = useState(registros[0].cliente);;
-    console.log(registros[0].cliente);
+    //const [registros,setRegistros] = useState([...props.location.state]);
+    const [registros,setRegistros] = useState([]);
+    const [idCliente,setIdCliente] = useState(1);
     const [enderecoId,setEnderecoId] = useState();
     const [enderecoEscolhido,setEnderecoEscolhido] = useState("");
     const [listaDeEndereco,setListaDeEndereco] = useState([]);
@@ -15,14 +15,13 @@ export default function FinalizarCompra(props){
     const [numeroParcela,setNumeroParcela] = useState(0);
     const [valorPorParcela,setValorPorParcela] = useState(0);
     const [valorfrete, setValorFrete] = useState(0);
-    const [dataPrevistaEntrega,setDataPrevistaEntrega] = useState();
     const [livros,setLivros] = useState([]);
     const [valorlivros,setValorLivros] = useState(0);
     const [totalcompra,setTotalCompra] = useState(0);
-    const [respCorreio,setRespCorreio] = useState([]);
+
 
     const listarEndereco = async () =>{
-        let resp = await api.listarEndereco(1);
+        let resp = await api.listarEndereco(idCliente);
         setListaDeEndereco([...resp]);
     }
       function PegarIdEndereco(){
@@ -36,7 +35,7 @@ export default function FinalizarCompra(props){
        }
        const calcularFrete = () =>{
            registros.map(x =>{
-            setValorFrete(valorfrete+=10);
+            setValorFrete(valorfrete += 10);
            })
        }
 
@@ -58,12 +57,11 @@ export default function FinalizarCompra(props){
            
 
         let request = {
-              idCliente:1,
+              idCliente,
               enderecoId : PegarIdEndereco(),
               tipoDePagamento,
               numeroParcela,
               valorfrete,
-              dataPrevistaEntrega,
               livros
         }
         let resp = await api.realizarVenda(request);
@@ -71,7 +69,7 @@ export default function FinalizarCompra(props){
 
 
     useEffect(() => {  
-        listarEndereco(1);
+        listarEndereco(registros[0].cliente);
     }, []);
 
     useEffect(() => {  
