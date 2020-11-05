@@ -15,14 +15,14 @@ namespace api.Controllers
         Business.EstoqueBusiness estoquebusiness = new Business.EstoqueBusiness();
         Utils.Conversor.RealizarCompraConversor conversor = new Utils.Conversor.RealizarCompraConversor();
         [HttpPost]
-        public async Task<ActionResult<Models.Response.RealizarVendaResponse>> RealizarVenda(Models.Request.RealizarVendaRequest.RealizarVendaPersonalizado request)
+        public async Task<ActionResult> RealizarVenda(Models.Request.RealizarVendaRequest.RealizarVendaPersonalizado request)
         {
             try
             {
                 Models.TbVenda tabela = conversor.ParaTabelaVenda(request);
                 await estoquebusiness.RetirarQuantidadeVendidaBusiness(tabela.TbVendaLivro.ToList());
                 tabela = await business.InserirBusiness(tabela);
-                return conversor.ParaResponseRealizarVenda(tabela);
+                return Ok();
             }
             catch (System.Exception ex)
             {

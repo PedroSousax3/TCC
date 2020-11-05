@@ -15,7 +15,8 @@ namespace api.Utils.Conversor
             tabela.NrParcela = request.NumeroParcela;
             if(request.TipoDePagamento == "Dinheiro")
             {
-               tabela.DsStatusPagamento = "Aguardando Pagamento";
+                tabela.DsStatusPagamento = "Aguardando Pagamento";
+               
             }
             else if(request.TipoDePagamento == "Credito" || request.TipoDePagamento == "Debito"){
                 
@@ -31,8 +32,8 @@ namespace api.Utils.Conversor
             tabela.TbVendaStatus = new List<Models.TbVendaStatus>();
             tabela.TbVendaStatus.Add(new Models.TbVendaStatus()
                     {
-                        NmStatus = "Aguardando Pagamento",
-                        DsVendaStatus = "Pagamento não Identificado",
+                        NmStatus = "Em Andamento",
+                        DsVendaStatus = "Aguardando pagamento cair no sistema",
                         DtAtualizacao = DateTime.Now
 
                     }
@@ -46,13 +47,11 @@ namespace api.Utils.Conversor
             }).ToList();
                return tabela;
         }
-        public Models.Response.RealizarVendaResponse ParaResponseRealizarVenda(Models.TbVenda tabela)
-        {
-            Models.Response.RealizarVendaResponse response = new Models.Response.RealizarVendaResponse();
-            response.IdVenda = tabela.IdVenda;
+     
 
-            return response;
-        }
+
+
+
 
 
 

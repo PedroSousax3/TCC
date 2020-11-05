@@ -1,3 +1,4 @@
+using System;
 namespace api.Utils.Conversor
 {
     public class AvalicaoLivroConversor
@@ -9,7 +10,7 @@ namespace api.Utils.Conversor
             tabela.VlAvaliacao = request.avaliacao;
             tabela.IdVendaLivro = request.venda_livro;
             tabela.DsComentario = request.comentario;
-            tabela.DtComentario = request.data_publicacao;
+            tabela.DtComentario = DateTime.Now;
 
             return tabela;
         }

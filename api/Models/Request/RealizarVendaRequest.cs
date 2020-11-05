@@ -14,11 +14,11 @@ namespace api.Models.Request
             public DateTime DataPrevistaEntrega {get; set;}
             public List<Livro> Livros {get;set;}
         }
-        public class Livro{
+        public class Livro
+        {
             public int IdLivro { get; set; }
             public int NumeroLivro { get; set; }
             public decimal VendaLivro { get; set; }
-            public string CodigoRastreio { get; set; }
         }
     }
 }

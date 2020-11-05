@@ -8,6 +8,7 @@ namespace api.Database
     public class VendaDatabase
     {
         Models.db_next_gen_booksContext db = new Models.db_next_gen_booksContext();
+
         public async Task<Models.TbVenda> InserirVenda(Models.TbVenda tabela)
         {
             await db.TbVenda.AddAsync(tabela);

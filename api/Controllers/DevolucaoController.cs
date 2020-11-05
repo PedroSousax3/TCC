@@ -12,14 +12,19 @@ namespace api.Controllers
     {
         Utils.Conversor.DevolucaoConversor conversor = new Utils.Conversor.DevolucaoConversor();
         Business.DevolucaoBusiness business = new Business.DevolucaoBusiness();
+        Business.VendaLivro devolver = new Business.VendaLivro();
+        Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
         
         [HttpPost("cadastrar")]
-        public async Task<ActionResult<Models.Response.DevolucaoResponse>> CadastrarDevolucao(Models.Request.DevolucaoRequest request)
+        public async Task<ActionResult<Models.Response.DevolucaoResponse>> CadastrarDevolucao([FromForm] Models.Request.DevolucaoRequest request)
         {
             try
             {
                 Models.TbDevolucao tabela = conversor.ConversorTabela(request);
+                tabela.DsComprovante = gerenciadorFoto.GerarNovoNome(request.comprovante.FileName);
                 tabela = await business.ValidarCadastrarDevoucao(tabela);
+                gerenciadorFoto.SalvarFoto(tabela.DsComprovante, request.comprovante);
+                await devolver.AlterarDevolvido(tabela.IdVendaLivro);
                 return conversor.ConversorResponse(tabela);
             }
             catch (System.Exception ex)
