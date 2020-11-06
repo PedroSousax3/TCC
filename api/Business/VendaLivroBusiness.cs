@@ -8,6 +8,11 @@ namespace api.Business
     {
         Database.VendaLivroDatabase database = new Database.VendaLivroDatabase();
 
+        public async Task AlterarDevolvido(int IdVendaLivro)
+        {
+            ValidarId(IdVendaLivro);
+            await database.AlterarDevolvido(IdVendaLivro);
+        }
         public async Task<Models.TbVendaLivro> CadastrarBusiness(Models.TbVendaLivro novo)
         {
             ValidarId(novo.IdLivro);
@@ -33,20 +38,20 @@ namespace api.Business
             return vendalivro;
         }
         
-        public async Task<List<Models.TbVendaLivro>> ConsultarVendaLivroPorIdVenda(int idlivro)
+        public async Task<List<Models.TbVendaLivro>> ConsultarVendaLivroPorIdVenda(int idVenda)
         {
-            ValidarId(idlivro);
-            List<Models.TbVendaLivro> vendalivro = await database.ConsultarVendaLivroPorIdLivro(idlivro);
+            ValidarId(idVenda);
+            List<Models.TbVendaLivro> vendalivro = await database.ConsultarVendaLivroPorIdVenda(idVenda);
             
             if(vendalivro == null)
                 throw new ArgumentException("Não foi possivel consultar estar a venda deste livro.");
             return vendalivro;
         }
 
-        public async Task<List<Models.TbVendaLivro>> ConsultarVendaLivroPorIdLivroBusiness(int id)
+        public List<Models.TbVendaLivro> ConsultarVendaLivroPorIdLivroBusiness(int id)
         {
             ValidarId(id);
-            List<Models.TbVendaLivro> vendalivro = await database.ConsultarVendaLivroPorIdLivro(id);
+            List<Models.TbVendaLivro> vendalivro = database.ConsultarVendaLivroPorIdLivro(id);
             
             if(vendalivro == null)
                 throw new ArgumentException("Não foi possivel consultar estar a venda deste livro.");

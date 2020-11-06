@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 namespace api.Utils.Conversor
 {
     public class VendaStatusConversor
@@ -21,6 +24,16 @@ namespace api.Utils.Conversor
             response.DtAtualizacao = tabela.DtAtualizacao;
             response.status = tabela.NmStatus;
             response.venda = tabela.IdVenda;
+            return response;
+        }
+        public Models.Response.RealizarVendaResponse ParaResponseRealizarVenda(Models.TbVendaStatus tabela)
+        {
+            Models.Response.RealizarVendaResponse response = new Models.Response.RealizarVendaResponse();
+            Utils.Conversor.VendaConversor conversorVenda = new Utils.Conversor.VendaConversor();
+            Utils.Conversor.VendaStatusConversor conversorVendastatus = new Utils.Conversor.VendaStatusConversor();
+            response.IdVenda = tabela.IdVenda;
+            response.Venda = conversorVenda.ConversorResponse(tabela.IdVendaNavigation);
+            response.Status = conversorVendastatus.ConversorResponse(tabela);
             return response;
         }
     }

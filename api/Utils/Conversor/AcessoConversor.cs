@@ -13,13 +13,11 @@ namespace api.Utils.Conversor
             Models.TbCliente cliente = tabela.TbCliente.FirstOrDefault(x => x.IdLogin == tabela.IdLogin);
             if(cliente != null)
             {
-                response.id = cliente.IdCliente;
                 response.perfil = "cliente";
             }
             else
             {
                 Models.TbFuncionario funcionario = tabela.TbFuncionario.FirstOrDefault(x => x.IdLogin == tabela.IdLogin);
-                response.id = funcionario.IdFuncionario;
                 response.perfil = "funcionario";
             }
 

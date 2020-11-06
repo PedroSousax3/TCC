@@ -16,12 +16,12 @@ namespace api.Controllers
             try
             {
                 Models.TbLogin login = await business.ConsultarLoginBusiness(request.user, request.senha);
-                var pessoa = login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin) != null 
+                int idpessoa = login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin) != null 
                                                                                                     ? 
                                                                                                         login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdCliente 
                                                                                                     : 
                                                                                                         login.TbFuncionario.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdFuncionario;
-                string token = business.GerarToken(login, pessoa);
+                string token = business.GerarToken(login, idpessoa);
                 
                 Models.Response.AcessoResponse response = acessoConversor.Conversor(login, token);
 
@@ -40,8 +40,7 @@ namespace api.Controllers
         {
             try
             {
-                Business.Acesso.ValidadorToken businessValidar = new Business.Acesso.ValidadorToken();
-                return await businessValidar.ValidarUser(acesso);
+                return await business.ValidarUser(acesso);
             }
             catch (System.Exception ex)
             {

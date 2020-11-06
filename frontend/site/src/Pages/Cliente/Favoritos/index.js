@@ -85,6 +85,10 @@ const Favoritos = styled.div`
         box-sizing: border-box;
     } 
 
+    & p {
+        word-break: break-word;
+    } 
+
     @media screen and (max-width: 380px)
     {
         & {

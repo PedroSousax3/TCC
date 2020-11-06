@@ -7,7 +7,12 @@ namespace api.Database
     public class VendaLivroDatabase
     {
         Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
-
+        public async Task AlterarDevolvido(int IdVendaLivro)
+        {
+            Models.TbVendaLivro tabela = await ConsultarVendaLivroPorId(IdVendaLivro);
+            tabela.BtDevolvido = 1;
+            await context.SaveChangesAsync();
+        }
         public async Task<Models.TbVendaLivro> CadastrarVendaLivro(Models.TbVendaLivro tabela)
         {
             await context.TbVendaLivro.AddAsync(tabela);
@@ -22,14 +27,15 @@ namespace api.Database
         
         public Task<List<Models.TbVendaLivro>> ConsultarVendaLivroPorIdVenda(int id)
         {
-            return context.TbVendaLivro.Include(x => x.IdVendaNavigation).Include(x => x.IdLivroNavigation)
+            return context.TbVendaLivro.Include(x => x.IdVendaNavigation)
+                                        .Include(x => x.IdLivroNavigation)
                                        .Where(x => x.IdVendaNavigation.IdVenda == id).ToListAsync();
         }
 
-        public async Task<List<Models.TbVendaLivro>> ConsultarVendaLivroPorIdLivro(int id)
+        public List<Models.TbVendaLivro> ConsultarVendaLivroPorIdLivro(int id)
         {
-            return await context.TbVendaLivro.Include(x => x.IdVendaNavigation).Include(x => x.IdLivroNavigation)
-                                       .Where(x => x.IdLivroNavigation.IdLivro == id).ToListAsync();
+            return context.TbVendaLivro.Include(x => x.IdVendaNavigation).Include(x => x.IdLivroNavigation)
+                                       .Where(x => x.IdLivroNavigation.IdLivro == id).ToList();
         }
         public async Task<Models.TbVendaLivro> DeletarVendaLivro(int id)
         {

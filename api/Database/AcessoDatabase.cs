@@ -23,14 +23,21 @@ namespace api.Database
             return login;
         }
 
-        public async Task<Models.TbLogin> ConsultarPerfil(string user)
+        public async Task<Models.TbLogin> ConsultarPerfil(string user, string perfil)
         {
-            Models.TbLogin login = await db.TbLogin.Include(x => x.TbCliente)
-                                                    .Include(x => x.TbFuncionario)
-                                                    .FirstOrDefaultAsync(x => x.NmUsuario == user);
-            if(login == null)
-                throw new ArgumentException("Usuario não cadastrado.");
+            Models.TbLogin login = new Models.TbLogin();
 
+            if(perfil == "cliente")
+            {
+                login = await db.TbLogin.Include(x => x.TbCliente)
+                                        .FirstOrDefaultAsync(x => x.NmUsuario == user);    
+            }
+            else if (perfil == "funcionario")
+            {
+                login = await db.TbLogin.Include(x => x.TbFuncionario)
+                                        .FirstOrDefaultAsync(x => x.NmUsuario == user);
+            }
+            login.DtUltimoLogin = Convert.ToDateTime(login.DtUltimoLogin);
             return login;
         }
     }

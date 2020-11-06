@@ -9,8 +9,8 @@ using System.Collections.Generic;
 
 namespace api.Controllers
 {
-    [ApiController]
-    [Route("[Controller]")]
+  [ApiController]
+  [Route("[Controller]")]
     public class EditoraController : ControllerBase
     {
         EditoraConversor ConvertEditora = new EditoraConversor();

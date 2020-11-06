@@ -10,11 +10,11 @@ namespace api.Utils.Criptografia
         {
             RijndaelManaged rijndael = new RijndaelManaged();
             rijndael.Mode = CipherMode.CBC;
-            rijndael.KeySize = 192;
-            rijndael.GenerateIV();
+            rijndael.KeySize = 256;
 
             return rijndael;
         }
+        
         private void ValidarChave(string chave)
         {
             if (
@@ -90,9 +90,9 @@ namespace api.Utils.Criptografia
             {
                 return this.Descriptografar(chave, valor);
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                throw new ArgumentException("Token Invalido.");
+                throw new ArgumentException("Token Invalido." + ex.Message);
             }
         }
     }
