@@ -1,30 +1,43 @@
-import React from "react";
+import React,{useState} from "react";
 import {TelaContainer} from "./style.js";
 import { useHistory, Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import nextgenBooks from "../../../../../../Service/NextGenBookApi";
 
+let api = new nextgenBooks();
 
 export default function CancelarCompraConfirmar(props){
-    const CancelarSim = async () =>{
-
+   const [condicao,setCondicao] = useState(props.condicao);
+   const [idVendaStatus,setIdVendaStatus] = useState(props.IdVendaStatus);
+    
+   const CancelarSim = async () =>{ 
+    try{
+        await api.CancelarCompra(idVendaStatus);
+    }catch(e) {
+            toast.error(e.response.data.erro);
+        }
     }
     const CancelarNao = () =>{
-        
+        setCondicao(false);
     }
     return(
         <TelaContainer>
-        <div className="container" style={{backgroundColor:"white",minWidth:"25%",minHeight:"25%"}}>
-                    <span>Cancelar Compra</span>
-                    <p>Tem certeza que quer Cancelar a Compra?</p>
-                    <div 
-                    style={{
-                            width:"80%",
-                            justifyContent:"space-around",
-                            display:"flex"
-                        }}>
-                        <button type="button" className="btn btn-light">Sim</button>
-                        <button type="button" className="btn btn-danger">Não</button>
-                    </div>
-        </div>
+            {condicao === true &&
+                  <div className="container" style={{backgroundColor:"white",minWidth:"25%",minHeight:"25%"}}>
+                  <span>Cancelar Compra</span>
+                  <p>Tem certeza que quer Cancelar a Compra?</p>
+                  <div 
+                  style={{
+                          width:"80%",
+                          justifyContent:"space-around",
+                          display:"flex"
+                      }}>
+                      <button type="button" className="btn btn-primary" onClick={CancelarSim}>Sim</button>
+                      <button type="button" className="btn btn-danger" onClick={CancelarNao}>Não</button>
+                  </div>
+             </div>
+            
+            }
         </TelaContainer>
     )
 }

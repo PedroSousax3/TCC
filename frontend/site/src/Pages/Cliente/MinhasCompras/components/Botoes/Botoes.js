@@ -4,9 +4,16 @@ import { useHistory, Link } from "react-router-dom";
 import CancelarCompraConfirmar from "./CancelarCompraConfirmar";
 import DevolverCompra from "./DevolverCompra";
 
-export default function Botoes(){
+export default function Botoes(props){
 
     const [condicao,setCondicao] = useState("");
+    const [condicaoCancelar,setCondicaoCancelar] = useState(true);
+    const [condicaodevolver,setCondicaoDevolver] = useState(true);
+    const [idVendaLivro,setIdVendaLivro] = useState(props.IdVendaLivro);
+    const [idVendaStatus,setidVendaStatus] = useState(props.IdVendaStatus);
+    const [valor,setValor] = useState(props.valor);
+
+
 
     const MudarCancelar = () => {
         setCondicao("Cancelar");
@@ -18,16 +25,24 @@ export default function Botoes(){
 
     return(
           <BotaoContainer>
+            {condicao === "Cancelar" &&
+               <CancelarCompraConfirmar
+                 condicao = {condicaoCancelar}
+                 IdVendaStatus = {idVendaStatus}
+               />
+            }
+              {condicao === "Devolucao" &&
+                <DevolverCompra
+                 condicao = {condicaoCancelar}
+                 IdDevolucao = {idVendaLivro}
+                 valor = {valor}
+                />
+              }
+            <div className="btn-group" role="group" aria-label="Exemplo básico">
               <button type="button" className="btn btn-primary"><Link to="/">Ver Detalhes</Link></button>
               <button type="button" className="btn btn-danger" onClick={MudarCancelar}>Cancelar Compra</button>
               <button type="button" className="btn btn-warning" onClick={MudarDevolucao}>Pedir Devolução</button>
-
-              {condicao === "Cancelar" &&
-               <CancelarCompraConfirmar/>
-            }
-              {condicao === "Devolucao" &&
-                <DevolverCompra/>
-              }
+              </div>
           </BotaoContainer>
     )
 }

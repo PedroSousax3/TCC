@@ -57,6 +57,7 @@ export default class NextGenBookApi{
     async trocarSenha(req,idLogin){
         const resp = await api.put('/Login/novaSenha/'+ idLogin, req)
     }
+
     async cadastrarEndereco(req){
         const resp = await api.post('/Endereco', req);
         console.log(resp);
@@ -74,4 +75,60 @@ export default class NextGenBookApi{
         const resp = await api.get('/Endereco/'+cliente);
         return resp.data;
     }
+
+    ///
+    async listarComprasPendentes(cliente)
+    {
+        const resp = await api.get('/VendaStatus/pendentes/'+cliente)
+        ;
+        return resp.data;
+    }
+
+    async listarComprasfinalizadas(cliente)
+    {
+        const resp = await api.get('/VendaStatus/finalizadas/'+cliente);
+        return resp.data;
+    }
+    async listarComprasndamento(cliente)
+    {
+        const resp = await api.get('/VendaStatus/andamento/'+cliente);
+        console.log(resp.data)
+        return resp.data;
+    }
+    ///
+
+
+    
+    async Devolver(req){
+        let formData = new FormData();
+        
+        formData.append('vendalivro', req.vendalivro);
+        formData.append('motivo', req.motivo);
+        formData.append('valor', req.valor);
+        formData.append('codigo_rastreio', req.codigo_rastreio);
+        formData.append('comprovante', req.comprovante);
+        formData.append('previsao_entrega', req.previsao_entrega);
+        
+
+        const resp = await api.post('/Devolucao/cadastrar' , formData, {
+            headers: { 'content-type': 'multipart/form-data' }
+        });
+        
+        return resp;
+    }
+
+    async CancelarCompra(idvendastatus)
+    {
+        const resp = await api.put('/VendaStatus/cancelar/'+idvendastatus);
+        return resp.data;
+    }
+
+    buscarImagem(foto) {
+        const urlFoto = api.defaults.baseURL + '/Login/foto/' + foto;
+        console.log(urlFoto);
+
+        return urlFoto;
+    }
+
+    
 }

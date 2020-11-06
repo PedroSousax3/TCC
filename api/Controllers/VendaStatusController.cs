@@ -79,7 +79,7 @@ namespace api.Controllers
                       item.VendaLivro = livros.Select(x => conversorVendaLivro.ConversorResponse(x)).ToList();
                   }
                   if(tabela.Count == 0)
-                    return new NotFoundObjectResult(new Models.Response.ErroResponse(404,"Não há nenhuma compra pendente"));
+                    return new NotFoundObjectResult(new Models.Response.ErroResponse(404,"Não há nenhuma compra finalizada"));
 
                 return response;
             }
@@ -102,7 +102,7 @@ namespace api.Controllers
                       item.VendaLivro = livros.Select(x => conversorVendaLivro.ConversorResponse(x)).ToList();
                   }
                   if(tabela.Count == 0)
-                    return new NotFoundObjectResult(new Models.Response.ErroResponse(404,"Não há nenhuma compra pendente"));
+                    return new NotFoundObjectResult(new Models.Response.ErroResponse(404,"Não há nenhuma compra em andamento"));
 
                 return response;
             }
