@@ -10,19 +10,23 @@ namespace api.Database
         Models.db_next_gen_booksContext context = new Models.db_next_gen_booksContext();
         public async  Task<Models.TbCliente> CadastrarCliente(Models.TbCliente tabela)
         {
-            /*Models.TbCliente tabela = await ConsultarClientePorId(idCliente);
-            tabela.NmCliente = tabelaCliente.NmCliente;
-            tabela.DsCelular = tabelaCliente.DsCelular;
-            tabela.DsCpf = tabelaCliente.DsCpf;
-            tabela.DsFoto = tabelaCliente.DsFoto;
-            tabela.TpGenero = tabelaCliente.TpGenero;*/
-
             await context.AddAsync(tabela);
             await context.SaveChangesAsync();
             return tabela;  
         }
+         
+        public async Task<Models.TbCliente> AlterarCliente(int idCliente,Models.TbCliente nova)
+        {
+            Models.TbCliente tabela = await ConsultarClientePorId(idCliente);
+            tabela.NmCliente = nova.NmCliente;
+            tabela.DsCelular = nova.DsCelular;
+            tabela.DsFoto = nova.DsFoto;
+            tabela.TpGenero = nova.TpGenero;
+            
+            await context.SaveChangesAsync();
 
-
+            return tabela;
+        }
         public async Task<Models.TbCliente> DeletarCliente(int id)
         {
             Models.TbCliente tabela = await ConsultarClientePorId(id);

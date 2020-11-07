@@ -11,6 +11,12 @@ namespace api.Business
             ValidarCliente(tabela);
             return await database.CadastrarCliente(tabela);
         }
+
+        public async Task<Models.TbCliente> AlterarCliente(int idCliente,Models.TbCliente tabela)
+        {
+            ValidarClienteAlterar(tabela);
+            return await database.AlterarCliente(idCliente,tabela);
+        }
         public async Task<Models.TbCliente> ValidarDeletarCliente(int id)
         {
             ValidarClienteExiste(id);

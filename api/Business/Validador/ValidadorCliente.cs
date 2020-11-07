@@ -16,6 +16,13 @@ namespace api.Business.Validador
             ValidarTexto(tabela.IdLoginNavigation.DsSenha, "Senha");
             this.ValidarCadastroCliente(tabela, tabela.IdLoginNavigation);
         }
+        public void ValidarClienteAlterar(Models.TbCliente tabela)
+        {
+            ValidarTexto(tabela.DsEmail,"E-mail");
+            ValidarTexto(tabela.NmCliente,"Nome");
+            ValidarTexto(tabela.TpGenero,"Genero");
+            
+        }
 
         public void ValidarCadastroCliente (Models.TbCliente tabela, Models.TbLogin login)
         {

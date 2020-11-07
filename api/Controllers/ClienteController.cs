@@ -44,24 +44,25 @@ namespace api.Controllers
             }
         }
         
-        /*[HttpPut("cadastrar/{idcliente}")]
+        [HttpPut("alterar/{idcliente}")]
         public async Task<ActionResult<Models.Response.ClienteResponse>> CadastrarCliente([FromForm] Models.Request.ClienteRequest.Cliente request, int idcliente)
         {
           try
           {
             
-                Models.TbCliente tabela = conversor.ParaTabelaCadastrarCliente(request);
-                tabela.DsFoto = gerenciadorFoto.GerarNovoNome(request.Foto.FileName);
-                tabela = await business.CadastrarCliente(tabela,idcliente);
-                gerenciadorFoto.SalvarFoto(tabela.DsFoto,request.Foto);
-                return conversor.ParaResponseCadastrarCliente(tabela);
+                Models.TbCliente tabela = conversor.ParaTabelAlteraCliente(request);
+                tabela.DsFoto = gerenciadorFoto.GerarNovoNome(request.foto.FileName);
+                
+                tabela = await business.AlterarCliente(idcliente,tabela);
+                gerenciadorFoto.SalvarFoto(tabela.DsFoto, request.foto);
+                return conversor.ParaResponseCliente(tabela);
           }
           catch (System.Exception ex)
           {
               
               return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
           }   
-        }*/
+        }
 
         [HttpGet("foto/{nome}")]
         public ActionResult ConsultarArquivoPorNomeController(string nome)
