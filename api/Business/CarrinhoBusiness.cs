@@ -13,6 +13,10 @@ namespace api.Business
             return await database.InserirCarrinhoDatabase(tabela);
         }
 
+        public void ValidarRetirarDoCarrinho(int idCliente)
+        {
+            database.RetirarDoCarrinho(idCliente);
+        }
         public async Task<Models.TbCarrinho> ValidarConsultaPorId(int id)
         {
             ValidarId(id);

@@ -15,6 +15,12 @@ namespace api.Database
 
             return tabela;
         }
+        public void RetirarDoCarrinho(int idCliente)
+        {
+            List<Models.TbCarrinho> tabela =  db.TbCarrinho.Where(x => x.IdCliente == idCliente).ToList();
+            db.TbCarrinho.RemoveRange(tabela);
+            db.SaveChangesAsync();
+        }
 
         public async Task<Models.TbCarrinho> ConsultarCarrinhoPorId (int idcarrinho)
         {

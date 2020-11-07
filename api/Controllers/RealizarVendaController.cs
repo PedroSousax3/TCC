@@ -13,6 +13,7 @@ namespace api.Controllers
     {
         Business.VendaBusiness business = new Business.VendaBusiness();
         Business.EstoqueBusiness estoquebusiness = new Business.EstoqueBusiness();
+        Business.CarrinhoBusiness carrinhobusiness = new Business.CarrinhoBusiness();
         Utils.Conversor.RealizarCompraConversor conversor = new Utils.Conversor.RealizarCompraConversor();
         [HttpPost]
         public async Task<ActionResult> RealizarVenda(Models.Request.RealizarVendaRequest.RealizarVendaPersonalizado request)
@@ -21,6 +22,7 @@ namespace api.Controllers
             {
                 Models.TbVenda tabela = conversor.ParaTabelaVenda(request);
                 await estoquebusiness.RetirarQuantidadeVendidaBusiness(tabela.TbVendaLivro.ToList());
+                carrinhobusiness.ValidarRetirarDoCarrinho(request.IdCliente);
                 tabela = await business.InserirBusiness(tabela);
                 return Ok();
             }
