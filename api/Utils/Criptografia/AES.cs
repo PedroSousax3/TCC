@@ -10,7 +10,7 @@ namespace api.Utils.Criptografia
         {
             RijndaelManaged rijndael = new RijndaelManaged();
             rijndael.Mode = CipherMode.CBC;
-            rijndael.KeySize = 256;
+            rijndael.KeySize = 128;
 
             return rijndael;
         }
@@ -40,7 +40,7 @@ namespace api.Utils.Criptografia
             mensagemBytes = Encoding.UTF8.GetBytes(mensagem);
 
             // Realiza criptografia
-            ICryptoTransform cryptor = rijndael.CreateEncryptor(chaveBytes, rijndael.IV);
+            ICryptoTransform cryptor = rijndael.CreateEncryptor(chaveBytes, chaveBytes);
             criptografiaBytes = cryptor.TransformFinalBlock(mensagemBytes, 0, mensagemBytes.Length);
             cryptor.Dispose();
 
@@ -64,7 +64,7 @@ namespace api.Utils.Criptografia
             chaveBytes = Encoding.UTF8.GetBytes(chave);
             mensagemBytes = Convert.FromBase64String(valor);
 
-            ICryptoTransform cryptor = rijndael.CreateDecryptor(chaveBytes, rijndael.IV);
+            ICryptoTransform cryptor = rijndael.CreateDecryptor(chaveBytes, chaveBytes);
             criptografiaBytes = cryptor.TransformFinalBlock(mensagemBytes, 0, mensagemBytes.Length);
             cryptor.Dispose();
 

@@ -6,15 +6,15 @@ namespace api.Business.Acesso
     {
         private string GerarKey (Models.TbLogin login) 
         {
-            string key = login.DsSenha;
+            string key = "@x#IWq69FT" + login.IdLogin;
             
             return key;            
         }
 
         public string GerarToken (Models.TbLogin login, int idperfil) 
         {
-            string key = this.GerarKey(login).PadRight(32, '#');;
-            string valor = $"{idperfil},{login.NmUsuario},{login.IdLogin},Next-Gen-Books";
+            string key = this.GerarKey(login).PadRight(16, '#');;
+            string valor = $"{idperfil}$|${login.NmUsuario}$|${login.IdLogin}$|$Next-Gen-Books";
             string token = Encrypt(key, valor);
 
             return token;
@@ -22,7 +22,7 @@ namespace api.Business.Acesso
 
         public string LerToken (Models.TbLogin login, string token)
         {
-            string key = this.GerarKey(login).PadRight(32, '#');
+            string key = this.GerarKey(login).PadRight(16, '#');
             string msn = Decrypt(key, token);
 
             return msn;
