@@ -25,5 +25,6 @@ input{
 button{
     border-radius:10px;
     margin-left:10px;
+    color:black;
 }
 `;

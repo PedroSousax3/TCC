@@ -4,8 +4,6 @@ import { Link,useHistory } from "react-router-dom";
 //Style
 import { Pesquisa, ConteinerItens } from './style.js';
 
-import "~slick-carousel/slick/slick.css"; 
-import "~slick-carousel/slick/slick-theme.css";
 
 //Components
 import Master from '../../Master/index.js';
