@@ -4,6 +4,9 @@ import { Link,useHistory } from "react-router-dom";
 //Style
 import { Pesquisa, ConteinerItens } from './style.js';
 
+import "~slick-carousel/slick/slick.css"; 
+import "~slick-carousel/slick/slick-theme.css";
+
 //Components
 import Master from '../../Master/index.js';
 
@@ -22,19 +25,21 @@ export default function Carrinho(props){
         await Remover(id);
         await ConsultarCarrinho(1);
     }
+
+    function SomarCarrinho(){
+        registros.forEach(x => {
+            setValorLivros(valorlivros + (x.informacoes.venda * x.qtd));
+        });
+    }
     
     const ConsultarCarrinho = async (id) => {
-
         const result = await ListarCarrinho(id);
         setRegistros([...result]);
-        console.log(result);
-        result.map(x => {
-            setValorLivros(((x.qtd * x.informacoes.venda) + valorlivros));
-            setTotalCompra(x.informacoes.totalcompra + x.informacoes.valorlivros);
-        });
 
-        setTotalCompra(valorlivros + valorfrete);
-    };
+        SomarCarrinho();
+        console.log(result)
+    }
+
     const Comprar = () => {
         navegacao.push("/FinalizarCompra", registros);
     }
@@ -46,7 +51,7 @@ export default function Carrinho(props){
     return(
         <Master>
             <ConteinerItens>
-                {registros.map((x, i) => 
+                {registros.map((x) => 
                     <div className="card">
                         <div className="card-header" Key={x.id}>
                             {x.informacoes.nome}
@@ -74,7 +79,7 @@ export default function Carrinho(props){
                 <div className="container">
                     <div className="form-group">
                         <label>Valor total dos livros: </label>
-                        <span> {valorlivros} </span>
+                        <span> {valorlivros}</span>
                     </div>
                     <div className="form-group">
                         <label>Valor do frete: </label>

@@ -14,7 +14,7 @@ namespace api.Business.Acesso
         public string GerarToken (Models.TbLogin login, int idperfil) 
         {
             string key = this.GerarKey(login).PadRight(32, '#');;
-            string valor = $"{idperfil}#$|#${login.NmUsuario}#$|#${login.IdLogin}#$|#$Next-Gen-Books";
+            string valor = $"{idperfil},{login.NmUsuario},{login.IdLogin},Next-Gen-Books";
             string token = Encrypt(key, valor);
 
             return token;
