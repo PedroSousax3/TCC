@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {TelaContainer} from "./style.js";
+import {TelaFixa} from "../CancelarCompraConfirmar/style";
 import nextgenBooks from "../../../../../../Service/NextGenBookApi";
 import { toast, ToastContainer } from "react-toastify";
 let api = new nextgenBooks();
@@ -36,7 +36,7 @@ export default function DevolverCompra(props){
     }
     
     return(
-        <TelaContainer>
+        <TelaFixa>
            {condicao === true &&
                  <div className="container" style={{backgroundColor:"white",minWidth:"25%",minHeight:"25%",postion:"absolute"}}>
                  <div>
@@ -65,6 +65,6 @@ export default function DevolverCompra(props){
                  </div> 
           </div>
            }
-        </TelaContainer>
+        </TelaFixa>
     )
 }

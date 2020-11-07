@@ -21,6 +21,7 @@ import Favoritos from './Pages/Cliente/Favoritos/index'
 import Carrinho from './Pages/Cliente/Carrinho/index';
 import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
 import CadastrarEndereco from './Pages/Cliente/Endereco';
+import AlterarCliente from './Pages/Cliente/AlterarCliente/index.js'
 
 export default function Rotas(){
     return(

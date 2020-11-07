@@ -2,6 +2,7 @@ import { Email } from '@material-ui/icons';
 import axios from 'axios';
 const api = axios.create(
     { baseURL:"http://3.87.226.24:5000" }
+    //{ baseURL:"http://localhost:5000" }
 );
 
 export default class NextGenBookApi{
@@ -33,6 +34,23 @@ export default class NextGenBookApi{
         formData.append('genero', req.genero);
 
         const resp = await api.post('/Cliente' , formData, {
+            headers: { 'content-type': 'multipart/form-data' }
+        });
+        
+        return resp;
+    }
+
+    async alterar(req){
+        let formData = 
+            new FormData();
+        
+        formData.append('email', req.email);
+        formData.append('nome', req.nome);
+        formData.append('celular', req.celular);
+        formData.append('foto', req.foto);
+        formData.append('genero', req.genero);
+
+        const resp = await api.put('/Cliente' , formData, {
             headers: { 'content-type': 'multipart/form-data' }
         });
         

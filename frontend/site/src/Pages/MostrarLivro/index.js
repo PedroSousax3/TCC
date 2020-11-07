@@ -56,6 +56,7 @@ export default function MostrarLivro(props) {
         setEditora(dados.livro.editora.nome);
         setQtd(dados.estoque_livro.qtd);
         setAutor([...dados.autores]);
+        console.log(autor);
         setGenero(dados.generos.map(x => x.genero + " ").toString());
     }
 
