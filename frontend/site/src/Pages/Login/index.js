@@ -34,10 +34,6 @@ export default function Logar(e) {
       }
 
       function gerarCookies(response) {
-        Cookies.set('id', response.id, {
-          expires : 1,
-          path : '/',
-        });
         Cookies.set('token', response.token, {
           expires : 1,
           path : '/',

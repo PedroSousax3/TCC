@@ -7,17 +7,16 @@ import { toast } from "react-toastify";
 
 //Components:
 import { BoxContainer } from '../../components/Card/styled.js';
-import teste from '../../Assets/images/logo/Logo.jpeg'
 
 import { InserirCarrinhoApi } from '../../Service/carrinhoApi.js';
 import { inserirFavoritoApi } from '../../Service/favoritosApi.js';
 import { ConsultarPorIdLivro } from '../../Service/LivroApi.js';
+import { BuscarFoto } from '../../Service/fileApi.js'
 
 export default function MostrarLivro(props) {
-    props.location.state = { idlivro: 1}
-    const [ id, setId ] = useState(props.location.state.idlivro);
-    const [nome, setNome] = useState("");
-    const [idcliente, setIdCliente] = useState("");
+    const [ id ] = useState(props.location.state.idlivro);
+    const [ nome, setNome] = useState("");
+    const [ idcliente, setIdCliente] = useState(1);
     const [ valor, setValor ] = useState();
     const [ edicao, setEdicao ] = useState();
     const [ acabamento, setAcabamento ] = useState("");
@@ -25,39 +24,38 @@ export default function MostrarLivro(props) {
     const [ peso, setpeso ] = useState();
     const [ largura, setLargura ] = useState();
     const [ lancamento, setLancamento ]= useState();
-    const [descricao, setDescricao] = useState("");
+    const [ descricao, setDescricao] = useState("");
     const [ paginas, setPaginas ] = useState();
     const [ editora, setEditora ] = useState("");
     const [ autor, setAutor ] = useState([]);
     const [ genero, setGenero ] = useState("");
     const [ qtd, setQtd ] = useState(0);
+    const [ foto, setFoto ] = useState("");
 
-    useEffect(() => {
-        async function Consultar (){
-            const response = await ConsultarPorIdLivro(id);
-            popularLivro(response.data);
-        }
-        Consultar();
-    }, [])
-
+    
     function popularLivro (dados) {
-        setId(dados.idlivro);
-        setLancamento(new Date(dados.livro.lancamento).toLocaleDateString());
-        setNome(dados.livro.nome);
-        setIdCliente(1);
-        setValor(dados.livro.venda);
-        setAltura(dados.livro.medida.altura)
-        setLargura(dados.livro.medida.largura)
-        setpeso(dados.livro.medida.peso)
-        setEdicao(dados.livro.edicao);
-        setAcabamento(dados.livro.encapamento);
-        setPaginas(dados.livro.paginas)
-        setDescricao(dados.livro.descricao);
-        setEditora(dados.livro.editora.nome);
-        setQtd(dados.estoque_livro.qtd);
+        if(dados.livro != null && dados.livro != undefined) {
+            setLancamento(new Date(dados.livro.lancamento).toLocaleDateString());
+            setNome(dados.livro.nome);
+            setValor(dados.livro.venda);
+            setEdicao(dados.livro.edicao);
+            setAcabamento(dados.livro.encapamento);
+            setPaginas(dados.livro.paginas)
+            setDescricao(dados.livro.descricao);
+            setFoto(dados.livro.foto);
+            if(dados.livro.editora != null && dados.livro.editora != undefined)
+            setEditora(dados.livro.editora.nome);
+            if(dados.livro.medida != null && dados.livro.editora != undefined){
+                setAltura(dados.livro.medida.altura)
+                setLargura(dados.livro.medida.largura)
+                setpeso(dados.livro.medida.peso)
+            }
+        }
+        if(dados.estoque_livro != null && dados.estoque_livro != undefined)
+            setQtd(dados.estoque_livro.qtd);
+        if(dados.generos != null && dados.generos != undefined)
+            setGenero(dados.generos.map(x => x.genero + " ").toString());
         setAutor([...dados.autores]);
-        console.log(autor);
-        setGenero(dados.generos.map(x => x.genero + " ").toString());
     }
 
     async function inserirCarrinho(){
@@ -87,6 +85,16 @@ export default function MostrarLivro(props) {
         }
     }
     
+    async function Consultar (){
+        const response = await ConsultarPorIdLivro(id);
+        console.log(response);
+        popularLivro(response.data);
+    }
+
+    useEffect(() => {
+        Consultar();
+    }, [])
+    
     return (
         <Master>
             <BoxContainer id="livro" theme={{ sc_border : "3.5px solid #00870D", sc_espace : "80px 80px", sc_padding : "10px", sc_direction : "column"}}>
@@ -96,7 +104,7 @@ export default function MostrarLivro(props) {
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{sc_espace : "10px 0px", sc_direction : "row"}}>
                     <BoxContainer id="imagem" theme={{sc_espace : "10px 0px", sc_direction : "column"}}>
-                        <img src={teste} width="220px" alt=""/>
+                        <img src={BuscarFoto(foto)} width="220px" alt=""/>
                         <div>
                             <p>Quantidade Disponivel: {qtd}</p>
                         </div>
@@ -104,7 +112,7 @@ export default function MostrarLivro(props) {
                     <BoxContainer id="itemgenerico" theme={{sc_width: "100%", sc_espace : "10px 0px", sc_direction : "column"}}>                        
                         <div>
                             <div className="style-text-descr">Editora: {editora}</div>
-                            <div className="style-text-descr">Autor: {autor.map(x => x.nome + " ").toString()}</div>
+                            <div className="style-text-descr">Autor: {autor.map(x => x.nome).toString()}</div>
                             <div className="style-text-descr">Generos: {genero}</div>
                         </div>
                         <div className="style-text-descr finalitem">Valor Unitario: {valor}</div>

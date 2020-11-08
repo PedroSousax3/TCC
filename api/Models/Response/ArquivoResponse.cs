@@ -5,13 +5,14 @@ namespace api.Models.Response
 {
     public class ArquivoResponse
     {
+        public int Id { get; set; }
         public string Nome { get; set; }
-        public FileContentResult Arquivo { get; set; }
-
-        public ArquivoResponse(string nome, FileContentResult arquivo)
-        {
+        public string NomeArquivo { get; set; }
+        public ArquivoResponse(int id, string nome, string nomearquivo)
+        {   
+            this.Id = id;
             this.Nome = nome;
-            this.Arquivo = arquivo;
+            this.NomeArquivo = nomearquivo;
         }
     }
 }

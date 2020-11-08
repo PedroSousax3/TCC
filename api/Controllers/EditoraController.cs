@@ -15,7 +15,7 @@ namespace api.Controllers
     {
         EditoraConversor ConvertEditora = new EditoraConversor();
         Business.EditoraBusiness business = new Business.EditoraBusiness();
-        Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
+        Business.GerenciadorFile gerenciadorFoto = new Business.GerenciadorFile();
         
         [HttpPost]
         public async Task<ActionResult<EditoraResponse>> InserirEditoraController([FromForm] EditoraRequest editora)
@@ -25,7 +25,7 @@ namespace api.Controllers
                 Models.TbEditora nova = ConvertEditora.Conversor(editora);
                 nova.DsLogo = gerenciadorFoto.GerarNovoNome(editora.logo.FileName);
                 Models.TbEditora result = await business.InserirEditoraBuseness(nova);
-                gerenciadorFoto.SalvarFoto(nova.DsLogo, editora.logo);
+                gerenciadorFoto.SalvarFile(nova.DsLogo, editora.logo);
                 EditoraResponse response = ConvertEditora.Conversor(result);
 
                 return response;
@@ -60,7 +60,7 @@ namespace api.Controllers
         {
             try
             {
-                byte[] arquivo = gerenciadorFoto.LerFoto(nome);
+                byte[] arquivo = gerenciadorFoto.LerFile(nome);
                 string extensao = gerenciadorFoto.GerarContentType(nome);
                 return File(arquivo, extensao);
             }
@@ -72,37 +72,6 @@ namespace api.Controllers
             }
         }
 
-        [HttpGet("listar-fotos")]
-        public async Task<ActionResult<List<ArquivoResponse>>> ListarLogoController()
-        {
-            try
-            {
-                List<ArquivoResponse> fotos = new List<ArquivoResponse>();
-                List<Models.TbEditora> editoras = await business.ListarEditoras();
-                foreach(Models.TbEditora item in editoras)
-                {
-                    if(string.IsNullOrEmpty(item.DsLogo))
-                        continue;
-                    else
-                    {
-                        byte[] arquivo = gerenciadorFoto.LerFoto(item.DsLogo);
-                        string extensao = gerenciadorFoto.GerarContentType(item.DsLogo);
-                        var foto = File(arquivo, extensao);
-                        fotos.Add(new ArquivoResponse(item.DsLogo, foto));
-                    }
-                }
-
-                return fotos;
-            }
-            catch (System.Exception ex)
-            {
-                return NotFound( 
-                    new ErroResponse(404, ex.Message)
-                );
-            }
-        }
-
-
         [HttpDelete]
         public async Task<ActionResult> RemoverEditoraController(int id)
         {
@@ -110,7 +79,7 @@ namespace api.Controllers
             {
                 Models.TbEditora editora = await business.ConsultarEditoraPorIdBusiness(id);
                 await business.RemoverEditoraBusiness(id);
-                gerenciadorFoto.RemoverArquivo(editora.DsLogo);
+                gerenciadorFoto.RemoverFile(editora.DsLogo);
                 return Ok();
             }
             catch (System.Exception ex)

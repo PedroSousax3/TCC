@@ -12,7 +12,7 @@ namespace api.Controllers
     {
         Business.GeneroBusiness business = new Business.GeneroBusiness();
         Utils.GeneroConversor conversor = new Utils.GeneroConversor(); 
-        Business.GerenciadorFoto gerenciador = new Business.GerenciadorFoto();
+        Business.GerenciadorFile gerenciador = new Business.GerenciadorFile();
         
         [HttpPost("cadastrar")]
          public async Task<ActionResult<Models.Response.GeneroResponse>> CadastrarGenero([FromForm] Models.Request.GeneroRequest request)
@@ -22,7 +22,7 @@ namespace api.Controllers
                 Models.TbGenero tabela = conversor.ParaTabelaGenero(request);
                 tabela.DsFoto = gerenciador.GerarNovoNome(request.Foto.FileName);
                 await business.ValidarCadastroGenero(tabela);
-                gerenciador.SalvarFoto(tabela.DsFoto,request.Foto);
+                gerenciador.SalvarFile(tabela.DsFoto,request.Foto);
                 return conversor.ParaResponseListarGenero(tabela);
              }
              catch (System.Exception ex)
@@ -39,7 +39,7 @@ namespace api.Controllers
                  Models.TbGenero tabela = conversor.ParaTabelaGenero(request);
                  tabela.DsFoto = gerenciador.GerarNovoNome(request.Foto.FileName);
                  tabela = await business.ValidarAlterar(idgenero,tabela);
-                 gerenciador.SalvarFoto(tabela.DsFoto,request.Foto);
+                 gerenciador.SalvarFile(tabela.DsFoto,request.Foto);
                  return conversor.ParaResponseListarGenero(tabela);
              }
              catch (System.Exception ex)

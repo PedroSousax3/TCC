@@ -11,7 +11,7 @@ namespace api.Controllers
     public class AutorController : ControllerBase
     {
         Business.AutorBusiness business = new Business.AutorBusiness();
-        Business.GerenciadorFoto gerenciador = new Business.GerenciadorFoto();
+        Business.GerenciadorFile gerenciador = new Business.GerenciadorFile();
         Utils.Conversor.AutorConversor conversor = new Utils.Conversor.AutorConversor();
         [HttpPost("cadastrar")]
         public async Task<ActionResult<Models.Response.AutorResponse>> CadastrarAutor([FromForm] Models.Request.AutorRequest request)
@@ -21,7 +21,7 @@ namespace api.Controllers
                 Models.TbAutor tabela = conversor.ConversorRequest(request);
                 tabela.DsFoto = gerenciador.GerarNovoNome(request.foto.FileName.ToString());
                 tabela = await business.ValidarCadastro(tabela);
-                gerenciador.SalvarFoto(tabela.DsFoto, request.foto);
+                gerenciador.SalvarFile(tabela.DsFoto, request.foto);
                 return conversor.ConversorResponse(tabela);
             }
             catch (System.Exception ex)
@@ -37,7 +37,7 @@ namespace api.Controllers
                 Models.TbAutor tabela = conversor.ConversorRequest(request);
                 tabela.DsFoto = gerenciador.GerarNovoNome(request.foto.FileName);
                 tabela =  await business.ValidarAlterar(idautor,tabela);
-                gerenciador.SalvarFoto(tabela.DsFoto,request.foto);
+                gerenciador.SalvarFile(tabela.DsFoto,request.foto);
                 return conversor.ConversorResponse(tabela);
             }
             catch (System.Exception ex)
@@ -93,7 +93,7 @@ namespace api.Controllers
         {
             try
             {
-                byte[] arquivo = gerenciador.LerFoto(nome);
+                byte[] arquivo = gerenciador.LerFile(nome);
                 string extensao = gerenciador.GerarContentType(nome);
                 return File(arquivo, extensao);
             }

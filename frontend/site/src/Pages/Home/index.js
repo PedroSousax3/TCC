@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 import Master from '../Master/index';
 
-import { Home, ContainerPesquisa, ContainerPreview, ItemCard } from './style.js'
+import { Home, ContainerPesquisa, ContainerPreview, Card, ItemCard } from './style.js'
 import { ConteinerItens } from '../../Pages/Cliente/Carrinho/style.js'
 
 import { } from '../Cliente/Carrinho/style.js'
 
-
-import { ListarLivrosApi } from '../../Service/LivroApi.js';
+import { ListPostFile, BuscarFoto } from '../../Service/fileApi.js';
 
 export default function HomePage () {
 
     const [ registros, setRegistro ] = useState([]);
     const [ posicao, setPosicao ] = useState(0);
 
-    async function listarLivros() {
-        const result = await ListarLivrosApi(posicao);
+    const listarLivros = async () => {
+        const result = await ListPostFile(posicao);
         setRegistro([...result.data]);
+    }
+    
+    const buscarFoto = async (nome) => {
+        const result = await BuscarFoto(nome);
+        return result;
     }
 
     function almentarPosicao(){
@@ -27,7 +32,6 @@ export default function HomePage () {
 
     function diminuirPosicao(){
         setPosicao(posicao - 50)
-        console.log(posicao)
     }
 
     useEffect(() => {
@@ -50,7 +54,25 @@ export default function HomePage () {
                 </ContainerPesquisa>
 
                 <ContainerPreview>
-                    
+                    {
+                        registros.map(x =>
+                            <Card key={x.id} as={Link} to = {{
+                                pathname : "/MostrarLivro",
+                                state : {
+                                    idlivro : x.id
+                                }
+                            }}>
+                                <div id="card-image">
+                                    <img src={BuscarFoto(x.nomeArquivo)} height="300px" alt="" />
+                                </div>
+                                <div id="card-titulo">
+                                    <h5 style={{margin : "0px"}}>
+                                        {x.nome}
+                                    </h5>
+                                </div>
+                            </Card>  
+                        )
+                    }
                 </ContainerPreview>
             </Home>
         </Master>

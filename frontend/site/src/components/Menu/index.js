@@ -24,9 +24,15 @@ export default function Menu(props){
                         <Link to = "/MinhasCompras" className="texto">Minhas Compras</Link>
                         <Link to = "/MinhasCompras" className="far fa-handshake"></Link>
                     </li>
-                    <li>
-                        <Link to = "/Acesso" className="texto">Perfil</Link>
-                        <Link to = "/Acesso" className="far fa-user-circle"></Link>
+                    <li className="menu-item">
+                        <Link className="texto">
+                            Perfil
+                        </Link>
+                        <div className="menu-drop">
+                            <Link className="dropdown-item" to = "/Acesso">Acessar</Link>
+                            <Link className="dropdown-item" to = "/Perfil">Area do Cliente</Link>
+                            <button className="dropdown-item">Sair</button>
+                        </div>
                     </li>
                 </ConteinerItensMenu>
             </MenuStyled>

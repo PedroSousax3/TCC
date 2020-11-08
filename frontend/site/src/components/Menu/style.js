@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MenuStyled = styled.div`   
     width: 100%;
     height: 60px;
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -57,6 +57,24 @@ export const ConteinerItensMenu = styled.ul`
         margin: 3px 6px;
     }
 
+    .menu-item {
+        position: relative;
+    }
+
+    .menu-item:hover + .menu-drop{
+        display : block;
+    }
+
+    .menu-drop {
+        position: absolute;
+        z-index: 1000;
+        left: -80px;
+        display: none;
+        background-color: white;
+        padding: 10px;
+        border-radius: 1px;
+        border: 1px solid rgba(0,0,0,0.2);
+    }
     @media screen and (max-width: 770px)
     {
         & {
