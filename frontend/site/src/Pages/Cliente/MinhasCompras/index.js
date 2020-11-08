@@ -11,38 +11,81 @@ import Cookies from 'js-cookie';
 let api = new nextgenBooks();
 export default function MinhasCompras(){
     const [registros,setRegistros] = useState([]);
-    const [valor,setValor] = useState();
+
+    const [status,setStatus] = useState("");
+    
+    const [motivo,setMotivo] = useState("");
+    const [valor,setValor] = useState(0);
+    const [codigo_rastreio,setCodigoRastreio] = useState("123");
+    const [comprovante,setComprovante] = useState();
+    const [previsao_entrega,setPrevisao_entrega] = useState(new Date());
+    
     //const [cliente,setCliente] = useState(parseInt(Cookies.get('id')));
     
     const listarAndamento = async () =>{
         try{
-
-            let resp = await api.listarComprasndamento(1);
+            
+            let resp = await api.listarComprasndamento(2);
             setRegistros([...resp]);
+  
         }catch(e) {
-            toast.error(e.response.data.erro);
+            toast.error("Ainda não ha compras em andamento");
         }
     }
     const listarFinalizadas = async () =>{
         try{
-        let resp = await api.listarComprasfinalizadas(1);
-        setRegistros([...resp]);
-    }catch(e) {
-        toast.error(e.response.data.erro);
+            let resp = await api.listarComprasfinalizadas(2);
+            setRegistros([...resp]);
+            setStatus(registros[0].status.status);
+        }catch(e) {
+            toast.error("Ainda não ha compras finalizadas");
+        }
     }
-    }
-
+    
     const listarPendentes = async () =>{
         try{
-        let resp = await api.listarComprasPendentes(1);
+            let resp = await api.listarComprasPendentes(2);
         setRegistros([...resp]);
+        setStatus(registros[0].status.status);
     }catch(e) {
-        toast.error(e.response.data.erro);
+        toast.error("Ainda não ha compras pendentes");
     }
-    }
+}
 
-    return(
-       <div>
+const CancelarSim = async (id) =>{ 
+    try{
+        await api.CancelarCompra(id);
+        toast.success("O cancelamento da compra foi solicitado.");
+    }catch(e) {
+        toast.error(e.response.erro);
+    }
+}
+
+
+const AdicionarFoto = (arquivo) => {
+    setComprovante(arquivo);
+}
+
+const DevolverSim = async (idvendalivro,v) => {
+    try{
+        let request ={
+            vendalivro:idvendalivro,
+            motivo,
+            valor:v,
+            codigo_rastreio,
+            comprovante,
+            previsao_entrega
+        }
+        await api.Devolver(request);
+        toast.success("Devolução solicitada.");
+            }catch(e) {
+                toast.error(e.response.erro);
+            }
+        }
+ 
+        
+        return(
+            <div>
            <Master>
                <ContainerMinhasCompras>
                     <div className="titulo">
@@ -50,40 +93,74 @@ export default function MinhasCompras(){
                             Minhas Compras
                         </label>
                     {registros.map(x =>
+                    <div style={{backgroundColor:"#D26E4E",marginTop:"35px"}}> 
+
+                    {x.vendaLivro.map (y=>
                     <div className="card">
                         <div className="card-header" Key={1}>
                         </div>
-                        <div className="container" Key={1}>
-                        <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-                            <div className="carousel-inner">
-                            <div className="carousel-item active">
-                              <img src="" alt="..." className="d-block w-20" />
-                            </div>
-                            {x.vendaLivro.map (y=>
-                            <div className="carousel-item">
-                              <img src="" alt="..." className="d-block w-20" />
-                            </div>
-                            )}
-                            </div>
-                            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span className="sr-only">Previous</span>
-                                        </a>
-                                        <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span className="sr-only">Next</span>
-                                        </a>
-                                        </div>
-                                        </div>
                             <div className="card-body" Key={1}>
-                              <h6 className="card-title">Quantidade de Produtos:{x.vendaLivro.length}</h6>
-                                <p className="card-text">Status:{x.status.nome}</p>
+                            <img src={api.buscarImagem(y.livroInfo.foto)} alt="..." height="300px" />
+                    <h6 className="card-title">Nome:{y.livroInfo.nome}</h6>
+                    <p className="card-text">Descrição:{y.livroInfo.descricao}</p>
                             </div>
-                            <Botoes
-                               IdVendaLivro = {x.vendaLivro.id}
-                               IdVendaStatus = {x.status.id}
-                            />
+                         
+                                <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#modalExemplo2" >Pedir Devolução</button>
+                             
+                                <div className="modal" id="modalExemplo2"  tabindex="-1" role="dialog">
+                                <div className="modal-dialog" role="document">
+                                  <div className="modal-content">
+                                    <div className="modal-header">
+                                      <h5 className="modal-title">Deseja Devolver a compra?</h5>
+                                      <button type="button" className="close" data-dismiss="modal" aria-label="Fechar">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div className="modal-body">
+                                      <p>Porque deseja devolver a compra?</p>
+                                      <span>
+                                            Adicione a foto do comprovante
+                                        </span>
+                                            <input type="file" id="img-input" name="image"
+                                            onChange={e => AdicionarFoto(e.target.files[0])}
+                                            />
+                                      <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" onChange ={(e) => setMotivo(e.target.value)}></textarea>
+                                    </div>
+                                    <div className="modal-footer">
+                                      <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                      <button type="button" className="btn btn-primary" onClick={DevolverSim(y.id,y.valor)}>Sim</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                         </div>
+                    )}
+                      <div className="modal" id="modalExemplo" tabindex="-1" role="dialog">
+                               <div className="modal-dialog" role="document">
+                                 <div className="modal-content">
+                                   <div className="modal-header">
+                                     <h5 className="modal-title">Cancelar Compra</h5>
+                                     <button type="button" className="close" data-dismiss="modal" aria-label="Fechar">
+                                       <span aria-hidden="true">&times;</span>
+                                     </button>
+                                   </div>
+                                   <div className="modal-body">
+                                     <p>Você realmente deseja cancelar sua compra?</p>
+                                   </div>
+                                   <div className="modal-footer">
+                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                     <button type="button" className="btn btn-primary" onClick={CancelarSim(x.status.id)}>Sim</button>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                    <div className="btn-group" role="group" aria-label="Exemplo básico" style={{color:"white"}}>
+                      <button type="button" className="btn btn-primary"><Link to="/">Ver Detalhes</Link></button>
+                       <button type="button" className="btn btn-danger"  class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" >Cancelar Compra</button>
+                   </div>
+                    </div>
+
+                   
                     )}
                     </div>
                 </ContainerMinhasCompras>  

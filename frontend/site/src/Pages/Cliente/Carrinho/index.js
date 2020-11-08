@@ -43,7 +43,7 @@ export default function Carrinho(props){
     }
 
     useEffect(() => {  
-        ConsultarCarrinho(1);
+        ConsultarCarrinho(2);
     }, []);
 
     return(

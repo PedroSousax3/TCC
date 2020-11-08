@@ -56,7 +56,7 @@ export default function CadastrarEndereco(props)
         try
         {
             let request = {
-                cliente:1,
+                cliente:2,
                 nome,
                 endereco,
                 numero,

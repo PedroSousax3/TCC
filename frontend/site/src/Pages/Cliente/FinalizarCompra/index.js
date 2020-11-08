@@ -14,7 +14,7 @@ export default function FinalizarCompra(props){
     const [enderecoId,setEnderecoId] = useState();
     const [enderecoEscolhido,setEnderecoEscolhido] = useState("");
     const [listaDeEndereco,setListaDeEndereco] = useState([]);
-    const [tipoDePagamento,setTipoPagamento] = useState("");
+    const [tipoDePagamento,setTipoPagamento] = useState("Dinheiro");
     const [numeroParcela,setNumeroParcela] = useState(0);
     const [valorPorParcela,setValorPorParcela] = useState(1);
     const [valorfrete, setValorFrete] = useState(0);
@@ -24,7 +24,7 @@ export default function FinalizarCompra(props){
 
 
     const listarEndereco = async () =>{
-        let resp = await api.listarEndereco(1);
+        let resp = await api.listarEndereco(2);
         setListaDeEndereco([...resp]);
         console.log("endereco"+listaDeEndereco);
     }
@@ -64,13 +64,14 @@ let valor =[];
 
        try{
         let request = {
-            idCliente : 1,
-            enderecoId : 1,
+            idCliente : 2,
+            idendereco : 2,
             tipoDePagamento,
             numeroParcela,
             valorfrete,
             livros
       }
+      console.log(request);
       let resp = await api.realizarVenda(request);
       toast.success("Compra realizada com sucesso.");
        }catch (ex) {
@@ -83,7 +84,7 @@ let valor =[];
 
     useEffect(() => {  
         calcular();
-        listarEndereco(1);
+        listarEndereco(2);
       
     }, []);
 
