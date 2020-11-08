@@ -34,7 +34,7 @@ namespace api.Controllers
                 Utils.Conversor.AcessoConversor acessoConversor = new Utils.Conversor.AcessoConversor();
                 string token = gerartoken.GerarToken(cliente.IdLoginNavigation,cliente.IdCliente);
 
-                return acessoConversor.Conversor(cliente.IdLoginNavigation, token);
+                return acessoConversor.Conversor(cliente.IdLoginNavigation.NmUsuario, token, cliente.IdCliente, "cliente");
             }
             catch (System.Exception ex)
             {
@@ -62,6 +62,12 @@ namespace api.Controllers
               
               return BadRequest(new Models.Response.ErroResponse(400,ex.Message));
           }   
+        }
+
+        [HttpGet("id")]
+        public async Task<Models.Response.ClienteResponse> ConsultarCliente (int id){
+            Models.TbCliente cliente = await business.ValidarConsultaPorId(id);
+            return conversor.ParaResponseCliente(cliente);
         }
 
         [HttpGet("foto/{nome}")]

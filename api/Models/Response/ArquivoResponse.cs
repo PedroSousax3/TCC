@@ -1,18 +1,21 @@
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Models.Response
 {
-    public class ArquivoResponse
+    public class PosterResponse
     {
         public int Id { get; set; }
         public string Nome { get; set; }
         public string NomeArquivo { get; set; }
-        public ArquivoResponse(int id, string nome, string nomearquivo)
+        public List<string> Generos { get; set; }
+        public PosterResponse(int id, string nome, string nomearquivo, List<string> generos)
         {   
             this.Id = id;
             this.Nome = nome;
             this.NomeArquivo = nomearquivo;
+            this.Generos = generos;
         }
     }
 }

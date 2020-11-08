@@ -5,7 +5,7 @@ namespace api.Business
 {
     public class ClienteBusiness : Validador.ValidadorCliente
     {
-          Database.ClienteDatabase database = new Database.ClienteDatabase(); 
+        Database.ClienteDatabase database = new Database.ClienteDatabase(); 
         public async Task<Models.TbCliente> CadastrarCliente(Models.TbCliente tabela)
         {
             ValidarCliente(tabela);

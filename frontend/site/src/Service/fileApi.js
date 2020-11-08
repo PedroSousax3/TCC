@@ -10,6 +10,6 @@ export const ListPostFile = async (posicao) => {
 }
 
 export const BuscarFoto = (nome) => {
-    const local = "http://localhost:5000/Arquivo?nome=" + nome;
+    const local = api.defaults.baseURL + ("?nome=" + nome);
     return local;
 }

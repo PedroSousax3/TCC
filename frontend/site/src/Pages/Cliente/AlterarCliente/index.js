@@ -43,7 +43,6 @@ export default function AlterarCliente() {
             }
             const response = await api.alterar(request);
             toast.dark("Alterar completo " + response.data.Nome);
-            gerarCookies(response.data);
             navegacao.push("/Perfil");
         }
         catch(e) {
@@ -51,28 +50,9 @@ export default function AlterarCliente() {
         }
     } 
 
-    function gerarCookies(response) {
-        Cookies.set('id', response.id, {
-          expires : 1,
-          path : '/',
-        });
-        Cookies.set('token', response.token, {
-          expires : 1,
-          path : '/',
-        })
-        Cookies.set('usuario', response.nome, {
-          expires : 1,
-          path : '/',
-        })
-        Cookies.set('perfil', response.perfil, {
-          expires : 1,
-          path : '/',
-        })
-      }
-
     return(
         <Master>
-            <h2>Cadastro de Cliente</h2>
+            <h2>Alterar Dados Cadastrais</h2>
             <CadastroCaixa>
                 <CaixaInformacoes>
                     <div className="form-group">
