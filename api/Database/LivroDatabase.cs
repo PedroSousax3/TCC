@@ -46,6 +46,17 @@ namespace api.Database
                                     .ToListAsync();
         }
 
+        public async Task<List<Models.TbLivro>> ListarLivros(int atual) {
+            return await db.TbLivro.Include(x => x.IdMedidaNavigation)
+                                    .Include(x => x.IdEditoraNavigation)
+                                    .Include(x => x.TbLivroAutor).ThenInclude(y => y.IdAutorNavigation)
+                                    .Include(x => x.TbLivroGenero).ThenInclude(y => y.IdGeneroNavigation)
+                                    .Include(x => x.TbEstoque)
+                                    .Skip(atual)
+                                    .Take(50)
+                                    .ToListAsync();
+        }
+
         public async Task<Models.TbLivro> ConsultarLivroPorIdUnico(int idlivro)
         {
             return await db.TbLivro.Include(x => x.IdMedidaNavigation).FirstOrDefaultAsync(x => x.IdLivro == idlivro);

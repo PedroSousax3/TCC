@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace api.Controllers
@@ -51,13 +52,13 @@ namespace api.Controllers
         }
 
 
-        [HttpGet("listar")]
-        public async Task<ActionResult<List<Models.TbLivro>>> ListarLivro ()
+        [HttpGet("listar/{atual}")]
+        public async Task<ActionResult<List<Models.Response.LivroCompleto>>> ListarLivro (int atual = 0)
         {
             try
             {
-                List<Models.TbLivro> livro = await business.ListarLivroBusiness();
-                return livro;
+                List<Models.TbLivro> livro = await business.ListarLivroBusiness(atual);
+                return livro.Select(x => ConversorLivro.ConversorCompleto(x)).ToList();
             }
             catch (System.Exception ex)
             {

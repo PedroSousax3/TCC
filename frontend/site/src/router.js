@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 //Paginas:
 import MostrarLivro from './Pages/MostrarLivro/index';
-import Home from './Pages/Home/index.js';
+import HomePage from './Pages/Home/index.js';
 import Login from './Pages/Login/index.js';
 import Perfil from './Pages/Perfil';
 
@@ -28,7 +28,7 @@ export default function Rotas(){
       <BrowserRouter>
         <Switch>
 
-          <Route path="/" exact={true} component={Home}/>
+          <Route path="/" exact={true} component={HomePage}/>
           <Route path="/Cadastro" component={Cadastro}/>
           <Route path="/Acesso" component={Login} />
           <Route path="/EsqueciSenha" exact={true} component={EsqueciSenha}/>

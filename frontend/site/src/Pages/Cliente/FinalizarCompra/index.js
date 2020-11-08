@@ -28,11 +28,7 @@ export default function FinalizarCompra(props){
          let resp = listaDeEndereco.filter(x =>x.nome === enderecoEscolhido);
          return resp[0].id;
       }
-      function PegarCepDestino(){
-          let resp = listaDeEndereco.pop(x =>x.id === PegarIdEndereco());
-          return resp[0].cep;
-          console.log(resp[0]);
-       }
+      
        const calcularFrete = () =>{
            registros.map(x =>{
             setValorFrete(valorfrete += 10);
@@ -69,13 +65,12 @@ export default function FinalizarCompra(props){
 
 
     useEffect(() => {  
-        listarEndereco(registros[0].cliente);
-    }, []);
-
-    useEffect(() => {  
+        listarEndereco(registros[0]);
         calcular();
+        console.log(registros[0])
     }, []);
 
+    
     return(
         <div>
             <Master children={

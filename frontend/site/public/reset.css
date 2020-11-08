@@ -3,7 +3,7 @@
 }
 
 :root {
-    --verde-claro: #98F0BB;
-    --verde-escuro: #00870D;
-    --marrom-medio: #D26E4E;
+    --verde-claro: rgb(152, 240, 187);
+    --verde-escuro: rgb(0, 133, 13);
+    --marrom-medio: rgb(210, 110, 78);
 }
