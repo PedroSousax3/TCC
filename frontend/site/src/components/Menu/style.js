@@ -17,10 +17,10 @@ export const MenuStyled = styled.div`
     border-bottom: 3px solid #00870D;
     background-color: #98F0BB;
 
-    .LogoMenu {
-        height:50px;
-    }          
-    
+    & > nav {
+        width: 100%;
+        background-color: #98F0BB;
+    }
     @media screen and (max-width: 770px)
     {
         & {
@@ -58,22 +58,16 @@ export const ConteinerItensMenu = styled.ul`
     }
 
     .menu-item {
-        position: relative;
+        display: block;
     }
 
-    .menu-item:hover + .menu-drop{
-        display : block;
-    }
-
-    .menu-drop {
+    .menu-item:hover a > .menu-drop {
         position: absolute;
-        z-index: 1000;
-        left: -80px;
+    }
+
+    .menu-item > a > .menu-drop {
         display: none;
-        background-color: white;
-        padding: 10px;
-        border-radius: 1px;
-        border: 1px solid rgba(0,0,0,0.2);
+        position: relative;
     }
     @media screen and (max-width: 770px)
     {

@@ -37,23 +37,23 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> ConsultarImagem(string nome)
+        public ActionResult ConsultarImagem(string nome)
         {
             try
             {
 
                 byte[] arquivo = gerenciadorFile.LerFile(nome);
                 string extensao = gerenciadorFile.GerarContentType(nome);
-                
+
                 return File(arquivo, extensao);
             }
             catch (System.Exception ex)
             {
-                return NotFound( 
+                return NotFound(
                     new ErroResponse(404, ex.Message)
                 );
             }
         }
-
+   
     }
 }

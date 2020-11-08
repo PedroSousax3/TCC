@@ -34,7 +34,7 @@ namespace api.Controllers
                 Utils.Conversor.AcessoConversor acessoConversor = new Utils.Conversor.AcessoConversor();
                 string token = gerartoken.GerarToken(cliente.IdLoginNavigation,cliente.IdCliente);
 
-                return acessoConversor.Conversor(cliente.IdLoginNavigation, token);
+                return acessoConversor.Conversor(cliente.IdLoginNavigation.NmUsuario, token, cliente.IdCliente, "cliente");
             }
             catch (System.Exception ex)
             {
