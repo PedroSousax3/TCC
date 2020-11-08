@@ -33,21 +33,21 @@ export default function Cadastro(props) {
     const [confirmarsenha, setConfirmarSenha] = useState("");
     const [cpf, setCPF] = useState("");
     const [celular, setCelular] = useState("");
-    const [ file, setFile ] = useState();
-    
+    const [file, setFile] = useState();
+
 
     const AdicionarFoto = (arquivo) => {
         setFoto(arquivo);
         setFile(URL.createObjectURL(arquivo));
     }
-    
+
 
     const salvarClick = async () => {
         try {
             let request = {
                 usuario,
-                email, 
-                senha, 
+                email,
+                senha,
                 cpf,
                 nome,
                 celular,
@@ -59,27 +59,31 @@ export default function Cadastro(props) {
             gerarCookies(response.data);
             navegacao.push("/Perfil", acesso);
         }
-        catch(e) {
+        catch (e) {
             toast.error(e.response.data.erro);
         }
-    } 
+    }
 
     function gerarCookies(response) {
         Cookies.set('token', response.token, {
-          expires : 1,
-          path : '/',
-        })
+            expires: 1,
+            path: '/'
+        });
+        Cookies.set('id', response.id, {
+            expires: 1,
+            path: '/'
+        });
         Cookies.set('usuario', response.nome, {
-          expires : 1,
-          path : '/',
-        })
+            expires: 1,
+            path: '/'
+        });
         Cookies.set('perfil', response.perfil, {
-          expires : 1,
-          path : '/',
-        })
-      }
+            expires: 1,
+            path: '/'
+        });
+    }
 
-    return(
+    return (
         <Master>
             <h2>Cadastro de Cliente</h2>
             <CadastroCaixa>
@@ -88,47 +92,47 @@ export default function Cadastro(props) {
                         <label className="Nome">Nome completo:</label>
                         <input className="form-control" type="text" onChange={(n) => setNome(n.target.value)} />
                     </div>
-                    
+
                     <div className="form-group">
                         <label className="">Email:</label>
-                        <input className="form-control" type="email" onChange={(n) => setEmail(n.target.value)}/>
+                        <input className="form-control" type="email" onChange={(n) => setEmail(n.target.value)} />
                     </div>
-                    
+
                     <div className="form-group">
                         <label>Genero:</label>
                         <input className="form-control" onChange={(x) => setGenero(x.target.value)} list="generos" name="genero" id="genero" />
                         <datalist id="generos">
-                            <option value="Masculino"  />
+                            <option value="Masculino" />
                             <option value="Feminino" />
                             <option value="Outro" />
                         </datalist>
                     </div>
-                    
+
                     <div className="form-group">
                         <label className="Usuario">Usuario:</label>
-                        <input className="form-control" type="text" onChange={(n) => setUsuario(n.target.value)}/>
+                        <input className="form-control" type="text" onChange={(n) => setUsuario(n.target.value)} />
                     </div>
-                    
+
                     <div className="form-group">
                         <label className="Senha">Senha:</label>
-                        <input className="form-control" type="password" onChange={(n) => setSenha(n.target.value)}/>
+                        <input className="form-control" type="password" onChange={(n) => setSenha(n.target.value)} />
                     </div>
-                    
+
                     <div className="form-group">
                         <label className="Confirmar-Senha">Confirmar Senha:</label>
-                        <input className="form-control" type="password" onChange={(n) => setConfirmarSenha(n.target.value)}/>
+                        <input className="form-control" type="password" onChange={(n) => setConfirmarSenha(n.target.value)} />
                     </div>
-                    
+
                     <div className="form-group">
                         <label className="CPF">CPF:</label>
-                        <input className="form-control" type="text" onChange={(n) => setCPF(n.target.value)}/>
+                        <input className="form-control" type="text" onChange={(n) => setCPF(n.target.value)} />
                     </div>
-                    
+
                     <div className="form-group">
                         <label className="Celular">Celular:</label>
-                        <input className="form-control" type="text" onChange={(n) => setCelular(n.target.value)}/>
+                        <input className="form-control" type="text" onChange={(n) => setCelular(n.target.value)} />
                     </div>
-                </CaixaInformacoes>  
+                </CaixaInformacoes>
 
                 <CaixaImage>
                     <label>
@@ -138,14 +142,14 @@ export default function Cadastro(props) {
                             onChange={e => AdicionarFoto(e.target.files[0])}
                         />
                     </label>
-                    
+
                     <div className="image-preview" id="img-container">
                         <img src={file} alt="" id="preview"></img>
                     </div>
                     <div className="button1">
                         <button type="button" className="btn btn-success" onClick={salvarClick} >Confirmar cadastro</button>
                     </div>
-                </CaixaImage>              
+                </CaixaImage>
             </CadastroCaixa>
             <ToastContainer />
         </Master>

@@ -36,16 +36,20 @@ export default function Logar(e) {
       function gerarCookies(response) {
         Cookies.set('token', response.token, {
           expires : 1,
-          path : '/',
-        })
+          path : '/'
+        });
+        Cookies.set('id', response.id, {
+          expires : 1,
+          path : '/'
+        });
         Cookies.set('usuario', response.nome, {
           expires : 1,
-          path : '/',
-        })
+          path : '/'
+        });
         Cookies.set('perfil', response.perfil, {
           expires : 1,
-          path : '/',
-        })
+          path : '/'
+        });
       }
 
       function mostrar() {	
