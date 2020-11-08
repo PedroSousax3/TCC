@@ -36,11 +36,13 @@ namespace api.Controllers
         }
 
         [HttpPost("validar")]
-        public async Task<ActionResult<Models.TbLogin>> ValidarUser(Models.Response.AcessoResponse acesso)
+        public async Task<ActionResult<Models.TbCliente>> ValidarUserController(Models.Response.AcessoResponse acesso)
         {
             try
             {
-                return await business.ValidarUser(acesso);
+                Models.TbCliente cliente = await business.ValidarUser(acesso);
+
+                return cliente;
             }
             catch (System.Exception ex)
             {

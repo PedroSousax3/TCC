@@ -4,6 +4,9 @@ import { Link,useHistory } from "react-router-dom";
 //Style
 import { Pesquisa, ConteinerItens } from './style.js';
 
+import "~slick-carousel/slick/slick.css"; 
+import "~slick-carousel/slick/slick-theme.css";
+
 //Components
 import Master from '../../Master/index.js';
 
@@ -23,26 +26,21 @@ export default function Carrinho(props){
         await Remover(id);
         await ConsultarCarrinho(id);
     }
- 
-let resultado=0;
-let valor =[];
-    const ConsultarCarrinho = async (id) => {
 
+
+    function SomarCarrinho(){
+        registros.forEach(x => {
+            setValorLivros(valorlivros + (x.informacoes.venda * x.qtd));
+        });
+    }
+    
+
+    const ConsultarCarrinho = async (id) => {
         const result = await ListarCarrinho(id);
         setRegistros([...result]);
-        console.log(result);
-        for(var x of result){
-
-            valor.push( x.qtd * x.informacoes.venda);
-            }
-        
-            for(var y of valor)
-            {
-                resultado +=y;
-            }
-        setValorLivros(resultado);
-        setTotalCompra(resultado + valorfrete);
-    };
+       SomarCarrinho();
+        console.log(result)
+    }
     const Comprar = () => {
         navegacao.push("/FinalizarCompra", registros);
     }
@@ -54,7 +52,7 @@ let valor =[];
     return(
         <Master>
             <ConteinerItens>
-                {registros.map((x, i) => 
+                {registros.map((x) => 
                     <div className="card">
                         <div className="card-header" Key={x.id}>
                             {x.informacoes.nome}
@@ -82,7 +80,7 @@ let valor =[];
                 <div className="container">
                     <div className="form-group">
                         <label>Valor total dos livros: </label>
-                        <span> {valorlivros} </span>
+                        <span> {valorlivros}</span>
                     </div>
                     <div className="form-group">
                         <label>Valor do frete: </label>
