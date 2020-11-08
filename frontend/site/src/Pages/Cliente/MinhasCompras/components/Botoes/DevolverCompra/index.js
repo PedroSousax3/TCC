@@ -27,6 +27,7 @@ export default function DevolverCompra(props){
              previsao_entrega:new Date()
          }
          await api.Devolver(request);
+         toast.success("Devolução solicitada.");
         }catch(e) {
             toast.error(e.response.data.erro);
         }
@@ -36,23 +37,25 @@ export default function DevolverCompra(props){
     }
     
     return(
-        <TelaFixa>
-           {condicao === true &&
-                 <div className="container" style={{backgroundColor:"white",minWidth:"25%",minHeight:"25%",postion:"absolute"}}>
+        <div>
+        {condicao === true &&
+            <TelaFixa>
+                 <div className="container" style={{backgroundColor:"white",minWidth:"25%",minHeight:"25%",postion:"absolute",borderRadius:"30px",textAlign:"center"}}>
                  <div>
-                     <span>
+                     <label>
                          Deseja Devolver a Compra?
-                     </span>
+                     </label>
                  </div>
-                 <div class="form-group">
+                 <div className="form-group">
                    <span>
                          Adicione a foto do comprovante
                      </span>
                    <input type="file" id="img-input" name="image"
                             onChange={e => AdicionarFoto(e.target.files[0])}
                         />
-                     <label for="exampleFormControlTextarea1">Porque?</label>
+                     <label for="exampleFormControlTextarea1">Porque gostaria de devolver?</label>
                      <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" onChange ={(e) => setMotivo(e.target.value)}></textarea>
+                     <input type="text" className="form-control" id="endereco" placeholder="Informe o valor"/>
                  </div>
                  <div 
                  style={{
@@ -64,7 +67,8 @@ export default function DevolverCompra(props){
                      <button type="button" className="btn btn-danger" onClick={DevolverSim}>Devolver</button>
                  </div> 
           </div>
-           }
         </TelaFixa>
+           }
+        </div>
     )
 }

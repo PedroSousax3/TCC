@@ -12,7 +12,7 @@ namespace api.Controllers
     {
         Business.LoginBusiness business = new Business.LoginBusiness();
         Utils.LoginConversor conversor = new Utils.LoginConversor();
-        Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
+        Business.GerenciadorFile gerenciadorFoto = new Business.GerenciadorFile();
 
         [HttpPost("funcionario")]
         public async Task<ActionResult<Models.Response.LoginResponse.CadastrarLoginFuncionario>> CadastrarFuncionario(Models.Request.LoginRequest.CadastrarLoginFuncionario request)
@@ -62,7 +62,7 @@ namespace api.Controllers
         {
             try 
             {
-                byte[] foto = gerenciadorFoto.LerFoto(nome);
+                byte[] foto = gerenciadorFoto.LerFile(nome);
                 string contentType = gerenciadorFoto.GerarContentType(nome);
                 return File(foto, contentType);
             }

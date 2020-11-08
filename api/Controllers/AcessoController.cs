@@ -16,14 +16,21 @@ namespace api.Controllers
             try
             {
                 Models.TbLogin login = await business.ConsultarLoginBusiness(request.user, request.senha);
-                int idpessoa = login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin) != null 
-                                                                                                    ? 
-                                                                                                        login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdCliente 
-                                                                                                    : 
-                                                                                                        login.TbFuncionario.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdFuncionario;
+                string perfil;
+                int idpessoa;
+                if(login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin) != null)
+                {
+                    idpessoa = login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdCliente;
+                    perfil = "cliente";
+                }
+                else 
+                {
+                    idpessoa = login.TbFuncionario.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdFuncionario;
+                    perfil = "funcionario";
+                }
                 string token = business.GerarToken(login, idpessoa);
                 
-                Models.Response.AcessoResponse response = acessoConversor.Conversor(login, token);
+                Models.Response.AcessoResponse response = acessoConversor.Conversor(login.NmUsuario, token, idpessoa, perfil);
 
                 return response;
             }
@@ -36,11 +43,13 @@ namespace api.Controllers
         }
 
         [HttpPost("validar")]
-        public async Task<ActionResult<Models.TbLogin>> ValidarUser(Models.Response.AcessoResponse acesso)
+        public async Task<ActionResult<Models.TbCliente>> ValidarUserController(Models.Response.AcessoResponse acesso)
         {
             try
             {
-                return await business.ValidarUser(acesso);
+                Models.TbCliente cliente = await business.ValidarUser(acesso);
+
+                return cliente;
             }
             catch (System.Exception ex)
             {

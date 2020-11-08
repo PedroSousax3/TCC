@@ -6,5 +6,6 @@ flex-direction:collumn;
 justify-content:center;
 align-items:center;
 height:60vh;
+text-align:center;
 position:absolute;
 `

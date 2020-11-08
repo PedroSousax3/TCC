@@ -9,10 +9,12 @@ import { Card, Title, Container, ImagemCard } from '../../../components/Card/ind
 
 //Api
 import { listarApi } from '../../../Service/favoritosApi.js'
+import Cookies from 'js-cookie';
 
 export default function EsqueciSenha(){
 
     const [ registros, setRegistros ] = useState([]);
+    //const [idCliente,setIdCliente] = useState(parseInt(Cookies.get('id')));
 
     const listarFavoritos = async (idcliente) => {
         const response = await listarApi(idcliente);

@@ -34,22 +34,22 @@ export default function Logar(e) {
       }
 
       function gerarCookies(response) {
-        Cookies.set('id', response.id, {
-          expires : 1,
-          path : '/',
-        });
         Cookies.set('token', response.token, {
           expires : 1,
-          path : '/',
-        })
+          path : '/'
+        });
+        Cookies.set('id', response.id, {
+          expires : 1,
+          path : '/'
+        });
         Cookies.set('usuario', response.nome, {
           expires : 1,
-          path : '/',
-        })
+          path : '/'
+        });
         Cookies.set('perfil', response.perfil, {
           expires : 1,
-          path : '/',
-        })
+          path : '/'
+        });
       }
 
       function mostrar() {	
@@ -68,57 +68,56 @@ export default function Logar(e) {
       }
 
       return (
-          <div id="login">
-                                <Master children={
-                                 <ContainerLogin>
-                                    <LoginCaixa>
-                                        <div className="centro">
-                                            <div className="titulo">
-                                                <label style={{margin: "15px 5px"}}>ENTRAR</label>
-                                            </div>
-                                              <div className="form-group">
-                                                <label>Usuario:</label>
-                                                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="" onChange = {(e) => setUser(e.target.value)}/>
-                                              </div>
-                                              <div className="form-group">
-                                                <label>Senha:</label>
-                                                <div className="input-icone">
-                                                  <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="" onChange = {(e) => setSenha(e.target.value)}/>
-                                                      <i className="icone btn btn-sm fas fa-eye" style={{margin:"auto"}}
-                                                                        onClick={mostrar}
-                                                            ></i>
-                                                </div>
-                                              </div>
-                                              <div className = "Links" style={{margin: "10px 5px"}}>
-                                                    <div className="link">
-                                                      <Link as = "a" to={{pathname:"/EsqueciSenha"}}>
-                                                          Esqueci a Senha &#160;|
-                                                      </Link>
-                                                    </div>
-                                                       
-                                                    <div className="link">
-                                                      <Link as = "a" to={{pathname:"Cadastro"}}>
-                                                      &#160;  Cadastre-se
-                                                      </Link>
-                                                    </div>
-                                              </div>
-                                                  <div className="botao">
-                                                      <button
-                                                        className="btn"
-                                                          onClick={Logar}
-                                                      >
-                                                          Logar
-                                                      </button>
-                                                </div>
-                                        </div>
-                                  </LoginCaixa>
-                                </ContainerLogin>
-                              }/>
-
-                              <ToastContainer />
+        <div id="login">
+          <Master children={
+            <ContainerLogin>
+              <LoginCaixa>
+                  <div className="centro">
+                      <div className="titulo">
+                          <label style={{margin: "15px 5px"}}>ENTRAR</label>
                       </div>
-                  );
-            }
+                        <div className="form-group">
+                          <label>Usuario:</label>
+                          <input type="text" className="form-control" id="formGroupExampleInput" placeholder="" onChange = {(e) => setUser(e.target.value)}/>
+                        </div>
+                        <div className="form-group">
+                          <label>Senha:</label>
+                          <div className="input-icone">
+                            <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="" onChange = {(e) => setSenha(e.target.value)}/>
+                                <i className="icone btn btn-sm fas fa-eye" style={{margin:"auto"}}
+                                                  onClick={mostrar}
+                                      ></i>
+                          </div>
+                        </div>
+                        <div className = "Links" style={{margin: "10px 5px"}}>
+                              <div className="link">
+                                <Link as = "a" to={{pathname:"/EsqueciSenha"}}>
+                                    Esqueci a Senha &#160;|
+                                </Link>
+                              </div>
+                                  
+                              <div className="link">
+                                <Link as = "a" to={{pathname:"Cadastro"}}>
+                                &#160;  Cadastre-se
+                                </Link>
+                              </div>
+                        </div>
+                            <div className="botao">
+                                <button
+                                  className="btn"
+                                    onClick={Logar}
+                                >
+                                    Logar
+                                </button>
+                          </div>
+                  </div>
+            </LoginCaixa>
+          </ContainerLogin>
+        }/>
+        <ToastContainer />
+    </div>
+  );
+}
                             
                                 
                                 

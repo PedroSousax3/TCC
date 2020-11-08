@@ -60,7 +60,7 @@ export const BoxContainer = styled.div`
             }
 
     #itemgenerico {
-        justify-content: space-between;
+        justify-content: center;
         padding-left: 5px;
     }
 

@@ -37,28 +37,22 @@ namespace api.Business.Acesso
                 return login;      
         }
         
-        public async Task<Models.TbLogin> ValidarUser(Models.Response.AcessoResponse acesso)
+        public async Task<Models.TbCliente> ValidarUser(Models.Response.AcessoResponse acesso)
         {
             Models.TbLogin login = await database.ConsultarPerfil(acesso.nome, acesso.perfil);
 
             string descript = LerToken(login, acesso.token);
-            string [] dados = descript.Split("#$|#$");
+            string [] dados = descript.Split("$|$").ToArray();
 
-            if(dados[1] == login.NmUsuario && System.Convert.ToInt32(dados[2]) == login.IdLogin)
+            if(dados[1] == login.NmUsuario && System.Convert.ToInt32(dados[2]) == login.IdLogin && dados[3] == "Next-Gen-Books" && login.TbCliente != null)
             {
-                int idpessoa = login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin) == null 
-                                                                                                    ? 
-                                                                                                        login.TbFuncionario.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdFuncionario
-                                                                                                    : 
-                                                                                                        login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdCliente;
-
-                if(System.Convert.ToInt32(dados[0]) != idpessoa)
-                    return null;
+                if(login.TbCliente.FirstOrDefault(x => x.IdLogin == Convert.ToInt32(dados[0])).IdCliente == Convert.ToInt32(dados[0]))
+                    return login.TbCliente.First();
                 else 
-                    return login;
+                    return null;
             }   
             else 
-                throw new System.ArgumentException("Usuario invalido.");
+                return null;
         }
     }
 }

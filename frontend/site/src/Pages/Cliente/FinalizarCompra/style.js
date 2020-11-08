@@ -7,7 +7,6 @@ display: flex;
 text-align: center;
 flex-direction: column;
 justify-content:center;
-align-items:center;
 padding-left:20px;
 padding-right:40px;
 padding-bottom:1%;

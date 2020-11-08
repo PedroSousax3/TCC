@@ -6,11 +6,13 @@ import Botoes from "../MinhasCompras/components/Botoes/Botoes.js"
 import {ContainerMinhasCompras} from "./style.js";
 import {Pesquisa} from "./style.js";
 import nextgenBooks from "../../../Service/NextGenBookApi";
+import Cookies from 'js-cookie';
 
 let api = new nextgenBooks();
 export default function MinhasCompras(){
     const [registros,setRegistros] = useState([]);
     const [valor,setValor] = useState();
+    //const [cliente,setCliente] = useState(parseInt(Cookies.get('id')));
     
     const listarAndamento = async () =>{
         try{
@@ -102,61 +104,4 @@ export default function MinhasCompras(){
            </Master>
        </div>
     );
-}                    
-
-
-/*</div><div className="botoes">
-                    <div className="btn-group" role="group" aria-label="Exemplo básico">
-                        <button type="button" className="btn btn-secondary" onClick={listarPendentes}>Pendentes</button>
-                        <button type="button" className="btn btn-secondary"onClick={listarAndamento}>Em Andamento</button>
-                        <button type="button" className="btn btn-secondary"onClick={listarFinalizadas}>Finalizadas</button>
-                    </div>
-                    </div>
-                    <CaixaMinhasCompras>
-                         <div style={{width:"100%",textDecoration:"none"}}>
-                         {registros.map(x => 
-                                <li style={{width:"100%"}} key= {x.id}><CompraContainer>
-
-                                        <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-                                        <div class="carousel-inner">
-                                           
-
-                                        {x.vendaLivro.map(y => <div className="carousel-item" key={y.id}>
-                                            <div className="card" style={{display:"flex"}}>
-                                            
-                                            <div className="card-header" >{y.livroInfo.nome}</div>
-                                            <div>
-                                            <img src="..." alt="..." className="img-thumbnail" 
-                                                    style={{maxWidth:"50%",minWidth:"45%"}} 
-                                                    >
-                                                    </img>
-                                            <div className="card-body">
-                                                <h5 className="card-title">{y.livroInfo.idioma}</h5>
-                                                <p className="card-text">{y.livroInfo.paginas}</p>
-                                                <p className="card-text">{y.livroInfo.compra}</p>
-                                            </div>
-                                            </div>
-                                          </div>
-                                         </div>
-                                            )}
-                                        
-                                        </div>
-                                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                        </div>
-
-                                        <Botoes
-                                        IdVendaLivro = {x.vendaLivro.id}
-                                        IdVendaStatus = {x.status.id}
-                                        />
-                                </CompraContainer></li>
-                                    )}
-                          </div>
-                    </CaixaMinhasCompras>*/
-               
+}                                   

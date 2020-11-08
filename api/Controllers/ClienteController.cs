@@ -10,7 +10,7 @@ namespace api.Controllers
     [Route("[Controller]")]
     public class ClienteController:ControllerBase
     {
-        Business.GerenciadorFoto gerenciadorFoto = new Business.GerenciadorFoto();
+        Business.GerenciadorFile gerenciadorFoto = new Business.GerenciadorFile();
         Business.EnviarEmailBusiness gerenciadorEmail = new Business.EnviarEmailBusiness();
         Business.ClienteBusiness business = new Business.ClienteBusiness();
         Utils.ClienteConversor conversor = new Utils.ClienteConversor(); 
@@ -25,7 +25,7 @@ namespace api.Controllers
                 tabela.DsFoto = gerenciadorFoto.GerarNovoNome(request.foto.FileName);
                 //Dalva no Banco de dados e o arquivo
                 Models.TbCliente cliente = await business.CadastrarCliente(tabela);
-                gerenciadorFoto.SalvarFoto(tabela.DsFoto, request.foto);
+                gerenciadorFoto.SalvarFile(tabela.DsFoto, request.foto);
                 //Envia o e-mail
                 string corpo = $"<div><h2>Bem vindo {cliente.NmCliente} a Next Gen Books!</h2><div> <div><p>Aqui você poderá encontrar a maior variedade de livros para que já viu, para todos os tipos de leitores<p><div><div><a href=`3.87.226.24:3000`>Acesse o nosso site</a></div>";
                 gerenciadorEmail.EnvioEmail(cliente.DsEmail, "Bem Vindo " +  cliente.NmCliente + " a Next Gen Books!!!", corpo);
@@ -34,7 +34,7 @@ namespace api.Controllers
                 Utils.Conversor.AcessoConversor acessoConversor = new Utils.Conversor.AcessoConversor();
                 string token = gerartoken.GerarToken(cliente.IdLoginNavigation,cliente.IdCliente);
 
-                return acessoConversor.Conversor(cliente.IdLoginNavigation, token);
+                return acessoConversor.Conversor(cliente.IdLoginNavigation.NmUsuario, token, cliente.IdCliente, "cliente");
             }
             catch (System.Exception ex)
             {
@@ -54,7 +54,7 @@ namespace api.Controllers
                 tabela.DsFoto = gerenciadorFoto.GerarNovoNome(request.foto.FileName);
                 
                 tabela = await business.AlterarCliente(idcliente,tabela);
-                gerenciadorFoto.SalvarFoto(tabela.DsFoto, request.foto);
+                gerenciadorFoto.SalvarFile(tabela.DsFoto, request.foto);
                 return conversor.ParaResponseCliente(tabela);
           }
           catch (System.Exception ex)
@@ -64,12 +64,18 @@ namespace api.Controllers
           }   
         }
 
+        [HttpGet("id")]
+        public async Task<Models.Response.ClienteResponse> ConsultarCliente (int id){
+            Models.TbCliente cliente = await business.ValidarConsultaPorId(id);
+            return conversor.ParaResponseCliente(cliente);
+        }
+
         [HttpGet("foto/{nome}")]
         public ActionResult ConsultarArquivoPorNomeController(string nome)
         {
             try
             {
-                byte[] arquivo = gerenciadorFoto.LerFoto(nome);
+                byte[] arquivo = gerenciadorFoto.LerFile(nome);
                 string extensao = gerenciadorFoto.GerarContentType(nome);
                 return File(arquivo, extensao);
             }

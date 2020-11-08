@@ -2,48 +2,54 @@ import React,{useState,useEffect} from "react";
 import Master from "../../Master"
 import {CaixaFinalizarCompra} from "./style.js";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
+import { ToastContainer, toast } from "react-toastify";
+import Cookies from 'js-cookie';
 
 const api = new nextGenBookAPI();
 export default function FinalizarCompra(props){
-    //const [registros,setRegistros] = useState([...props.location.state]);
-    const [registros,setRegistros] = useState([]);
-    const [idCliente,setIdCliente] = useState(1);
+    const [registros,setRegistros] = useState([...props.location.state]);
+   // const idCliente = Cookies.get('id');
+   // console.log(idCliente);
+    console.log(registros);
     const [enderecoId,setEnderecoId] = useState();
     const [enderecoEscolhido,setEnderecoEscolhido] = useState("");
     const [listaDeEndereco,setListaDeEndereco] = useState([]);
     const [tipoDePagamento,setTipoPagamento] = useState("");
     const [numeroParcela,setNumeroParcela] = useState(0);
-    const [valorPorParcela,setValorPorParcela] = useState(0);
+    const [valorPorParcela,setValorPorParcela] = useState(1);
     const [valorfrete, setValorFrete] = useState(0);
-    const [livros,setLivros] = useState([]);
+    let livros = [];
     const [valorlivros,setValorLivros] = useState(0);
     const [totalcompra,setTotalCompra] = useState(0);
 
 
     const listarEndereco = async () =>{
-        let resp = await api.listarEndereco(idCliente);
+        let resp = await api.listarEndereco(1);
         setListaDeEndereco([...resp]);
+        console.log("endereco"+listaDeEndereco);
     }
       function PegarIdEndereco(){
-         let resp = listaDeEndereco.filter(x =>x.nome === enderecoEscolhido);
-         return resp[0].id;
+         let resp = listaDeEndereco.find(x =>x.nome === enderecoEscolhido);
+         
+         return resp.id;
       }
-      function PegarCepDestino(){
-          let resp = listaDeEndereco.pop(x =>x.id === PegarIdEndereco());
-          return resp[0].cep;
-          console.log(resp[0]);
-       }
-       const calcularFrete = () =>{
-           registros.map(x =>{
-            setValorFrete(valorfrete += 10);
-           })
-       }
 
+let result=0;
+let valor =[];
     const calcular = () =>{
-        registros.map(x => {
-            setValorLivros((x.qtd+1 * x.informacoes.venda) + valorlivros);
-            setTotalCompra(totalcompra+valorfrete);
-        });
+       for(var x of registros){
+
+           valor.push( x.qtd * x.informacoes.venda);
+           }
+       
+           for(var y of valor)
+           {
+               result +=y;
+           }
+        setValorLivros(result);
+        setValorFrete(registros.length);
+        setTotalCompra(result+registros.length);
+
         }
        
     const realizarCompra = async () =>{
@@ -56,26 +62,32 @@ export default function FinalizarCompra(props){
     })
            
 
+       try{
         let request = {
-              idCliente,
-              enderecoId : PegarIdEndereco(),
-              tipoDePagamento,
-              numeroParcela,
-              valorfrete,
-              livros
-        }
-        let resp = await api.realizarVenda(request);
+            idCliente : 1,
+            enderecoId : 1,
+            tipoDePagamento,
+            numeroParcela,
+            valorfrete,
+            livros
+      }
+      let resp = await api.realizarVenda(request);
+      toast.success("Compra realizada com sucesso.");
+       }catch (ex) {
+           toast.error(ex.response.data.erro);
+       }
     }
 
 
-    useEffect(() => {  
-        listarEndereco(registros[0].cliente);
-    }, []);
+ 
 
     useEffect(() => {  
         calcular();
+        listarEndereco(1);
+      
     }, []);
 
+    
     return(
         <div>
             <Master children={
@@ -93,7 +105,7 @@ export default function FinalizarCompra(props){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {registros.map((item) =>
+                               {registros.map((item) =>
                                         <tr className="table-success" key={item.id}>
                                             <th scope="row">{item.informacoes.nome}</th>
                                             <td>R$:{item.informacoes.venda}</td>
@@ -112,7 +124,6 @@ export default function FinalizarCompra(props){
                                     ))}
                                 </select>
                             </div>
-                                <button onClick={calcularFrete()}></button>
                        <div className="form-group">
                                 <label>Metodo De Pagamento:</label>
                                 <select id="tipos" className="form-control" onChange={(x) => setTipoPagamento(x.target.value)}>
@@ -157,6 +168,7 @@ export default function FinalizarCompra(props){
                             </div>
                        </div>
                  </CaixaFinalizarCompra>
+                 <ToastContainer />
                  </div>
             }/>
         </div>

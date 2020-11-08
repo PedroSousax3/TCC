@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
 import logo from '../../Assets/images/logo/logo-pequena.png';
 import { MenuStyled, ConteinerItensMenu } from './style.js';
 
 export default function Menu(props){
+    let perfil = Cookies.get('token') != null || Cookies.get('token') !== undefined || Cookies.get("token") !== "";
     return (
         <div>
             <MenuStyled> 
@@ -25,8 +27,18 @@ export default function Menu(props){
                         <Link to = "/MinhasCompras" className="far fa-handshake"></Link>
                     </li>
                     <li>
-                        <Link to = "/Acesso" className="texto">Perfil</Link>
-                        <Link to = "/Acesso" className="far fa-user-circle"></Link>
+                        {
+                            perfil  ?
+                                        <>
+                                            <Link to = "/Perfil" className="texto">Meu Perfil</Link>
+                                            <Link to = "/Perfil" className="far fa-user-circle"></Link>
+                                        </>
+                                    :
+                                        <>
+                                            <Link to = "/Acesso" className="texto">Acessar</Link>
+                                            <Link to = "/Acesso" className="far fa-user-circle"></Link>
+                                        </>
+                        }
                     </li>
                 </ConteinerItensMenu>
             </MenuStyled>

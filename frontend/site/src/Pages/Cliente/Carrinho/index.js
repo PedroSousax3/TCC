@@ -10,10 +10,13 @@ import Master from '../../Master/index.js';
 
 //Api 
 import { ListarCarrinho, Remover } from '../../../Service/carrinhoApi.js';
+import { BuscarFoto } from '../../../Service/fileApi.js';
 
+import Cookies from 'js-cookie'
 
 export default function Carrinho(props){
     const navegacao = useHistory()
+    //const [id,setId] = useState(parseInt(Cookies.get('id')));
     const [ registros, setRegistros ] = useState([]);
     const [ valorlivros, setValorLivros ] = useState(0);
     const [ valorfrete, setValorFrete ] = useState(0);    
@@ -21,23 +24,25 @@ export default function Carrinho(props){
 
     const RemoverItem = async (id) => {
         await Remover(id);
-        await ConsultarCarrinho(1);
+        await ConsultarCarrinho(id);
     }
+
 
     function SomarCarrinho(){
         registros.forEach(x => {
             setValorLivros(valorlivros + (x.informacoes.venda * x.qtd));
         });
     }
+
+    console.log(Cookies.get())
     
+
     const ConsultarCarrinho = async (id) => {
         const result = await ListarCarrinho(id);
         setRegistros([...result]);
-
-        SomarCarrinho();
+       SomarCarrinho();
         console.log(result)
     }
-
     const Comprar = () => {
         navegacao.push("/FinalizarCompra", registros);
     }
@@ -55,7 +60,7 @@ export default function Carrinho(props){
                             {x.informacoes.nome}
                         </div>
                         <div className="container" Key={x.id}>
-                            <img src="..." alt="..." className="img-thumbnail" />
+                            <img style={{height : "300px", width: "170px"}} src={BuscarFoto(x.informacoes.foto)} alt="..." />
                             <div className="card-body" Key={x.id}>
                                 <h6 className="card-title">Resumo</h6>
                                 <p className="card-text">{x.informacoes.descricao}</p>

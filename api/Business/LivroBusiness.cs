@@ -60,19 +60,9 @@ namespace api.Business
             return await database.ConsultarLivroPorIdUnico(id);
         }
 
-        public async Task<List<Models.TbLivro>> ListarLivroBusiness () 
+        public async Task<List<Models.TbLivro>> ListarLivroBusiness (int posicao) 
         {
-            return await database.ListarLivroCompleto();
-        }
-
-        public async Task<Models.TbLivro> RemoverBusiness(int idlivro)
-        {
-            ValidarId(idlivro);
-            Models.TbLivro livro = await database.RemoverDatabase(idlivro);
-            
-            if(livro == null)
-                throw new ArgumentException("Livro não foi encontrado.");
-            return livro;
+            return await database.ListarLivros(posicao);
         }
     }
 }

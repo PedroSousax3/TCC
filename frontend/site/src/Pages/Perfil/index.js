@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify"
+import { ToastContainer, toast, useToast } from "react-toastify"
 
 
 import { CaixaPerfil } from './style';
@@ -14,11 +14,25 @@ const api = new nextGenBookAPI();
 
 export default function EsqueciSenha(props){
 
+    
     const [infos, setInfos] = useState(props.location.state);
+    const [informacoes, setInformacoes] = useState([]);
+    
 
    
     
+    const consultarPerfil = async () => {
     
+        const response = await api.mostrarPerfil();
+        setInformacoes(response);
+        
+    }
+
+  
+
+    useEffect(() => {
+        consultarPerfil();
+      }, [])
 
     return(
        <Master>
@@ -34,23 +48,21 @@ export default function EsqueciSenha(props){
                                     </div>
                                 </div>
                                 <div className="informacoes" style={{width:"60%", height:"35vh" }} >
-                                    <div style={{marginTop:"10px"}}>NOME: </div>
-                                    <div>IDADE:</div>
-                                    <div>GENERO:</div>
+                                    <div style={{marginTop:"10px"}}>NOME:{informacoes.nome} </div>
+                                    <div>IDADE: {informacoes.idade} </div>
+                                    <div>GENERO: {informacoes.genero} </div>
                                     
                                 </div>
                                 
                                 <div className="botoes" style={{width:"20%", height:"35vh"}}>
                                     <div style={{marginTop:"10px", display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column"}}>
-                                        <button className="btn btn-success" style={{marginTop:"5px"}}>
-                                            <Link to = "/AlterarCliente" className="texto">ALTERAR DADOS DA CONTA</Link>
-                                        </button>
-                                        <button className="btn btn-success" style={{marginTop:"7px"}}>
-                                            <Link to = "/Favoritos" >IR PARA SEUS FAVORITOS</Link>
-                                        </button>
-                                        <button className="btn btn-success" style={{marginTop:"7px"}}>
-                                            <Link to = "/Endereco"> CADASTRAR ENDEREÇO</Link>
-                                        </button>
+
+                                        
+
+                                        <button className="btn btn-success" style={{marginTop:"5px"}}>ALTERAR DADOS DA CONTA</button>
+                                        <button className="btn btn-success" style={{marginTop:"7px"}}>IR PARA SEUS FAVORITOS</button>
+                                        <button className="btn btn-success" style={{marginTop:"7px"}}>CADASTRAR ENDEREÇO</button>
+
                                     </div>
                                 </div>
                             </div>
