@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify"
 import { CaixaPerfil } from './style';
 import Master from '../Master/index.js';
 
-import nextGenBookAPI from "../../../Service/NextGenBookApi";
+import nextGenBookAPI from "../../Service/NextGenBookApi"
 
 
 const api = new nextGenBookAPI();
@@ -16,10 +16,6 @@ export default function EsqueciSenha(props){
 
     const [infos, setInfos] = useState(props.location.state);
 
-    const [nome, setNome] = useState(props.location.state.nome);
-    const [idade, setIdade] = useState(props.location.state.idade);
-    const [genero, setGenero] = useState(props.location.state.genero);
-    const [foto, setFoto] = useState(props.location.state.foto);
    
     
     
@@ -38,7 +34,7 @@ export default function EsqueciSenha(props){
                                     </div>
                                 </div>
                                 <div className="informacoes" style={{width:"60%", height:"35vh" }} >
-                                    <div style={{marginTop:"10px"}}>NOME: {nome} </div>
+                                    <div style={{marginTop:"10px"}}>NOME: </div>
                                     <div>IDADE:</div>
                                     <div>GENERO:</div>
                                     
