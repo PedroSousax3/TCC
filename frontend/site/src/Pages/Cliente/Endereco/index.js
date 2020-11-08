@@ -6,11 +6,13 @@ import {buscarEndereco} from "../../../Service/ApiCorreio";
 import {ContainerBotao} from "./style"
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
 import { ToastContainer, toast } from "react-toastify";
+import Cookies from 'js-cookie';
 
 const api = new nextGenBookAPI();
 export default function CadastrarEndereco(props)
 {
     const [nome,setNome] = useState("");
+   // const [cliente,setCliente] = useState(parseInt(Cookies.get('id')));
     const [endereco,setEndereco] = useState("");
     const [numero,setNumero] = useState();
     const [complemento,setComplemento] = useState("");
@@ -54,7 +56,7 @@ export default function CadastrarEndereco(props)
         try
         {
             let request = {
-                cliente: 1,
+                cliente:1,
                 nome,
                 endereco,
                 numero,

@@ -27,13 +27,13 @@ export default function Botoes(props){
           <BotaoContainer>
             {condicao === "Cancelar" &&
                <CancelarCompraConfirmar
-                 condicao = {condicaoCancelar}
+                 condicao = {true}
                  IdVendaStatus = {idVendaStatus}
                />
             }
               {condicao === "Devolucao" &&
                 <DevolverCompra
-                 condicao = {condicaoCancelar}
+                 condicao = {true}
                  IdDevolucao = {idVendaLivro}
                  valor = {valor}
                 />

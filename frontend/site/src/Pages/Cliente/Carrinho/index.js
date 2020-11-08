@@ -9,10 +9,11 @@ import Master from '../../Master/index.js';
 
 //Api 
 import { ListarCarrinho, Remover } from '../../../Service/carrinhoApi.js';
-
+import Cookies from 'js-cookie';
 
 export default function Carrinho(props){
     const navegacao = useHistory()
+    //const [id,setId] = useState(parseInt(Cookies.get('id')));
     const [ registros, setRegistros ] = useState([]);
     const [ valorlivros, setValorLivros ] = useState(0);
     const [ valorfrete, setValorFrete ] = useState(0);    
@@ -20,20 +21,27 @@ export default function Carrinho(props){
 
     const RemoverItem = async (id) => {
         await Remover(id);
-        await ConsultarCarrinho(1);
+        await ConsultarCarrinho(id);
     }
-    
+ 
+let resultado=0;
+let valor =[];
     const ConsultarCarrinho = async (id) => {
 
         const result = await ListarCarrinho(id);
         setRegistros([...result]);
         console.log(result);
-        result.map(x => {
-            setValorLivros(((x.qtd * x.informacoes.venda) + valorlivros));
-            setTotalCompra(x.informacoes.totalcompra + x.informacoes.valorlivros);
-        });
+        for(var x of result){
 
-        setTotalCompra(valorlivros + valorfrete);
+            valor.push( x.qtd * x.informacoes.venda);
+            }
+        
+            for(var y of valor)
+            {
+                resultado +=y;
+            }
+        setValorLivros(resultado);
+        setTotalCompra(resultado + valorfrete);
     };
     const Comprar = () => {
         navegacao.push("/FinalizarCompra", registros);
