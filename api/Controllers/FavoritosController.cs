@@ -41,7 +41,7 @@ namespace api.Controllers
             }
         }
 
-        [HttpDelete()]
+        [HttpDelete]
         public async Task<ActionResult> RemoverFavorito(int idfavorito)
         {
             try
