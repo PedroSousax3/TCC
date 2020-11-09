@@ -13,13 +13,12 @@ namespace api.Utils
             tabela.NmCliente = request.nome;
             tabela.DsCelular =  request.celular;
             tabela.TpGenero = request.genero;
-
+            tabela.DtNascimento = request.Nascimento;
             //Login
             Models.TbLogin login = new Models.TbLogin();
             login.NmUsuario = request.usuario;
             login.DsSenha = request.senha;
             login.DtUltimoLogin = DateTime.Now;
-
             tabela.IdLoginNavigation = login;
 
             return tabela;

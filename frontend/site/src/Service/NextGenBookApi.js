@@ -31,6 +31,7 @@ export default class NextGenBookApi{
         formData.append('celular', req.celular);
         formData.append('foto', req.foto);
         formData.append('genero', req.genero);
+        formData.append('nascimento', req.nascimento)
 
         const resp = await api.post('/Cliente' , formData, {
             headers: { 'content-type': 'multipart/form-data' }

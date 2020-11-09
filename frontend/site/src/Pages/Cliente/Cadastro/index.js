@@ -33,6 +33,7 @@ export default function Cadastro(props) {
     const [confirmarsenha, setConfirmarSenha] = useState("");
     const [cpf, setCPF] = useState("");
     const [celular, setCelular] = useState("");
+    const [nascimento, setNascimento] = useState(new Date().toISOString().substr(0, 10));
     const [file, setFile] = useState();
 
 
@@ -43,6 +44,7 @@ export default function Cadastro(props) {
 
 
     const salvarClick = async () => {
+        console.log(nascimento);
         try {
             let request = {
                 usuario,
@@ -52,7 +54,8 @@ export default function Cadastro(props) {
                 nome,
                 celular,
                 foto,
-                genero
+                genero,
+                nascimento
             }
             const response = await api.cadastrar(request);
             toast.dark("Cadastro completo " + response.data.Nome);
@@ -131,6 +134,11 @@ export default function Cadastro(props) {
                     <div className="form-group">
                         <label className="Celular">Celular:</label>
                         <input className="form-control" type="text" onChange={(n) => setCelular(n.target.value)} />
+                    </div>
+
+                    <div className="form-group">
+                        <label className="Celular">Data de Nascimento:</label>
+                        <input className="form-control" type="date" value={nascimento} onChange={(n) => setNascimento(new Date(n.target.value).toISOString().substr(0, 10))} />
                     </div>
                 </CaixaInformacoes>
 
