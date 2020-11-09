@@ -128,7 +128,6 @@ export default function MostrarLivro(props) {
                     <button type="button" className="btn btn-carrinho" onClick={inserirCarrinho}>
                         Adicionar ao Carrinho
                     </button>
-                    <button type="button" className="btn btn-comprar">Comprar</button>
                 </BoxContainer>
                 <BoxContainer id="descicao" theme={{ sc_espace: "10px 0px", sc_direction: "column" }}>
 
