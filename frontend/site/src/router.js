@@ -6,7 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import MostrarLivro from './Pages/MostrarLivro/index';
 import HomePage from './Pages/Home/index.js';
 import Login from './Pages/Login/index.js';
-import Perfil from './Pages/Perfil';
+import Perfil from './Pages/Perfil/index.js';
 
 
 //Funcionario 

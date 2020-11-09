@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `db_next_gen_books`.`tb_cliente` (
   `ds_celular` VARCHAR(20) NULL,
   `ds_foto` VARCHAR(150) NULL,
   `tp_genero` VARCHAR(50) NULL,
+  `dt_nascimento` DATETIME NOT NULL,
   PRIMARY KEY (`id_cliente`),
   INDEX `id_login_idx` (`id_login` ASC),
   UNIQUE INDEX `ds_foto_UNIQUE` (`ds_foto` ASC),

@@ -27,22 +27,27 @@ namespace api.Utils
         public Models.TbCliente ParaTabelAlteraCliente(Models.Request.ClienteRequest.Cliente request)
         {
             Models.TbCliente tabela = new Models.TbCliente();
+
             tabela.DsEmail = request.email;
             tabela.NmCliente = request.nome;
             tabela.DsCelular = request.celular;
             tabela.TpGenero = request.genero;
-            
+            tabela.DtNascimento = request.nascimento;
+
             return tabela;
         }
         public Models.Response.ClienteResponse ParaResponseCliente(Models.TbCliente tabela)
         {
             Models.Response.ClienteResponse response = new Models.Response.ClienteResponse();
+
             response.IdCliente = tabela.IdCliente;
             response.Nome = tabela.NmCliente;
             response.Genero = tabela.TpGenero;
             response.Email = tabela.DsEmail;
             response.Celular = tabela.DsCelular;
             response.Foto = tabela.DsFoto;
+            response.Nascimento = tabela.DtNascimento;
+
             return response;
         }
     }

@@ -42,6 +42,13 @@ namespace api.Controllers
                 return new  NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
             }
         }
+
+        [HttpGet("{idlivro}")]
+        public async Task<List<Models.Response.AvaliacaoLivroResponse>> ListarController(int idlivro) 
+        {
+            List<Models.TbAvaliacaoLivro> avaliacao = await business.ListarAvaliacoesBusiness(idlivro);
+            return avaliacao.Select(x => conversor.ConversorResponse(x)).ToList();
+        }
         
     }
 }

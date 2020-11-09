@@ -16,7 +16,7 @@ import Cookies from 'js-cookie'
 
 export default function Carrinho(props){
     const navegacao = useHistory()
-    //const [id,setId] = useState(parseInt(Cookies.get('id')));
+    const [id,setId] = useState(Number(Cookies.get('id')));
     const [ registros, setRegistros ] = useState([]);
     const [ valorlivros, setValorLivros ] = useState(0);
     const [ valorfrete, setValorFrete ] = useState(0);    
@@ -28,19 +28,24 @@ export default function Carrinho(props){
     }
 
 
-    function SomarCarrinho(){
-        registros.forEach(x => {
-            setValorLivros(valorlivros + (x.informacoes.venda * x.qtd));
+    function SomarCarrinho(result){
+        let calc = 0;
+        let contador = 0;
+        result.forEach(x => {
+            let valor = valorlivros;
+            let result = valor + (x.informacoes.venda * x.qtd);
+            calc += result;
+            contador++;
         });
-    }
+        setValorLivros(calc);
+        setTotalCompra(calc + contador);
+        setValorFrete(contador);
+    }    
 
-    console.log(Cookies.get())
-    
-
-    const ConsultarCarrinho = async (id) => {
+    const ConsultarCarrinho = async () => {
         const result = await ListarCarrinho(id);
         setRegistros([...result]);
-       SomarCarrinho();
+        SomarCarrinho(result);
         console.log(result)
     }
     const Comprar = () => {
@@ -48,7 +53,7 @@ export default function Carrinho(props){
     }
 
     useEffect(() => {  
-        ConsultarCarrinho(2);
+        ConsultarCarrinho();
     }, []);
 
     return(

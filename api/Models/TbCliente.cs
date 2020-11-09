@@ -36,6 +36,8 @@ namespace api.Models
         public string DsFoto { get; set; }
         [Column("tp_genero", TypeName = "varchar(50)")]
         public string TpGenero { get; set; }
+        [Column("dt_nascimento", TypeName = "datetime")]
+        public DateTime DtNascimento { get; set; }
 
         [ForeignKey(nameof(IdLogin))]
         [InverseProperty(nameof(TbLogin.TbCliente))]

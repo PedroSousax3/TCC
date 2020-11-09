@@ -14,7 +14,7 @@ import Cookies from 'js-cookie';
 export default function EsqueciSenha(){
 
     const [ registros, setRegistros ] = useState([]);
-    //const [idCliente,setIdCliente] = useState(parseInt(Cookies.get('id')));
+    const [idCliente,setIdCliente] = useState(Number(Cookies.get('id')));
 
     const listarFavoritos = async (idcliente) => {
         const response = await listarApi(idcliente);
@@ -23,7 +23,7 @@ export default function EsqueciSenha(){
     }
 
     useEffect(() => {  
-        listarFavoritos(1);
+        listarFavoritos(idCliente);
     }, []);
 
     return(

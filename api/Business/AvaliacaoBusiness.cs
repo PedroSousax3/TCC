@@ -58,7 +58,7 @@ namespace api.Business
             return avaliacao;
         }
 
-        public async Task<List<Models.TbAvaliacaoLivro>> ListarAvaliacoesDatabase(int idlivro)
+        public async Task<List<Models.TbAvaliacaoLivro>> ListarAvaliacoesBusiness(int idlivro)
         {
             ValidarId(idlivro);
             List<Models.TbAvaliacaoLivro> avaliacao = await database.ListarAvaliacoesDatabase(idlivro);

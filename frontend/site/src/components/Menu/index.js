@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
 import logo from '../../Assets/images/logo/logo-pequena.png';
 import { MenuStyled, ConteinerItensMenu } from './style.js';
 
 export default function Menu(props){
-    let perfil = Cookies.get('token') != null || Cookies.get('token') !== undefined || Cookies.get("token") !== "";
+    const [ perfil, setPerfil ] = useState(false);
+    useEffect(
+        () => setPerfil(Cookies.get('token') !== null && Cookies.get('token') !== undefined && Cookies.get("token") !== ""), []
+    );
     return (
         <div>
             <MenuStyled> 

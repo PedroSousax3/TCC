@@ -12,6 +12,7 @@ import { InserirCarrinhoApi } from '../../Service/carrinhoApi.js';
 import { inserirFavoritoApi } from '../../Service/favoritosApi.js';
 import { ConsultarPorIdLivro } from '../../Service/LivroApi.js';
 import { BuscarFoto } from '../../Service/fileApi.js'
+import { listarAvaliacaoLivroApi } from '../../Service/AvaliacaoLivro.js'
 
 export default function MostrarLivro(props) {
     const [id] = useState(props.location.state.idlivro);
@@ -31,6 +32,7 @@ export default function MostrarLivro(props) {
     const [genero, setGenero] = useState("");
     const [qtd, setQtd] = useState(0);
     const [foto, setFoto] = useState("");
+    const [avaliacoes, setAvaliacoes] = useState([]);
 
 
     function popularLivro(dados) {
@@ -53,9 +55,10 @@ export default function MostrarLivro(props) {
         }
         if (dados.estoque_livro != null && dados.estoque_livro != undefined)
             setQtd(dados.estoque_livro.qtd);
-        if (dados.generos != null && dados.generos != undefined)
+        if (dados.generos != null && dados.generos != undefined && dados.generos.length > 0)
             setGenero(dados.generos.map(x => x.genero + " ").toString());
-        setAutor([...dados.autores]);
+        if (dados.autores != null && dados.autores != undefined && dados.autores.length > 0)
+            setAutor([...dados.autores]);
     }
 
     async function inserirCarrinho() {
@@ -89,6 +92,10 @@ export default function MostrarLivro(props) {
         const response = await ConsultarPorIdLivro(id);
         console.log(response);
         popularLivro(response.data);
+
+        const listAvaliacao = await listarAvaliacaoLivroApi(id);
+        if (listAvaliacao != null && listAvaliacao !== undefined && listAvaliacao.length > 0)
+            setAvaliacoes([...listAvaliacao]);
     }
 
     useEffect(() => {
@@ -100,7 +107,7 @@ export default function MostrarLivro(props) {
             <BoxContainer id="livro" theme={{ sc_border: "3.5px solid #00870D", sc_espace: "80px 80px", sc_padding: "10px", sc_direction: "column" }}>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
-                    <i className="fa fa-star estrela" onClick={inserirFavorito} style={{cursor:"pointer"}}></i>
+                    <i className="fa fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }}></i>
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <BoxContainer id="imagem" theme={{ sc_espace: "10px 0px", sc_direction: "column" }}>
@@ -159,6 +166,22 @@ export default function MostrarLivro(props) {
                         <li>Largura: {largura}</li>
                         <li>Peso: {peso}g</li>
                     </ul>
+                </BoxContainer>
+
+                <BoxContainer id="comentarios" theme={{ sc_direction: "column", sc_espace: "10px 0px" }}>
+                    {
+                        avaliacoes.map(x =>
+                            <div className="coment">
+                                <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
+                                    <h6>Nome do usuario</h6>
+                                    <p>{x.avaliacao}</p>
+                                </div>
+                                <p>
+                                    {x.comentario}
+                                </p>
+                            </div>
+                        )
+                    }
                 </BoxContainer>
             </BoxContainer>
         </Master>

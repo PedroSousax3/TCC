@@ -11,8 +11,9 @@ import Cookies from 'js-cookie';
 const api = new nextGenBookAPI();
 export default function CadastrarEndereco(props)
 {
+    const idCliente = Number(Cookies.get('id'));
+
     const [nome,setNome] = useState("");
-   // const [cliente,setCliente] = useState(parseInt(Cookies.get('id')));
     const [endereco,setEndereco] = useState("");
     const [numero,setNumero] = useState();
     const [complemento,setComplemento] = useState("");
@@ -56,7 +57,7 @@ export default function CadastrarEndereco(props)
         try
         {
             let request = {
-                cliente:2,
+                cliente: idCliente,
                 nome,
                 endereco,
                 numero,

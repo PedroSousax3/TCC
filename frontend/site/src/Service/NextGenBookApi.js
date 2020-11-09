@@ -1,10 +1,7 @@
 import { Email } from '@material-ui/icons';
 import axios from 'axios';
 const api = axios.create(
-
-   //{ baseURL:"http://3.87.226.24:5000" }
-
-    { baseURL:"http://localhost:5000" }
+    { baseURL:"http://3.87.226.24:5000" }
 );
 
 export default class NextGenBookApi{
@@ -120,17 +117,16 @@ export default class NextGenBookApi{
 
     
     async Devolver(req){
-        let formData = new FormData();
-        
-        formData.append('vendalivro', req.vendalivro);
-        formData.append('motivo', req.motivo);
-        formData.append('valor', req.valor);
-        formData.append('codigo_rastreio', req.codigo_rastreio);
-        formData.append('comprovante', req.comprovante);
-        formData.append('previsao_entrega', req.previsao_entrega);
-        
+        let form = new FormData();
 
-        const resp = await api.post('/Devolucao/cadastrar' , formData, {
+        form.append('vendalivro', req.vendalivro);
+        form.append('motivo', req.motivo);
+        form.append('valor', req.valor);
+        form.append('codigo_rastreio', req.codigo_rastreio);
+        form.append('comprovante', req.comprovante);
+        form.append('previsao_entrega', req.previsao_entrega);
+        
+        const resp = await api.post('/Devolucao' , form, {
             headers: { 'content-type': 'multipart/form-data' }
         });
         
@@ -150,12 +146,9 @@ export default class NextGenBookApi{
         return urlFoto;
     }
 
-    async mostrarPerfil(idLogin){
-        console.log(idLogin)
-        const resp = await api.get(`/Perfil/${idLogin}`);
+    async mostrarPerfil(idcliente){
+        const resp = await api.get(`/Cliente/${idcliente}`);
         console.log(resp.data);
         return resp.data;
-    }
-
-    
+    }    
 }

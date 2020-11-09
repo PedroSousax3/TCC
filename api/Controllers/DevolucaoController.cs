@@ -8,14 +8,14 @@ namespace api.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
-    public class DevolucaoController:ControllerBase
+    public class DevolucaoController : ControllerBase
     {
         Utils.Conversor.DevolucaoConversor conversor = new Utils.Conversor.DevolucaoConversor();
         Business.DevolucaoBusiness business = new Business.DevolucaoBusiness();
         Business.VendaLivro devolver = new Business.VendaLivro();
         Business.GerenciadorFile gerenciadorFoto = new Business.GerenciadorFile();
         
-        [HttpPost("cadastrar")]
+        [HttpPost()]
         public async Task<ActionResult<Models.Response.DevolucaoResponse>> CadastrarDevolucao([FromForm] Models.Request.DevolucaoRequest request)
         {
             try

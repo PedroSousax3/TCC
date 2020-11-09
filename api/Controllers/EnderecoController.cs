@@ -47,6 +47,7 @@ namespace api.Controllers
                 );
             }
         }
+        
         [HttpGet("{cliente}")]
         public async Task<List<Models.Response.EnderecoResponse>> ListarEnderecoClienteDatabase(int cliente)
         {

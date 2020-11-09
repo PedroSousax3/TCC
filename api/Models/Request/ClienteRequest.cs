@@ -14,6 +14,7 @@ namespace api.Models.Request
             public string celular { get; set; }
             public IFormFile foto { get; set; }
             public string genero { get; set; }
+            public DateTime Nascimento { get; set; }
         }
 
 
@@ -24,6 +25,7 @@ namespace api.Models.Request
             public string celular { get; set; }
             public IFormFile foto { get; set; }
             public string genero { get; set; }
+            public DateTime nascimento { get; set; }
         }
     }
 }

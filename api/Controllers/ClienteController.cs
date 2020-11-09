@@ -64,7 +64,7 @@ namespace api.Controllers
           }   
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<Models.Response.ClienteResponse> ConsultarCliente (int id){
             Models.TbCliente cliente = await business.ValidarConsultaPorId(id);
             return conversor.ParaResponseCliente(cliente);
