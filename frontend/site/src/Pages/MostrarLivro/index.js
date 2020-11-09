@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 //Master
 import Master from '../Master/index'
 
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 //Components:
 import { BoxContainer } from '../../components/Card/styled.js';
@@ -105,6 +105,7 @@ export default function MostrarLivro(props) {
 
     return (
         <Master>
+            <ToastContainer />
             <BoxContainer id="livro" theme={{ sc_border: "3.5px solid #00870D", sc_espace: "80px 80px", sc_padding: "10px", sc_direction: "column" }}>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>

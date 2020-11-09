@@ -3,7 +3,7 @@ import { Link,useHistory } from "react-router-dom";
 
 //Style
 import { Pesquisa, ConteinerItens } from './style.js';
-
+import { toast, ToastContainer } from "react-toastify";
 
 //Components
 import Master from '../../Master/index.js';
@@ -57,6 +57,7 @@ export default function Carrinho(props){
 
     return(
         <Master>
+            <ToastContainer />
             <ConteinerItens>
                 {registros.map((x) => 
                     <div className="card">

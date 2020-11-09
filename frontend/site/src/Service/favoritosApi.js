@@ -12,3 +12,7 @@ export const listarApi = async (idcliente) => {
 export const inserirFavoritoApi = async (request) => {
     return await api.post('', request);
 }
+
+export const removerFav  = async (id) => {
+    return await api.delete('idfavorito?=' + id);
+}

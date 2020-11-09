@@ -5,10 +5,13 @@ import { BuscarFoto } from '../../../Service/fileApi';
 //Mastes
 import Master from '../../Master/index.js';
 
+import { toast, ToastContainer } from "react-toastify";
+
+
 import { Card, Title, Container, ImagemCard } from '../../../components/Card/index.js'
 
 //Api
-import { listarApi } from '../../../Service/favoritosApi.js'
+import { listarApi, removerFav } from '../../../Service/favoritosApi.js'
 import Cookies from 'js-cookie';
 
 export default function EsqueciSenha(){
@@ -17,9 +20,25 @@ export default function EsqueciSenha(){
     const [idCliente,setIdCliente] = useState(Number(Cookies.get('id')));
 
     const listarFavoritos = async () => {
-        const response = await listarApi(idCliente);
-        setRegistros([...response]);
-        console.log(response);
+        try {
+            const response = await listarApi(idCliente);
+            setRegistros([...response]);
+            console.log(response);       
+        }
+        catch (ex) {
+            toast.error(ex.response.erro)
+        }
+    }
+
+    const remover = async (id) => {
+        try {
+            await removerFav(id);
+            await listarFavoritos();
+            toast.success("Livro removido da lista de favoritos")
+        }
+        catch (ex) {
+            toast.error(ex.response.erro)
+        }
     }
 
     useEffect(() => {  
@@ -28,6 +47,7 @@ export default function EsqueciSenha(){
 
     return(
        <Master>
+           <ToastContainer />
            <Favoritos>
                 <h1>Lista de Favoritos</h1>
                 {registros.map(x =>    
@@ -74,6 +94,8 @@ export default function EsqueciSenha(){
                                             }, 
                                             pathname : "/MostrarLivro"
                                         }}>Ver detalhes</Link>
+
+                                        <button onClick={() => removerFav(x.id)}>Remover Livro</button>
                                     </div>
                             </div>
                         </Container>
