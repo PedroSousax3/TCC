@@ -66,16 +66,6 @@ export default function HomePage () {
         <Master>
             <Home>
                 <ContainerPesquisa>
-                    <div class="form-group" id="dvsearch" style={{margin:"0px"}}>
-                        <input class="form-control" list="genero" placeholder="Genero" />
-                        <datalist id="genero" onChange={(x) => x}>
-                            {
-                                listGeneros.map(x =>
-                                    <option value={x} />
-                                )
-                            }
-                        </datalist>
-                    </div>
                     <div class="form-group" id="dvgenero" onChange={(x) => filtrarNome(x.target.value)} style={{margin:"0px", width: "50vw"}}>
                         <input class="form-control" type="genero" placeholder="Pequisar ..." />
                     </div>
