@@ -95,7 +95,7 @@ export default function EsqueciSenha(){
                                             pathname : "/MostrarLivro"
                                         }}>Ver detalhes</Link>
 
-                                        <button onClick={() => removerFav(x.id)}>Remover Livro</button>
+                                    {/*<button onClick={() => removerFav(x.id)}>Remover Livro</button>*/}
                                     </div>
                             </div>
                         </Container>
