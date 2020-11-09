@@ -47,11 +47,11 @@ export default function Perfil(props) {
                     <div style={{ width: "80%", display: "flex", justifyContent: "flex-start", fontSize: "25px", fontWeight: "bold" }}>
                     </div>
                     <CaixaPerfil>
-                        <div style={{ width: "100%", backgroundColor: "#98F0BB", display: "flex", borderRadius: "10px" }}>
+                        <div style={{backgroundColor: "#98F0BB", display: "flex", borderRadius: "10px" }}>
+                            <div style={{ width: "80%" }}>
+                                <img src={BuscarFoto(informacoes.foto)} alt={`Foto de Perfil de ${informacoes.nome}`} style={{ borderRadius: "100%", height: "150px" }} />
+                            </div>
                             <div className="foto" style={{ width: "20%" }}>
-                                <div style={{ width: "80%" }}>
-                                    <img src={BuscarFoto(informacoes.foto)} alt={`Foto de Perfil de ${informacoes.nome}`} style={{ borderRadius: "300px", height: "300px" }} />
-                                </div>
                             </div>
                             <div className="informacoes" style={{ width: "60%", height: "35vh" }} >
                                 <div style={{ marginTop: "10px" }}>NOME:{informacoes.nome} </div>
@@ -60,12 +60,12 @@ export default function Perfil(props) {
 
                             </div>
 
-                            <div className="botoes" style={{ width: "20%", height: "35vh" }}>
-                                <div style={{ marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
-                                    <Link to="/Alterar-Dados" className="btn btn-success" style={{ marginTop: "5px" }}>ALTERAR DADOS DA CONTA</Link>
-                                    <Link to="/Endereco" className="btn btn-success" style={{ marginTop: "7px" }}>CADASTRAR ENDEREÇO</Link>
-                                    <button className="btn btn-success" style={{ marginTop: "5px" }} onClick={sairPerfil}>Sair</button>
-                                </div>
+                        </div>
+                        <div className="botoes" style={{ height: "35vh" }}>
+                            <div style={{ marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+                                <Link to="/Alterar-Dados" className="btn btn-success" style={{ marginTop: "5px" }}>ALTERAR DADOS DA CONTA</Link>
+                                <Link to="/Endereco" className="btn btn-success" style={{ marginTop: "7px" }}>CADASTRAR ENDEREÇO</Link>
+                                <button className="btn btn-success" style={{ marginTop: "5px" }} onClick={sairPerfil}>Sair</button>
                             </div>
                         </div>
                         <div style={{ width: "100%", height: "50vh", borderRadius: "10px" }}></div>

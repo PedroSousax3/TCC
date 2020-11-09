@@ -53,9 +53,9 @@ export default function MinhasCompras() {
     }
   }
 
-  const CancelarSim = async () => {
+  const CancelarSim = async (idvenda) => {
     try {
-      await api.CancelarCompra(cliente);
+      await api.CancelarCompra(idvenda);
       toast.success("O cancelamento da compra foi solicitado.");
       listarAndamento();
     } catch (e) {
@@ -99,7 +99,7 @@ export default function MinhasCompras() {
               Minhas Compras
                         </label>
             {registros.map(x =>
-              <div style={{ backgroundColor: "#D26E4E", marginTop: "35px" }}>
+              <div style={{ marginTop: "35px" }}>
 
                 {x.vendaLivro.map(y =>
                   <div className="card">
@@ -111,12 +111,15 @@ export default function MinhasCompras() {
                       <p className="card-text">Descrição:{y.livroInfo.descricao}</p>
                       {
                         y.devolvido ? 
-                              <h6 className="card-text" style={{color:"red"}}>Livro Devolvido</h6>
-                              : <></>
+                              <>
+                                <h6 className="card-text" style={{color:"red"}}>Livro Devolvido</h6>
+                                
+                              </>
+                              :
+                              <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#modalExemplo2" >Pedir Devolução</button>
                       }
                     </div>
 
-                    <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#modalExemplo2" >Pedir Devolução</button>
 
                     <div className="modal" id="modalExemplo2" tabindex="-1" role="dialog">
                       <div className="modal-dialog" role="document">

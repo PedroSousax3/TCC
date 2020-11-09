@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
-
+import { BuscarFoto } from '../../../Service/fileApi';
 //Mastes
 import Master from '../../Master/index.js';
 
@@ -16,14 +16,14 @@ export default function EsqueciSenha(){
     const [ registros, setRegistros ] = useState([]);
     const [idCliente,setIdCliente] = useState(Number(Cookies.get('id')));
 
-    const listarFavoritos = async (idcliente) => {
-        const response = await listarApi(idcliente);
+    const listarFavoritos = async () => {
+        const response = await listarApi(idCliente);
         setRegistros([...response]);
         console.log(response);
     }
 
     useEffect(() => {  
-        listarFavoritos(idCliente);
+        listarFavoritos();
     }, []);
 
     return(
@@ -34,7 +34,6 @@ export default function EsqueciSenha(){
                     <Card theme={{bg_color : "#98F0BB"}}>
                         <Title theme={{color: "black", bg_color : "rgba(0, 0, 0, 0.1)"}}>{x.nome}</Title>
                         <Container>
-                            <ImagemCard alt="Capa do Livro" src=""/>
                             <div className="column item">
                                     <div>
                                         <h5>
@@ -67,6 +66,14 @@ export default function EsqueciSenha(){
                                         <p>
                                             {x.qtd}
                                         </p>
+                                    </div>
+                                    <div>
+                                        <Link to = {{
+                                            state : {
+                                                idlivro : x.livro
+                                            }, 
+                                            pathname : "/MostrarLivro"
+                                        }}>Ver detalhes</Link>
                                     </div>
                             </div>
                         </Container>

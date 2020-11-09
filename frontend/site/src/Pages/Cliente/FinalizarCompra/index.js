@@ -21,10 +21,15 @@ export default function FinalizarCompra(props) {
 
     //Pagar varialvel antes de adicionar no useState
     const listarEndereco = async () => {
-        const resp = await api.listarEndereco(idCliente);
-        setListaDeEndereco([...resp]);
-        const itemfirst = resp.find(x => x.id > 0)
-        setEnderecoId(itemfirst.id);
+        try {
+            const resp = await api.listarEndereco(idCliente);
+            setListaDeEndereco([...resp]);
+            const itemfirst = resp.find(x => x.id > 0)
+            setEnderecoId(itemfirst.id);
+        }
+        catch (ex) {
+            toast.error(ex.response.data.erro);
+        }
     }
 
     const calcular = () => {
