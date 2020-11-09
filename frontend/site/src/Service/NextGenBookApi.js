@@ -131,7 +131,7 @@ export default class NextGenBookApi{
             headers: { 'content-type': 'multipart/form-data' }
         });
         
-        return resp.data;
+        return resp;
     }
 
     async CancelarCompra(idvendastatus)

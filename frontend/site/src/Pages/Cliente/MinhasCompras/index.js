@@ -19,7 +19,7 @@ export default function MinhasCompras() {
   const [valor, setValor] = useState(0);
   const [codigo_rastreio, setCodigoRastreio] = useState("123");
   const [comprovante, setComprovante] = useState();
-  const [previsao_entrega, setPrevisao_entrega] = useState(new Date());
+  const [previsao_entrega, setPrevisao_entrega] = useState(new Date().toISOString().substr(0, 10));
 
   const [cliente, setCliente] = useState(Number(Cookies.get('id')));
 
@@ -57,6 +57,7 @@ export default function MinhasCompras() {
     try {
       await api.CancelarCompra(cliente);
       toast.success("O cancelamento da compra foi solicitado.");
+      listarAndamento();
     } catch (e) {
       toast.error(e.response.erro);
     }
@@ -81,8 +82,10 @@ export default function MinhasCompras() {
       console.log(request);
       await api.Devolver(request);
       toast.success("Devolução solicitada.");
+      listarAndamento();
     } catch (e) {
-      toast.error(e.response.erro);
+      console.log(e.response)
+      toast.error(e.response.data.erro);
     }
   }
 
@@ -106,6 +109,11 @@ export default function MinhasCompras() {
                       <img src={BuscarFoto(y.livroInfo.foto)} alt="..." height="300px" />
                       <h6 className="card-title">Nome:{y.livroInfo.nome}</h6>
                       <p className="card-text">Descrição:{y.livroInfo.descricao}</p>
+                      {
+                        y.devolvido ? 
+                              <h6 className="card-text" style={{color:"red"}}>Livro Devolvido</h6>
+                              : <></>
+                      }
                     </div>
 
                     <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#modalExemplo2" >Pedir Devolução</button>
@@ -158,7 +166,6 @@ export default function MinhasCompras() {
                   </div>
                 </div>
                 <div className="btn-group" role="group" aria-label="Exemplo básico" style={{ color: "white" }}>
-                  <button type="button" className="btn btn-primary"><Link to="/">Ver Detalhes</Link></button>
                   <button type="button" className="btn btn-danger" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" >Cancelar Compra</button>
                 </div>
               </div>

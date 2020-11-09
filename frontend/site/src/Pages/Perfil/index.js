@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { ToastContainer, toast, useToast } from "react-toastify"
 import Cookies from 'js-cookie';
 
@@ -17,8 +17,17 @@ const api = new nextGenBookAPI();
 
 
 export default function Perfil(props) {
+    const navegacao = useHistory()
     const [infos, setInfos] = useState(props.location.state);
     const [informacoes, setInformacoes] = useState([]);
+
+    const sairPerfil = () => {
+        Cookies.remove('id');
+        Cookies.remove('token');
+        Cookies.remove('usuario');
+        Cookies.remove('perfil');   
+        navegacao.push("/");
+    }
 
     const consultarPerfil = async () => {
         let response = await api.mostrarPerfil(Number(Cookies.get('id')));
@@ -55,6 +64,7 @@ export default function Perfil(props) {
                                 <div style={{ marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
                                     <Link to="/Alterar-Dados" className="btn btn-success" style={{ marginTop: "5px" }}>ALTERAR DADOS DA CONTA</Link>
                                     <Link to="/Endereco" className="btn btn-success" style={{ marginTop: "7px" }}>CADASTRAR ENDEREÇO</Link>
+                                    <button className="btn btn-success" style={{ marginTop: "5px" }} onClick={sairPerfil}>Sair</button>
                                 </div>
                             </div>
                         </div>

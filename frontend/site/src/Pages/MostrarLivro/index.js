@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 //Components:
 import { BoxContainer } from '../../components/Card/styled.js';
+import Cookies from 'js-cookie'
 
 import { InserirCarrinhoApi } from '../../Service/carrinhoApi.js';
 import { inserirFavoritoApi } from '../../Service/favoritosApi.js';
@@ -17,7 +18,7 @@ import { listarAvaliacaoLivroApi } from '../../Service/AvaliacaoLivro.js'
 export default function MostrarLivro(props) {
     const [id] = useState(props.location.state.idlivro);
     const [nome, setNome] = useState("");
-    const [idcliente, setIdCliente] = useState(1);
+    const [idcliente, setIdCliente] = useState(Number(Cookies.get('id')));
     const [valor, setValor] = useState();
     const [edicao, setEdicao] = useState();
     const [acabamento, setAcabamento] = useState("");

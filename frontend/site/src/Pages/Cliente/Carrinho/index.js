@@ -46,7 +46,6 @@ export default function Carrinho(props){
         const result = await ListarCarrinho(id);
         setRegistros([...result]);
         SomarCarrinho(result);
-        console.log(result)
     }
     const Comprar = () => {
         navegacao.push("/FinalizarCompra", registros);

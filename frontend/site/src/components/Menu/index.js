@@ -17,18 +17,36 @@ export default function Menu(props){
                 </Link>
 
                 <ConteinerItensMenu>
-                    <li>
-                        <Link to = "/Favoritos" className="texto">Favoritos</Link>
-                        <Link to = "/Favoritos" className="fas fa-heart"></Link>
-                    </li>
-                    <li>
-                        <Link to = "/Carrinho" className="texto">Carrinho</Link>
-                        <Link to = "/Carrinho" className="fas fa-shopping-cart"></Link>
-                    </li>
-                    <li>
-                        <Link to = "/MinhasCompras" className="texto">Minhas Compras</Link>
-                        <Link to = "/MinhasCompras" className="far fa-handshake"></Link>
-                    </li>
+                    {
+                        perfil  ?
+                                    <li>
+                                        <Link to = "/Favoritos" className="texto">Favoritos</Link>
+                                        <Link to = "/Favoritos" className="fas fa-heart"></Link>
+                                    </li>
+                                :
+                                    <>
+                                    </>
+                    }
+                     {
+                        perfil  ?
+                                    <li>
+                                        <Link to = "/Carrinho" className="texto">Carrinho</Link>
+                                        <Link to = "/Carrinho" className="fas fa-shopping-cart"></Link>
+                                    </li>
+                                :
+                                    <>
+                                    </>
+                    }
+                     {
+                        perfil  ?
+                                    <li>
+                                        <Link to = "/MinhasCompras" className="texto">Minhas Compras</Link>
+                                        <Link to = "/MinhasCompras" className="far fa-handshake"></Link>
+                                    </li>
+                                :
+                                    <>
+                                    </>
+                    }
                     <li>
                         {
                             perfil  ?

@@ -24,6 +24,7 @@ namespace api.Utils.Conversor
             response.livro = tabela.IdLivro;
             response.qtd = tabela.NrLivros;
             response.valor = tabela.VlVendaLivro;
+            response.devolvido = tabela.BtDevolvido;
             response.livroInfo = conversorLivro.Conversor(tabela.IdLivroNavigation);
 
             return response;

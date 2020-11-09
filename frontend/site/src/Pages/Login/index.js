@@ -34,6 +34,11 @@ export default function Logar(e) {
       }
 
       function gerarCookies(response) {
+        Cookies.remove('id');
+        Cookies.remove('token');
+        Cookies.remove('usuario');
+        Cookies.remove('perfil');  
+        
         Cookies.set('token', response.token, {
           expires : 1,
           path : '/'

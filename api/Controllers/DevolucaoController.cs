@@ -15,7 +15,7 @@ namespace api.Controllers
         Business.VendaLivro devolver = new Business.VendaLivro();
         Business.GerenciadorFile gerenciadorFoto = new Business.GerenciadorFile();
         
-        [HttpPost()]
+        [HttpPost]
         public async Task<ActionResult<Models.Response.DevolucaoResponse>> CadastrarDevolucao([FromForm] Models.Request.DevolucaoRequest request)
         {
             try
