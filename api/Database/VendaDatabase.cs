@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace api.Database
 {
@@ -61,5 +62,17 @@ namespace api.Database
 
             return venda;
         }
+
+        public async Task<List<Models.TbVenda>> ListarVendaPorDia(DateTime dia)
+        {
+            return await db.TbVenda.Where(x =>x.DtVenda.Value.Day == dia.Day)
+                                    .Include(x => x.IdClienteNavigation)
+                                    .Include(x => x.IdEnderecoNavigation)
+                                    .Include(x => x.TbVendaStatus)
+                                    .Include(x => x.TbVendaLivro)
+                                    .ThenInclude(x => x.IdLivroNavigation)
+                                    .ToListAsync();
+                                                     
+        } 
     }
 }

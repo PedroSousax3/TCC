@@ -16,4 +16,8 @@ namespace api.Models.Request
         public sbyte? comfirmacao_entraga { get; set; }
         public string nota_fiscal { get; set; }
     }
+    public class RelatorioPorDiaRequest
+    {
+        public DateTime Dia { get; set; }
+    }
 }

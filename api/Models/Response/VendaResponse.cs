@@ -1,5 +1,6 @@
 using System;
 
+using System.Collections.Generic;
 namespace api.Models.Response
 {
     public class VendaResponse
@@ -17,5 +18,24 @@ namespace api.Models.Response
         public sbyte? comfirmacao_entraga { get; set; }
         public string nota_fiscal { get; set; }
 
+    }
+    public class RelatorioQuantidadeVenda
+    {
+        public string DiaDaVenda { get; set; }
+        public string NomeCliente { get; set; }
+        public decimal? TotalCompra { get; set; }
+        public string Hora { get; set; }
+        public int QtdProdutosDiferentes { get; set; }
+        public int QtdTotalDeProdutos { get; set; }
+        public string EnderecoDeEntrega { get; set; }
+        public List<Livro> Livros {get;set;}
+
+    }
+    public class Livro
+    {
+        public string NomeLivro { get; set; }
+        public int QtdUnitaria {get;set;}
+
+       public decimal ValorUnitario {get;set;}
     }
 }

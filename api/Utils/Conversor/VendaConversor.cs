@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 namespace api.Utils.Conversor
 {
     public class VendaConversor
@@ -36,6 +39,33 @@ namespace api.Utils.Conversor
             response.comfirmacao_entraga = tabela.BtConfirmacaoEntrega;
             response.nota_fiscal = tabela.DsNf;
             response.data_venda = tabela.DtVenda;
+
+            return response;
+        }
+        public Models.Response.RelatorioQuantidadeVenda RelatorioVendaPorDiaResponse(Models.TbVenda tabela)
+        {
+            Models.Response.RelatorioQuantidadeVenda response = new Models.Response.RelatorioQuantidadeVenda();
+            response.DiaDaVenda = tabela.DtVenda.Value.Day + "/" + tabela.DtVenda.Value.Month + "/" + tabela.DtVenda.Value.Year;
+            response.EnderecoDeEntrega = tabela.IdEnderecoNavigation.NmEndereco;
+            response.NomeCliente = tabela.IdClienteNavigation.NmCliente;
+            decimal total = 0;
+            response.Livros = new  List<Models.Response.Livro>();
+            foreach (Models.TbVendaLivro livro in tabela.TbVendaLivro)
+            {
+                        total += (livro.VlVendaLivro * livro.NrLivros); 
+                        response.QtdTotalDeProdutos += livro.NrLivros;
+                response.Livros.Add( new Models.Response.Livro()
+                    {
+                        NomeLivro = livro.IdLivroNavigation.NmLivro,
+                        QtdUnitaria = livro.NrLivros,
+                        ValorUnitario = livro.IdLivroNavigation.VlPrecoVenda
+                    }
+                );
+            }
+
+            response.QtdProdutosDiferentes = tabela.TbVendaLivro.Count;
+            response.TotalCompra = total;
+            response.Hora = tabela.DtVenda.ToString().Substring(10,9);
 
             return response;
         }

@@ -61,5 +61,10 @@ namespace api.Business
                 throw new ArgumentException("Não foi possivel cadastrar essa venda.");
             return venda;
         }
+
+        public async Task<List<Models.TbVenda>> ValidarListarVendaPorDia(DateTime dia)
+        {
+            return await database.ListarVendaPorDia(dia);
+        }
     }
 }

@@ -41,6 +41,25 @@ namespace api.Controllers
                 return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
             }
         }
+
+        [HttpGet("vendadia")]
+        public async Task<ActionResult<List<Models.Response.RelatorioQuantidadeVenda>>> RelatorioVendaPorDia(Models.Request.RelatorioPorDiaRequest request)
+        {
+            try
+            {
+                List<Models.TbVenda> tabela = await  business.ValidarListarVendaPorDia(request.Dia);
+                if(tabela.Count == 0)
+                {
+                    throw new ArgumentException("Não há nenhum registro de vendas na data solicitada");
+                }
+                return tabela.Select(x => conversor.RelatorioVendaPorDiaResponse(x)).ToList();
+            }
+            catch (System.Exception ex)
+            {
+                
+                return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
+            }
+        }
         
     }
 }
