@@ -7,8 +7,8 @@ import { useHistory, Link } from "react-router-dom";
 
 let api = new NextGenBooks();
 export default function VendaPorMes(){
-const [MesInicio, setMesInicio] = useState();
-const [MesFim, setMesFim] = useState();
+const [MesInicio, setMesInicio] = useState(new Date().toISOString().substr(0, 10));
+const [MesFim, setMesFim] = useState(new Date().toISOString().substr(0, 10));
 const [registros,setRegistros] = useState([]);
 
 
@@ -33,9 +33,9 @@ const [registros,setRegistros] = useState([]);
                             <div className="form-group">
                                 <label className="Data">Escolha a Data:</label>
                                 <label className="Data">Inicio:</label>
-                                <input className="form-control" type="date" onChange={(n) => setMesInicio(n.target.value)} />
+                                <input className="form-control" type="date" onChange={(n) => setMesInicio(new Date(n.target.value).toISOString().substr(0, 10))} />
                                 <label className="Data">Fim:</label>
-                                <input className="form-control" type="date" onChange={(n) => setMesFim(n.target.value)} />
+                                <input className="form-control" type="date" onChange={(n) => setMesFim(new Date(n.target.value).toISOString().substr(0, 10))} />
                                 <div className="botao">
                                 <button
                                   className="btn"
@@ -58,7 +58,7 @@ const [registros,setRegistros] = useState([]);
 
                                 <tbody>
                                     {registros.map((item) =>
-                                        <tr className="table-success">
+                                        <tr className="table">
                                             <th scope="row">{item.mes}</th>
                                             <td>{item.qtdVendas}</td>
                                             <td>{item.totalVenda}</td>

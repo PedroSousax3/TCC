@@ -6,6 +6,7 @@ export const ContainerVendaDia = styled.div`
     flex:1;
     height:80vh;
     align-items:center;
+    flex-direction:column;
     display:flex;
     justify-content:center;
       @media screen and (max-width: 600px)
