@@ -156,12 +156,19 @@ export default class NextGenBookApi{
     
     //Relatorios
     async relatorioVendaDia(request){
+        console.log(request)
         const resp = await api.get('/Venda/vendadia',request);
+        console.log(resp.data);
         return resp.data;
     }
 
     async relatorioVendaMes(request){
         const resp = await api.get('/Venda/PorMes',request);
+        return resp.data;
+    }
+
+    async TopCliente(){
+        const resp = await api.get('/Venda/TopClientes');
         return resp.data;
     }
 }

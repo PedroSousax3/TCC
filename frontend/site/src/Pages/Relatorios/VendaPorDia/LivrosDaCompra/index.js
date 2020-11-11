@@ -1,8 +1,8 @@
 import React ,{useState} from 'react';
-import Master from '../../Master/index.js';
+import Master from '../../../Master';
 import {ContainerVendaDia,Containerinput} from '../../style.js';
 import { ToastContainer, toast } from "react-toastify";
-import NextGenBooks from '../../../Service/NextGenBookApi';
+import NextGenBooks from '../../../../Service/NextGenBookApi';
 import { useHistory, Link } from "react-router-dom";
 
 let api = new NextGenBooks();
@@ -26,7 +26,7 @@ const [registros,setRegistros] = useState([...props.location.state]);
 
                                 <tbody>
                                     {registros.livros.map((item) =>
-                                        <tr className="table-success" key={item.nomeLivro}>
+                                        <tr className="table" key={item.nomeLivro}>
                                             <th scope="row">{item.qtdUnitaria}</th>
                                             <td>R$ {item.valorUnitario}</td>
                                         </tr>

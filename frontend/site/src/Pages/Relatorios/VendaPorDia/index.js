@@ -7,7 +7,7 @@ import { useHistory, Link } from "react-router-dom";
 
 let api = new NextGenBooks();
 export default function VendaPorDia() {
-    const [Dia, setDia] = useState();
+    const [Dia, setDia] = useState(new Date().toISOString().substr(0, 10));
     const [registros, setRegistros] = useState([]);
 
 
@@ -18,6 +18,7 @@ export default function VendaPorDia() {
             let request = {
                 Dia
             }
+            console.log(request);
             let resp = await api.relatorioVendaDia(request);
             setRegistros([...resp]);
         } catch (e) {
@@ -30,7 +31,7 @@ export default function VendaPorDia() {
                 <Containerinput>
                     <div className="form-group">
                         <label className="Data">Escolha a data:</label>
-                        <input className="form-control" type="date" onChange={(n) => setDia(new Date(n.target.value))} />
+                        <input className="form-control" type="date" onChange={(n) => setDia(new Date(n.target.value).toISOString().substr(0, 10))} />
                         <div className="botao">
                             <button
                                 className="btn"
@@ -58,7 +59,7 @@ export default function VendaPorDia() {
 
                         <tbody>
                             {registros.map((item) =>
-                                <tr className="table-success" key={item.nomeCliente}>
+                                <tr className="table" key={item.nomeCliente}>
                                     <th scope="row">{item.nomeCliente}</th>
                                     <td>{item.diaDaVenda}</td>
                                     <td>{item.hora}</td>
@@ -78,6 +79,7 @@ export default function VendaPorDia() {
                                         </Link>
                                     </td>
                                 </tr>
+
 
 
 

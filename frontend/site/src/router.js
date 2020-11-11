@@ -21,10 +21,12 @@ import Favoritos from './Pages/Cliente/Favoritos/index'
 import Carrinho from './Pages/Cliente/Carrinho/index';
 import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
 import CadastrarEndereco from './Pages/Cliente/Endereco';
-import AlterarCliente from './Pages/Cliente/AlterarCliente/index.js'
-import  VendaPorDia from './Pages/Relatorios/VendaPorDia/index.js'
-import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/index.js'
-import VendaPorMes from './Pages/Relatorios/VendaPorMes/index.js'
+import AlterarCliente from './Pages/Cliente/AlterarCliente/index.js';
+import  VendaPorDia from './Pages/Relatorios/VendaPorDia/index.js';
+import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/index.js';
+import VendaPorMes from './Pages/Relatorios/VendaPorMes/index.js';
+import TopClientes from './Pages/Relatorios/TopClientes/index.js';
+import MenuRelatorios from './Pages/Relatorios/index.js';
 
 export default function Rotas(){
     return(
@@ -54,6 +56,10 @@ export default function Rotas(){
           <Route path="/VendaDia" component={VendaPorDia}/>
           <Route path="/LivroVenda" component={LivroVendaRelatorio}/>
           <Route path="/VendaMes" component={VendaPorMes}/>
+          <Route path="/TopClientes" component={TopClientes}/>
+          <Route path="/Relatorios" component={MenuRelatorios}/>
+
+
 
 
         </Switch>
