@@ -75,5 +75,23 @@ namespace api.Controllers
             }
         }
         
+
+       [HttpGet("TopClientes")]
+        public async Task<ActionResult<List<Models.Response.RelatorioTop10Clientes>>> ListarTopClientes()
+        {
+            try
+            {
+                List<Models.TbVenda> tabela = await business.ListarTop10Clientes();
+                if(tabela.Count == 0)
+                {
+                    throw new ArgumentException("Não há registros");
+                }
+                return conversor.ParaResponseTopClientes(tabela);
+            }
+            catch (System.Exception ex)
+            {
+                return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
+            }
+        }
     }
 }

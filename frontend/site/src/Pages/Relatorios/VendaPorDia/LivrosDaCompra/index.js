@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 import Master from '../../Master/index.js';
-import {ContainerVendaDia,Containerinput} from '../style.js';
+import {ContainerVendaDia,Containerinput} from '../../style.js';
 import { ToastContainer, toast } from "react-toastify";
 import NextGenBooks from '../../../Service/NextGenBookApi';
 import { useHistory, Link } from "react-router-dom";
@@ -17,9 +17,9 @@ const [registros,setRegistros] = useState([...props.location.state]);
                             <table className="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Cliente</th>
-                                        <th scope="col">Data</th>
-                                        <th scope="col">Hora</th>
+                                        <th scope="col">Nome Do Livro</th>
+                                        <th scope="col">Quantidade</th>
+                                        <th scope="col">Valor</th>
                                         
                                     </tr>
                                 </thead>
@@ -28,19 +28,15 @@ const [registros,setRegistros] = useState([...props.location.state]);
                                     {registros.livros.map((item) =>
                                         <tr className="table-success" key={item.nomeLivro}>
                                             <th scope="row">{item.qtdUnitaria}</th>
-                                            <td>{item.valorUnitario}</td>
+                                            <td>R$ {item.valorUnitario}</td>
                                         </tr>
-                                 
+                                 )}
+                             </tbody>
+                         </table>
 
-
-                                    )}
-                                </tbody>
-                            </table>
-
-                        </div>
-            </ContainerVendaDia>
-            <ToastContainer/>
-        </Master>
-    )
-}
-   
+                     </div>
+         </ContainerVendaDia>
+         <ToastContainer/>
+     </Master>
+ )
+}   

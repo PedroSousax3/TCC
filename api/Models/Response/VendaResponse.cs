@@ -38,6 +38,15 @@ namespace api.Models.Response
         public decimal ValorUnitario {get;set;}
     }
 
+    public class RelatorioTop10Clientes
+    {
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Telefone { get; set; }
+        public int QtdCompras { get; set; }
+        public decimal TotalGasto { get; set; }
+    }
+
     public class VendasPorMesRelatorio
     {
         public string Mes { get; set; }

@@ -110,5 +110,29 @@ namespace api.Utils.Conversor
             return resp;
         }
 
+        public List<Models.Response.RelatorioTop10Clientes> ParaResponseTopClientes(List<Models.TbVenda> tabela)
+        {
+ 
+            List<Models.Response.RelatorioTop10Clientes> relatorioTopClientes = new List<Models.Response.RelatorioTop10Clientes>();
+
+            foreach(Models.TbVenda item in tabela)
+            {
+                Models.Response.RelatorioTop10Clientes topClientes = new Models.Response.RelatorioTop10Clientes();
+
+                topClientes.Email = item.IdClienteNavigation.DsEmail;
+                topClientes.Nome = item.IdClienteNavigation.NmCliente;
+                if(item.IdClienteNavigation.TbVenda.Count == 0) continue;
+                topClientes.QtdCompras = item.IdClienteNavigation.TbVenda.Count;
+                topClientes.Telefone = item.IdEnderecoNavigation.DsCelular;
+                topClientes.TotalGasto = item.TbVendaLivro.Sum(x => x.VlVendaLivro);
+
+                relatorioTopClientes.Add(topClientes);
+            }
+
+            relatorioTopClientes = relatorioTopClientes.OrderByDescending(x => x.TotalGasto).ToList();
+            return relatorioTopClientes.Take(10).ToList();
+        }
+ 
+
     }
 }

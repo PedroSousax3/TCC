@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 import Master from '../../Master/index.js';
-import {ContainerVendaDia,Containerinput} from './style.js';
+import {ContainerVendaDia,Containerinput} from '../style.js';
 import { ToastContainer, toast } from "react-toastify";
 import NextGenBooks from '../../../Service/NextGenBookApi';
 import { useHistory, Link } from "react-router-dom";
@@ -30,7 +30,7 @@ const [registros,setRegistros] = useState([]);
                         <Containerinput>
                             <div className="form-group">
                                 <label className="Data">Escolha a data:</label>
-                                <input className="form-control" type="date" value={nascimento} onChange={(n) => setDia(n.target.value)} />
+                                <input className="form-control" type="date"  onChange={(n) => setDia(n.target.value)} />
                                 <div className="botao">
                                 <button
                                   className="btn"
@@ -71,7 +71,7 @@ const [registros,setRegistros] = useState([]);
                                                         state : {
                                                             item
                                                         }, 
-                                                        pathname : "/Livros"
+                                                        pathname : "/LivroVenda"
                                                     }}
                                                 >
                                                 <button id="btcompra" type="button" className="btn btn-success" >Livros</button>
@@ -90,5 +90,4 @@ const [registros,setRegistros] = useState([]);
             <ToastContainer/>
         </Master>
     )
-}
-                            
+}                   

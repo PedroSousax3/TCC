@@ -71,5 +71,10 @@ namespace api.Business
         {
             return await database.ListarPorMes(mesInicio,mesFim);
         }
+
+        public async Task<List<Models.TbVenda>>  ListarTop10Clientes()
+        {
+            return await database.ListarTop10Clientes();
+        }
     }
 }

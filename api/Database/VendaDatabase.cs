@@ -86,5 +86,13 @@ namespace api.Database
                                                     .ToListAsync();
             return tabela;
         }
+
+        public async Task<List<Models.TbVenda>> ListarTop10Clientes()
+        {
+            return await db.TbVenda.Include(x =>x.IdClienteNavigation)
+                                    .Include(x => x.TbVendaLivro)
+                                    .Include(x => x.IdEnderecoNavigation)
+                                    .ToListAsync();
+        }
     }
 }
