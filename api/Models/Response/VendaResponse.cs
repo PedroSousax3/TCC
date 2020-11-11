@@ -35,7 +35,13 @@ namespace api.Models.Response
     {
         public string NomeLivro { get; set; }
         public int QtdUnitaria {get;set;}
+        public decimal ValorUnitario {get;set;}
+    }
 
-       public decimal ValorUnitario {get;set;}
+    public class VendasPorMesRelatorio
+    {
+        public string Mes { get; set; }
+        public int QtdVendas { get; set; }
+        public decimal? TotalVenda { get; set; }
     }
 }

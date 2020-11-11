@@ -105,7 +105,7 @@ export default function FinalizarCompra(props) {
                                     {registros.map((item) =>
                                         <tr className="table-success" key={item.id}>
                                             <th scope="row">{item.informacoes.nome}</th>
-                                            <td>R$:{item.informacoes.venda}</td>
+                                            <td>R$ {item.informacoes.venda}</td>
                                         </tr>
                                     )}
                                 </tbody>

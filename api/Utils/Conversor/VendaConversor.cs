@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using System;
 namespace api.Utils.Conversor
 {
     public class VendaConversor
@@ -54,7 +55,7 @@ namespace api.Utils.Conversor
             {
                         total += (livro.VlVendaLivro * livro.NrLivros); 
                         response.QtdTotalDeProdutos += livro.NrLivros;
-                response.Livros.Add( new Models.Response.Livro()
+                 response.Livros.Add( new Models.Response.Livro()
                     {
                         NomeLivro = livro.IdLivroNavigation.NmLivro,
                         QtdUnitaria = livro.NrLivros,
@@ -69,5 +70,45 @@ namespace api.Utils.Conversor
 
             return response;
         }
+
+        public List<Models.Response.VendasPorMesRelatorio> ParaResponseRelatorioPorMes(DateTime mesInicio,DateTime mesFim,List<Models.TbVenda> tabela)
+        {
+            List<Models.Response.VendasPorMesRelatorio> resp = new List<Models.Response.VendasPorMesRelatorio>();
+            for(int i = mesInicio.Month; i <= mesFim.Month; i++)
+            {  
+                Models.Response.VendasPorMesRelatorio relatorioResponse = new Models.Response.VendasPorMesRelatorio();
+
+                List<Models.TbVenda> ConsultaMes = tabela.Where(x => x.DtVenda.Value.Month == i).ToList();
+
+                string mes = "";
+                switch (i)
+                {
+                    case 1: mes = "Janeiro"; break;
+                    case 2: mes = "Fevereiro"; break;
+                    case 3: mes = "Março"; break;
+                    case 4: mes = "Abril"; break;
+                    case 5: mes = "Maio"; break;
+                    case 6: mes = "Junho"; break;
+                    case 7: mes = "Julho"; break;
+                    case 8: mes = "Agosto"; break;
+                    case 9: mes = "Setembro"; break;
+                    case 10: mes = "Outubro"; break;
+                    case 11: mes = "Novembro"; break;
+                    case 12: mes = "Dezembro"; break;
+                }
+
+                relatorioResponse.Mes = mes;
+                relatorioResponse.QtdVendas = ConsultaMes.Count;
+                foreach(Models.TbVenda item in ConsultaMes)
+                {
+
+                    relatorioResponse.TotalVenda = item.TbVendaLivro.Sum(x => x.VlVendaLivro);
+                }
+
+                resp.Add(relatorioResponse);  
+            }
+            return resp;
+        }
+
     }
 }

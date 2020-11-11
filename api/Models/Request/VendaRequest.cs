@@ -20,4 +20,10 @@ namespace api.Models.Request
     {
         public DateTime Dia { get; set; }
     }
+
+    public class RelatorioVendasPorMes
+    {
+        public DateTime MesInicio { get; set; }
+        public DateTime MesFim { get; set; }
+    }
 }

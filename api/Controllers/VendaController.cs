@@ -60,6 +60,20 @@ namespace api.Controllers
                 return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
             }
         }
+
+        [HttpGet("PorMes")]
+        public async Task<ActionResult<List<Models.Response.VendasPorMesRelatorio>>> ListarPorMes(Models.Request.RelatorioVendasPorMes request)
+        {
+            try
+            {
+                List<Models.TbVenda> tabela = await business.ValidarListarPorMes(request.MesInicio,request.MesFim);
+                return conversor.ParaResponseRelatorioPorMes(request.MesInicio,request.MesFim,tabela);
+            }
+            catch (System.Exception ex)
+            {
+                return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
+            }
+        }
         
     }
 }

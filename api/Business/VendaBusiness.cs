@@ -66,5 +66,10 @@ namespace api.Business
         {
             return await database.ListarVendaPorDia(dia);
         }
+
+        public async Task<List<Models.TbVenda>> ValidarListarPorMes(DateTime mesInicio,DateTime mesFim)
+        {
+            return await database.ListarPorMes(mesInicio,mesFim);
+        }
     }
 }

@@ -65,14 +65,26 @@ namespace api.Database
 
         public async Task<List<Models.TbVenda>> ListarVendaPorDia(DateTime dia)
         {
-            return await db.TbVenda.Where(x =>x.DtVenda.Value.Day == dia.Day)
-                                    .Include(x => x.IdClienteNavigation)
-                                    .Include(x => x.IdEnderecoNavigation)
-                                    .Include(x => x.TbVendaStatus)
-                                    .Include(x => x.TbVendaLivro)
-                                    .ThenInclude(x => x.IdLivroNavigation)
-                                    .ToListAsync();
+            return await db.TbVenda.Where(x =>x.DtVenda.Value.Day == dia.Day
+                                          && x.DtVenda.Value.Month == dia.Month
+                                          && x.DtVenda.Value.Year == dia.Year)
+                                            .Include(x => x.IdClienteNavigation)
+                                            .Include(x => x.IdEnderecoNavigation)
+                                            .Include(x => x.TbVendaStatus)
+                                            .Include(x => x.TbVendaLivro)
+                                            .ThenInclude(x => x.IdLivroNavigation)
+                                            .ToListAsync();
                                                      
         } 
+
+        public async Task<List<Models.TbVenda>> ListarPorMes(DateTime mesInicio,DateTime mesFim)
+        {
+             List<Models.TbVenda> tabela = await  db.TbVenda
+                                                    .Where(x => x.DtVenda.Value.Month >= mesInicio.Month 
+                                                    && x.DtVenda.Value.Month <= mesFim.Month)
+                                                    .Include(x =>x.TbVendaLivro)
+                                                    .ToListAsync();
+            return tabela;
+        }
     }
 }

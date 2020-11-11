@@ -151,5 +151,10 @@ export default class NextGenBookApi{
         const resp = await api.get(`/Cliente/${idcliente}`);
         console.log(resp.data);
         return resp.data;
-    }    
+    }
+    
+    async relatorioVendaDia(request){
+        const resp = await api.get('/Venda/vendadia',request);
+        return resp.data;
+    }
 }
