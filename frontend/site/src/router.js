@@ -22,7 +22,7 @@ import Carrinho from './Pages/Cliente/Carrinho/index';
 import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
 import CadastrarEndereco from './Pages/Cliente/Endereco';
 import AlterarCliente from './Pages/Cliente/AlterarCliente/index.js';
-import  VendaPorDia from './Pages/Relatorios/VendaPorDia/index.js';
+import VendaPorDia from './Pages/Relatorios/VendaPorDia/index.js';
 import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/index.js';
 import VendaPorMes from './Pages/Relatorios/VendaPorMes/index.js';
 import TopClientes from './Pages/Relatorios/TopClientes/index.js';
