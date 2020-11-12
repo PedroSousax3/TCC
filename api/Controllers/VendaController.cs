@@ -43,11 +43,11 @@ namespace api.Controllers
         }
 
         [HttpGet("vendadia")]
-        public async Task<ActionResult<List<Models.Response.RelatorioQuantidadeVenda>>> RelatorioVendaPorDia(Models.Request.RelatorioPorDiaRequest request)
+        public async Task<ActionResult<List<Models.Response.RelatorioQuantidadeVenda>>> RelatorioVendaPorDia(DateTime dia)
         {
             try
             {
-                List<Models.TbVenda> tabela = await  business.ValidarListarVendaPorDia(request.Dia);
+                List<Models.TbVenda> tabela = await business.ValidarListarVendaPorDia(dia);
                 if(tabela.Count == 0)
                 {
                     throw new ArgumentException("Não há nenhum registro de vendas na data solicitada");

@@ -65,7 +65,7 @@ namespace api.Database
 
         public async Task<List<Models.TbVenda>> ListarVendaPorDia(DateTime dia)
         {
-            return await db.TbVenda.Where(x =>x.DtVenda.Value.Day == dia.Day
+            return await db.TbVenda.Where(x => x.DtVenda.Value.Day == dia.Day
                                           && x.DtVenda.Value.Month == dia.Month
                                           && x.DtVenda.Value.Year == dia.Year)
                                             .Include(x => x.IdClienteNavigation)

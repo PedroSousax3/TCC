@@ -4,9 +4,13 @@ import { CaixaFinalizarCompra } from "./style.js";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
 import { ToastContainer, toast } from "react-toastify";
 import Cookies from 'js-cookie';
+import { useHistory } from 'react-router-dom'
 
 const api = new nextGenBookAPI();
 export default function FinalizarCompra(props) {
+
+    const navegacao = useHistory();
+
     const [registros, setRegistros] = useState([...props.location.state]);
     const idCliente = Number(Cookies.get('id'));
     const [enderecoId, setEnderecoId] = useState();
@@ -68,8 +72,8 @@ export default function FinalizarCompra(props) {
                 valorfrete,
                 livros
             }
-            console.log(request);
             const resp = await api.realizarVenda(request);
+            navegacao.push('/MinhasCompras');
             toast.success("Compra realizada com sucesso.");
         } catch (ex) {
             toast.error(ex.response.data.erro);

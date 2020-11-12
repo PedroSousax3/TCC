@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create(
-    {   baseURL : 'http://localh:5000/Favoritos'  }
+    {   baseURL : 'http://3.87.226.24:5000/Favoritos'  }
 );
 
 export const listarApi = async (idcliente) => {
@@ -10,7 +10,8 @@ export const listarApi = async (idcliente) => {
 }
 
 export const inserirFavoritoApi = async (request) => {
-    return await api.post('', request);
+    const response = await api.post('/', request);
+    return response;
 }
 
 export const removerFav  = async (id) => {

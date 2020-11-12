@@ -18,7 +18,7 @@ import { listarAvaliacaoLivroApi } from '../../Service/AvaliacaoLivro.js'
 export default function MostrarLivro(props) {
     const [id] = useState(props.location.state.idlivro);
     const [nome, setNome] = useState("");
-    const [idcliente, setIdCliente] = useState(Number(Cookies.get('id')));
+    const [idcliente] = useState(Number(Cookies.get('id')));
     const [valor, setValor] = useState();
     const [edicao, setEdicao] = useState();
     const [acabamento, setAcabamento] = useState("");
@@ -54,11 +54,11 @@ export default function MostrarLivro(props) {
                 setpeso(dados.livro.medida.peso)
             }
         }
-        if (dados.estoque_livro != null && dados.estoque_livro != undefined)
+        if (dados.estoque_livro != null && dados.estoque_livro !== undefined)
             setQtd(dados.estoque_livro.qtd);
-        if (dados.generos != null && dados.generos != undefined && dados.generos.length > 0)
+        if (dados.generos != null && dados.generos !== undefined && dados.generos.length > 0)
             setGenero(dados.generos.map(x => x.genero + " ").toString());
-        if (dados.autores != null && dados.autores != undefined && dados.autores.length > 0)
+        if (dados.autores != null && dados.autores !== undefined && dados.autores.length > 0)
             setAutor([...dados.autores]);
     }
 
@@ -70,7 +70,6 @@ export default function MostrarLivro(props) {
                 qtd: 1
             }
             await InserirCarrinhoApi(request);
-            MudarEstrela();
             toast.success('Livro foi adicionado ao carrinho com sucesso');
         }
         catch (ex) {
@@ -80,30 +79,35 @@ export default function MostrarLivro(props) {
 
     async function inserirFavorito() {
         try {
-            await inserirFavoritoApi({
-                livro: id,
-                cliente: idcliente
-            });
-            toast.success('Livro foi adicionado a lista de favoritos com sucesso');
+            if (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)) {
+                toast.error("Usúario não encotrado, nescessário a realização de login.");
+            }
+            else {
+                await inserirFavoritoApi({
+                    livro: id,
+                    cliente: idcliente
+                });
+                toast.success('Livro foi adicionado a lista de favoritos com sucesso');
+            }
         } catch (ex) {
-            toast.error(ex.response.data.erro);
+            console.log(ex.response);
         }
     }
-    function MudarEstrela() {		
-        var botao = document.querySelector(".estrela"); 	
 
-        if (botao.classList) {	
-          botao.classList.remove("far fa-star"); 	
-          botao.classList.add("fas fa-star"); 	
-        } else {	
-          botao.classList.remove("fas fa-star"); 	
-          botao.classList.add("far fa-star"); 	
+    function MudarEstrela() {
+        let botao = document.querySelector(".estrela");
+
+        if (botao.classList) {
+            botao.classList.remove("fas fa-star");
+            botao.classList.add("far fa-star");
+        } else {
+            botao.classList.remove("far fa-star");
+            botao.classList.add("fas fa-star");
         }
-      }
+    }
 
     async function Consultar() {
         const response = await ConsultarPorIdLivro(id);
-        console.log(response);
         popularLivro(response.data);
 
         const listAvaliacao = await listarAvaliacaoLivroApi(id);
@@ -121,7 +125,12 @@ export default function MostrarLivro(props) {
             <BoxContainer id="livro" theme={{ sc_border: "3.5px solid #00870D", sc_espace: "80px 80px", sc_padding: "10px", sc_direction: "column" }}>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
-                    <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
+                    {
+                        idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente) ?
+                            <></>
+                            :
+                            <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
+                    }
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <BoxContainer id="imagem" theme={{ sc_espace: "10px 0px", sc_direction: "column" }}>
@@ -137,11 +146,16 @@ export default function MostrarLivro(props) {
                         </div>
                     </BoxContainer>
                 </BoxContainer>
-                <BoxContainer id="acoes" theme={{ sc_espace: "10px 0px" }}>
-                    <button type="button" className="btn btn-carrinho" onClick={inserirCarrinho}>
-                        Adicionar ao Carrinho
-                    </button>
-                </BoxContainer>
+                {
+                    idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente) ?
+                        <></>
+                        :
+                        <BoxContainer id="acoes" theme={{ sc_espace: "10px 0px" }}>
+                            <button type="button" className="btn btn-carrinho" onClick={inserirCarrinho}>
+                                Adicionar ao Carrinho
+                                                                                                            </button>
+                        </BoxContainer>
+                }
                 <BoxContainer id="descicao" theme={{ sc_espace: "10px 0px", sc_direction: "column" }}>
 
                     <div>
