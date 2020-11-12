@@ -6,17 +6,20 @@ import NextGenBooks from '../../../Service/NextGenBookApi.js';
 import { useHistory, Link } from "react-router-dom";
 
 let api = new NextGenBooks();
-export default function VendaPorDia() {
-    const [dia, setDia] = useState();
-    const [registros, setRegistros] = useState([]);
+export default function VendaPorDia(){
+const [Dia, setDia] = useState(new Date().toISOString().substr(0, 10));
+const [registros,setRegistros] = useState([]);
 
 
 
 
     const listar = async () => {
         try {
-            console.log(dia);
-            let resp = await api.relatorioVendaDia(dia);
+            let request = {
+                Dia
+            }
+            console.log(request);
+            let resp = await api.relatorioVendaDia(request);
             setRegistros([...resp]);
         } catch (e) {
             toast.error(e.response.erro);
@@ -25,16 +28,16 @@ export default function VendaPorDia() {
     return (
         <Master>
             <ContainerVendaDia>
-                <Containerinput>
-                    <div className="form-group">
-                        <label className="Data">Escolha a data:</label>
-                        <input className="form-control" type="date" onChange={(n) => setDia(new Date(n.target.value).toJSON())} />
-                        <div className="botao">
-                            <button
-                                className="btn"
-                                onClick={listar}
-                            >
-                                CONSULTAR
+                        <Containerinput>
+                            <div className="form-group">
+                                <label className="Data">Escolha a data:</label>
+                                <input className="form-control" type="date"  onChange={(n) => setDia(new Date(n.target.value).toISOString().substr(0, 10))} />
+                                <div className="botao">
+                                <button
+                                  className="btn"
+                                    onClick={listar}
+                                >
+                                    CONSULTAR
                                 </button>
                         </div>
                     </div>
@@ -54,29 +57,29 @@ export default function VendaPorDia() {
                             </tr>
                         </thead>
 
-                        <tbody>
-                            {registros.map((item) =>
-                                <tr className="table" key={item.nomeCliente}>
-                                    <th scope="row">{item.nomeCliente}</th>
-                                    <td>{item.diaDaVenda}</td>
-                                    <td>{item.hora}</td>
-                                    <td>{item.qtdProdutosDiferentes}</td>
-                                    <td>{item.qtdTotalDeProdutos}</td>
-                                    <td>{item.enderecoDeEntrega}</td>
-                                    <td>
-                                        <Link
-                                            to={{
-                                                state: {
-                                                    item
-                                                },
-                                                pathname: "/LivroVenda"
-                                            }}
-                                        >
-                                            <button id="btcompra" type="button" className="btn btn-success" >Livros</button>
-                                        </Link>
-                                    </td>
-                                </tr>
-
+                                <tbody>
+                                    {registros.map((item) =>
+                                        <tr className="table" key={item.nomeCliente}>
+                                            <th scope="row">{item.nomeCliente}</th>
+                                            <td>{item.diaDaVenda}</td>
+                                            <td>{item.hora}</td>
+                                            <td>{item.qtdProdutosDiferentes}</td>
+                                            <td>{item.qtdTotalDeProdutos}</td>
+                                            <td>{item.enderecoDeEntrega}</td>
+                                            <td>
+                                                <Link 
+                                                    to = {{
+                                                        state : {
+                                                            item
+                                                        }, 
+                                                        pathname : "/LivroVenda"
+                                                    }}
+                                                >
+                                                <button id="btcompra" type="button" className="btn btn-success" >Livros</button>
+                                               </Link>
+                                            </td>
+                                        </tr>
+                                 
 
 
 
