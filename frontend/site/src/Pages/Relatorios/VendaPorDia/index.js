@@ -7,7 +7,7 @@ import { useHistory, Link } from "react-router-dom";
 
 let api = new NextGenBooks();
 export default function VendaPorDia() {
-    const [Dia, setDia] = useState(new Date().toISOString().substr(0, 10));
+    const [dia, setDia] = useState();
     const [registros, setRegistros] = useState([]);
 
 
@@ -15,11 +15,8 @@ export default function VendaPorDia() {
 
     const listar = async () => {
         try {
-            let request = {
-                Dia
-            }
-            console.log(request);
-            let resp = await api.relatorioVendaDia(request);
+            console.log(dia);
+            let resp = await api.relatorioVendaDia(dia);
             setRegistros([...resp]);
         } catch (e) {
             toast.error(e.response.erro);
@@ -31,7 +28,7 @@ export default function VendaPorDia() {
                 <Containerinput>
                     <div className="form-group">
                         <label className="Data">Escolha a data:</label>
-                        <input className="form-control" type="date" onChange={(n) => setDia(new Date(n.target.value).toISOString().substr(0, 10))} />
+                        <input className="form-control" type="date" onChange={(n) => setDia(new Date(n.target.value).toJSON())} />
                         <div className="botao">
                             <button
                                 className="btn"
