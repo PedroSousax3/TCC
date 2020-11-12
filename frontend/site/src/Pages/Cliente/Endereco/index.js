@@ -119,7 +119,7 @@ export default function CadastrarEndereco(props)
                                     <input type="text" className="form-control" placeholder="Complemento"  onChange={(e) => setComplemento(e.target.value)}/>
                                 </div>
                                 <div className="col-4">
-                                    <input type="number" className="form-control" placeholder="Numero"  onChange={(e) => setNumero(e.target.value)}/>
+                                    <input type="number" className="form-control" placeholder="Numero" min="1" onChange={(e) => setNumero(e.target.value)}/>
                                 </div>
                                 <div className="col">
                                     <input type="text" className="form-control" id="inputPassword" placeholder="Descrição"  onChange={(e) => setNome(e.target.value)}/>

@@ -31,7 +31,7 @@ const [registros,setRegistros] = useState([]);
                         <Containerinput>
                             <div className="form-group">
                                 <label className="Data">Escolha a data:</label>
-                                <input className="form-control" type="date"  onChange={(n) => setDia(new Date(n.target.value).toISOString().substr(0, 10))} />
+                                <input className="form-control" type="date"  onChange={(n) => setDia(n.target.value)} />
                                 <div className="botao">
                                 <button
                                   className="btn"

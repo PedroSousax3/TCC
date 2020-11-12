@@ -128,7 +128,7 @@ export default function Cadastro(props) {
 
                     <div className="form-group">
                         <label className="CPF">CPF:</label>
-                        <input className="form-control" type="text" onChange={(n) => setCPF(n.target.value)} />
+                        <input className="form-control" type="text" onChange={(n) => setCPF(n.target.value)} maxLength="11" />
                     </div>
 
                     <div className="form-group">

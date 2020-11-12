@@ -140,24 +140,24 @@ export default function FinalizarCompra(props) {
                                 <div className="form-row">
                                     <input type="text" className="form-control col-4" id="endereco" placeholder="Informe o numero do seu cartao" />
                                     <span className="col">Numero de Parcelas</span>
-                                    <input type="number" className="form-control col-1" onChange={(x) => setNumeroParcela(x.target.value)} />
+                                    <input type="number" className="form-control col-1" onChange={(x) => setNumeroParcela(x.target.value)} min="0" max="10"/>
                                     <span className="col">Valor das Parcelas :
-                                {numeroParcela} x R$ {totalcompra / numeroParcela}
+                                {numeroParcela} x R$ {(totalcompra / numeroParcela).toFixed(2)}
                                     </span>
                                 </div>
                             }
                             <div className="form-row">
                                 <div className="col-4">
                                     <span>Valor Total dos Livros:</span>
-                                    {valorlivros}
+                                    {valorlivros.toFixed(2)}
                                 </div>
                                 <div className="col-4">
                                     <span>Valor Total do Frete:</span>
-                                    {valorfrete}
+                                    {valorfrete.toFixed(2)}
                                 </div>
                                 <div className="col-4">
                                     <span>Valor Total da Compra:</span>
-                                    {totalcompra}
+                                    {totalcompra.toFixed(2)}
                                 </div>
                             </div>
                             <div className="botao">

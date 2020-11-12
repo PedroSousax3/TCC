@@ -70,6 +70,7 @@ export default function MostrarLivro(props) {
                 qtd: 1
             }
             await InserirCarrinhoApi(request);
+            MudarEstrela();
             toast.success('Livro foi adicionado ao carrinho com sucesso');
         }
         catch (ex) {
@@ -85,9 +86,20 @@ export default function MostrarLivro(props) {
             });
             toast.success('Livro foi adicionado a lista de favoritos com sucesso');
         } catch (ex) {
-            toast.error("ex.response.data.erro");
+            toast.error(ex.response.data.erro);
         }
     }
+    function MudarEstrela() {		
+        var botao = document.querySelector(".estrela"); 	
+
+        if (botao.classList) {	
+          botao.classList.remove("far fa-star"); 	
+          botao.classList.add("fas fa-star"); 	
+        } else {	
+          botao.classList.remove("fas fa-star"); 	
+          botao.classList.add("far fa-star"); 	
+        }
+      }
 
     async function Consultar() {
         const response = await ConsultarPorIdLivro(id);
@@ -109,7 +121,7 @@ export default function MostrarLivro(props) {
             <BoxContainer id="livro" theme={{ sc_border: "3.5px solid #00870D", sc_espace: "80px 80px", sc_padding: "10px", sc_direction: "column" }}>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
-                    <i className="fa fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }}></i>
+                    <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <BoxContainer id="imagem" theme={{ sc_espace: "10px 0px", sc_direction: "column" }}>

@@ -87,15 +87,15 @@ export default function Carrinho(props){
                 <div className="container">
                     <div className="form-group">
                         <label>Valor total dos livros: </label>
-                        <span> {valorlivros}</span>
+                        <span> {valorlivros.toFixed(2)}</span>
                     </div>
                     <div className="form-group">
                         <label>Valor do frete: </label>
-                        <span> {48.12} </span>
+                        <span> {valorfrete} </span>
                     </div>
                     <div className="form-group">
                         <label>Total da compra: </label>
-                        <span> {totalcompra} </span>
+                        <span> {totalcompra.toFixed(2)} </span>
                     </div>
                 </div>
 
