@@ -97,7 +97,7 @@ export default function Cadastro(props) {
                     </div>
 
                     <div className="form-group">
-                        <label className="">Email:</label>
+                        <label className="">E-mail:</label>
                         <input className="form-control" type="email" onChange={(n) => setEmail(n.target.value)} />
                     </div>
 

@@ -125,7 +125,7 @@ export default function MinhasCompras() {
                       <div className="modal-dialog" role="document">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <h5 className="modal-title">Deseja Devolver a compra?</h5>
+                            <h5 className="modal-title">Deseja devolver a compra?</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Fechar">
                               <span aria-hidden="true">&times;</span>
                             </button>

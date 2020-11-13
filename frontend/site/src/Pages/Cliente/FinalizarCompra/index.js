@@ -104,7 +104,7 @@ export default function FinalizarCompra(props) {
                                 <thead>
                                     <tr>
                                         <th scope="col">Livro</th>
-                                        <th scope="col">Preço Unitario</th>
+                                        <th scope="col">Preço Unitário</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,7 +120,7 @@ export default function FinalizarCompra(props) {
                         </div>
                         <div className="decisoes">
                             <div className="form-group">
-                                <label>Selecione o endereço:</label>
+                                <label>Selecione um endereço:</label>
                                 <select id="tipos" className="form-control" onChange={(x) => setEnderecoId(x.target.value)}>
                                     {listaDeEndereco.map((item) => (
                                         <option value={item.id}>{item.nome}</option>
@@ -131,7 +131,7 @@ export default function FinalizarCompra(props) {
                                 <label>Metodo De Pagamento:</label>
                                 <select id="tipos" className="form-control" onChange={(x) => setTipoPagamento(x.target.value)}>
                                     <option value="Dinheiro">Dinheiro</option>
-                                    <option value="Credito" >Credito</option>
+                                    <option value="Credito" >Crédito</option>
                                     <option value="Débito">Débito</option>
                                 </select>
                             </div>
@@ -145,7 +145,7 @@ export default function FinalizarCompra(props) {
                             {tipoDePagamento === "Credito" &&
                                 <div className="form-row">
                                     <input type="text" className="form-control col-4" id="endereco" placeholder="Informe o numero do seu cartao" />
-                                    <span className="col">Numero de Parcelas</span>
+                                    <span className="col">Número de Parcelas</span>
                                     <input type="number" className="form-control col-1" onChange={(x) => setNumeroParcela(x.target.value)} min="0" max="10"/>
                                     <span className="col">Valor das Parcelas :
                                 {numeroParcela} x R$ {(totalcompra / numeroParcela).toFixed(2)}

@@ -34,7 +34,7 @@ export default function EsqueciSenha(){
         try {
             await removerFav(id);
             await listarFavoritos();
-            toast.success("Livro removido da lista de favoritos")
+            toast.success("Item removido dos Favoritos")
         }
         catch (ex) {
             toast.error(ex.response.erro)
@@ -57,7 +57,7 @@ export default function EsqueciSenha(){
                             <div className="column item">
                                     <div>
                                         <h5>
-                                            Autors: 
+                                            Autor(a): 
                                         </h5>
                                         <p>
                                             {x.atores}
@@ -81,7 +81,7 @@ export default function EsqueciSenha(){
                                     <div>
                                     </div>
                                         <h5>
-                                            Quantidade Disponivel: 
+                                            Quantidade Disponível: 
                                         </h5>
                                         <p>
                                             {x.qtd}
