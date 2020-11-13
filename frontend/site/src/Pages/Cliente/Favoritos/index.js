@@ -14,95 +14,95 @@ import { Card, Title, Container, ImagemCard } from '../../../components/Card/ind
 import { listarApi, removerFav } from '../../../Service/favoritosApi.js'
 import Cookies from 'js-cookie';
 
-export default function EsqueciSenha(){
+export default function EsqueciSenha() {
 
-    const [ registros, setRegistros ] = useState([]);
-    const [idCliente,setIdCliente] = useState(Number(Cookies.get('id')));
+    const [registros, setRegistros] = useState([]);
+    const [idCliente, setIdCliente] = useState(Number(Cookies.get('id')));
 
     const listarFavoritos = async () => {
         try {
             const response = await listarApi(idCliente);
             setRegistros([...response]);
-            console.log(response);       
+            console.log(response);
         }
         catch (ex) {
             toast.error(ex.response.erro)
         }
     }
 
-    const remover = async (id) => {
+    const removerFavorito = async (id) => {
         try {
             await removerFav(id);
             await listarFavoritos();
-            toast.success("Item removido dos Favoritos")
+            toast.success("Livro removido dos Favoritos")
         }
         catch (ex) {
             toast.error(ex.response.erro)
         }
     }
 
-    useEffect(() => {  
+    useEffect(() => {
         listarFavoritos();
     }, []);
 
-    return(
-       <Master>
-           <ToastContainer />
-           <Favoritos>
+    return (
+        <Master>
+            <ToastContainer />
+            <Favoritos>
                 <h1>Lista de Favoritos</h1>
-                {registros.map(x =>    
-                    <Card theme={{bg_color : "#98F0BB"}}>
-                        <Title theme={{color: "black", bg_color : "rgba(0, 0, 0, 0.1)"}}>{x.nome}</Title>
+                {registros.map(x =>
+                    <Card theme={{ bg_color: "#98F0BB" }}>
+                        <Title theme={{ color: "black", bg_color: "rgba(0, 0, 0, 0.1)" }}>{x.nome}</Title>
                         <Container>
-                            <div className="column item">
-                                    <div>
-                                        <h5>
-                                            Autor(a): 
+                            <div className="column item" ke={x.id}>
+                                <div>
+                                    <h5>
+                                        Autor(a):
                                         </h5>
-                                        <p>
-                                            {x.atores}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Editora: 
+                                    <p>
+                                        {x.atores}
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Editora:
                                         </h5>
-                                        <p>
-                                            {x.editora}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h5>
-                                            Descrição: 
+                                    <p>
+                                        {x.editora}
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5>
+                                        Descrição:
                                         </h5>
-                                        <p>
-                                            {x.descricao}
-                                        </p>
+                                    <p>
+                                        {x.descricao}
+                                    </p>
                                     <div>
                                     </div>
-                                        <h5>
-                                            Quantidade Disponível: 
+                                    <h5>
+                                        Quantidade Disponível:
                                         </h5>
-                                        <p>
-                                            {x.qtd}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <Link to = {{
-                                            state : {
-                                                idlivro : x.livro
-                                            }, 
-                                            pathname : "/MostrarLivro"
-                                        }}>Ver detalhes</Link>
+                                    <p>
+                                        {x.qtd}
+                                    </p>
+                                </div>
+                                <div>
+                                    <Link to={{
+                                        state: {
+                                            idlivro: x.livro
+                                        },
+                                        pathname: "/MostrarLivro"
+                                    }}>Ver detalhes</Link>
 
-                                    {/*<button onClick={() => removerFav(x.id)}>Remover Livro</button>*/}
-                                    </div>
+                                    <button className="btn btn-danger" onClick={() => removerFavorito(x.id)}>Remover Livro</button>
+                                </div>
                             </div>
                         </Container>
                     </Card>
                 )}
-           </Favoritos>
-       </Master>
+            </Favoritos>
+        </Master>
     );
 }
 

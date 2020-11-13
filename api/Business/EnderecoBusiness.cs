@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using api.Models;
@@ -30,7 +31,11 @@ namespace api.Business
         public async Task<List<Models.TbEndereco>> ListarEnderecoClienteDatabase(int cliente)
         {
             ValidarId(cliente);
-            return await business.ListarEnderecoClienteDatabase(cliente);
+            List<Models.TbEndereco> enderecos = await business.ListarEnderecoClienteDatabase(cliente);
+            if(enderecos.Count == 0)
+                throw new ArgumentException("Não há endereços cadastrados.");
+
+            return enderecos;
         }
 
         public async Task<Models.TbEndereco> AlterarEndereco(int idendereco, Models.TbEndereco novo)

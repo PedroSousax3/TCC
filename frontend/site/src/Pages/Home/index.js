@@ -60,7 +60,6 @@ export default function HomePage(e) {
     }
 
     useEffect(() => {
-        listarLivros();
         almentarPosicao();
     }, []);
 

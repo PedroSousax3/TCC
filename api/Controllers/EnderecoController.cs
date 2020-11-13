@@ -49,10 +49,19 @@ namespace api.Controllers
         }
         
         [HttpGet("{cliente}")]
-        public async Task<List<Models.Response.EnderecoResponse>> ListarEnderecoClienteDatabase(int cliente)
+        public async Task<ActionResult<List<Models.Response.EnderecoResponse>>> ListarEnderecoClienteDatabase(int cliente)
         {
-            List<Models.TbEndereco> enderecos = await business.ListarEnderecoClienteDatabase(cliente);
-            return enderecos.Select(x => ConversorEndereco.Conversor(x)).ToList();
+            try 
+            {
+                List<Models.TbEndereco> enderecos = await business.ListarEnderecoClienteDatabase(cliente);
+                return enderecos.Select(x => ConversorEndereco.Conversor(x)).ToList();
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound(
+                    new ErroResponse(404, ex.Message)
+                );
+            }
         }
 
         public async Task<ActionResult<EnderecoResponse>> AlterarEnderecoController(int idendereco, EnderecoRequest novo)

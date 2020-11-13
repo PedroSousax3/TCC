@@ -27,9 +27,15 @@ export default function FinalizarCompra(props) {
     const listarEndereco = async () => {
         try {
             const resp = await api.listarEndereco(idCliente);
-            setListaDeEndereco([...resp]);
-            const itemfirst = resp.find(x => x.id > 0)
-            setEnderecoId(itemfirst.id);
+            if(resp.data == null || resp.data === undefined) {
+                toast.erro("Endereço não encontrados.");
+                navegacao.push('/Perfil');
+            }
+            else {
+                setListaDeEndereco([...resp.data]);
+                const itemfirst = resp.data.find(x => x.id > 0)
+                setEnderecoId(itemfirst.id);
+            }
         }
         catch (ex) {
             toast.error(ex.response.data.erro);

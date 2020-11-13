@@ -1,5 +1,5 @@
-import { Email } from '@material-ui/icons';
 import axios from 'axios';
+
 const api = axios.create(
     { baseURL:"http://localhost:5000" }
 );
@@ -91,7 +91,7 @@ export default class NextGenBookApi{
     async listarEndereco(cliente)
     {
         const resp = await api.get('/Endereco/'+cliente);
-        return resp.data;
+        return resp;
     }
 
     ///

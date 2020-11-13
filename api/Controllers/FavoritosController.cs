@@ -12,6 +12,7 @@ namespace api.Controllers
     {
         Utils.Conversor.FavoritoConversor conversor = new Utils.Conversor.FavoritoConversor();
         Business.FavoritosBusiness business = new Business.FavoritosBusiness();
+        
         [HttpPost]
         public async Task<ActionResult> InserirFavarito(Models.Request.FavoritoRequest request)
         {

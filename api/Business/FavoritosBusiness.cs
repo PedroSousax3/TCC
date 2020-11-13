@@ -21,7 +21,7 @@ namespace api.Business
         {
             ValidarId(idcliente);
             List<Models.TbFavoritos> favoritos = await database.ListarfavoritosPorCliente(idcliente);
-            if(favoritos == null)
+            if(favoritos == null || favoritos.Count <= 0)
                 new ArgumentException("Não foi possivel encontrar os livros da lista de favoritos deste cliente");
             return favoritos;
         }
