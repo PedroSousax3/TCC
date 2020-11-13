@@ -144,13 +144,13 @@ export default function FinalizarCompra(props) {
                             {tipoDePagamento === "Débito" &&
                                 <div className="form-group row" >
                                     <div className="col-sm-10">
-                                        <input type="text" className="form-control" id="endereco" placeholder="Informe o numero do seu cartao" />
+                                        <input type="text" className="form-control" id="endereco" placeholder="Informe o numero do seu cartão" />
                                     </div>
                                 </div>
                             }
                             {tipoDePagamento === "Credito" &&
                                 <div className="form-row">
-                                    <input type="text" className="form-control col-4" id="endereco" placeholder="Informe o numero do seu cartao" />
+                                    <input type="text" className="form-control col-4" id="endereco" placeholder="Informe o numero do seu cartão" />
                                     <span className="col">Número de Parcelas</span>
                                     <input type="number" className="form-control col-1" onChange={(x) => setNumeroParcela(x.target.value)} min="0" max="10"/>
                                     <span className="col">Valor das Parcelas :
