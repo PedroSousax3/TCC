@@ -69,8 +69,6 @@ export default function Carrinho(props){
                             <div className="card-body" Key={x.id}>
                                 <h6 className="card-title">Resumo</h6>
                                 <p className="card-text">{x.informacoes.descricao}</p>
-                                <h6 className="card-title">Autor</h6>
-                                <p className="card-text">{x.autores.nome}</p>
                                 <h6 className="card-title">Editora</h6>
                                 <p className="card-text">{x.informacoes.editora.nome}</p>
                                 <h6 className="card-title">Data de Lancamento</h6>

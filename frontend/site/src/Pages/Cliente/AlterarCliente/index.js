@@ -42,7 +42,7 @@ export default function AlterarCliente() {
                 genero
             }
             const response = await api.alterar(request);
-            toast.dark("Alterar completo " + response.data.Nome);
+            toast.dark("Dados alterados com Sucesso," + response.data.Nome);
             navegacao.push("/Perfil");
         }
         catch(e) {
@@ -52,7 +52,7 @@ export default function AlterarCliente() {
 
     return(
         <Master>
-            <h2>Alterar Dados Cadastrais</h2>
+            <h2>Alterar Dados da Conta</h2>
             <CadastroCaixa>
                 <CaixaInformacoes>
                     <div className="form-group">
@@ -61,7 +61,7 @@ export default function AlterarCliente() {
                     </div>
                     
                     <div className="form-group">
-                        <label className="">Email:</label>
+                        <label className="">E-mail:</label>
                         <input className="form-control" type="email" onChange={(n) => setEmail(n.target.value)}/>
                     </div>
                     
