@@ -25,7 +25,6 @@ export default function Logar(e) {
         senha
       }
 
-<<<<<<< HEAD
       const a = await api.login(request);
       gerarCookies(a.data)
       navegacao.push("/", a.data);
@@ -97,34 +96,6 @@ export default function Logar(e) {
                 <div className="link">
                   <Link as="a" to={{ pathname: "/EsqueciSenha" }}>
                     Esqueci a Senha &#160;|
-=======
-      return (
-        <div id="login">
-          <Master children={
-            <ContainerLogin>
-              <LoginCaixa>
-                  <div className="centro">
-                      <div className="titulo">
-                          <label style={{margin: "15px 5px"}}>ENTRAR</label>
-                      </div>
-                        <div className="form-group">
-                          <label>Usuário:</label>
-                          <input type="text" className="form-control" id="formGroupExampleInput" placeholder="" onChange = {(e) => setUser(e.target.value)}/>
-                        </div>
-                        <div className="form-group">
-                          <label>Senha:</label>
-                          <div className="input-icone">
-                            <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="" onChange = {(e) => setSenha(e.target.value)}/>
-                                <i className="icone btn btn-sm fas fa-eye" style={{margin:"auto"}}
-                                                  onClick={mostrar}
-                                      ></i>
-                          </div>
-                        </div>
-                        <div className = "Links" style={{margin: "10px 5px"}}>
-                              <div className="link">
-                                <Link as = "a" to={{pathname:"/EsqueciSenha"}}>
-                                    Esqueci a Senha &#160;|
->>>>>>> 15be47bbd74e71c7c1fb814c04a8d8fe64928fb8
                                 </Link>
                 </div>
 
