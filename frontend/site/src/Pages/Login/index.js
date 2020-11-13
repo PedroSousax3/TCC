@@ -82,7 +82,7 @@ export default function Logar(e) {
                           <label style={{margin: "15px 5px"}}>ENTRAR</label>
                       </div>
                         <div className="form-group">
-                          <label>Usuario:</label>
+                          <label>Usuário:</label>
                           <input type="text" className="form-control" id="formGroupExampleInput" placeholder="" onChange = {(e) => setUser(e.target.value)}/>
                         </div>
                         <div className="form-group">

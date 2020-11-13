@@ -67,7 +67,7 @@ export default function HomePage() {
             <Home>
                 <ContainerPesquisa>
                     <div class="form-group" id="dvgenero" onChange={(x) => filtrarNome(x.target.value)} style={{ margin: "0px", width: "50vw" }}>
-                        <input class="form-control" type="genero" placeholder="Pequisar ..." />
+                        <input class="form-control" type="genero" placeholder="Pesquisar..." />
                     </div>
                 </ContainerPesquisa>
 
