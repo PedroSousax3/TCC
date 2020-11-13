@@ -57,7 +57,7 @@ export default function AlterarCliente() {
                 <CaixaInformacoes>
                     <div className="form-group">
                         <label className="Nome">Nome completo:</label>
-                        <input className="form-control" type="text" onChange={(n) => setNome(n.target.value)} />
+                        <input className="form-control" type="text"  onChange={(n) => setNome(n.target.value)} />
                     </div>
                     
                     <div className="form-group">
