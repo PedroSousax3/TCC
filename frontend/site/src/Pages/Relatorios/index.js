@@ -8,7 +8,7 @@ export default function MenuRelatorios(){
             <ContainerVendaDia>
                <h1>Relatórios</h1>
                <h6>Aqui você pode acompanhar o crescimento da nossa empresa</h6>
-                   <div style={{display:"flex",flexDirection:"column",fontSize:"35px",marginTop:"10%"}}>
+                   <div style={{display:"flex",flexDirection:"column",fontSize:"25px",marginTop:"10%"}}>
                         <Link to="/VendaDia">
                             Vendas Do Dia
                         </Link>
@@ -17,6 +17,9 @@ export default function MenuRelatorios(){
                         </Link>
                         <Link to="/TopClientes">
                             Top 10 Clientes
+                        </Link>
+                        <Link to="/TopVenda">
+                            Top 10 Vendas
                         </Link>   
                     </div> 
             </ContainerVendaDia>

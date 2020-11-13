@@ -13,7 +13,10 @@ export default function VendaPorDia() {
 
     const listar = async () => {
         try {
-            let resp = await api.relatorioVendaDia(Dia);
+            let request = {
+                Dia
+            }
+            let resp = await api.relatorioVendaDia(request);
             setRegistros([...resp]);
         } catch (e) {
             toast.error(e);
