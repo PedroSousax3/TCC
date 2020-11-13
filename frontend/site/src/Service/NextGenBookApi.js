@@ -156,7 +156,9 @@ export default class NextGenBookApi{
     
     //Relatorios
     async relatorioVendaDia(request){
+
         const resp = await api.get('/Venda/vendadia?'+'Dia='+request.Dia);
+
         return resp.data;
     }
 

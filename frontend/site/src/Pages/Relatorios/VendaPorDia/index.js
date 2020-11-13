@@ -5,26 +5,21 @@ import { ToastContainer, toast } from "react-toastify";
 import NextGenBooks from '../../../Service/NextGenBookApi.js';
 import { useHistory, Link } from "react-router-dom";
 
-let api = new NextGenBooks();
+const api = new NextGenBooks();
+
 export default function VendaPorDia() {
     const [Dia, setDia] = useState(new Date().toISOString().substr(0, 10));
     const [registros, setRegistros] = useState([]);
 
-
-
-
     const listar = async () => {
         try {
-            let request = {
-                Dia
-            }
-            console.log(request);
-            let resp = await api.relatorioVendaDia(request);
+            let resp = await api.relatorioVendaDia(Dia);
             setRegistros([...resp]);
         } catch (e) {
-            toast.error(e.response.erro);
+            toast.error(e);
         }
     }
+
     return (
         <Master>
             <ContainerVendaDia>
@@ -43,6 +38,7 @@ export default function VendaPorDia() {
                                     onClick={listar}
                                 >
                                     CONSULTAR
+
                                 </button>
                         </div>
                     </div>

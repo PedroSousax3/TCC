@@ -8,8 +8,8 @@ export const ContainerPesquisa = styled.div`
     width: 100vw;
     display: flex;
     align-items: center;
+    justify-content: center;
     z-index: 250;
-    justify-content: space-between;
     position: fixed;
     padding: 5px 25px;
 `;
@@ -35,6 +35,9 @@ export const Card = styled.div`
     justify-content: center;
     align-items: center;
 
+    position: relative;
+    width: 240px;
+
     height: auto;
     margin: 5px;
 
@@ -48,11 +51,31 @@ export const Card = styled.div`
     text-decoration: none;
 
     transition: .4s linear;
-    &:hover {
-        padding: 5px;
+
+    & *:hover {
         outline: none;
-        text-decoration: none;
-        opacity: 0.7;
-        color: black;
+    }
+
+    & > .card-titulo {
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .card-image {
+        margin-bottom: auto;
+    }
+
+    .card-focus {
+        transition: linear 0.2s;
+        background-color: black;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        top: 0;
+    }
+
+    .card-focus:hover {
+        opacity: 0.4;
     }
 `; 
