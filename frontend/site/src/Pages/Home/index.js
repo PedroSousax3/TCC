@@ -10,28 +10,29 @@ import { } from '../Cliente/Carrinho/style.js'
 
 import { ListPostFile, BuscarFoto } from '../../Service/fileApi.js';
 
-export default function HomePage() {
-
+export default function HomePage(e) {
     const [registros, setRegistros] = useState([]);
     const [consulta, setConsulta] = useState([]);
-    const [listGeneros, setlistGeneros] = useState([]);
-    const [posicao, setPosicao] = useState(0);
+    const [nome, setNome] = useState("");    
+    const [ qtdPost, setQtdPost ] = useState(0);
+
+    const [inicio, setInicio] = useState(1);
+    const [fim, setFim] = useState(10);
 
     const listarLivros = async () => {
-        const result = await ListPostFile(posicao);
-        setConsulta([...result.data]);
-        setRegistros([...result.data]);
-
-        let Generos = [];
-        result.data.map(x =>
-            x.generos.map(g => {
-                if (Generos.indexOf(g) < 0)
-                    Generos.push(g);
-            })
-        );
-
-        setlistGeneros([...Generos]);
+        const result = await ListPostFile(inicio - 1, fim, nome);
+        setConsulta([...result.data.posteres]);
+        setRegistros([...result.data.posteres]);
+        setQtdPost(result.data.qtd);
+        console.log(inicio, fim);
     }
+
+    function listarPress (event) {
+        if (event.key === 'Enter') {
+            listarLivros();
+        }
+    }
+    
 
     const buscarFoto = async (nome) => {
         const result = await BuscarFoto(nome);
@@ -46,32 +47,33 @@ export default function HomePage() {
         setRegistros(consulta.filter(x => removerAcentos(x.nome).toLowerCase().search(removerAcentos(texto).toLowerCase()) >= 0));
     }
 
-    function filtrarGenero(texto) {
-        setRegistros(consulta.filter(x => removerAcentos(x.nome).toLowerCase().search(removerAcentos(texto).toLowerCase()) >= 0));
-    }
-
     function almentarPosicao() {
-        setPosicao(posicao + 10)
+        setInicio(fim + 1);
+        setFim(fim + 10);
+        listarLivros();
     }
 
     function diminuirPosicao() {
-        setPosicao(posicao - 10)
+        setInicio(inicio - 10);
+        setFim(fim - 10);
+        listarLivros();
     }
 
     useEffect(() => {
         listarLivros();
+        almentarPosicao();
     }, []);
 
     return (
         <Master>
             <Home>
                 <ContainerPesquisa>
-                    <div class="form-group" id="dvgenero" onChange={(x) => filtrarNome(x.target.value)} style={{ margin: "0px", width: "50vw" }}>
-                        <input class="form-control" type="genero" placeholder="Pequisar ..." />
+                    <div className="form-group" id="dvgenero" style={{ margin: "0px", width: "50vw" }}>
+                        <input className="form-control" id="filtro" type="genero" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
                     </div>
                 </ContainerPesquisa>
 
-                <ContainerPreview>
+                <ContainerPreview style = {{justifyContent : "center"}}>
                     {
                         registros.map(x =>
                             <Card className="card-livro" key={x.id} as={Link} to={{
@@ -94,13 +96,25 @@ export default function HomePage() {
                         )
                     }
                 </ContainerPreview>
-                <nav aria-label="Navegação de página exemplo">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+                <nav aria-label="Navegação de página exemplo" style = {{ bottom: "0", position: "relative", marginTop : "35px", display: "flex", justifyContent : "center" }}>
+                    <ul className="pagination">
+                        <li className="page-item">
+                            <button className="page-link"
+                                    onClick={diminuirPosicao}>
+                                Anterior
+                            </button>
+                        </li>
+
+                        <li className="page-item">
+                            {inicio} ................ {qtdPost}
+                        </li>
+
+                        <li className="page-item">
+                            <button className="page-link"
+                                    onClick={almentarPosicao}>
+                                Próximo
+                            </button>
+                        </li>
                     </ul>
                 </nav>
             </Home>
