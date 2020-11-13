@@ -63,7 +63,8 @@ export default function FinalizarCompra(props) {
         })
 
 
-        try {
+        try 
+        {
             let request = {
                 idCliente: idCliente,
                 idendereco: enderecoId,
@@ -75,7 +76,8 @@ export default function FinalizarCompra(props) {
             const resp = await api.realizarVenda(request);
             navegacao.push('/MinhasCompras');
             toast.success("Compra realizada com sucesso.");
-        } catch (ex) {
+        } 
+        catch (ex) {
             toast.error(ex.response.data.erro);
         }
     }

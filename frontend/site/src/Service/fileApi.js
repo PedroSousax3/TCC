@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 const api = axios.create(
-    { baseURL : 'http://3.87.226.24:5000/Arquivo' }
+    { baseURL : 'http://localhost:5000/Arquivo' }
 );
 
-export const ListPostFile = async (posicao) => {
-    const response = await api.get('listar/postes-livros/' + posicao);
+export const ListPostFile = async (inicio, fim, nome) => {
+    const response = await api.get('listar/postes-livros/v2?inicio=' + inicio + "&fim=" + fim + "&nome=" + nome);
     return response;
 }
 
