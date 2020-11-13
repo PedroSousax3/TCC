@@ -171,7 +171,7 @@ export default function MostrarLivro(props) {
                     </div>
                     <div className="style-text-descr finalitem">Valor Unitário: {valor}</div>
 
-                    <h5 style={{ marginTop: "15px", marginBottom: "5px" }}>Sobre o Escritor</h5>
+                    <h5 style={{ marginTop: "15px", marginBottom: "5px" }}>Sobre o Escritor(a):</h5>
                     <div>
                         {autor.map(x =>
                             <div>
