@@ -17,5 +17,11 @@ namespace api.Models.Response
             this.NomeArquivo = nomearquivo;
             this.Generos = generos;
         }
+    }   
+
+    public class PosterCompletoResponse 
+    {
+        public int qtd { get; set; }
+        public List<PosterResponse> posteres { get; set; }
     }
 }
