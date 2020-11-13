@@ -68,8 +68,13 @@ export default function HomePage(e) {
         <Master>
             <Home>
                 <ContainerPesquisa>
+<<<<<<< HEAD
                     <div className="form-group" id="dvgenero" style={{ margin: "0px", width: "50vw" }}>
                         <input className="form-control" id="filtro" type="genero" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
+=======
+                    <div class="form-group" id="dvgenero" onChange={(x) => filtrarNome(x.target.value)} style={{ margin: "0px", width: "50vw" }}>
+                        <input class="form-control" type="genero" placeholder="Pesquisar..." />
+>>>>>>> 15be47bbd74e71c7c1fb814c04a8d8fe64928fb8
                     </div>
                 </ContainerPesquisa>
 

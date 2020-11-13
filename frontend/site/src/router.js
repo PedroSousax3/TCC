@@ -27,6 +27,8 @@ import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/i
 import VendaPorMes from './Pages/Relatorios/VendaPorMes/index.js';
 import TopClientes from './Pages/Relatorios/TopClientes/index.js';
 import MenuRelatorios from './Pages/Relatorios/index.js';
+import TopVenda from './Pages/Relatorios/TopVendas/index.js';
+
 
 export default function Rotas(){
     return(
@@ -58,6 +60,8 @@ export default function Rotas(){
           <Route path="/VendaMes" component={VendaPorMes}/>
           <Route path="/TopClientes" component={TopClientes}/>
           <Route path="/Relatorios" component={MenuRelatorios}/>
+          <Route path="/TopVenda" component={TopVenda}/>
+
 
 
 

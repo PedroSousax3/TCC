@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 //Master
-import Master from '../Master/index'
-
+import Master from '../Master/index';
+import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 
 //Components:
@@ -122,7 +122,13 @@ export default function MostrarLivro(props) {
     return (
         <Master>
             <ToastContainer />
+            
             <BoxContainer id="livro" theme={{ sc_border: "3.5px solid #00870D", sc_espace: "80px 80px", sc_padding: "10px", sc_direction: "column" }}>
+            <Link to="/" >
+                <button type="button" class="btn btn-info">
+                    Voltar para menu
+                </button>
+            </Link>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
                     {
@@ -161,9 +167,9 @@ export default function MostrarLivro(props) {
                     <div>
                         <div className="style-text-descr">Editora: {editora}</div>
                         <div className="style-text-descr">Autor: {autor.map(x => x.nome).toString()}</div>
-                        <div className="style-text-descr">Generos: {genero}</div>
+                        <div className="style-text-descr">Gêneros: {genero}</div>
                     </div>
-                    <div className="style-text-descr finalitem">Valor Unitario: {valor}</div>
+                    <div className="style-text-descr finalitem">Valor Unitário: {valor}</div>
 
                     <h5 style={{ marginTop: "15px", marginBottom: "5px" }}>Sobre o Escritor</h5>
                     <div>
@@ -182,7 +188,7 @@ export default function MostrarLivro(props) {
                 <h5 style={{ marginTop: "15px", marginBottom: "5px" }}>Informações do Livro</h5>
                 <BoxContainer id="informacoes" theme={{ sc_espace: "10px 0px" }}>
                     <ul>
-                        <li>Número de paginas: {paginas}</li>
+                        <li>Número de páginas: {paginas}</li>
                         <li>Edição: {edicao}º</li>
                         <li>Tipo de Acabamento: {acabamento}</li>
                         <li>ISBN: 123456789</li>

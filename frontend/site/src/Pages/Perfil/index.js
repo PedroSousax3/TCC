@@ -56,7 +56,7 @@ export default function Perfil(props) {
                             <div className="informacoes" style={{ width: "60%", height: "35vh" }} >
                                 <div style={{ marginTop: "10px" }}>NOME:{informacoes.nome} </div>
                                 <div>DATA NASCIMENTO: {informacoes.nascimento} </div>
-                                <div>GENERO: {informacoes.genero} </div>
+                                <div>GÊNERO: {informacoes.genero} </div>
 
                             </div>
 

@@ -66,7 +66,7 @@ export default function AlterarCliente() {
                     </div>
                     
                     <div className="form-group">
-                        <label>Genero:</label>
+                        <label>Gênero:</label>
                         <input className="form-control" onChange={(x) => setGenero(x.target.value)} list="generos" name="genero" id="genero" />
                         <datalist id="generos">
                             <option value="Masculino"  />
@@ -94,7 +94,7 @@ export default function AlterarCliente() {
                         <img src={file} alt="" id="preview"></img>
                     </div>
                     <div className="button1">
-                        <button type="button" className="btn btn-success" onClick={salvarClick} >Confirmar Alterar</button>
+                        <button type="button" className="btn btn-success" onClick={salvarClick} >Confirmar Alteração</button>
                     </div>
                 </CaixaImage>              
             </CadastroCaixa>
