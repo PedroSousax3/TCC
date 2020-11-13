@@ -43,6 +43,24 @@ namespace api.Controllers
                 return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
             }
         }
+
+        [HttpGet("TopVendas")]
+        public async Task<ActionResult<List<Models.Response.Top10Vendas>>> ListarVendas()
+        {
+            try
+            {
+                List<Models.TbVendaLivro> tabela = await business.ListarTop10Vendas();
+                if(tabela.Count == 0)
+                {
+                    throw new ArgumentException("Não há registros");
+                }
+                return conversor.ParaResponseTop10Vendas(tabela);
+            }
+            catch (System.Exception ex)
+            {
+                return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
+            }
+        }
         
     }
 }

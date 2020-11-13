@@ -7,28 +7,30 @@ import { useHistory, Link } from "react-router-dom";
 
 let api = new NextGenBooks();
 export default function LivroVendaRelatorio(props){
-const [registros,setRegistros] = useState([...props.location.state]);
+const [registros,setRegistros] = useState([...props.location.state.livros]);
 
     return(
         <Master>
             <ContainerVendaDia>
                      
                         <div>
-                            <table className="table table-striped">
+                            <h1>Produtos Dessa Venda</h1>
+                            <table className="table table-striped" style={{marginTop:"10%"}}>
                                 <thead>
                                     <tr>
-                                        <th scope="col">Nome Do Livro</th>
-                                        <th scope="col">Quantidade</th>
-                                        <th scope="col">Valor</th>
+                                        <th scope="col"style={{textAlign:"center"}}>Nome Do Livro</th>
+                                        <th scope="col"style={{textAlign:"center"}}>Quantidade</th>
+                                        <th scope="col"style={{textAlign:"center"}}>Valor</th>
                                         
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    {registros.livros.map((item) =>
-                                        <tr className="table" key={item.nomeLivro}>
-                                            <th scope="row">{item.qtdUnitaria}</th>
-                                            <td>R$ {item.valorUnitario}</td>
+                                    {registros.map((item) =>
+                                        <tr key={item.nomeLivro}>
+                                            <th scope="row" style={{textAlign:"center"}}>{item.nomeLivro}</th>
+                                            <th scope="row" style={{textAlign:"center"}}>{item.qtdUnitaria}</th>
+                                            <td style={{textAlign:"center"}}>R$ {item.valorUnitario}</td>
                                         </tr>
                                  )}
                              </tbody>

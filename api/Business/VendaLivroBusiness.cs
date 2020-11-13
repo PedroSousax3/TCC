@@ -81,5 +81,9 @@ namespace api.Business
                 throw new ArgumentException("Não foi possivel Cadastrar esta venda livro");
             return novo;
         }
+        public async Task<List<Models.TbVendaLivro>> ListarTop10Vendas()
+        {
+            return await database.ListarTop10Vendas();
+        }
     }
 }

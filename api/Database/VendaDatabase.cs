@@ -94,5 +94,7 @@ namespace api.Database
                                     .Include(x => x.IdEnderecoNavigation)
                                     .ToListAsync();
         }
+
+   
     }
 }

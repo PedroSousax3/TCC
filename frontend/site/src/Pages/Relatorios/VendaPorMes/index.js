@@ -30,9 +30,14 @@ const [registros,setRegistros] = useState([]);
         <Master>
             <ContainerVendaDia>
                         <Containerinput>
-                            <div className="form-group">
+                             <div>
+                                <h3>
+                                   Vendas Do Mês
+                                </h3>
+                            </div>
+                            <div className="form-group" style={{display:"flex",flexDirection:"row"}}>
                                 <label className="Data">Escolha a Data:</label>
-                                <label className="Data">Inicio:</label>
+                                <label className="Data">Início:</label>
                                 <input className="form-control" type="date" onChange={(n) => setMesInicio(n.target.value)} />
                                 <label className="Data">Fim:</label>
                                 <input className="form-control" type="date" onChange={(n) => setMesFim(n.target.value)} />
@@ -47,10 +52,10 @@ const [registros,setRegistros] = useState([]);
                             </div>
                         </Containerinput>
                         <div>
-                            <table className="table table-striped">
+                            <table className="table table-striped" style={{marginTop:"10%"}}>
                                 <thead>
                                     <tr>
-                                        <th scope="col">Mes</th>
+                                        <th scope="col">Mês</th>
                                         <th scope="col">Quantidade de Vendas</th>
                                         <th scope="col">Total Vendas</th>
                                     </tr>
@@ -58,10 +63,10 @@ const [registros,setRegistros] = useState([]);
 
                                 <tbody>
                                     {registros.map((item) =>
-                                        <tr className="table">
-                                            <th scope="row">{item.mes}</th>
-                                            <td>{item.qtdVendas}</td>
-                                            <td>{item.totalVenda}</td>
+                                        <tr>
+                                            <th scope="row" style={{textAlign:"center"}}>{item.mes}</th>
+                                            <td style={{textAlign:"center"}}>{item.qtdVendas}</td>
+                                            <td style={{textAlign:"center"}}>{item.totalVenda}</td>
                                         </tr>
                                           )}
                                       </tbody>

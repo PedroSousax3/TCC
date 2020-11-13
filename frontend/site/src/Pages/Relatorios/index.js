@@ -6,8 +6,9 @@ export default function MenuRelatorios(){
     return(
         <Master>
             <ContainerVendaDia>
-               <h1>Relatorios</h1>
-                   <div style={{display:"flex",flexDirection:"column"}}>
+               <h1>Relatórios</h1>
+               <h6>Aqui você pode acompanhar o crescimento da nossa empresa</h6>
+                   <div style={{display:"flex",flexDirection:"column",fontSize:"35px",marginTop:"10%"}}>
                         <Link to="/VendaDia">
                             Vendas Do Dia
                         </Link>

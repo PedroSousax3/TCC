@@ -29,7 +29,12 @@ export default function VendaPorDia() {
         <Master>
             <ContainerVendaDia>
                         <Containerinput>
-                            <div className="form-group">
+                            <div>
+                                <h6>
+                                Selecione uma data e descubra quantas vendas foram realizadas no dia escolhido.
+                                </h6>
+                            </div>
+                            <div className="form-group" style={{display:"flex",marginTop:"10%",flexDirection:"row",justifyContent:"space-around"}}>
                                 <label className="Data">Escolha a data:</label>
                                 <input className="form-control" type="date"  onChange={(n) => setDia(n.target.value)} />
                                 <div className="botao">
@@ -43,7 +48,7 @@ export default function VendaPorDia() {
                     </div>
                 </Containerinput>
                 <div>
-                    <table className="table table-striped">
+                    <table className="table table-striped" style={{marginTop:"10%"}}>
                         <thead>
                             <tr>
                                 <th scope="col">Cliente</th>
@@ -59,18 +64,19 @@ export default function VendaPorDia() {
 
                         <tbody>
                             {registros.map((item) =>
-                                <tr className="table" key={item.nomeCliente}>
-                                    <th scope="row">{item.nomeCliente}</th>
-                                    <td>{item.diaDaVenda}</td>
-                                    <td>{item.hora}</td>
-                                    <td>{item.qtdProdutosDiferentes}</td>
-                                    <td>{item.qtdTotalDeProdutos}</td>
-                                    <td>{item.enderecoDeEntrega}</td>
+                                <tr key={item.nomeCliente}>
+                                    <th scope="row" style={{textAlign:"center"}}>{item.nomeCliente}</th>
+                                    <td style={{textAlign:"center"}}>{item.diaDaVenda}</td>
+                                    <td style={{textAlign:"center"}}>{item.hora}</td>
+                                    <td style={{textAlign:"center"}}>{item.qtdProdutosDiferentes}</td>
+                                    <td style={{textAlign:"center"}}>{item.qtdTotalDeProdutos}</td>
+                                    <td style={{textAlign:"center"}}>{item.totalCompra}</td>
+                                    <td style={{textAlign:"center"}}>{item.enderecoDeEntrega}</td>
                                     <td>
                                         <Link
                                             to={{
                                                 state: {
-                                                    item
+                                                    livros:item.livros
                                                 },
                                                 pathname: "/LivroVenda"
                                             }}

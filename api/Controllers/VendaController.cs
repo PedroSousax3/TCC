@@ -43,11 +43,11 @@ namespace api.Controllers
         }
 
         [HttpGet("vendadia")]
-        public async Task<ActionResult<List<Models.Response.RelatorioQuantidadeVenda>>> RelatorioVendaPorDia(Models.Request.RelatorioPorDiaRequest request)
+        public async Task<ActionResult<List<Models.Response.RelatorioQuantidadeVenda>>> RelatorioVendaPorDia(DateTime Dia)
         {
             try
             {
-                List<Models.TbVenda> tabela = await  business.ValidarListarVendaPorDia(request.Dia);
+                List<Models.TbVenda> tabela = await  business.ValidarListarVendaPorDia(Dia);
                 if(tabela.Count == 0)
                 {
                     throw new ArgumentException("Não há nenhum registro de vendas na data solicitada");
@@ -62,12 +62,11 @@ namespace api.Controllers
         }
 
         [HttpGet("PorMes")]
-        public async Task<ActionResult<List<Models.Response.VendasPorMesRelatorio>>> ListarPorMes(Models.Request.RelatorioVendasPorMes request)
-        {
+        public async Task<ActionResult<List<Models.Response.VendasPorMesRelatorio>>> ListarPorMes(DateTime mesInicio,DateTime mesFim)        {
             try
             {
-                List<Models.TbVenda> tabela = await business.ValidarListarPorMes(request.MesInicio,request.MesFim);
-                return conversor.ParaResponseRelatorioPorMes(request.MesInicio,request.MesFim,tabela);
+                List<Models.TbVenda> tabela = await business.ValidarListarPorMes(mesInicio,mesFim);
+                return conversor.ParaResponseRelatorioPorMes(mesInicio,mesFim,tabela);
             }
             catch (System.Exception ex)
             {
@@ -93,5 +92,7 @@ namespace api.Controllers
                 return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
             }
         }
+
+
     }
 }
