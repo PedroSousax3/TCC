@@ -53,4 +53,11 @@ namespace api.Models.Response
         public int QtdVendas { get; set; }
         public decimal? TotalVenda { get; set; }
     }
+
+    public class Top10Vendas
+    {
+        public string Produto { get; set; }
+        public int QuantidadeVenda { get; set; }
+        public decimal TotalGasto { get; set; }
+    }
 }

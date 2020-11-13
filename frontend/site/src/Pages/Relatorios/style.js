@@ -2,13 +2,12 @@ import styled from 'styled-components'
 
 export const ContainerVendaDia = styled.div`
     
-    justify-content:center;
     flex:1;
     height:80vh;
     align-items:center;
     flex-direction:column;
     display:flex;
-    justify-content:center;
+    margin-top:15px;
       @media screen and (max-width: 600px)
     {
         & {
@@ -26,7 +25,7 @@ export const ContainerVendaDia = styled.div`
 
 export const Containerinput = styled.div`
 display:flex;
-justify-content:spce-between;
-flex-direction:row;
+justify-content:space-around;
+flex-direction:column;
 
 `

@@ -56,5 +56,10 @@ namespace api.Database
             return tabela;
         }
 
+        public async Task<List<Models.TbVendaLivro>> ListarTop10Vendas()
+        {
+            return await context.TbVendaLivro.Include(x => x.IdLivroNavigation).ToListAsync();
+        }
+
     }
 }

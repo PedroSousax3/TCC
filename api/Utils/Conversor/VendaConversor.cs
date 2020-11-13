@@ -132,7 +132,5 @@ namespace api.Utils.Conversor
             relatorioTopClientes = relatorioTopClientes.OrderByDescending(x => x.TotalGasto).ToList();
             return relatorioTopClientes.Take(10).ToList();
         }
- 
-
     }
 }
