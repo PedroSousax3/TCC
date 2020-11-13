@@ -63,7 +63,7 @@ export default function Cadastro(props) {
             navegacao.push("/Perfil", acesso);
         }
         catch (e) {
-            toast.error(e.response.data.erro);
+            toast.error("Por favor arrume os campos inválidos.");
         }
     }
 
