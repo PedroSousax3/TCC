@@ -125,9 +125,22 @@ namespace api.Utils.Conversor
                 topClientes.QtdCompras = item.IdClienteNavigation.TbVenda.Count;
                 topClientes.Telefone = item.IdEnderecoNavigation.DsCelular;
                 topClientes.TotalGasto = item.TbVendaLivro.Sum(x => x.VlVendaLivro);
+                List<bool> help = new List<bool>();
+                foreach (Models.Response.RelatorioTop10Clientes adicionar in relatorioTopClientes)
+                {
+                    if(adicionar.Email != item.IdClienteNavigation.DsEmail)
+                    {
+                        help.Add(true);
+                    } 
+                    else
+                    {
+                       adicionar.TotalGasto += topClientes.TotalGasto ;
+                        help.Add(false);
+                    };
+                }
+                if(help.All(x => x == true)) relatorioTopClientes.Add(topClientes);
 
-                relatorioTopClientes.Add(topClientes);
-            }
+                }
 
             relatorioTopClientes = relatorioTopClientes.OrderByDescending(x => x.TotalGasto).ToList();
             return relatorioTopClientes.Take(10).ToList();
