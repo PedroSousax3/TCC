@@ -20,17 +20,9 @@ import Cookies from 'js-cookie'
 const override = css`
   display: block;
   margin: 0 auto;
-  border-color: red;
+  margin: auto 5px;
 `;
 
-class AwesomeComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true
-        };
-    }
-}
 
 export default function Carrinho(props) {
     const navegacao = useHistory()
@@ -39,8 +31,7 @@ export default function Carrinho(props) {
     const [valorlivros, setValorLivros] = useState(0);
     const [valorfrete, setValorFrete] = useState(0);
     const [totalcompra, setTotalCompra] = useState(0);
-    const [unidades, setUnidades] = useState(0);
-
+    const [estado, setEstado] = useState(false);
     const RemoverItem = async (id) => {
         await Remover(id);
         await ConsultarCarrinho(id);
@@ -71,8 +62,10 @@ export default function Carrinho(props) {
     }
     const alterarCarrinho = async (item, idcarrinho, qtd) => {
         try {
+            setEstado(true);
             let response = await alterarQuantidadeApi(idcarrinho, qtd);
             ConsultarCarrinho();
+            setEstado(false);
         }
         catch (ex) {
             toast.error(ex.response.erro)
@@ -109,9 +102,9 @@ export default function Carrinho(props) {
                                 <input type="number" className="form-control" min="1" minLength="1" onChange={(qtd) => alterarCarrinho(x.qtd, x.id, Number(qtd.target.value))} value={x.qtd} style={{ width: "70px" }} />
                                 <ClipLoader
                                     css={override}
-                                    size={150}
-                                    color={"#123abc"}
-                                    loading={this.state.loading}
+                                    size={35}
+                                    color={"#438719"}
+                                    loading={estado}
                                 />
                             </div>
                         </div>
