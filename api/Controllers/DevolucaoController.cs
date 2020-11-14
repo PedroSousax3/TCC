@@ -49,12 +49,12 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Models.TbDevolucao>>> ConsultarDevolucoesPorPeriodo(DateTime inicio, DateTime fim) 
+        public async Task<ActionResult<List<Models.Response.RelatorioDevolucoaResponse>>> ConsultarDevolucoesPorPeriodo(DateTime inicio, DateTime fim) 
         {
             try 
             {
                 List<Models.TbDevolucao> tabela = await business.ValidarListarDevolucao(inicio, fim);
-                return tabela;
+                return tabela.Select(x => conversor.ConversorRelarotioResponse(x)).ToList();
             }
             catch (System.Exception ex) 
             {

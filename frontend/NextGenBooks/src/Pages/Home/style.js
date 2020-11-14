@@ -4,22 +4,75 @@ export const Home = styled.div`
 `;
 
 export const ContainerPesquisa = styled.div`
-    background-color: rgb(210, 110, 78);
+    /*background-color: rgb(210, 110, 78);
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 250;
     position: fixed;
-    padding: 5px 25px;
+    padding: 5px 25px;*/
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        padding: 0px 15px 15px 15px;
+        z-index: 1;
+
+    &.pesquisa > div.genero > select, &.pesquisa > div.nome > input[type = "text"]{
+        height: 30px;
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+        background-color: #414141;
+        border: 1px solid white;
+        outline: none;
+    }
+
+    &.pesquisa > div.genero > select {
+        width: 200px;
+    }
+
+
+    &.pesquisa > div.genero > select > option{
+        color: white;
+    }
+
+    &.pesquisa > div.nome > input[type = "text"]{
+        padding: 2px 5px;
+        width: 400px;
+    }
+
+    @media screen and (max-width: 690px){
+        &.pesquisa {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        
+        &.pesquisa > div.nome > input[type = "text"]{
+            margin-bottom: 10px;
+        }
+    }
+
+    @media screen and (max-width: 430px){   
+        &.pesquisa > div.nome, &.pesquisa > div.nome > input[type = "text"]{
+            width: 100%;
+        }
+        &.pesquisa > div.genero, &.pesquisa > div.genero > select {
+            width: 100%;
+        }    
+    }
 `;
+
 
 export const ContainerPreview = styled.div` 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
         
-    padding: 60px 10px 10px;
+    padding: 70px 10px 10px;
     flex-grow: 1;
 
     max-width: 100vw;

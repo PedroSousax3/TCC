@@ -8,6 +8,15 @@ export const LoginCaixa = styled.div`
         justify-content:center;
         align-items:center;
 
+        label, a {
+                color: white;
+                font-weight: 600;
+        }
+
+        a {
+                font-size : 18px;
+        }
+
 .input-icone{
         display:flex;
         flex-direction:row;
@@ -26,6 +35,10 @@ export const LoginCaixa = styled.div`
         background-color:#D26E4E;
         color:white;
         font-weight:bold;
+}
+
+.botao button:hover{
+        background-color: #a34729;
 }
 
 .titulo{

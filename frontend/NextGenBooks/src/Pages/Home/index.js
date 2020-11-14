@@ -6,11 +6,12 @@ import Master from '../Master/index';
 import { Home, ContainerPesquisa, ContainerPreview, Card } from './style.js'
 
 import { ListPostFile, BuscarFoto } from '../../Service/fileApi.js';
+import '../../components/pesquisa/pesquisa.css';
 
 export default function HomePage(e) {
     const [consulta, setConsulta] = useState([]);
-    const [nome, setNome] = useState("");    
-    const [ qtdPost, setQtdPost ] = useState(0);
+    const [nome, setNome] = useState("");
+    const [qtdPost, setQtdPost] = useState(0);
 
     const [inicio, setInicio] = useState(0);
     const [fim, setFim] = useState(10);
@@ -23,14 +24,14 @@ export default function HomePage(e) {
         console.log(inicio, fim);
     }
 
-    function listarPress (event) {
+    function listarPress(event) {
         if (event.key === 'Enter') {
             listarLivros();
         }
     }
 
     async function almentarPosicao() {
-        if(qtdPost >= inicio) {
+        if (qtdPost >= inicio) {
             setInicio(inicio + 10);
             setFim(fim + 10);
         }
@@ -39,7 +40,7 @@ export default function HomePage(e) {
     }
 
     async function diminuirPosicao() {
-        if(inicio - 10 <= 0) {
+        if (inicio - 10 <= 0) {
             setInicio(0);
             setFim(10);
         }
@@ -58,13 +59,28 @@ export default function HomePage(e) {
     return (
         <Master>
             <Home>
-                <ContainerPesquisa>
-                    <div className="form-group" id="dvgenero" style={{ margin: "0px", width: "50vw" }}>
-                        <input className="form-control" id="filtro" type="genero" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
+
+                <ContainerPesquisa className="pesquisa">
+                    <div className="genero">
+                        <select>
+                            <option valur="Todos">Genero</option>
+                            <option value="Ação">Ação</option>
+                            <option value="Aventura">Aventura</option>
+                            <option value="Drama">Drama</option>
+                        </select>
+                    </div>
+                    <div className="nome">
+                        <input type="text" placeholder="Titulo, Personagem, Autor" />
                     </div>
                 </ContainerPesquisa>
 
-                <ContainerPreview style = {{justifyContent : "center"}}>
+                {/*
+                        <div className="form-group" id="dvgenero" style={{ margin: "0px", width: "50vw" }}>
+                            <input className="form-control" id="filtro" type="genero" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
+                        </div>
+                    */}
+
+                <ContainerPreview style={{ justifyContent: "center" }}>
                     {
                         consulta.map(x =>
                             <Card className="card-livro" key={x.id} as={Link} to={{
@@ -87,17 +103,17 @@ export default function HomePage(e) {
                         )
                     }
                 </ContainerPreview>
-                <nav aria-label="Navegação de página exemplo" style = {{ bottom: "0", position: "relative", marginTop : "35px", display: "flex", justifyContent : "center" }}>
+                <nav aria-label="Navegação de página exemplo" style={{ bottom: "0", position: "relative", marginTop: "35px", display: "flex", justifyContent: "center" }}>
                     <ul className="pagination">
                         <li className="page-item">
                             <button className="page-link"
-                                    onClick={diminuirPosicao}>
+                                onClick={diminuirPosicao}>
                                 Anterior
                             </button>
                         </li>
                         <li className="page-item">
                             <button className="page-link"
-                                    onClick={almentarPosicao}>
+                                onClick={almentarPosicao}>
                                 Próximo
                             </button>
                         </li>

@@ -33,5 +33,22 @@ namespace api.Utils.Conversor
 
             return response;
         }
+
+        public Models.Response.RelatorioDevolucoaResponse ConversorRelarotioResponse(Models.TbDevolucao tabela)
+        {
+            Models.Response.RelatorioDevolucoaResponse response = new Models.Response.RelatorioDevolucoaResponse();
+            LivroConversor LivroConvert = new LivroConversor();
+            VendaLivroConversor VendaLivroConvert = new VendaLivroConversor();
+
+            Models.Response.DevolucaoResponse devolucao = this.ConversorResponse(tabela);
+            Models.Response.LivroCompleto livros = LivroConvert.ConversorCompleto(tabela.IdVendaLivroNavigation.IdLivroNavigation);
+            Models.Response.VendaLivroResponse vendaLivro = VendaLivroConvert.ConversorResponse(tabela.IdVendaLivroNavigation);
+
+            response.devolucao = devolucao;
+            response.livros = livros;
+            response.vendalivro = vendaLivro;
+
+            return response;
+        }
     }
 }

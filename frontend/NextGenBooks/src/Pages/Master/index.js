@@ -9,13 +9,13 @@ export default function Master(props) {
     return (
         <MasterPage>
             <ToastContainer />
-            <MenuSpace theme={{sc_height : "60px"}}/>
+            {/*<MenuSpace theme={{sc_height : "60px"}}/>
+            */}
             <Menu />
-            
-            <ContainerPage>
+            <ContainerPage style={{paddingTop : "50px"}}>
                 {props.children}
             </ContainerPage>
-            <MenuSpace id="menu-baixo" theme={{sc_height : "60px"}}/>
+            {/*<MenuSpace id="menu-baixo" theme={{sc_height : "60px"}}/>*/}
         </MasterPage>
     );
 }

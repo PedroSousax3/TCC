@@ -18,7 +18,7 @@ export const BoxContainer = styled.div`
     &#titulo {
         justify-content: space-between;
         position: sticky;
-        top: 59px;
+        top: 43px;
     }
 
         &#titulo > h2 {

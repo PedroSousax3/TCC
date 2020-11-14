@@ -1,0 +1,118 @@
+/*Responsivo até 200px de Width*/
+
+header {
+    height: 45px;
+    width: 100%;
+    background-color: #141414; 
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+}
+
+header {
+    z-index: 10;
+}
+
+header#cima {
+    padding: 0px 13px;
+}
+
+header#cima > div.itens{
+    display: flex;
+}
+
+header#cima > div.itens > div.logo{
+    margin: auto 0px;
+}
+
+header#cima > div.itens > div.logo > a > img {
+    height: 40px;
+    opacity: 1;
+}
+
+header#cima > div.itens > div.logo > a > img:hover {
+    opacity: 0.8;
+}
+
+header#cima > div.itens > ul {
+    margin: auto 0px;
+    padding-left: 20px;
+}
+
+header#cima > div.itens > ul > li {
+    display: inline;
+}
+
+header#cima > div.itens > ul > li > a {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0px 8px;
+    text-decoration: none;
+    padding: 8px;
+    opacity: 0.8;
+}
+
+header#cima > div.itens > ul > li > a:hover {
+    opacity: 1;
+}
+
+header#cima > div.dropdown {
+    margin: auto 0px;
+}
+
+header#cima > div.dropdown > i.fa-user-circle {
+    cursor: pointer;
+    font-size: 35px;
+    color: white;
+}
+
+header#baixo {
+    bottom: 0;
+    display: none;
+}
+
+@media screen and (max-width: 690px){
+    header#cima > div.itens ul{
+        display: none;
+    }
+
+    header#baixo {
+        display: flex;
+    }
+}
+
+header#baixo > ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: auto 0px;
+}
+
+header#baixo > ul > li > a{
+    color: white;
+    font-size: 20px;
+    opacity: 0.8;
+}
+
+header#baixo > ul > li {
+    text-align: center;
+}
+
+header#baixo > ul > li > a:hover{
+    opacity: 1;
+}
+
+.titulo-icone{
+    font-size: 10px;
+    font-weight: 0;
+}
+
+@media screen and (max-width: 250px)
+{
+    header#baixo > ul > li > a{
+        font-size: 15px;
+    }   
+}

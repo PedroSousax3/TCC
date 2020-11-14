@@ -6,6 +6,10 @@ export const PerfilComponest = styled.div`
     align-items: center;
     justify-content : space-between;
 
+    * {
+        color: white;
+    }
+
     @media screen and (max-width : 760px) {
         flex-direction: column;
     }
