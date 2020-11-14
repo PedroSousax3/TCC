@@ -87,10 +87,10 @@ export default function MostrarLivro(props) {
                     livro: id,
                     cliente: idcliente
                 });
-                toast.success('Livro foi adicionado a lista de favoritos com sucesso');
+                toast.success(' 🥇 Livro foi adicionado a lista de favoritos com sucesso');
             }
         } catch (ex) {
-            console.log(ex.response);
+            toast.info(' 🏁 ' + ex.response.data.erro);
         }
     }
 

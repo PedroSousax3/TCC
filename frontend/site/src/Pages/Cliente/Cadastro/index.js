@@ -33,7 +33,7 @@ export default function Cadastro(props) {
     const [confirmarsenha, setConfirmarSenha] = useState("");
     const [cpf, setCPF] = useState("");
     const [celular, setCelular] = useState("");
-    const [nascimento, setNascimento] = useState(new Date().toISOString().substr(0, 10));
+    const [nascimento, setNascimento] = useState(new Date().toLocaleDateString());
     const [file, setFile] = useState();
 
 
@@ -138,7 +138,7 @@ export default function Cadastro(props) {
 
                     <div className="form-group">
                         <label className="Celular">Data de Nascimento:</label>
-                        <input className="form-control" type="date" value={nascimento} onChange={(n) => setNascimento(new Date(n.target.value).toISOString().substr(0, 10))} />
+                        <input className="form-control" type="date" value={nascimento} onChange={(n) => setNascimento(n.target.value)} />
                     </div>
                 </CaixaInformacoes>
 

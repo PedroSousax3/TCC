@@ -11,18 +11,17 @@ import { } from '../Cliente/Carrinho/style.js'
 import { ListPostFile, BuscarFoto } from '../../Service/fileApi.js';
 
 export default function HomePage(e) {
-    const [registros, setRegistros] = useState([]);
     const [consulta, setConsulta] = useState([]);
     const [nome, setNome] = useState("");    
     const [ qtdPost, setQtdPost ] = useState(0);
 
-    const [inicio, setInicio] = useState(1);
+    const [inicio, setInicio] = useState(0);
     const [fim, setFim] = useState(10);
 
     const listarLivros = async () => {
-        const result = await ListPostFile(inicio - 1, fim, nome);
+        const result = await ListPostFile(inicio, fim, nome);
+        console.log(result);
         setConsulta([...result.data.posteres]);
-        setRegistros([...result.data.posteres]);
         setQtdPost(result.data.qtd);
         console.log(inicio, fim);
     }
@@ -37,20 +36,26 @@ export default function HomePage(e) {
         return valor.replace(/[^a-zA-Zs0-9 ]/g, "");
     }
 
-    function filtrarNome(texto) {
-        setRegistros(consulta.filter(x => removerAcentos(x.nome).toLowerCase().search(removerAcentos(texto).toLowerCase()) >= 0));
+    async function almentarPosicao() {
+        if(qtdPost >= inicio) {
+            setInicio(inicio + 10);
+            setFim(fim + 10);
+        }
+        await listarLivros();
+        console.log(inicio, fim);
     }
 
-    function almentarPosicao() {
-        setInicio(fim + 1);
-        setFim(fim + 10);
-        listarLivros();
-    }
-
-    function diminuirPosicao() {
-        setInicio(inicio - 10);
-        setFim(fim - 10);
-        listarLivros();
+    async function diminuirPosicao() {
+        if(inicio - 10 <= 0) {
+            setInicio(0);
+            setFim(10);
+        }
+        else {
+            setFim(fim - 10);
+            setInicio(inicio - 10);
+        }
+        await listarLivros();
+        console.log(inicio, fim);
     }
 
     useEffect(() => {
@@ -68,7 +73,7 @@ export default function HomePage(e) {
 
                 <ContainerPreview style = {{justifyContent : "center"}}>
                     {
-                        registros.map(x =>
+                        consulta.map(x =>
                             <Card className="card-livro" key={x.id} as={Link} to={{
                                 pathname: "/MostrarLivro",
                                 state: {
@@ -97,11 +102,6 @@ export default function HomePage(e) {
                                 Anterior
                             </button>
                         </li>
-
-                        <li className="page-item">
-                            {inicio} ................ {qtdPost}
-                        </li>
-
                         <li className="page-item">
                             <button className="page-link"
                                     onClick={almentarPosicao}>

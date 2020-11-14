@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import Cookies from 'js-cookie';
@@ -31,7 +31,7 @@ export default function AlterarCliente(props) {
         setFile(URL.createObjectURL(arquivo));
     }
     
-
+    
     const salvarClick = async () => {
         try {
             let request = {
@@ -46,10 +46,10 @@ export default function AlterarCliente(props) {
             navegacao.push("/Perfil");
         }
         catch(e) {
-            toast.error(e.response.data.erro);
+            toast.error(e.response.erro);
         }
     } 
-
+    
     return(
         <Master>
             <h2>Alterar Dados da Conta</h2>

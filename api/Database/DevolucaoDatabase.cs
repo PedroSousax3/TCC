@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 namespace api.Database
@@ -42,6 +44,18 @@ namespace api.Database
         public Task<List<Models.TbDevolucao>> ListarDevolucao()
         {
             return context.TbDevolucao.ToListAsync();
+        }
+
+        public Task<List<Models.TbDevolucao>> ListarDevolucao(DateTime inicio, DateTime fim)
+        {
+            return context.TbDevolucao.Include(x => x.TbRecebimentoDevolucao)
+                                        .Include(x => x.IdVendaLivroNavigation)
+                                        .Include(x => x.IdVendaLivroNavigation.IdVendaNavigation)
+                                        .Include(x => x.IdVendaLivroNavigation.IdLivroNavigation)
+                                        .Include(x => x.IdVendaLivroNavigation.IdLivroNavigation.TbLivroGenero)
+                                        .Where(x => x.DtDevolucao >= inicio 
+                                                && x.DtDevolucao <= fim)
+                                        .ToListAsync();
         }
         
         public async Task<Models.TbDevolucao> DeletarDevolucao(int id)

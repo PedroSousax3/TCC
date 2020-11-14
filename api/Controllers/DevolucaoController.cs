@@ -47,5 +47,21 @@ namespace api.Controllers
                 return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Models.TbDevolucao>>> ConsultarDevolucoesPorPeriodo(DateTime inicio, DateTime fim) 
+        {
+            try 
+            {
+                List<Models.TbDevolucao> tabela = await business.ValidarListarDevolucao(inicio, fim);
+                return tabela;
+            }
+            catch (System.Exception ex) 
+            {
+                return NotFound(
+                    new Models.Response.ErroResponse(404, ex.Message)
+                );
+            }
+        }
     }
 }

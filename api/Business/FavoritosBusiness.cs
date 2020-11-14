@@ -14,7 +14,7 @@ namespace api.Business
             ValidarId(novo.IdCliente);
 
             List<Models.TbFavoritos> tabela = await this.ListarfavoritosBusiness(novo.IdCliente);
-            if(tabela.Any(x => x.IdFavoritos == novo.IdFavoritos))
+            if(tabela.Any(x => x.IdLivro == novo.IdLivro))
                 throw new ArgumentException("Item já adicionado a lista de favoritos, não é possivel adicionado novamente.");
 
             Models.TbFavoritos favoritos = await database.InserirFavoritos(novo);

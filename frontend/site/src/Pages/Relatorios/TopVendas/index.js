@@ -23,24 +23,24 @@ export default function TopVenda() {
     return (
         <Master>
             <ContainerVendaDia>
-                        <Containerinput>
-                            <div>
-                                <h2>
-                                  Top 10 Livros
+                <Containerinput>
+                    <div>
+                        <h2>
+                            Top 10 Livros
                                 </h2>
-                            </div>
-                                <div className="botao">
-                                <button
-                                  className="btn"
-                                    onClick={listar}
-                                >
-                                    CONSULTAR
+                    </div>
+                    <div className="botao">
+                        <button
+                            className="btn"
+                            onClick={listar}
+                        >
+                            CONSULTAR
 
                                 </button>
-                        </div>
+                    </div>
                 </Containerinput>
                 <div>
-                    <table className="table table-striped" style={{marginTop:"10%"}}>
+                    <table className="table table-striped" style={{ marginTop: "10%" }}>
                         <thead>
                             <tr>
                                 <th scope="col">Produto</th>
@@ -52,15 +52,11 @@ export default function TopVenda() {
                         <tbody>
                             {registros.map((item) =>
                                 <tr key={item.nomeCliente}>
-                                    <th scope="row" style={{textAlign:"center"}}>{item.produto}</th>
-                                    <td style={{textAlign:"center"}}>{item.produto}</td>
-                                    <td style={{textAlign:"center"}}>{item.quantidadeVenda}</td>
-                                    <td style={{textAlign:"center"}}>{item.TotalGasto}</td>
+                                    <th scope="row" style={{ textAlign: "center" }}>{item.produto}</th>
+                                    <td style={{ textAlign: "center" }}>{item.produto}</td>
+                                    <td style={{ textAlign: "center" }}>{item.quantidadeVenda}</td>
+                                    <td style={{ textAlign: "center" }}>{item.TotalGasto}</td>
                                 </tr>
-
-
-
-
                             )}
                         </tbody>
                     </table>
