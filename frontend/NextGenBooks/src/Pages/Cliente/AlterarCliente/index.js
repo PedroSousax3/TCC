@@ -8,7 +8,6 @@ import { toast, ToastContainer } from "react-toastify";
 import Master from '../../Master/index.js';
 
 
-//import {LoginCaixa} from "../../components/LoginCaixa/LoginCaixa";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
 import { CaixaImage, CaixaInformacoes, CadastroCaixa } from './style.js';
 
