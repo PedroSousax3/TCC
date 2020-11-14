@@ -35,9 +35,8 @@ namespace api.Controllers
         }
 
         [HttpGet("{idlivro}")]
-        public async Task<ActionResult<Models.Response.LivroCompleto>> ConsultarLivroId (int idlivro)
+        public async Task<ActionResult<Models.Response.LivroCompleto>> ConsultarLivroId (int idlivro, int idclietne)
         {
-
             try
             {
                 Models.TbLivro livro = await business.ConsultarLivroIdBusiness(idlivro);

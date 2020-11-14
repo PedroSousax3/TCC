@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create(
-    { baseURL:"http://3.87.226.24:5000" }
+    { baseURL:"http://localhost:5000" }
 );
 
 export default class NextGenBookApi{
@@ -40,7 +40,7 @@ export default class NextGenBookApi{
         return resp;
     }
 
-    async alterar(req){
+    async alterar(req, idcliente){
         let formData = 
             new FormData();
         
@@ -50,7 +50,7 @@ export default class NextGenBookApi{
         formData.append('foto', req.foto);
         formData.append('genero', req.genero);
 
-        const resp = await api.put('/Cliente' , formData, {
+        const resp = await api.put('/Cliente/' + idcliente , formData, {
             headers: { 'content-type': 'multipart/form-data' }
         });
         

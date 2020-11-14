@@ -133,7 +133,7 @@ export default function Cadastro(props) {
 
                     <div className="form-group">
                         <label className="Celular">Celular:</label>
-                        <input className="form-control" type="text" onChange={(n) => setCelular(n.target.value)} />
+                        <input className="form-control" type="text" onChange={(n) => setCelular(n.target.value)} data-mask="(00) 0000-0000" data-mask-selectonfocus="true"/>
                     </div>
 
                     <div className="form-group">

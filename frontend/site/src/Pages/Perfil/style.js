@@ -1,6 +1,21 @@
 import styled from 'styled-components';
 
+export const PerfilComponest = styled.div` 
+    padding : 20px;
+    display: flex;
+    align-items: center;
+    justify-content : space-between;
 
+    @media screen and (max-width : 760px) {
+        flex-direction: column;
+    }
+
+    @media screen and (max-width : 330px) {
+        & > .botoes > *, & > * {
+            width : 100%
+        }
+    }
+`;
 
 export const CaixaPerfil = styled.div`
 

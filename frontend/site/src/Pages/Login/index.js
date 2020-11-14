@@ -57,6 +57,13 @@ export default function Logar(e) {
     });
   }
 
+  document.onkeypress = function (evt) {
+    evt = evt || window.event;
+
+    if(evt.key === "Enter")
+      Logar();
+  }
+
   function mostrar() {
     var tipo = document.getElementById("formGroupExampleInput2");
     var botao = document.querySelector(".btn.btn-sm");
@@ -88,8 +95,8 @@ export default function Logar(e) {
               <div className="form-group">
                 <label>Senha:</label>
                 <div className="input-icone" style={{ position: "relative" }}>
-                  <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="" onChange={(e) => setSenha(e.target.value)} />
-                  <i className="icone btn btn-sm fas fa-eye" onClick={mostrar} style={{ margin : "auto", position : "absolute", right: "15px", top: "50%", fontSize : "20px", transform: "translateY(-50%)" }}></i>
+                  <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="Digite sua senha" onChange={(e) => setSenha(e.target.value)} />
+                  <i className="icone btn btn-sm fas fa-eye" onClick={mostrar} style={{ margin: "auto", position: "absolute", right: "15px", top: "50%", fontSize: "20px", transform: "translateY(-50%)" }}></i>
                 </div>
               </div>
               <div className="Links" style={{ margin: "10px 5px" }}>

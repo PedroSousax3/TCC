@@ -21,6 +21,7 @@ export default function Carrinho(props){
     const [ valorlivros, setValorLivros ] = useState(0);
     const [ valorfrete, setValorFrete ] = useState(0);    
     const [ totalcompra, setTotalCompra ] = useState(0);
+    const [ unidades, setUnidades ] = useState(0);
 
     const RemoverItem = async (id) => {
         await Remover(id);
@@ -65,18 +66,27 @@ export default function Carrinho(props){
                             {x.informacoes.nome}
                         </div>
                         <div className="container" Key={x.id}>
-                            <img style={{height : "300px", width: "170px"}} src={BuscarFoto(x.informacoes.foto)} alt="..." />
+                            <img style={{height : "300px", width: "180px"}} src={BuscarFoto(x.informacoes.foto)} alt="..." />
                             <div className="card-body" Key={x.id}>
                                 <h6 className="card-title">Resumo</h6>
                                 <p className="card-text">{x.informacoes.descricao}</p>
                                 <h6 className="card-title">Editora</h6>
                                 <p className="card-text">{x.informacoes.editora.nome}</p>
                                 <h6 className="card-title">Data de Lancamento</h6>
-                                <p className="card-text">{x.informacoes.lancamento}</p>
+                                <p className="card-text">{new Date(x.informacoes.lancamento).toLocaleDateString()}</p>
                             </div>
                         </div>
-                        <div className="card-header" Key={x.id}>
+                        <div className="card-header" style={{ display : "flex", justifyContent : "space-between"}} Key={x.id}>
                             <button className="btn btn-danger" onClick={() => RemoverItem(x.id)}>Remover</button>
+                            <div className ="unidadebutao">
+                                <button onClick={() =>setUnidades(unidades - 1)}>
+                                    -
+                                </button>
+                                <input type="number" data-mask="00" data-mask-selectonfocus="true" min="1" minLength="1" value={unidades} onChange={(x) => setUnidades(x.target.value)} />
+                                <button onClick={() => setUnidades(unidades + 1)}>
+                                    +
+                                </button>
+                            </div>
                         </div>
                     </div>
                 )}        

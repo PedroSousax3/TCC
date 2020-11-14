@@ -23,12 +23,13 @@ export const ConteinerItens = styled.div`
     }
 
     & > .card > .container {
+        display: flex;
         padding: 10px 5px;
         background-color: var(--verde-claro);
     }
 
     & > .card > .container > .card-body{
-        padding: 0px;
+        padding: 5px;
     }
 
     & > .card > .container > .img-thumbnail{
@@ -36,6 +37,10 @@ export const ConteinerItens = styled.div`
         height: 200px;
         width: 160px;
         margin-right: 10px;
+    }
+
+    .unidadebutao {
+        display : flex;
     }
 
     & h6, & p {

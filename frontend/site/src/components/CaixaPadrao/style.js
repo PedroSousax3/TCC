@@ -1,19 +1,21 @@
 import styled from 'styled-components';
+
 export const CaixaPadrao = styled.div`
-background-color: rgb(152, 240, 187);
-width: 60%;
-height: 65vh;
-display: flex;
-flex-direction: column;
+    background-color: rgb(152, 240, 187);
+    width: 60%;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
 
-justify-content:center;
-align-items:center;
-border-radius:10px;
-box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
-.form-row{
+    justify-content:center;
+    align-items:center;
+    border-radius:10px;
+    box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
+    
+    .form-row{
 
-    width:78%;
-}
+        width:78%;
+    }
 
 @media screen and (max-width: 600px)
 {
@@ -61,8 +63,8 @@ box-shadow:10px 10px 5px 0px rgb(0,0,0,0.2);
     }
    
 }
-& > .form-control{
-    margin-top:5px;
-    margin-bottom:7px;
-}
-`;
+    & > .form-control{
+        margin-top:5px;
+        margin-bottom:7px;
+    }
+    `;

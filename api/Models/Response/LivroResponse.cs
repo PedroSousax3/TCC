@@ -19,5 +19,6 @@ namespace api.Models.Response
         public double venda { get; set; }
         public Models.Response.EditoraResponse editora { get; set; }
         public Models.Response.MedidaResponse medida { get; set; }
+        public bool favorito { get; set; }
     }
 }

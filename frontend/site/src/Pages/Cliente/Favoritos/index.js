@@ -33,8 +33,10 @@ export default function EsqueciSenha() {
     const removerFavorito = async (id) => {
         try {
             await removerFav(id);
+
+            toast.success("Livro removido dos Favoritos");
+            
             await listarFavoritos();
-            toast.success("Livro removido dos Favoritos")
         }
         catch (ex) {
             toast.error(ex.response.erro)

@@ -32,12 +32,6 @@ export default function HomePage(e) {
             listarLivros();
         }
     }
-    
-
-    const buscarFoto = async (nome) => {
-        const result = await BuscarFoto(nome);
-        return result;
-    }
 
     const removerAcentos = (valor) => {
         return valor.replace(/[^a-zA-Zs0-9 ]/g, "");

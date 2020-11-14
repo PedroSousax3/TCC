@@ -30,6 +30,7 @@ namespace api.Database
                                     .Include(x => x.IdEditoraNavigation)
                                     .Include(x => x.TbLivroAutor).ThenInclude(y => y.IdAutorNavigation)
                                     .Include(x => x.TbLivroGenero).ThenInclude(z => z.IdGeneroNavigation)
+                                    .Include(x => x.TbFavoritos)
                                     .Include(x => x.TbEstoque)
                                     .FirstOrDefaultAsync(x => x.IdLivro == idlivro);
 

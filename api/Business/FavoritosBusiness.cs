@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace api.Business
@@ -11,7 +12,13 @@ namespace api.Business
         {
             ValidarId(novo.IdLivro);
             ValidarId(novo.IdCliente);
+
+            List<Models.TbFavoritos> tabela = await this.ListarfavoritosBusiness(novo.IdCliente);
+            if(tabela.Any(x => x.IdFavoritos == novo.IdFavoritos))
+                throw new ArgumentException("Item já adicionado a lista de favoritos, não é possivel adicionado novamente.");
+
             Models.TbFavoritos favoritos = await database.InserirFavoritos(novo);
+            
             if(favoritos == null)
                 throw new ArgumentException("Não foi possivel adicionar o livro aos favoritos.");
             return favoritos;

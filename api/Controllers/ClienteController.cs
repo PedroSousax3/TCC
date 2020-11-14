@@ -44,7 +44,7 @@ namespace api.Controllers
             }
         }
         
-        [HttpPut("alterar/{idcliente}")]
+        [HttpPut("/{idcliente}")]
         public async Task<ActionResult<Models.Response.ClienteResponse>> CadastrarCliente([FromForm] Models.Request.ClienteRequest.Cliente request, int idcliente)
         {
           try
