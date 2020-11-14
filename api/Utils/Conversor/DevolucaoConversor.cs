@@ -23,12 +23,12 @@ namespace api.Utils.Conversor
             Models.Response.DevolucaoResponse response = new Models.Response.DevolucaoResponse();
 
             response.id = tabela.IdDevolucao;
-            response.vendalivro = tabela.IdVendaLivro ;
+            response.vendalivro = tabela.IdVendaLivro;
             response.codigo_ratreio = tabela.DsCodigoRastreio;
             response.motivo = tabela.DsMotivo;
             response.data_devolucao = tabela.DtDevolucao;
             response.previsao_entrega = tabela.DtPrevisaoEntrega;
-            response.devolvido = tabela.BtDevolvido ;
+            response.devolvido = tabela.BtDevolvido;
             response.valor = tabela.VlDevolvido;
 
             return response;
@@ -41,12 +41,21 @@ namespace api.Utils.Conversor
             VendaLivroConversor VendaLivroConvert = new VendaLivroConversor();
 
             Models.Response.DevolucaoResponse devolucao = this.ConversorResponse(tabela);
-            Models.Response.LivroCompleto livros = LivroConvert.ConversorCompleto(tabela.IdVendaLivroNavigation.IdLivroNavigation);
-            Models.Response.VendaLivroResponse vendaLivro = VendaLivroConvert.ConversorResponse(tabela.IdVendaLivroNavigation);
-
+            if (tabela.IdVendaLivroNavigation.IdLivroNavigation == null)
+                response.livros = null;
+            else
+            {
+                Models.Response.LivroCompleto livros = LivroConvert.ConversorCompleto(tabela.IdVendaLivroNavigation.IdLivroNavigation);
+                response.livros = livros;
+            }
+            if(tabela.IdVendaLivroNavigation == null)
+                response.vendalivro = null;
+            else 
+            {
+                Models.Response.VendaLivroResponse vendaLivro = VendaLivroConvert.ConversorResponse(tabela.IdVendaLivroNavigation);
+                response.vendalivro = vendaLivro;
+            }
             response.devolucao = devolucao;
-            response.livros = livros;
-            response.vendalivro = vendaLivro;
 
             return response;
         }
