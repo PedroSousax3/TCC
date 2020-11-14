@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace api.Business
 {
@@ -21,13 +22,15 @@ namespace api.Business
         {
             ValidarId(id);
             return await database.ConsultarCarrinhoPorId(id);
-        } 
+        }
 
-        public async Task<Models.TbCarrinho> ValidarAlteracaoCarrinho(int id, Models.TbCarrinho tabela)
+        public async Task<Models.TbCarrinho> ValidarAlteracaoCarrinho(int id, int novaqtd)
         {
-           ValidarCarrinho(tabela);
-           ValidarId(id);
-           return await database.AlterarCarrinhoPorId(id,tabela);
+            ValidarId(id);
+            if (novaqtd <= 0)
+                throw new ArgumentException("Quantidade invalida.");
+
+            return await database.AlterarCarrinhoPorId(id, novaqtd);
         }
 
         public List<Models.TbCarrinho> ValidarListarCarrinhoCliente(int id)
@@ -36,11 +39,10 @@ namespace api.Business
             return database.ListarCarrinhoCliente(id);
         }
 
-        public async Task<Models.TbCarrinho> ValidarAlterarCarrinho(int id,Models.TbCarrinho tabela)
+        public async Task<Models.TbCarrinho> ValidarAlterarCarrinho(int id, int novaqtd)
         {
-            ValidarCarrinho(tabela);
             ValidarId(id);
-            return await database.AlterarCarrinhoPorId(id,tabela);
+            return await database.AlterarCarrinhoPorId(id, novaqtd);
         }
 
         public async Task<Models.TbCarrinho> ValidarDeletarCarrinho(int id)

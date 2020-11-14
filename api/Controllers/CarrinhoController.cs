@@ -45,17 +45,18 @@ namespace api.Controllers
         }
 
         [HttpPut("alterar/{idcarrinho}")]
-        public async Task<ActionResult<Models.Response.CarrinhoResponse>> AlterarCarrinho(int idcarrinho,Models.Request.CarrinhoRequest request)
+        public async Task<ActionResult> AlterarCarrinho(int idcarrinho, int newqtd)
         {
             try
             {
-                Models.TbCarrinho tabela = conversor.ConversorTabela(request);
-                tabela = await business.ValidarAlteracaoCarrinho(idcarrinho,tabela);
-                return conversor.ConversorResponse(tabela);
+                await business.ValidarAlteracaoCarrinho(idcarrinho, newqtd);
+                return Ok();
             }
             catch (System.Exception ex)
             {
-                return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
+                return NotFound(
+                    new Models.Response.ErroResponse(404, ex.Message)
+                );
             }
         }
 

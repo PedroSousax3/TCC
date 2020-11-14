@@ -18,3 +18,8 @@ export const InserirCarrinhoApi = async (request) => {
     let response = await api.post('/cadastrar', request);
     return response;
 }
+
+export const alterarQuantidadeApi = async (idcarrinho, novaqtd) => {
+    const response = api.put('/alterar/' + idcarrinho + "?newqtd=" + novaqtd);
+    return response;
+}

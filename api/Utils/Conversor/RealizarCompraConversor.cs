@@ -35,7 +35,6 @@ namespace api.Utils.Conversor
                         NmStatus = "Em Andamento",
                         DsVendaStatus = "Aguardando pagamento cair no sistema",
                         DtAtualizacao = DateTime.Now
-
                     }
             );
 

@@ -42,14 +42,11 @@ namespace api.Database
             return carrinhos;
         }
 
-        public async Task<Models.TbCarrinho> AlterarCarrinhoPorId(int idcarrinho, Models.TbCarrinho novo)
+        public async Task<Models.TbCarrinho> AlterarCarrinhoPorId(int idcarrinho, int novoqtd)
         {
             Models.TbCarrinho carrinho = await this.ConsultarCarrinhoPorId(idcarrinho);
         
-            carrinho.IdCliente = novo.IdCarrinho;
-            carrinho.IdLivro = novo.IdLivro;
-            carrinho.NrLivro = novo.NrLivro;
-            carrinho.DtAtualizacao = novo.DtAtualizacao;
+            carrinho.NrLivro = novoqtd;
 
             await db.SaveChangesAsync();
             return carrinho;

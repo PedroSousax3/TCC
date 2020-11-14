@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link,useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
 
 //Style
 import { Pesquisa, ConteinerItens } from './style.js';
@@ -9,19 +12,34 @@ import { toast, ToastContainer } from "react-toastify";
 import Master from '../../Master/index.js';
 
 //Api 
-import { ListarCarrinho, Remover } from '../../../Service/carrinhoApi.js';
+import { ListarCarrinho, Remover, alterarQuantidadeApi } from '../../../Service/carrinhoApi.js';
 import { BuscarFoto } from '../../../Service/fileApi.js';
 
 import Cookies from 'js-cookie'
 
-export default function Carrinho(props){
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
+class AwesomeComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true
+        };
+    }
+}
+
+export default function Carrinho(props) {
     const navegacao = useHistory()
-    const [id,setId] = useState(Number(Cookies.get('id')));
-    const [ registros, setRegistros ] = useState([]);
-    const [ valorlivros, setValorLivros ] = useState(0);
-    const [ valorfrete, setValorFrete ] = useState(0);    
-    const [ totalcompra, setTotalCompra ] = useState(0);
-    const [ unidades, setUnidades ] = useState(0);
+    const [id, setId] = useState(Number(Cookies.get('id')));
+    const [registros, setRegistros] = useState([]);
+    const [valorlivros, setValorLivros] = useState(0);
+    const [valorfrete, setValorFrete] = useState(0);
+    const [totalcompra, setTotalCompra] = useState(0);
+    const [unidades, setUnidades] = useState(0);
 
     const RemoverItem = async (id) => {
         await Remover(id);
@@ -29,7 +47,7 @@ export default function Carrinho(props){
     }
 
 
-    function SomarCarrinho(result){
+    function SomarCarrinho(result) {
         let calc = 0;
         let contador = 0;
         result.forEach(x => {
@@ -41,7 +59,7 @@ export default function Carrinho(props){
         setValorLivros(calc);
         setTotalCompra(calc + contador);
         setValorFrete(contador);
-    }    
+    }
 
     const ConsultarCarrinho = async () => {
         const result = await ListarCarrinho(id);
@@ -51,22 +69,31 @@ export default function Carrinho(props){
     const Comprar = () => {
         navegacao.push("/FinalizarCompra", registros);
     }
+    const alterarCarrinho = async (item, idcarrinho, qtd) => {
+        try {
+            let response = await alterarQuantidadeApi(idcarrinho, qtd);
+            ConsultarCarrinho();
+        }
+        catch (ex) {
+            toast.error(ex.response.erro)
+        }
+    }
 
-    useEffect(() => {  
+    useEffect(() => {
         ConsultarCarrinho();
     }, []);
 
-    return(
+    return (
         <Master>
             <ToastContainer />
             <ConteinerItens>
-                {registros.map((x) => 
+                {registros.map((x) =>
                     <div className="card">
                         <div className="card-header" Key={x.id}>
                             {x.informacoes.nome}
                         </div>
                         <div className="container" Key={x.id}>
-                            <img style={{height : "300px", width: "180px"}} src={BuscarFoto(x.informacoes.foto)} alt="..." />
+                            <img style={{ height: "300px", width: "180px" }} src={BuscarFoto(x.informacoes.foto)} alt="..." />
                             <div className="card-body" Key={x.id}>
                                 <h6 className="card-title">Resumo</h6>
                                 <p className="card-text">{x.informacoes.descricao}</p>
@@ -76,20 +103,20 @@ export default function Carrinho(props){
                                 <p className="card-text">{new Date(x.informacoes.lancamento).toLocaleDateString()}</p>
                             </div>
                         </div>
-                        <div className="card-header" style={{ display : "flex", justifyContent : "space-between"}} Key={x.id}>
+                        <div className="card-header" style={{ display: "flex", justifyContent: "space-between" }} Key={x.id}>
                             <button className="btn btn-danger" onClick={() => RemoverItem(x.id)}>Remover</button>
-                            <div className ="unidadebutao">
-                                <button onClick={() =>setUnidades(unidades - 1)}>
-                                    -
-                                </button>
-                                <input type="number" data-mask="00" data-mask-selectonfocus="true" min="1" minLength="1" value={unidades} onChange={(x) => setUnidades(x.target.value)} />
-                                <button onClick={() => setUnidades(unidades + 1)}>
-                                    +
-                                </button>
+                            <div className="unidadebutao">
+                                <input type="number" className="form-control" min="1" minLength="1" onChange={(qtd) => alterarCarrinho(x.qtd, x.id, Number(qtd.target.value))} value={x.qtd} style={{ width: "70px" }} />
+                                <ClipLoader
+                                    css={override}
+                                    size={150}
+                                    color={"#123abc"}
+                                    loading={this.state.loading}
+                                />
                             </div>
                         </div>
                     </div>
-                )}        
+                )}
             </ConteinerItens>
             <Pesquisa>
                 <div className="container">
