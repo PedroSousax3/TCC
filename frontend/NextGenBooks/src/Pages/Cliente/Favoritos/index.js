@@ -114,6 +114,10 @@ const Favoritos = styled.div`
 
     padding: 10px 10%;
 
+    & > h1 {
+        color : white;
+    }
+
     & * {
         box-sizing: border-box;
     } 

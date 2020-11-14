@@ -102,7 +102,7 @@ export default function FinalizarCompra(props) {
             <Master children={
                 <div style={{ justifyContent: "center", alignItems: "center", paddingTop: "4%", display: "flex", flexDirection: "column" }}>
                     <div style={{ width: "60%", display: "flex", justifyContent: "flex-start" }}>
-                        <span style={{ fontSize: "25px", fontWeight: "bold" }}>Finalizar Compra</span>
+                        <span style={{ fontSize: "25px", fontWeight: "bold", color : "white"}}>Finalizar Compra</span>
                     </div>
                     <CaixaFinalizarCompra>
                         <div>

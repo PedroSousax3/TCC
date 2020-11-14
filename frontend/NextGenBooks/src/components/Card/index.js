@@ -16,7 +16,7 @@ export const Card = styled.div`
 `;
 
 export const Title = styled.div`
-    height: 35px;
+    min-height: 35px;
     line-height: 35px;
     
     margin: auto 0px;

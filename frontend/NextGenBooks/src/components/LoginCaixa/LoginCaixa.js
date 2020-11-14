@@ -47,7 +47,7 @@ export const LoginCaixa = styled.div`
 }
 .titulo label{
         font-size:1.6rem;
-        color:#D26E4E;
+        color: white;
         font-weight:bold;
 }
 .Links{

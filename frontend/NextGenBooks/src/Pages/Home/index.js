@@ -70,13 +70,13 @@ export default function HomePage(e) {
                         </select>
                     </div>
                     <div className="nome">
-                        <input type="text" placeholder="Titulo, Personagem, Autor" />
+                        <input type="text" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
                     </div>
                 </ContainerPesquisa>
 
                 {/*
                         <div className="form-group" id="dvgenero" style={{ margin: "0px", width: "50vw" }}>
-                            <input className="form-control" id="filtro" type="genero" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
+                            <input className="form-control" id="filtro" type="genero"  />
                         </div>
                     */}
 

@@ -63,25 +63,19 @@ export const ConteinerItens = styled.div`
 export const Pesquisa = styled.div`
 
     position: fixed;
-    right: 0px;
-    bottom: 0px;
-
-    height: calc(100vh - 60px);
-    width: 300px;  
-    background-color: var(--marrom-medio);
-
+    right: 5px;
+    top: 55px;
+    min-height: 30vh;
+    width: 300px;
+    background-color: white;
     padding: 5px;
-
-    color: white;
+    color: black;
     font-weight: 600;
     font-size: 18px;
 
     & > #btcompra
     {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-
+        float : right;
         font-size: 18px;
         font-weight: 600;
     }
@@ -91,8 +85,7 @@ export const Pesquisa = styled.div`
         & {
             position: static;
             width: 100%;
-            margin-bottom: 60px;
-            height: auto;
+            padding-bottom: 60px;
         }
 
         & > .container {

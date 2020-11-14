@@ -12,13 +12,15 @@ export const ContainerPesquisa = styled.div`
     z-index: 250;
     position: fixed;
     padding: 5px 25px;*/
-        position: fixed;
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        align-items: center;
-        padding: 0px 15px 15px 15px;
-        z-index: 1;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 0px 15px 15px 15px;
+    z-index: 1;
+    background-color : #141414;
+    margin-top: 2px;
 
     &.pesquisa > div.genero > select, &.pesquisa > div.nome > input[type = "text"]{
         height: 30px;

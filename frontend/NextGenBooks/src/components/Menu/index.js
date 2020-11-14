@@ -15,8 +15,12 @@ export default function Menu() {
         Cookies.remove('token');
         Cookies.remove('usuario');
         Cookies.remove('perfil');
-        navegacao.push("/");
+        navegacao.push('/')
     }
+
+    const [ perfil, setPerfil ] = useState(false);
+    useEffect(
+        () => setPerfil(Cookies.get('token') !== null && Cookies.get('token') !== undefined && Cookies.get("token") !== ""), []);
 
     return (
         <div className="menu">
@@ -33,29 +37,42 @@ export default function Menu() {
                                 Inicio
                              </Link>
                         </li>
-                        <li>
-                            <Link to="/Favoritos">
-                                Minha Lista
-                             </Link>
-                        </li>
-                        <li>
-                            <Link to="/Carrinho">
-                                Carrinho
-                             </Link>
-                        </li>
-                        <li>
-                            <Link to="/MinhasCompras">
-                                Compras
-                             </Link>
-                        </li>
+                        {
+                            perfil ? 
+                                        <>
+                                            <li>
+                                                <Link to="/Favoritos">
+                                                    Minha Lista
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/Carrinho">
+                                                    Carrinho
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link to="/MinhasCompras">
+                                                    Compras
+                                                </Link>
+                                            </li>
+                                        </>
+                                    :
+                                        <></>
+                        }
                     </ul>
                 </div>
                 <div className="dropdown">
                     <i className="far fa-user-circle" data-toggle="dropdown"></i>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <Link className="dropdown-item" to="/Acesso">Acessar</Link>
-                        <Link className="dropdown-item" to="/Perfil">Minha Area</Link>
-                        <button className="dropdown-item" onClick={sairPerfil}>Sair</button>
+                        {
+                            perfil ?
+                                    <>
+                                        <Link className="dropdown-item" to="/Perfil">Minha Area</Link>
+                                        <button className="dropdown-item" onClick={sairPerfil}>Sair</button>
+                                    </>
+                                    :
+                                        <Link className="dropdown-item" to="/Acesso">Acessar</Link>
+                        }
                     </div>
                 </div>
             </header>
@@ -69,30 +86,31 @@ export default function Menu() {
                             <div className="titulo-icone">Inicio</div>
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/filme">
-                            <i className="fas fa-film"></i>
-                            <div className="titulo-icone">Filmes</div>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/">
-                            <i className="fas fa-play-circle"></i>
-                            <div className="titulo-icone">Favoritos</div>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/">
-                            <i className="fas fa-heart"></i>
-                            <div className="titulo-icone">Carrinho</div>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/">
-                            <i className="fas fa-bars"></i>
-                            <div className="titulo-icone">Compras</div>
-                        </Link>
-                    </li>
+                    {
+                        perfil ? 
+                                    <>
+                                        <li>
+                                            <Link to="/">
+                                                <i className="fas fa-heart"></i>
+                                                <div className="titulo-icone">Favoritos</div>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/">
+                                                <i className="fas fa-shopping-cart"></i>
+                                                <div className="titulo-icone">Carrinho</div>
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/">
+                                                <i className="far fa-handshake"></i>
+                                                <div className="titulo-icone">Compras</div>
+                                            </Link>
+                                        </li>
+                                    </>
+                                :
+                                    <></>
+                    }
                 </ul>
             </header>
             {/*Menu Responsivo*/}
@@ -100,9 +118,7 @@ export default function Menu() {
     );
 
 
-    /*const [ perfil, setPerfil ] = useState(false);
-    useEffect(
-        () => setPerfil(Cookies.get('token') !== null && Cookies.get('token') !== undefined && Cookies.get("token") !== ""), []
+    /*
     );
     return (
         <div>

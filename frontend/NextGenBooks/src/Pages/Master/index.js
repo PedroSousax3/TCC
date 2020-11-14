@@ -12,7 +12,7 @@ export default function Master(props) {
             {/*<MenuSpace theme={{sc_height : "60px"}}/>
             */}
             <Menu />
-            <ContainerPage style={{paddingTop : "50px"}}>
+            <ContainerPage style={{paddingTop : "45px"}}>
                 {props.children}
             </ContainerPage>
             {/*<MenuSpace id="menu-baixo" theme={{sc_height : "60px"}}/>*/}

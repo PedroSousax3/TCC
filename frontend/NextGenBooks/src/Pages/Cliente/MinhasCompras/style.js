@@ -1,12 +1,9 @@
 import styled from 'styled-components'
 
 export const ContainerMinhasCompras = styled.div`
-    
-min-height: calc(100vh - 296px);
 width: auto;
 
 padding: 10px;
-margin-right: 300px;
 
 display: flex;
 flex-direction: column;
@@ -56,51 +53,23 @@ flex-direction: column;
 
 export const Pesquisa = styled.div`
 
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
-
-    height: calc(100vh - 60px);
-    width: 300px;  
-    background-color: var(--marrom-medio);
-
+    position: absolute;
+    right: 5px;
+    top: 55px;
+    min-height: auto;
+    width: auto;
     padding: 5px;
-
-    color: white;
+    color: black;
     font-weight: 600;
     font-size: 18px;
-
-    & > #btcompra
+    
+    @media screen and (max-width: 900px)
     {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-
-        font-size: 18px;
-        font-weight: 600;
-    }
-
-    @media screen and (max-width: 770px)
-    {
-        & {
-            position: static;
-            width: 100%;
-            margin-bottom: 60px;
-            height: auto;
-        }
-
-        & > .container {
-            padding: 0px;
-            margin: 0px;
-        }
-
-        & > .container > .form-group {
-            margin: 5px;
-        }
-
-        & > #btcompra {
-            position: static;
-            width: 100%;
-        }
+        top : 90px;
+        right: 0;
+        width: 100vw;
+        align-items : center;
+        display: flex;
+        justify-content: space-between;
     }
 `;

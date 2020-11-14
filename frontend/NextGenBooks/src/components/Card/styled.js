@@ -4,7 +4,7 @@ export const BoxContainer = styled.div`
     margin : ${props => props.theme.sc_espace};
     padding: ${props => props.theme.sc_padding};
 
-    background-color: #98F0BB;
+    background-color: white;
     border: ${props => props.theme.sc_border};
     border-radius: 3px;
     

@@ -95,9 +95,14 @@ export default function MinhasCompras() {
       <Master>
         <ContainerMinhasCompras>
           <div className="titulo">
-            <label style={{ fontSize: "20px", fontWeight: "bolder" }}>
+            <label style={{ fontSize: "30px", color: "white", fontWeight: "bolder" }}>
               Minhas Compras
-                        </label>
+            </label>
+            <Pesquisa>
+              <button id="btcompra" type="button" className="btn btn-success" onClick={listarPendentes} style={{ width: "200px" }}>Pendentes</button>
+              <button id="btcompra" type="button" className="btn btn-success" onClick={listarAndamento} style={{ width: "200px" }}>Em Andamento</button>
+              <button id="btcompra" type="button" className="btn btn-success" onClick={listarFinalizadas} style={{ width: "200px" }}>Finalizadas</button>
+            </Pesquisa>
             {registros.map(x =>
               <div style={{ marginTop: "35px" }}>
 
@@ -110,13 +115,13 @@ export default function MinhasCompras() {
                       <h6 className="card-title">Nome:{y.livroInfo.nome}</h6>
                       <p className="card-text">Descrição:{y.livroInfo.descricao}</p>
                       {
-                        y.devolvido ? 
-                              <>
-                                <h6 className="card-text" style={{color:"red"}}>Livro Devolvido</h6>
-                                
-                              </>
-                              :
-                              <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#modalExemplo2" >Pedir Devolução</button>
+                        y.devolvido ?
+                          <>
+                            <h6 className="card-text" style={{ color: "red" }}>Livro Devolvido</h6>
+
+                          </>
+                          :
+                          <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#modalExemplo2" >Pedir Devolução</button>
                       }
                     </div>
 
@@ -177,19 +182,6 @@ export default function MinhasCompras() {
             )}
           </div>
         </ContainerMinhasCompras>
-        <Pesquisa>
-          <div className="container">
-            <div className="form-group">
-              <button id="btcompra" type="button" className="btn btn-success" onClick={listarPendentes} style={{ width: "200px" }}>Pendentes</button>
-            </div>
-            <div className="form-group">
-              <button id="btcompra" type="button" className="btn btn-success" onClick={listarAndamento} style={{ width: "200px" }}>Em Andamento</button>
-            </div>
-            <div className="form-group">
-              <button id="btcompra" type="button" className="btn btn-success" onClick={listarFinalizadas} style={{ width: "200px" }}>Finalizadas</button>
-            </div>
-          </div>
-        </Pesquisa>
         <ToastContainer />
       </Master>
     </div>
