@@ -17,6 +17,18 @@ namespace api.Business
             ValidarTexto(endereco.NmEndereco, "nome do endereço");
             ValidarTexto(endereco.DsEndereco, "endereço");
             ValidarTexto(endereco.DsCep, "cep");
+            List<TbEndereco> lista = await ListarEnderecoClienteDatabase(endereco.IdCliente);
+
+            foreach (TbEndereco item in lista)
+            {
+                if(endereco.NmEndereco == item.NmEndereco 
+                && endereco.DsEndereco == item.DsEndereco 
+                && endereco.NrEndereco == item.NrEndereco
+                && endereco.DsCep == item.DsCep)
+                {
+                    throw new ArgumentException("Esse Endereço já foi cadastrado");
+                }
+            }
 
             return await business.InserirEnderecoDatabase(endereco);
         }
