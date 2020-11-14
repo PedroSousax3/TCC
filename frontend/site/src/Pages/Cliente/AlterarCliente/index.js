@@ -42,7 +42,7 @@ export default function AlterarCliente() {
                 genero
             }
             const response = await api.alterar(request);
-            toast.dark("Alterar completo " + response.data.Nome);
+            toast.dark("Dados alterados com Sucesso," + response.data.Nome);
             navegacao.push("/Perfil");
         }
         catch(e) {
@@ -52,21 +52,21 @@ export default function AlterarCliente() {
 
     return(
         <Master>
-            <h2>Alterar Dados Cadastrais</h2>
+            <h2>Alterar Dados da Conta</h2>
             <CadastroCaixa>
                 <CaixaInformacoes>
                     <div className="form-group">
                         <label className="Nome">Nome completo:</label>
-                        <input className="form-control" type="text" onChange={(n) => setNome(n.target.value)} />
+                        <input className="form-control" type="text"  onChange={(n) => setNome(n.target.value)} />
                     </div>
                     
                     <div className="form-group">
-                        <label className="">Email:</label>
+                        <label className="">E-mail:</label>
                         <input className="form-control" type="email" onChange={(n) => setEmail(n.target.value)}/>
                     </div>
                     
                     <div className="form-group">
-                        <label>Genero:</label>
+                        <label>Gênero:</label>
                         <input className="form-control" onChange={(x) => setGenero(x.target.value)} list="generos" name="genero" id="genero" />
                         <datalist id="generos">
                             <option value="Masculino"  />
@@ -94,7 +94,7 @@ export default function AlterarCliente() {
                         <img src={file} alt="" id="preview"></img>
                     </div>
                     <div className="button1">
-                        <button type="button" className="btn btn-success" onClick={salvarClick} >Confirmar Alterar</button>
+                        <button type="button" className="btn btn-success" onClick={salvarClick} >Confirmar Alteração</button>
                     </div>
                 </CaixaImage>              
             </CadastroCaixa>

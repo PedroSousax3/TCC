@@ -15,5 +15,5 @@ export const inserirFavoritoApi = async (request) => {
 }
 
 export const removerFav  = async (id) => {
-    return await api.delete('idfavorito?=' + id);
+    return await api.delete('?idfavorito=' + id);
 }

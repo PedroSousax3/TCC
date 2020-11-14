@@ -59,10 +59,15 @@ namespace api.Business
             ValidarId(id);
             return await database.ConsultarLivroPorIdUnico(id);
         }
-
-        public async Task<List<Models.TbLivro>> ListarLivroBusiness (int posicao) 
+        
+        public int ContarLivrosBusiness()
         {
-            return await database.ListarLivros(posicao);
+            return database.ContarLivrosDatabase();
+        }
+
+        public async Task<List<Models.TbLivro>> ListarLivroBusiness (int inicio, int fim, string nome) 
+        {
+            return await database.ListarLivroCompleto(inicio, fim, nome);
         }
     }
 }

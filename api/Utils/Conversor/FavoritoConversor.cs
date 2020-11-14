@@ -31,7 +31,7 @@ namespace api.Utils.Conversor
                 response.atores = null;
             else
                 response.atores = tabela.IdLivroNavigation.TbLivroAutor.Select(x => x.IdAutorNavigation.NmAutor).ToList();
-            if(tabela.IdLivroNavigation.TbEstoque == null)
+            if(tabela.IdLivroNavigation.TbEstoque.Count <= 0 || tabela.IdLivroNavigation.TbEstoque == null)
                 response.qtd = 0;
             else
                 response.qtd = tabela.IdLivroNavigation.TbEstoque.FirstOrDefault(x => x.IdLivro == response.livro).NrQuantidade;

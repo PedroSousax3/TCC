@@ -63,7 +63,7 @@ export default function Cadastro(props) {
             navegacao.push("/Perfil", acesso);
         }
         catch (e) {
-            toast.error(e.response.data.erro);
+            toast.error("Por favor arrume os campos inválidos.");
         }
     }
 
@@ -88,7 +88,7 @@ export default function Cadastro(props) {
 
     return (
         <Master>
-            <h2>Cadastro de Cliente</h2>
+            
             <CadastroCaixa>
                 <CaixaInformacoes>
                     <div className="form-group">
@@ -97,12 +97,12 @@ export default function Cadastro(props) {
                     </div>
 
                     <div className="form-group">
-                        <label className="">Email:</label>
+                        <label className="">E-mail:</label>
                         <input className="form-control" type="email" onChange={(n) => setEmail(n.target.value)} />
                     </div>
 
                     <div className="form-group">
-                        <label>Genero:</label>
+                        <label>Gênero:</label>
                         <input className="form-control" onChange={(x) => setGenero(x.target.value)} list="generos" name="genero" id="genero" />
                         <datalist id="generos">
                             <option value="Masculino" />
@@ -112,7 +112,7 @@ export default function Cadastro(props) {
                     </div>
 
                     <div className="form-group">
-                        <label className="Usuario">Usuario:</label>
+                        <label className="Usuario">Usuário:</label>
                         <input className="form-control" type="text" onChange={(n) => setUsuario(n.target.value)} />
                     </div>
 

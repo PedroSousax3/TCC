@@ -75,7 +75,7 @@ export default function TrocarSenha(props){
                                   <div className="inputs form-group" style={{display:"flex", }}>
                                       <input type="password" className="form-control" id="formGroupExampleInput" placeholder="SENHA NOVA"
                                       style={{marginLeft:"33px"}} onChange ={(e) => setSenha(e.target.value)}/>
-                                      <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%"}}
+                                      <i className="icone btn btn-sm fas fa-eye" style={{marginTop:"3%", }}
                                                                               onClick={mostrar}
                                       ></i>
                                   </div>

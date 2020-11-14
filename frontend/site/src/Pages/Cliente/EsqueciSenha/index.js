@@ -57,7 +57,7 @@ export default function EsqueciSenha(){
         const response = await api.confirmarCodigo(request,id);
         navegacao.push("/EsqueciSenha/TrocarSenha",response.data);
     }catch(e){
-        toast.error("Codigo invalido");
+        toast.error("Código inválido");
     }
   }
 

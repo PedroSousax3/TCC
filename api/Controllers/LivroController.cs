@@ -52,12 +52,12 @@ namespace api.Controllers
         }
 
 
-        [HttpGet("listar/{atual}")]
-        public async Task<ActionResult<List<Models.Response.LivroCompleto>>> ListarLivro (int atual = 0)
+        /*[HttpGet("listar/{atual}")]
+        public async Task<ActionResult<List<Models.Response.LivroCompleto>>> ListarLivro (int inicio = 0, int fim = 10)
         {
             try
             {
-                List<Models.TbLivro> livro = await business.ListarLivroBusiness(atual);
+                List<Models.TbLivro> livro = await business.ListarLivroBusiness(inicio, fim);
                 return livro.Select(x => ConversorLivro.ConversorCompleto(x)).ToList();
             }
             catch (System.Exception ex)
@@ -66,7 +66,7 @@ namespace api.Controllers
                     new Models.Response.ErroResponse(404, ex.Message)
                 );
             }
-        }
+        }*/
 
         [HttpPut("{idlivro}")]
         public async Task<ActionResult<Models.Response.LivroResponse>> Alterar(int idlivro, [FromForm] Models.Request.LivroRequest request)
