@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create(
-    { baseURL : 'http://localhost:5000/Arquivo' }
+    { baseURL : 'http://3.87.226.24:5000/Arquivo' }
 );
 
 export const ListPostFile = async (inicio = 0, fim = 10, nome = "") => {
