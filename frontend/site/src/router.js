@@ -62,10 +62,6 @@ export default function Rotas(){
           <Route path="/Relatorios" component={MenuRelatorios}/>
           <Route path="/TopVenda" component={TopVenda}/>
 
-
-
-
-
         </Switch>
       </BrowserRouter>
     )

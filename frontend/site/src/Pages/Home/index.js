@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Master from '../Master/index';
 
-import { Home, ContainerPesquisa, ContainerPreview, Card, ItemCard } from './style.js'
-import { ConteinerItens } from '../../Pages/Cliente/Carrinho/style.js'
-
-import { } from '../Cliente/Carrinho/style.js'
+import { Home, ContainerPesquisa, ContainerPreview, Card } from './style.js'
 
 import { ListPostFile, BuscarFoto } from '../../Service/fileApi.js';
 
@@ -30,10 +27,6 @@ export default function HomePage(e) {
         if (event.key === 'Enter') {
             listarLivros();
         }
-    }
-
-    const removerAcentos = (valor) => {
-        return valor.replace(/[^a-zA-Zs0-9 ]/g, "");
     }
 
     async function almentarPosicao() {

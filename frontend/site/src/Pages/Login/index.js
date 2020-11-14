@@ -7,9 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { ContainerLogin } from './style.js'
 import { LoginCaixa } from "../../components/LoginCaixa/LoginCaixa"
 import nextGenBookAPI from "../../Service/NextGenBookApi";
-import Master from "../Master";
-
-import back from './biblioteca-background.jpeg'
+import Master from "../Master/index";
 
 const api = new nextGenBookAPI();
 
