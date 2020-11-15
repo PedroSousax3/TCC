@@ -17,14 +17,15 @@ namespace api.Business
             ValidarTexto(endereco.NmEndereco, "nome do endereço");
             ValidarTexto(endereco.DsEndereco, "endereço");
             ValidarTexto(endereco.DsCep, "cep");
-            List<TbEndereco> lista = await ListarEnderecoClienteDatabase(endereco.IdCliente);
+            List<TbEndereco> lista = await ListarEnderecoClienteSemFiltroDatabase(endereco.IdCliente);
 
             foreach (TbEndereco item in lista)
             {
                 if(endereco.NmEndereco == item.NmEndereco 
                 && endereco.DsEndereco == item.DsEndereco 
                 && endereco.NrEndereco == item.NrEndereco
-                && endereco.DsCep == item.DsCep)
+                && endereco.DsCep == item.DsCep
+                && endereco.NmEndereco == item.NmEndereco)
                 {
                     throw new ArgumentException("Esse Endereço já foi cadastrado");
                 }
@@ -46,6 +47,14 @@ namespace api.Business
             List<Models.TbEndereco> enderecos = await business.ListarEnderecoClienteDatabase(cliente);
             if(enderecos.Count == 0)
                 throw new ArgumentException("Não há endereços cadastrados.");
+
+            return enderecos;
+        }
+
+        public async Task<List<Models.TbEndereco>> ListarEnderecoClienteSemFiltroDatabase(int cliente)
+        {
+            ValidarId(cliente);
+            List<Models.TbEndereco> enderecos = await business.ListarEnderecoClienteDatabase(cliente);
 
             return enderecos;
         }

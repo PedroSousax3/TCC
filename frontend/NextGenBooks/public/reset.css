@@ -2,6 +2,12 @@
     box-sizing: border-box;
 }
 
+.btn-success {
+    background-color: #00FF12;
+    color: black;
+    font-weight: 700;
+}
+
 #root {
     background-color: #141414; 
 }
