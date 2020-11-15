@@ -36,7 +36,7 @@ const [registros,setRegistros] = useState([]);
                             </div>
                         </Containerinput>
                         <div>
-                            <table className="table table-striped">
+                            <table className="table table-striped table-dark">
                                 <thead>
                                     <tr>
                                         <th scope="col">Nome</th>

@@ -15,7 +15,7 @@ const [registros,setRegistros] = useState([...props.location.state.livros]);
                      
                         <div>
                             <h1>Produtos Dessa Venda</h1>
-                            <table className="table table-striped" style={{marginTop:"10%"}}>
+                            <table className="table table-striped table-dark" style={{marginTop:"15px"}}>
                                 <thead>
                                     <tr>
                                         <th scope="col"style={{textAlign:"center"}}>Nome Do Livro</th>

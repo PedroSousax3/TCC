@@ -3,11 +3,12 @@ import styled from 'styled-components'
 export const ContainerVendaDia = styled.div`
     
     flex:1;
-    height:80vh;
+    min-height:80vh;
     align-items:center;
     flex-direction:column;
     display:flex;
     margin-top:15px;
+    color : white;
       @media screen and (max-width: 600px)
     {
         & {

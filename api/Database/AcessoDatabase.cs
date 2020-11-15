@@ -12,15 +12,16 @@ namespace api.Database
             Models.TbLogin login = await db.TbLogin.Include(x => x.TbCliente)
                                                     .Include(x => x.TbFuncionario)
                                                     .FirstOrDefaultAsync(x => x.NmUsuario == user);
-            login.DtUltimoLogin = DateTime.Now;
+
+            if(login != null)
+                login.DtUltimoLogin = DateTime.Now;
             
             if(login == null)
                 throw new ArgumentException("Nome de usuario não cadastrado.");
             
             if(senha != login.DsSenha)
                 throw new ArgumentException("Senha informada está incorreta.");
-            
-
+                
             await db.SaveChangesAsync();
 
             return login;

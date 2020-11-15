@@ -14,42 +14,33 @@ export default function HomePage(e) {
     const [qtdPost, setQtdPost] = useState(0);
 
     const [inicio, setInicio] = useState(0);
-    const [fim, setFim] = useState(10);
 
     const listarLivros = async () => {
-        const result = await ListPostFile(inicio, fim, nome);
+        const result = await ListPostFile(inicio, inicio + 10, nome);
         console.log(result);
         setConsulta([...result.data.posteres]);
         setQtdPost(result.data.qtd);
-        console.log(inicio, fim);
     }
 
-    function listarPress(event) {
+    async function listarPress(event) {
         if (event.key === 'Enter') {
-            listarLivros();
+            await listarLivros();
         }
     }
 
     async function almentarPosicao() {
-        if (qtdPost >= inicio) {
-            setInicio(inicio + 10);
-            setFim(fim + 10);
-        }
+        setInicio(inicio + 10);
         await listarLivros();
-        console.log(inicio, fim);
     }
 
     async function diminuirPosicao() {
         if (inicio - 10 <= 0) {
             setInicio(0);
-            setFim(10);
         }
         else {
-            setFim(fim - 10);
             setInicio(inicio - 10);
         }
         await listarLivros();
-        console.log(inicio, fim);
     }
 
     useEffect(() => {
@@ -61,20 +52,22 @@ export default function HomePage(e) {
             <Home>
 
                 <ContainerPesquisa className="pesquisa">
-                    <div className="genero">
-                        <select>
-                            <option valur="Todos">Genero</option>
-                            <option value="Ação">Ação</option>
-                            <option value="Aventura">Aventura</option>
-                            <option value="Drama">Drama</option>
-                        </select>
-                    </div>
+                    {/*
+                        <div className="genero">
+                            <select>
+                                <option valur="Todos">Genero</option>
+                                <option value="Ação">Ação</option>
+                                <option value="Aventura">Aventura</option>
+                                <option value="Drama">Drama</option>
+                            </select>
+                        </div>
+                    */}
                     <div className="nome">
                         <input type="text" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
                     </div>
                 </ContainerPesquisa>
 
-                {/*
+                    {/*
                         <div className="form-group" id="dvgenero" style={{ margin: "0px", width: "50vw" }}>
                             <input className="form-control" id="filtro" type="genero"  />
                         </div>

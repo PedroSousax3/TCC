@@ -47,7 +47,7 @@ export default function VendaPorDia() {
                     </div>
                 </Containerinput>
                 <div>
-                    <table className="table table-striped" style={{marginTop:"10%"}}>
+                    <table className="table table-striped table-dark" style={{marginTop:"15px"}}>
                         <thead>
                             <tr>
                                 <th scope="col">Cliente</th>

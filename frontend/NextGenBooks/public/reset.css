@@ -2,6 +2,16 @@
     box-sizing: border-box;
 }
 
+.btn-success {
+    background-color: #00FF12;
+    color: black;
+    font-weight: 700;
+}
+
+#root {
+    background-color: #141414; 
+}
+
 :root {
     --verde-claro: rgb(152, 240, 187);
     --verde-escuro: rgb(0, 133, 13);

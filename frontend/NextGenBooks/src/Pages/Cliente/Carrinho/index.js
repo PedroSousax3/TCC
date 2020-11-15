@@ -99,13 +99,13 @@ export default function Carrinho(props) {
                         <div className="card-header" style={{ display: "flex", justifyContent: "space-between" }} Key={x.id}>
                             <button className="btn btn-danger" onClick={() => RemoverItem(x.id)}>Remover</button>
                             <div className="unidadebutao">
-                                <input type="number" className="form-control" min="1" minLength="1" onChange={(qtd) => alterarCarrinho(x.qtd, x.id, Number(qtd.target.value))} value={x.qtd} style={{ width: "70px" }} />
                                 <ClipLoader
                                     css={override}
                                     size={35}
                                     color={"#438719"}
                                     loading={estado}
                                 />
+                                <input type="number" className="form-control" min="1" minLength="1" onChange={(qtd) => alterarCarrinho(x.qtd, x.id, Number(qtd.target.value))} value={x.qtd} style={{ width: "70px" }} />
                             </div>
                         </div>
                     </div>

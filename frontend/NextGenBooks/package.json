@@ -9,6 +9,8 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
+    "brmasker": "^1.0.19",
+    "brmasker-ionic-3": "^1.6.3",
     "correios-brasil": "^2.0.5",
     "emailjs-com": "^2.6.3",
     "js-cookie": "^2.2.1",

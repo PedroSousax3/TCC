@@ -125,7 +125,7 @@ export default function MostrarLivro(props) {
         <Master>
             <ToastContainer />
             
-            <BoxContainer id="livro" theme={{ sc_border: "3.5px solid #00870D", sc_espace: "80px 80px", sc_padding: "10px", sc_direction: "column" }}>
+            <BoxContainer id="livro" theme={{ sc_border: "none", sc_espace: "0px", sc_padding: "10px", sc_direction: "column" }}>
             <Link to="/" >
                 <button type="button" class="btn btn-info">
                     Voltar para menu

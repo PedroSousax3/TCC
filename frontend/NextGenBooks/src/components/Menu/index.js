@@ -90,19 +90,19 @@ export default function Menu() {
                         perfil ? 
                                     <>
                                         <li>
-                                            <Link to="/">
+                                            <Link to="/Favoritos">
                                                 <i className="fas fa-heart"></i>
                                                 <div className="titulo-icone">Favoritos</div>
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to="/">
+                                            <Link to="/Carrinho">
                                                 <i className="fas fa-shopping-cart"></i>
                                                 <div className="titulo-icone">Carrinho</div>
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to="/">
+                                            <Link to="/MinhasCompras">
                                                 <i className="far fa-handshake"></i>
                                                 <div className="titulo-icone">Compras</div>
                                             </Link>

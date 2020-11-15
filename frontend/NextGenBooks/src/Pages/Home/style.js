@@ -20,7 +20,6 @@ export const ContainerPesquisa = styled.div`
     padding: 0px 15px 15px 15px;
     z-index: 1;
     background-color : #141414;
-    margin-top: 2px;
 
     &.pesquisa > div.genero > select, &.pesquisa > div.nome > input[type = "text"]{
         height: 30px;

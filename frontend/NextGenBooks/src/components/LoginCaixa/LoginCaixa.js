@@ -68,7 +68,6 @@ export const LoginCaixa = styled.div`
     & {
         padding: 0;
         width:100%;
-        background-color:white;
         box-shadow:none;      
     }
     & > form > input{

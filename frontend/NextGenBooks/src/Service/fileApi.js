@@ -7,6 +7,7 @@ const api = axios.create(
 
 export const ListPostFile = async (inicio, fim, nome) => {
     const response = await axios.get(`http://3.87.226.24:5000/Arquivo/listar/postes-livros/v2?inicio=${inicio}&fim=${fim}&nome=${nome}`)
+    console.log(response);
     return response;
 }
 

@@ -4,20 +4,31 @@ import Cookies from 'js-cookie';
 
 import { ToastContainer, toast } from "react-toastify";
 
-import { ContainerLogin } from './style.js'
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+
+import { ContainerLogin, FundoCarregamento } from './style.js'
 import { LoginCaixa } from "../../components/LoginCaixa/LoginCaixa"
 import nextGenBookAPI from "../../Service/NextGenBookApi";
 import Master from "../Master/index";
 
 const api = new nextGenBookAPI();
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  margin: auto 5px;
+`;
+
+
 export default function Logar(e) {
   // final do login
   const navegacao = useHistory()
   const [user, setUser] = useState("");
   const [senha, setSenha] = useState("");
-  
+
   const Logar = async () => {
+    openCarregamento();
     try {
       const request = {
         user,
@@ -26,17 +37,19 @@ export default function Logar(e) {
       const a = await api.login(request);
       gerarCookies(a.data)
       navegacao.push("/", a.data);
-    } catch (e) {
-      toast.error("Usuario ou Senha incorretos");
+    }
+    catch (e) {
+      closeCarregamento();
+      toast.error(e.response.data.erro);
     }
   }
-  
+
   function gerarCookies(response) {
     Cookies.remove('id');
     Cookies.remove('token');
     Cookies.remove('usuario');
     Cookies.remove('perfil');
-    
+
     Cookies.set('token', response.token, {
       expires: 1,
       path: '/'
@@ -54,22 +67,32 @@ export default function Logar(e) {
       path: '/'
     });
   }
-  
+
+
   document.onkeypress = function (evt) {
     evt = evt || window.event;
-    
+
     if (evt.key === "Enter")
-    Logar();
+      Logar();
   }
 
-  function AlterarTitulo (nome) {
+  function openCarregamento() {
+    setCarregado(true);
+    document.getElementById('fundocarregamento').style.display = "flex";
+  }
+  function closeCarregamento() {
+    setCarregado(false);
+    document.getElementById('fundocarregamento').style.display = "none";
+  }
+
+  function AlterarTitulo(nome) {
     document.getElementsByTagName('title')[0].innerText = nome
   }
-  
+
   function mostrar() {
     var tipo = document.getElementById("formGroupExampleInput2");
     var botao = document.querySelector(".btn.btn-sm");
-    
+
     if (tipo.type === "password") {
       tipo.type = "text";
       botao.classList.remove("fa-eye");
@@ -83,10 +106,20 @@ export default function Logar(e) {
   useEffect(
     () => AlterarTitulo('Acesso')
   );
-  
+
+  const [carregado, setCarregado] = useState(false);
+
   return (
     <Master>
       <ContainerLogin>
+        <FundoCarregamento id="fundocarregamento">
+          <ClipLoader
+            css={override}
+            size={100}
+            color={"#438719"}
+            loading={carregado}
+          />
+        </FundoCarregamento>
         <LoginCaixa>
           <div className="centro">
             <div className="titulo">
@@ -94,12 +127,12 @@ export default function Logar(e) {
             </div>
             <div className="form-group">
               <label>Usuario:</label>
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="" onChange={(e) => setUser(e.target.value)} />
+              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Digite o nome de usuario ou e-mail cadastrado:" onChange={(e) => setUser(e.target.value)} />
             </div>
             <div className="form-group">
               <label>Senha:</label>
               <div className="input-icone" style={{ position: "relative" }}>
-                <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="Digite sua senha" onChange={(e) => setSenha(e.target.value)} />
+                <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="Digite sua senha:" onChange={(e) => setSenha(e.target.value)} />
                 <i className="icone btn btn-sm fas fa-eye" onClick={mostrar} style={{ margin: "auto", position: "absolute", right: "15px", top: "50%", fontSize: "15px", transform: "translateY(-50%)" }}></i>
               </div>
             </div>
@@ -107,7 +140,7 @@ export default function Logar(e) {
               <div className="link">
                 <Link as="a" to={{ pathname: "/EsqueciSenha" }}>
                   Esqueci a Senha &#160;|
-                                </Link>
+                </Link>
               </div>
 
               <div className="link">
@@ -131,6 +164,3 @@ export default function Logar(e) {
     </Master>
   );
 }
-
-
-

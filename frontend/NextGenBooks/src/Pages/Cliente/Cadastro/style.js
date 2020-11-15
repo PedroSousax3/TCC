@@ -6,6 +6,8 @@ export const CadastroCaixa = styled.div`
         justify-content: space-around;
         flex-direction: row;
         display:flex;
+        color : white;
+        font-weight : 600;
         padding: 20px 30px;
         span{
                 color:#00870D;
