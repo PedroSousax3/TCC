@@ -34,13 +34,25 @@ namespace api.Controllers
             }
         }
 
-        [HttpGet("{idlivro}")]
-        public async Task<ActionResult<Models.Response.LivroCompleto>> ConsultarLivroId (int idlivro, int idclietne)
+        [HttpGet("{idlivro}/{idcliente}")]
+        public async Task<ActionResult<Models.Response.LivroCompleto>> ConsultarLivroId (int idlivro, int idcliente)
         {
             try
             {
                 Models.TbLivro livro = await business.ConsultarLivroIdBusiness(idlivro);
-                return ConversorLivro.ConversorCompleto(livro);
+                Models.Response.LivroCompleto response= ConversorLivro.ConversorCompleto(livro);
+                
+                if(livro.TbFavoritos.Count != 0 && livro.TbFavoritos.All(x =>x.IdCliente == idcliente))
+                {
+                    response.livro.favorito = true;
+                }
+                else
+                {
+                    response.livro.favorito = false;
+                }
+
+                return response ;
+
             }
             catch (System.Exception ex)
             {

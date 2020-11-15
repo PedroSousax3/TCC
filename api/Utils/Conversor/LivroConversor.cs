@@ -43,6 +43,7 @@ namespace api.Utils.Conversor
             livro.edicao = tabela.NrEdicao;
             livro.compra = Convert.ToDouble(tabela.VlPrecoCompra);
             livro.venda = Convert.ToDouble(tabela.VlPrecoVenda);
+           
 
             MedidasConversor MedidaConvert = new MedidasConversor();
             if(tabela.IdMedidaNavigation == null)
@@ -66,9 +67,11 @@ namespace api.Utils.Conversor
             AutorConversor AutorConvert = new AutorConversor();
             GeneroConversor GeneroConvert = new GeneroConversor();
             EstoqueConvert EstoqueConversor = new EstoqueConvert();
+
             
             response.idlivro = tabela.IdLivro;
             response.livro = this.Conversor(tabela);
+
             
             if(tabela.IdEditoraNavigation == null)
                 response.livro.editora = null;

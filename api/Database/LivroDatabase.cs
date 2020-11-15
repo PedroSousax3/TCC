@@ -32,6 +32,7 @@ namespace api.Database
                                     .Include(x => x.TbLivroGenero).ThenInclude(z => z.IdGeneroNavigation)
                                     .Include(x => x.TbFavoritos)
                                     .Include(x => x.TbEstoque)
+                                    .Include(x => x.TbFavoritos)
                                     .FirstOrDefaultAsync(x => x.IdLivro == idlivro);
 
             return livro;

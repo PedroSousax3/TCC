@@ -40,8 +40,8 @@ namespace api.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseMySql("server=localhost;user id=root;password=45923617xx;database=db_next_gen_books", x => x.ServerVersion("8.0.22-mysql"));
-                optionsBuilder.UseMySql("server=localhost;user id=administrador;password=5J9yGqxqt&37L97y;database=db_next_gen_books", x => x.ServerVersion("8.0.22-mysql"));
+                optionsBuilder.UseMySql("server=localhost;user id=root;password=1234;database=db_next_gen_books", x => x.ServerVersion("8.0.22-mysql"));
+                //optionsBuilder.UseMySql("server=localhost;user id=administrador;password=5J9yGqxqt&37L97y;database=db_next_gen_books", x => x.ServerVersion("8.0.22-mysql"));
             }
         }
 

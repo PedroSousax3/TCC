@@ -34,6 +34,7 @@ export default function MostrarLivro(props) {
     const [qtd, setQtd] = useState(0);
     const [foto, setFoto] = useState("");
     const [avaliacoes, setAvaliacoes] = useState([]);
+    const [favoritos,setFavoritos] = useState();
 
 
     function popularLivro(dados) {
@@ -46,6 +47,7 @@ export default function MostrarLivro(props) {
             setPaginas(dados.livro.paginas)
             setDescricao(dados.livro.descricao);
             setFoto(dados.livro.foto);
+            setFavoritos(dados.livro.favorito);
             if (dados.livro.editora != null && dados.livro.editora != undefined)
                 setEditora(dados.livro.editora.nome);
             if (dados.livro.medida != null && dados.livro.editora != undefined) {
@@ -107,7 +109,7 @@ export default function MostrarLivro(props) {
     }
 
     async function Consultar() {
-        const response = await ConsultarPorIdLivro(id);
+        const response = await ConsultarPorIdLivro(id,idcliente);
         popularLivro(response.data);
 
         const listAvaliacao = await listarAvaliacaoLivroApi(id);
@@ -132,10 +134,10 @@ export default function MostrarLivro(props) {
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
                     {
-                        idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente) ?
-                            <></>
+                      favoritos === false && (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)) ?
+                      <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
                             :
-                            <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
+                        <i className="fas fa-star"  style={{ cursor: "pointer" }} id="Icone"></i>
                     }
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
