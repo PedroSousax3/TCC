@@ -40,7 +40,7 @@ export default function TopVenda() {
                     </div>
                 </Containerinput>
                 <div>
-                    <table className="table table-striped" style={{ marginTop: "10%" }}>
+                    <table className="table table-striped table-dark" style={{ marginTop: "10px" }}>
                         <thead>
                             <tr>
                                 <th scope="col">Produto</th>

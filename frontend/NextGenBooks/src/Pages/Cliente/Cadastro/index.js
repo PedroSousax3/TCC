@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Component} from "react";
 import { useHistory, Link } from "react-router-dom";
 
 import Cookies from 'js-cookie';
@@ -6,8 +6,6 @@ import Cookies from 'js-cookie';
 import { toast, ToastContainer } from "react-toastify";
 
 import Master from '../../Master/index.js';
-
-
 //import {LoginCaixa} from "../../components/LoginCaixa/LoginCaixa";
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
 import { CaixaImage, CaixaInformacoes, CadastroCaixa } from './style.js';
@@ -15,8 +13,6 @@ import { CaixaImage, CaixaInformacoes, CadastroCaixa } from './style.js';
 import UploadPhoto from '../../../components/UploadPhoto/UploadPhoto';
 
 const api = new nextGenBookAPI();
-
-
 
 export default function Cadastro(props) {
 
@@ -88,7 +84,7 @@ export default function Cadastro(props) {
 
     return (
         <Master>
-            
+
             <CadastroCaixa>
                 <CaixaInformacoes>
                     <div className="form-group">
@@ -128,12 +124,12 @@ export default function Cadastro(props) {
 
                     <div className="form-group">
                         <label className="CPF">CPF:</label>
-                        <input className="form-control" type="text" onChange={(n) => setCPF(n.target.value)} maxLength="11" />
+                        <input className="form-control" type="text" brmasker = "{mask:'00/00/0000', len:10}" onChange={(n) => setCPF(n.target.value)} maxLength="11" />
                     </div>
 
                     <div className="form-group">
                         <label className="Celular">Celular:</label>
-                        <input className="form-control" type="text" onChange={(n) => setCelular(n.target.value)} data-mask="(00) 0000-0000" data-mask-selectonfocus="true"/>
+                        <input className="form-control" type="text" onChange={(n) => setCelular(n.target.value)} data-mask="(00) 0000-0000" data-mask-selectonfocus="true" />
                     </div>
 
                     <div className="form-group">

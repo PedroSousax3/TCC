@@ -8,6 +8,7 @@ export const ContainerVendaDia = styled.div`
     flex-direction:column;
     display:flex;
     margin-top:15px;
+    color : white;
       @media screen and (max-width: 600px)
     {
         & {
