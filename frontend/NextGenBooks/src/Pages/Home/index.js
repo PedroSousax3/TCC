@@ -52,20 +52,22 @@ export default function HomePage(e) {
             <Home>
 
                 <ContainerPesquisa className="pesquisa">
-                    <div className="genero">
-                        <select>
-                            <option valur="Todos">Genero</option>
-                            <option value="Ação">Ação</option>
-                            <option value="Aventura">Aventura</option>
-                            <option value="Drama">Drama</option>
-                        </select>
-                    </div>
+                    {/*
+                        <div className="genero">
+                            <select>
+                                <option valur="Todos">Genero</option>
+                                <option value="Ação">Ação</option>
+                                <option value="Aventura">Aventura</option>
+                                <option value="Drama">Drama</option>
+                            </select>
+                        </div>
+                    */}
                     <div className="nome">
                         <input type="text" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
                     </div>
                 </ContainerPesquisa>
 
-                {/*
+                    {/*
                         <div className="form-group" id="dvgenero" style={{ margin: "0px", width: "50vw" }}>
                             <input className="form-control" id="filtro" type="genero"  />
                         </div>
