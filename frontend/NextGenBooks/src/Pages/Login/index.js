@@ -28,7 +28,7 @@ export default function Logar(e) {
   const [senha, setSenha] = useState("");
 
   const Logar = async () => {
-    carregamento()
+    openCarregamento();
     try {
       const request = {
         user,
@@ -36,11 +36,11 @@ export default function Logar(e) {
       }
       const a = await api.login(request);
       gerarCookies(a.data)
-      carregamento();
       navegacao.push("/", a.data);
-    } catch (e) {
-      toast.error("Usuario ou Senha incorretos");
-      carregamento();
+    }
+    catch (e) {
+      closeCarregamento();
+      toast.error(e.response.data.erro);
     }
   }
 
@@ -76,15 +76,13 @@ export default function Logar(e) {
       Logar();
   }
 
-  function carregamento() {
-    if (carregado == false) {
-      setCarregado(true);
-      document.getElementById('fundocarregamento').style.display = "flex";
-    }
-    else {
-      setCarregado(false);
-      document.getElementById('fundocarregamento').style.display = "none";
-    }
+  function openCarregamento() {
+    setCarregado(true);
+    document.getElementById('fundocarregamento').style.display = "flex";
+  }
+  function closeCarregamento() {
+    setCarregado(false);
+    document.getElementById('fundocarregamento').style.display = "none";
   }
 
   function AlterarTitulo(nome) {

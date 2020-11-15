@@ -16,8 +16,10 @@ namespace api.Controllers
             try
             {
                 Models.TbLogin login = await business.ConsultarLoginBusiness(request.user, request.senha);
+
                 string perfil;
                 int idpessoa;
+
                 if(login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin) != null)
                 {
                     idpessoa = login.TbCliente.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdCliente;
@@ -28,6 +30,7 @@ namespace api.Controllers
                     idpessoa = login.TbFuncionario.FirstOrDefault(x => x.IdLogin == login.IdLogin).IdFuncionario;
                     perfil = "funcionario";
                 }
+                
                 string token = business.GerarToken(login, idpessoa);
                 
                 Models.Response.AcessoResponse response = acessoConversor.Conversor(login.NmUsuario, token, idpessoa, perfil);

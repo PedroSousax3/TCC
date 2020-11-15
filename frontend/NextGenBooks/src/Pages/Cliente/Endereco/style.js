@@ -4,7 +4,7 @@ export const ContainerEndereco = styled.div`
     
     justify-content:center;
     flex:1;
-    height:80vh;
+    min-height:80vh;
     align-items:center;
     display:flex;
     justify-content:center;
