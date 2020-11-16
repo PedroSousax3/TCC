@@ -16,7 +16,6 @@ export default function HomePage(e) {
     const [inicio, setInicio] = useState(0);
 
     const listarLivros = async () => {
-        console.log('Indo para api: ' + inicio + ' e ' + (inicio + 10))
         const result = await ListPostFile(inicio, inicio + 10, nome);
         setConsulta([...result.data.posteres]);
         setQtdPost(result.data.qtd);
@@ -31,20 +30,15 @@ export default function HomePage(e) {
     }
 
     async function almentarPosicao() {
-        console.log('aumentar inicio: ' + inicio);
         setInicio(inicio + 10);
-        //await listarLivros();
-        console.log('aumentar fim: ' + inicio);
     }
 
     async function diminuirPosicao() {
-        console.log('diminuir inicio: ' + inicio);
         if (inicio - 10 <= 0) {
             setInicio(0);
         }
         else 
             setInicio(inicio - 10);
-        console.log('diminuir fim: ' + inicio);
     }
 
     useEffect(() => {

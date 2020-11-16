@@ -50,7 +50,7 @@ namespace api.Controllers
                 List<Models.Response.PosterResponse> fotos = new List<Models.Response.PosterResponse>();
                 foreach(Models.TbLivro item in livros)
                 {
-                    fotos.Add(new Models.Response.PosterResponse(item.IdLivro, item.NmLivro, item.DsCapa, item.TbLivroGenero.Select(x => x.IdGeneroNavigation.NmGenero).ToList()));
+                    fotos.Add(new Models.Response.PosterResponse(item.IdLivro, item.NmLivro, item.DsCapa);
                 }
 
                 response.qtd = business.ContarLivrosBusiness();
