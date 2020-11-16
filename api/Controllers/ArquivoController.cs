@@ -51,7 +51,7 @@ namespace api.Controllers
 
                 foreach(Models.TbLivro item in livros)
                 {
-                    fotos.Add(new Models.Response.PosterResponse(item.IdLivro, item.NmLivro, item.DsCapa);
+                    fotos.Add(new Models.Response.PosterResponse(item.IdLivro, item.NmLivro, item.DsCapa));
                 }
 
                 response.qtd = business.ContarLivrosBusiness();
