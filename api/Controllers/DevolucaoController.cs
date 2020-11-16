@@ -54,7 +54,7 @@ namespace api.Controllers
             try 
             {
                 List<Models.TbDevolucao> tabela = await business.ValidarListarDevolucao(inicio, fim);
-                return tabela.Select(x => conversor.ConversorRelarotioResponse(x)).ToList();
+                return conversor.ConversorRelarotioResponse(tabela);
             }
             catch (System.Exception ex) 
             {

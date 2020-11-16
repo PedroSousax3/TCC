@@ -17,14 +17,15 @@ export default function HomePage(e) {
 
     const listarLivros = async () => {
         const result = await ListPostFile(inicio, inicio + 10, nome);
-        console.log(result);
         setConsulta([...result.data.posteres]);
         setQtdPost(result.data.qtd);
     }
 
     async function listarPress(event) {
         if (event.key === 'Enter') {
-            await listarLivros();
+            const result = await ListPostFile(0, qtdPost, nome);
+            setConsulta([...result.data.posteres]);
+            setQtdPost(result.data.qtd);
         }
     }
 
@@ -62,8 +63,8 @@ export default function HomePage(e) {
                             </select>
                         </div>
                     */}
-                    <div className="nome">
-                        <input type="text" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
+                    <div className="nome" style={{width : "100%"}}>
+                        <input style={{width : "100%"}} type="text" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
                     </div>
                 </ContainerPesquisa>
 

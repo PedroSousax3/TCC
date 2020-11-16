@@ -25,6 +25,7 @@ export const ContainerPesquisa = styled.div`
         height: 30px;
         color: white;
         font-weight: 600;
+        width : 100%;
         font-size: 16px;
         background-color: #414141;
         border: 1px solid white;
@@ -119,17 +120,27 @@ export const Card = styled.div`
         margin-bottom: auto;
     }
 
+    .card-image  {
+        height: "300px";
+        width: "170px";
+    }
+
+    .card-livro:hover + .card-image  {
+        height: "350px";
+        width: "120px";
+    }
+
     .card-focus {
         transition: linear 0.2s;
         background-color: black;
         position: absolute;
         width: 100%;
         height: 100%;
-        opacity: 0;
+        opacity: 0.4;
         top: 0;
     }
 
     .card-focus:hover {
-        opacity: 0.4;
+        opacity: 0;
     }
 `; 

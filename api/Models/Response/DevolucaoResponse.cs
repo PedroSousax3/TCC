@@ -18,8 +18,10 @@ namespace api.Models.Response
 
     public class RelatorioDevolucoaResponse 
     {
-        public DevolucaoResponse devolucao { get; set; }
-        public VendaLivroResponse vendalivro { get; set; }
-        public LivroCompleto livros { get; set; }
+        public int devolucao { get; set; }
+        public int idlivro { get; set; }
+        public string nome_livro { get; set; }
+        public int qtd { get; set; }
+        public double valor_total { get; set; }
     }
 }

@@ -73,6 +73,7 @@ export default function MostrarLivro(props) {
             }
             await InserirCarrinhoApi(request);
             toast.success('Livro foi adicionado ao carrinho com sucesso');
+            await Consultar();
         }
         catch (ex) {
             toast.error(ex.response.data.erro);
@@ -127,17 +128,18 @@ export default function MostrarLivro(props) {
             
             <BoxContainer id="livro" theme={{ sc_border: "none", sc_espace: "0px", sc_padding: "10px", sc_direction: "column" }}>
             <Link to="/" >
-                <button type="button" class="btn btn-info">
+                <button type="button" className="btn btn-info">
                     Voltar para menu
                 </button>
             </Link>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
                     {
-                      favoritos === false && (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)) ?
-                      <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
-                            :
-                        <i className="fas fa-star"  style={{ cursor: "pointer" }} id="Icone"></i>
+                      favoritos === false && (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)) 
+                        ?
+                            <i className="fas fa-star"  style={{ cursor: "pointer" }} id="Icone"></i>
+                        :
+                            <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
                     }
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>

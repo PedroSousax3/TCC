@@ -108,9 +108,9 @@ export default function MinhasCompras() {
 
                 {x.vendaLivro.map(y =>
                   <div className="card">
-                    <div className="card-header" Key={1}>
+                    <div className="card-header" Key={y.id}>
                     </div>
-                    <div className="card-body" Key={1}>
+                    <div className="card-body" Key={y.id}>
                       <img src={BuscarFoto(y.livroInfo.foto)} alt="..." height="300px" />
                       <h6 className="card-title">Nome:{y.livroInfo.nome}</h6>
                       <p className="card-text">Descrição:{y.livroInfo.descricao}</p>
@@ -145,7 +145,7 @@ export default function MinhasCompras() {
                             />
                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" onChange={(e) => setMotivo(e.target.value)}></textarea>
                           </div>
-                          <div className="modal-footer">
+                          <div className="modal-footer" Key={y.id}>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
                             <button type="button" className="btn btn-primary" onClick={() => DevolverSim(y.id, y.valor)}>Sim</button>
                           </div>
@@ -174,11 +174,9 @@ export default function MinhasCompras() {
                   </div>
                 </div>
                 <div className="btn-group" role="group" aria-label="Exemplo básico" style={{ color: "white" }}>
-                  <button type="button" className="btn btn-danger" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" >Cancelar Compra</button>
+                  <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#modalExemplo" >Cancelar Compra</button>
                 </div>
               </div>
-
-
             )}
           </div>
         </ContainerMinhasCompras>

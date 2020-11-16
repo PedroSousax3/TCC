@@ -59,7 +59,7 @@ namespace api.Controllers
         }
 
         [HttpPut("alterar/{idfavorito}")]
-        public async Task<ActionResult<Models.Response.FavoritoResponse>> AlterarResponse(int idfavorito,Models.Request.FavoritoRequest request)
+        public async Task<ActionResult<Models.Response.FavoritoResponse>> AlterarResponse(int idfavorito, Models.Request.FavoritoRequest request)
         {
             try
             {

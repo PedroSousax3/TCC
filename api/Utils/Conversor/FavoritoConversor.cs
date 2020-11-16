@@ -22,10 +22,14 @@ namespace api.Utils.Conversor
 
             response.id = tabela.IdFavoritos;
             response.livro = tabela.IdLivro;
-            response.nome = tabela.IdLivroNavigation.NmLivro;
-            response.descricao = tabela.IdLivroNavigation.DsLivro;
-            response.editora = tabela.IdLivroNavigation.IdEditoraNavigation.NmEditora;
-            response.lancamento = tabela.IdLivroNavigation.DtLancamento;
+
+            if(tabela.IdLivroNavigation != null)
+            {
+                response.nome = tabela.IdLivroNavigation.NmLivro;
+                response.descricao = tabela.IdLivroNavigation.DsLivro;
+                response.editora = tabela.IdLivroNavigation.IdEditoraNavigation.NmEditora;
+                response.lancamento = tabela.IdLivroNavigation.DtLancamento;
+            }
             
             if(tabela.IdLivroNavigation.TbLivroAutor == null)
                 response.atores = null;
