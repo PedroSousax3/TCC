@@ -162,7 +162,7 @@ export default function MostrarLivro(props) {
                         :
                         <BoxContainer id="acoes" theme={{ sc_espace: "10px 0px" }}>
                             <button type="button" className="btn btn-carrinho" onClick={inserirCarrinho}>
-                                Adicionar ao Carrinho
+                                Adicionar ao Carrinho - R$ {valor}
                                                                                                             </button>
                         </BoxContainer>
                 }
@@ -173,8 +173,6 @@ export default function MostrarLivro(props) {
                         <div className="style-text-descr">Autor: {autor.map(x => x.nome).toString()}</div>
                         <div className="style-text-descr">Gêneros: {genero}</div>
                     </div>
-                    <div className="style-text-descr finalitem">Valor Unitário: {valor}</div>
-
                     <h5 style={{ marginTop: "15px", marginBottom: "5px" }}>Sobre o Escritor(a):</h5>
                     <div>
                         {autor.map(x =>

@@ -29,10 +29,6 @@ export default function HomePage(e) {
         }
     }
 
-    async function almentarPosicao() {
-        setInicio(inicio + 10);
-    }
-
     async function diminuirPosicao() {
         if (inicio - 10 <= 0) {
             setInicio(0);
@@ -43,7 +39,7 @@ export default function HomePage(e) {
 
     useEffect(() => {
         listarLivros();
-    }, []);
+    }, [inicio]);
 
     return (
         <Master>
@@ -84,7 +80,7 @@ export default function HomePage(e) {
                                     <img src={BuscarFoto(x.nomeArquivo)} height="100%" width="100%" alt="" />
                                 </div>
                                 <div id="card-titulo">
-                                    <h5 style={{ margin: "0px" }}>
+                                    <h5 style={{ margin: "0px", textAlign : "center" }}>
                                         {x.nome}
                                     </h5>
                                 </div>
@@ -104,7 +100,7 @@ export default function HomePage(e) {
                         </li>
                         <li className="page-item">
                             <button className="page-link"
-                                onClick={almentarPosicao}>
+                                onClick={() => setInicio(inicio + 10)}>
                                 Próximo
                             </button>
                         </li>
