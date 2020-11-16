@@ -31,27 +31,25 @@ export default function HomePage(e) {
     }
 
     async function almentarPosicao() {
-        //console.log('aumentar inicio: ' + inicio);
+        console.log('aumentar inicio: ' + inicio);
         setInicio(inicio + 10);
         //await listarLivros();
-        //console.log('aumentar fim: ' + inicio);
+        console.log('aumentar fim: ' + inicio);
     }
 
     async function diminuirPosicao() {
-        //console.log('diminuir inicio: ' + inicio);
+        console.log('diminuir inicio: ' + inicio);
         if (inicio - 10 <= 0) {
             setInicio(0);
         }
-        else {
+        else 
             setInicio(inicio - 10);
-        }
-        //await listarLivros();
-        //console.log('diminuir fim: ' + inicio);
+        console.log('diminuir fim: ' + inicio);
     }
 
     useEffect(() => {
         listarLivros();
-    }, [inicio]);
+    }, []);
 
     return (
         <Master>

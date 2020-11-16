@@ -42,7 +42,6 @@ export default function MinhasCompras() {
       toast.error("Ainda não ha compras finalizadas");
     }
   }
-
   const listarPendentes = async () => {
     try {
       let resp = await api.listarComprasPendentes(cliente);
@@ -105,7 +104,6 @@ export default function MinhasCompras() {
             </Pesquisa>
             {registros.map(x =>
               <div style={{ marginTop: "35px" }}>
-
                 {x.vendaLivro.map(y =>
                   <div className="card">
                     <div className="card-header" Key={y.id}>
