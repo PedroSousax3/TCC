@@ -43,11 +43,12 @@ namespace api.Controllers
             {
                 if(string.IsNullOrEmpty(nome))
                     nome = "";
+                    
                 Models.Response.PosterCompletoResponse response = new Models.Response.PosterCompletoResponse();
+                List<Models.Response.PosterResponse> fotos = new List<Models.Response.PosterResponse>();
                 
                 List<Models.TbLivro> livros = await business.ListarLivroBusiness(inicio, fim, nome);
 
-                List<Models.Response.PosterResponse> fotos = new List<Models.Response.PosterResponse>();
                 foreach(Models.TbLivro item in livros)
                 {
                     fotos.Add(new Models.Response.PosterResponse(item.IdLivro, item.NmLivro, item.DsCapa);
