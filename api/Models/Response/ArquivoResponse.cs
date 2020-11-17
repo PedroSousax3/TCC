@@ -9,13 +9,11 @@ namespace api.Models.Response
         public int Id { get; set; }
         public string Nome { get; set; }
         public string NomeArquivo { get; set; }
-        public List<string> Generos { get; set; }
-        public PosterResponse(int id, string nome, string nomearquivo, List<string> generos)
+        public PosterResponse(int id, string nome, string nomearquivo)
         {   
             this.Id = id;
             this.Nome = nome;
             this.NomeArquivo = nomearquivo;
-            this.Generos = generos;
         }
     }   
 

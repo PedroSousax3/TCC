@@ -48,11 +48,9 @@ namespace api.Database
 
         public Task<List<Models.TbDevolucao>> ListarDevolucao(DateTime inicio, DateTime fim)
         {
-            return context.TbDevolucao.Include(x => x.TbRecebimentoDevolucao)
-                                        .Include(x => x.IdVendaLivroNavigation)
-                                        .Include(x => x.IdVendaLivroNavigation.IdVendaNavigation)
+            return context.TbDevolucao.Include(x => x.IdVendaLivroNavigation)
                                         .Include(x => x.IdVendaLivroNavigation.IdLivroNavigation)
-                                        .Include(x => x.IdVendaLivroNavigation.IdLivroNavigation.TbLivroGenero)
+                                        .Include(x => x.IdVendaLivroNavigation.IdVendaNavigation)
                                         .Where(x => x.DtDevolucao >= inicio 
                                                 && x.DtDevolucao <= fim)
                                         .ToListAsync();

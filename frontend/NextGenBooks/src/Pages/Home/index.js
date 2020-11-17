@@ -10,42 +10,48 @@ import '../../components/pesquisa/pesquisa.css';
 
 export default function HomePage(e) {
     const [consulta, setConsulta] = useState([]);
-    const [nome, setNome] = useState("");
-    const [qtdPost, setQtdPost] = useState(0);
-
+    
     const [inicio, setInicio] = useState(0);
-
+    const [nome, setNome] = useState("");
+    
+    const [qtdPost, setQtdPost] = useState(0);
+    
     const listarLivros = async () => {
-        const result = await ListPostFile(inicio, inicio + 10, nome);
-        console.log(result);
-        setConsulta([...result.data.posteres]);
-        setQtdPost(result.data.qtd);
+        try  {
+            let fim = inicio + 10;
+            const result = await ListPostFile(inicio, fim, nome);
+            setConsulta([...result.data.posteres]);
+            setQtdPost(result.data.qtd);
+        }
+        catch (ex) {
+
+        }
     }
 
     async function listarPress(event) {
         if (event.key === 'Enter') {
-            await listarLivros();
+            const result = await ListPostFile(0, qtdPost, nome);
+            setConsulta([...result.data.posteres]);
+            setQtdPost(result.data.qtd);
         }
     }
 
-    async function almentarPosicao() {
-        setInicio(inicio + 10);
-        await listarLivros();
-    }
-
-    async function diminuirPosicao() {
+    function diminuirPosicao() {
         if (inicio - 10 <= 0) {
             setInicio(0);
         }
-        else {
+        else 
             setInicio(inicio - 10);
-        }
-        await listarLivros();
     }
 
-    useEffect(() => {
-        almentarPosicao();
-    }, []);
+    function aumentarPosicao () {
+        setInicio(inicio + 10);
+    } 
+
+    useEffect(
+        () => { listarLivros() }, 
+        [inicio]
+    );
 
     return (
         <Master>
@@ -62,8 +68,8 @@ export default function HomePage(e) {
                             </select>
                         </div>
                     */}
-                    <div className="nome">
-                        <input type="text" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
+                    <div className="nome" style={{width : "100%"}}>
+                        <input style={{width : "100%"}} type="text" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
                     </div>
                 </ContainerPesquisa>
 
@@ -76,22 +82,21 @@ export default function HomePage(e) {
                 <ContainerPreview style={{ justifyContent: "center" }}>
                     {
                         consulta.map(x =>
-                            <Card className="card-livro" key={x.id} as={Link} to={{
+                            <Card className="card-livro" style={{textDecoration : "none"}} key={x.id} as={Link} to={{
                                 pathname: "/MostrarLivro",
                                 state: {
                                     idlivro: x.id
                                 }
                             }}>
-                                <div className="card-image" style={{ height: "300px", width: "170px" }}>
+                                <div className="card-image" style={{ height: "310px" }}>
                                     <img src={BuscarFoto(x.nomeArquivo)} height="100%" width="100%" alt="" />
                                 </div>
                                 <div id="card-titulo">
-                                    <h5 style={{ margin: "0px" }}>
+                                    <h5 style={{ margin: "0px", textAlign : "center" }}>
                                         {x.nome}
                                     </h5>
                                 </div>
-                                <div className="card-focus">
-                                </div>
+                                <div className="card-focus"></div>
                             </Card>
                         )
                     }
@@ -106,7 +111,7 @@ export default function HomePage(e) {
                         </li>
                         <li className="page-item">
                             <button className="page-link"
-                                onClick={almentarPosicao}>
+                                onClick={aumentarPosicao}>
                                 Próximo
                             </button>
                         </li>

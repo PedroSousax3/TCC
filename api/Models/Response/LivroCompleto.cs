@@ -9,6 +9,7 @@ namespace api.Models.Response
         public LivroResponse livro { get; set; }
         public List<AutorResponse> autores { get; set; }
         public List<GeneroResponse> generos { get; set; }
+        public FavoritoResponse favorito { get; set; }
         public EstoqueResponce estoque_livro { get; set; }
     }
 }

@@ -42,7 +42,6 @@ export default function MinhasCompras() {
       toast.error("Ainda não ha compras finalizadas");
     }
   }
-
   const listarPendentes = async () => {
     try {
       let resp = await api.listarComprasPendentes(cliente);
@@ -107,7 +106,6 @@ export default function MinhasCompras() {
             </Pesquisa>
             {registros.map(x =>
               <div style={{ marginTop: "35px" }}>
-
                 {x.vendaLivro.map(y =>
                   <div className="card">
                     <div className="card-header" Key={y.id}>
@@ -147,7 +145,7 @@ export default function MinhasCompras() {
                             />
                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" onChange={(e) => setMotivo(e.target.value)}></textarea>
                           </div>
-                          <div className="modal-footer">
+                          <div className="modal-footer" Key={y.id}>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="button" className="btn btn-primary" onClick={() => DevolverSim(y.id, y.valor)}>Sim </button>
                           </div>
@@ -176,11 +174,9 @@ export default function MinhasCompras() {
                   </div>
                 </div>
                 <div className="btn-group" role="group" aria-label="Exemplo básico" style={{ color: "white" }}>
-                  <button type="button" className="btn btn-danger" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" >Cancelar Compra</button>
+                  <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#modalExemplo" >Cancelar Compra</button>
                 </div>
               </div>
-
-
             )}
           </div>
         </ContainerMinhasCompras>

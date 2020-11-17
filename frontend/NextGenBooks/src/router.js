@@ -24,10 +24,13 @@ import CadastrarEndereco from './Pages/Cliente/Endereco';
 import AlterarCliente from './Pages/Cliente/AlterarCliente/index.js';
 import VendaPorDia from './Pages/Relatorios/VendaPorDia/index.js';
 import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/index.js';
+
+//Relatorios
 import VendaPorMes from './Pages/Relatorios/VendaPorMes/index.js';
 import TopClientes from './Pages/Relatorios/TopClientes/index.js';
 import MenuRelatorios from './Pages/Relatorios/index.js';
 import TopVenda from './Pages/Relatorios/TopVendas/index.js';
+import RelatorioDevolucao from './Pages/Relatorios/Devolucoes/index.js'
 
 
 export default function Rotas(){
@@ -61,6 +64,7 @@ export default function Rotas(){
           <Route path="/TopClientes" component={TopClientes}/>
           <Route path="/Relatorios" component={MenuRelatorios}/>
           <Route path="/TopVenda" component={TopVenda}/>
+          <Route path="/Relatorio/Devolucao" component={RelatorioDevolucao} />
 
         </Switch>
       </BrowserRouter>

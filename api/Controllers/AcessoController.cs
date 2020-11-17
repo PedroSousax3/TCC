@@ -14,7 +14,7 @@ namespace api.Controllers
         public async Task<ActionResult<Models.Response.AcessoResponse>> Acessar(Models.Request.AcessoRequest request)
         {
             try
-            {
+            {   
                 Models.TbLogin login = await business.ConsultarLoginBusiness(request.user, request.senha);
 
                 string perfil;

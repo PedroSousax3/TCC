@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace api.Utils.Conversor
 {
     public class DevolucaoConversor
@@ -34,28 +37,30 @@ namespace api.Utils.Conversor
             return response;
         }
 
-        public Models.Response.RelatorioDevolucoaResponse ConversorRelarotioResponse(Models.TbDevolucao tabela)
+        public List<Models.Response.RelatorioDevolucoaResponse> ConversorRelarotioResponse(List<Models.TbDevolucao> tabela)
         {
-            Models.Response.RelatorioDevolucoaResponse response = new Models.Response.RelatorioDevolucoaResponse();
-            LivroConversor LivroConvert = new LivroConversor();
-            VendaLivroConversor VendaLivroConvert = new VendaLivroConversor();
+            List<Models.Response.RelatorioDevolucoaResponse> response = new List<Models.Response.RelatorioDevolucoaResponse>();
+            
+            Models.Response.RelatorioDevolucoaResponse adiciona = new Models.Response.RelatorioDevolucoaResponse();
 
-            Models.Response.DevolucaoResponse devolucao = this.ConversorResponse(tabela);
-            if (tabela.IdVendaLivroNavigation.IdLivroNavigation == null)
-                response.livros = null;
-            else
-            {
-                Models.Response.LivroCompleto livros = LivroConvert.ConversorCompleto(tabela.IdVendaLivroNavigation.IdLivroNavigation);
-                response.livros = livros;
-            }
-            if(tabela.IdVendaLivroNavigation == null)
-                response.vendalivro = null;
-            else 
-            {
-                Models.Response.VendaLivroResponse vendaLivro = VendaLivroConvert.ConversorResponse(tabela.IdVendaLivroNavigation);
-                response.vendalivro = vendaLivro;
-            }
-            response.devolucao = devolucao;
+            tabela.ForEach(x => {
+                adiciona.devolucao = x.IdDevolucao;
+                adiciona.nome_livro = x.IdVendaLivroNavigation.IdLivroNavigation.NmLivro;
+                adiciona.idlivro = x.IdVendaLivroNavigation.IdLivro;
+                adiciona.qtd = x.IdVendaLivroNavigation.TbDevolucao.Count;
+                
+                double valor = 0;
+                tabela.ForEach(x => {
+                    if(adiciona.idlivro == x.IdVendaLivroNavigation.IdLivro)
+                    {
+                        valor += Convert.ToDouble(x.VlDevolvido);
+                    }
+                });
+
+                adiciona.valor_total = valor;
+
+                response.Add(adiciona);
+            });
 
             return response;
         }
