@@ -91,8 +91,8 @@ namespace api.Business
             return await database.ListarTop10Vendas();
         }
 
-        public List<Models.TbVendaLivro> ListarLivrosVendaBusiness() {
-            List<Models.TbVendaLivro> livros = database.ListarLivrosVendaDatabase();
+        public async Task<List<Models.TbVendaLivro>> ListarLivrosVendaBusiness() {
+            List<Models.TbVendaLivro> livros = await database.ListarLivrosVendaDatabase();
 
             if(livros.Count <= 0)
                 throw new ArgumentException("Registros de Venda não foram encontratos.");

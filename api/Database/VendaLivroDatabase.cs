@@ -24,7 +24,7 @@ namespace api.Database
         {
             return await context.TbVendaLivro.FirstOrDefaultAsync(x => x.IdVendaLivro == id);
         }
-        
+
         public Task<List<Models.TbVendaLivro>> ConsultarVendaLivroPorIdVenda(int id)
         {
             return context.TbVendaLivro.Include(x => x.IdVendaNavigation)
@@ -44,7 +44,7 @@ namespace api.Database
             await context.SaveChangesAsync();
             return tabela;
         }
-        
+
         public async Task<Models.TbVendaLivro> AlterarVendaLivro(int id, Models.TbVendaLivro novaTabela)
         {
             Models.TbVendaLivro tabela = await ConsultarVendaLivroPorId(id);
@@ -61,19 +61,23 @@ namespace api.Database
             return await context.TbVendaLivro.Include(x => x.IdLivroNavigation).ToListAsync();
         }
 
-        public List<Models.TbVendaLivro> ListarLivrosVendaDatabase() {
-            return context.TbVendaLivro.Include(x => x.IdLivroNavigation)
-                                            .GroupBy(vl => vl.IdLivro)
-                                            .Select(l => new Models.TbVendaLivro(){
-                                                IdVendaLivro = l.First().IdVendaLivro,
-                                                IdLivro = l.First().IdLivro,
-                                                IdVenda = l.First().IdVenda,
-                                                NrLivros = l.Sum(s => s.NrLivros),
-                                                VlVendaLivro = l.Sum(s => s.VlVendaLivro),
-                                                IdLivroNavigation = l.First().IdLivroNavigation
-                                            })
-                                            .OrderByDescending(x => x.VlVendaLivro)
-                                            .ToList();
+        public async Task<List<Models.TbVendaLivro>> ListarLivrosVendaDatabase()
+        {
+            List<Models.TbVendaLivro> vendalivro = await context.TbVendaLivro
+                                                                .Include(x => x.IdLivroNavigation)
+                                                                .OrderByDescending(x => x.VlVendaLivro)
+                                                                .ToListAsync();
+
+            return vendalivro.GroupBy(vl => vl.IdLivro)
+                            .Select(l => new Models.TbVendaLivro()
+                            {
+                                IdVendaLivro = l.First().IdVendaLivro,
+                                IdLivro = l.First().IdLivro,
+                                IdVenda = l.First().IdVenda,
+                                NrLivros = l.Sum(s => s.NrLivros),
+                                VlVendaLivro = l.Sum(s => s.VlVendaLivro),
+                                IdLivroNavigation = l.First().IdLivroNavigation
+                            }).ToList();
         }
 
     }

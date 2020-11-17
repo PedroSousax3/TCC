@@ -63,12 +63,13 @@ namespace api.Controllers
         }
 
         //DateTime comecao, DateTime termino, int inicio, int fim
+
         [HttpGet("Relatorio/Vendas")]
-        public ActionResult<List<Models.TbVendaLivro>> RelatorioLivrosVenda()
+        public async Task<ActionResult<List<Models.TbVendaLivro>>> RelatorioLivrosVenda()
         {
             try
             {
-                List<Models.TbVendaLivro> tabela = business.ListarLivrosVendaBusiness();
+                List<Models.TbVendaLivro> tabela = await business.ListarLivrosVendaBusiness();
                 
                 return tabela;
             }
