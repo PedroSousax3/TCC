@@ -61,9 +61,8 @@ namespace api.Database
             return await context.TbVendaLivro.Include(x => x.IdLivroNavigation).ToListAsync();
         }
 
-        public async Task<List<Models.TbVendaLivro>> ListarLivrosVendaDatabase() {
-            return await
-                        context.TbVendaLivro.Include(x => x.IdLivroNavigation)
+        public List<Models.TbVendaLivro> ListarLivrosVendaDatabase() {
+            return context.TbVendaLivro.Include(x => x.IdLivroNavigation)
                                             .GroupBy(vl => vl.IdLivro)
                                             .Select(l => new Models.TbVendaLivro(){
                                                 IdVendaLivro = l.First().IdVendaLivro,
@@ -74,7 +73,7 @@ namespace api.Database
                                                 IdLivroNavigation = l.First().IdLivroNavigation
                                             })
                                             .OrderByDescending(x => x.VlVendaLivro)
-                                            .ToListAsync();
+                                            .ToList();
         }
 
     }
