@@ -18,7 +18,7 @@ import { listarAvaliacaoLivroApi } from '../../Service/AvaliacaoLivro.js'
 export default function MostrarLivro(props) {
     const [id] = useState(props.location.state.idlivro);
     const [nome, setNome] = useState("");
-    const [idcliente] = useState(Number(Cookies.get('id')));
+    const [idcliente, setIdCliente] = useState(Number(Cookies.get('id')));
     const [valor, setValor] = useState();
     const [edicao, setEdicao] = useState();
     const [acabamento, setAcabamento] = useState("");
@@ -38,7 +38,7 @@ export default function MostrarLivro(props) {
 
 
     function popularLivro(dados) {
-        if (dados.livro != null && dados.livro != undefined) {
+        if (dados.livro != null && dados.livro !== undefined) {
             setLancamento(new Date(dados.livro.lancamento).toLocaleDateString());
             setNome(dados.livro.nome);
             setValor(dados.livro.venda);
@@ -48,9 +48,9 @@ export default function MostrarLivro(props) {
             setDescricao(dados.livro.descricao);
             setFoto(dados.livro.foto);
             setFavoritos(dados.livro.favorito);
-            if (dados.livro.editora != null && dados.livro.editora != undefined)
+            if (dados.livro.editora != null && dados.livro.editora !== undefined)
                 setEditora(dados.livro.editora.nome);
-            if (dados.livro.medida != null && dados.livro.editora != undefined) {
+            if (dados.livro.medida != null && dados.livro.editora !== undefined) {
                 setAltura(dados.livro.medida.altura)
                 setLargura(dados.livro.medida.largura)
                 setpeso(dados.livro.medida.peso)
@@ -110,7 +110,11 @@ export default function MostrarLivro(props) {
     }
 
     async function Consultar() {
-        const response = await ConsultarPorIdLivro(id,idcliente);
+        let response;
+        if(isNaN(idcliente) || idcliente === NaN)
+            response = await ConsultarPorIdLivro(id, 0);
+        else 
+            response = await ConsultarPorIdLivro(id, idcliente);
         popularLivro(response.data);
 
         const listAvaliacao = await listarAvaliacaoLivroApi(id);
