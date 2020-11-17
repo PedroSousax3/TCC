@@ -10,15 +10,22 @@ import '../../components/pesquisa/pesquisa.css';
 
 export default function HomePage(e) {
     const [consulta, setConsulta] = useState([]);
-    const [nome, setNome] = useState("");
-    const [qtdPost, setQtdPost] = useState(0);
-
+    
     const [inicio, setInicio] = useState(0);
-
+    const [nome, setNome] = useState("");
+    
+    const [qtdPost, setQtdPost] = useState(0);
+    
     const listarLivros = async () => {
-        const result = await ListPostFile(inicio, inicio + 10, nome);
-        setConsulta([...result.data.posteres]);
-        setQtdPost(result.data.qtd);
+        try  {
+            let fim = inicio + 10;
+            const result = await ListPostFile(inicio, fim, nome);
+            setConsulta([...result.data.posteres]);
+            setQtdPost(result.data.qtd);
+        }
+        catch (ex) {
+
+        }
     }
 
     async function listarPress(event) {
@@ -29,7 +36,7 @@ export default function HomePage(e) {
         }
     }
 
-    async function diminuirPosicao() {
+    function diminuirPosicao() {
         if (inicio - 10 <= 0) {
             setInicio(0);
         }
@@ -37,9 +44,14 @@ export default function HomePage(e) {
             setInicio(inicio - 10);
     }
 
-    useEffect(() => {
-        listarLivros();
-    }, [inicio]);
+    function aumentarPosicao () {
+        setInicio(inicio + 10);
+    } 
+
+    useEffect(
+        () => { listarLivros() }, 
+        [inicio]
+    );
 
     return (
         <Master>
@@ -70,13 +82,13 @@ export default function HomePage(e) {
                 <ContainerPreview style={{ justifyContent: "center" }}>
                     {
                         consulta.map(x =>
-                            <Card className="card-livro" key={x.id} as={Link} to={{
+                            <Card className="card-livro" style={{textDecoration : "none"}} key={x.id} as={Link} to={{
                                 pathname: "/MostrarLivro",
                                 state: {
                                     idlivro: x.id
                                 }
                             }}>
-                                <div className="card-image" style={{ height: "300px", width: "170px" }}>
+                                <div className="card-image" style={{ height: "310px" }}>
                                     <img src={BuscarFoto(x.nomeArquivo)} height="100%" width="100%" alt="" />
                                 </div>
                                 <div id="card-titulo">
@@ -84,8 +96,7 @@ export default function HomePage(e) {
                                         {x.nome}
                                     </h5>
                                 </div>
-                                <div className="card-focus">
-                                </div>
+                                <div className="card-focus"></div>
                             </Card>
                         )
                     }
@@ -100,7 +111,7 @@ export default function HomePage(e) {
                         </li>
                         <li className="page-item">
                             <button className="page-link"
-                                onClick={() => setInicio(inicio + 10)}>
+                                onClick={aumentarPosicao}>
                                 Próximo
                             </button>
                         </li>

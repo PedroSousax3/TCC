@@ -51,10 +51,6 @@ namespace api.Database
         public async Task<List<Models.TbLivro>> ListarLivroCompleto(int inicio, int fim, string nome)
         {
             return await db.TbLivro.Include(x => x.IdMedidaNavigation)
-                                    .Include(x => x.IdEditoraNavigation)
-                                    .Include(x => x.TbLivroAutor)
-                                    .Include(x => x.TbLivroGenero)
-                                    .Include(x => x.TbEstoque)
                                     .Where(x => x.NmLivro.Contains(nome))
                                     .Skip(inicio)
                                     .Take(fim)

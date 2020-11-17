@@ -120,6 +120,7 @@ export default function MostrarLivro(props) {
 
     useEffect(() => {
         Consultar();
+        window.scrollTo(0, 0);
     }, [])
 
     return (

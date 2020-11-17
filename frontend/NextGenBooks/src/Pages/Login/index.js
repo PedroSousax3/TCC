@@ -104,7 +104,7 @@ export default function Logar(e) {
     }
   }
   useEffect(
-    () => AlterarTitulo('Acesso')
+    () => AlterarTitulo('Acesso'), []
   );
 
   const [carregado, setCarregado] = useState(false);

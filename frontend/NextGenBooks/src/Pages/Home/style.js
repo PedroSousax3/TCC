@@ -131,12 +131,12 @@ export const Card = styled.div`
     }
 
     .card-focus {
-        transition: linear 0.2s;
+        transition: linear 0.3s;
         background-color: black;
         position: absolute;
         width: 100%;
         height: 100%;
-        opacity: 0.4;
+        opacity: 0.28;
         top: 0;
     }
 
