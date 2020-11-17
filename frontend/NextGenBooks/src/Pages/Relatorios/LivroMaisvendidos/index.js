@@ -3,17 +3,17 @@ import styled from 'styled-components'
 
 import Master from '../../Master/index.js';
 
-export default function RelatorioDevolucao () {
+export default function LivroMaisvendidos () {
     return (
         <Master>
-            <ContainerRelatorioDevolucao>
+            <ContainerLivroMaisvendidos>
                 
-            </ContainerRelatorioDevolucao>
+            </ContainerLivroMaisvendidos>
         </Master>
     )
 }
 
-const ContainerRelatorioDevolucao = styled.div`
+const ContainerLivroMaisvendidos = styled.div`
     display:flex;
     min-height : calc(100vh - 45px);
     width : 100vw;

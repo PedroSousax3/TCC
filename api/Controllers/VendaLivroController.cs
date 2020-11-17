@@ -61,6 +61,22 @@ namespace api.Controllers
                 return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
             }
         }
+
+        //DateTime comecao, DateTime termino, int inicio, int fim
+        [HttpGet("Relatorio/Vendas")]
+        public async Task<ActionResult<List<Models.TbVendaLivro>>> RelatorioLivrosVenda()
+        {
+            try
+            {
+                List<Models.TbVendaLivro> tabela = await business.ListarLivrosVendaBusiness();
+                
+                return tabela;
+            }
+            catch (System.Exception ex)
+            {
+                return new NotFoundObjectResult(new Models.Response.ErroResponse(404,ex.Message));
+            }
+        }
         
     }
 }

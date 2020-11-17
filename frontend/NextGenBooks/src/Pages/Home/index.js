@@ -18,8 +18,7 @@ export default function HomePage(e) {
     
     const listarLivros = async () => {
         try  {
-            let fim = inicio + 10;
-            const result = await ListPostFile(inicio, fim, nome);
+            const result = await ListPostFile(inicio, 10, nome);
             setConsulta([...result.data.posteres]);
             setQtdPost(result.data.qtd);
         }
@@ -45,7 +44,10 @@ export default function HomePage(e) {
     }
 
     function aumentarPosicao () {
-        setInicio(inicio + 10);
+        if (inicio + 10 > qtdPost)
+            setInicio(qtdPost - 10);
+        else
+            setInicio(inicio + 10);
     } 
 
     useEffect(
