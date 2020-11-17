@@ -65,13 +65,15 @@ namespace api.Controllers
         //DateTime comecao, DateTime termino, int inicio, int fim
 
         [HttpGet("Relatorio/Vendas")]
-        public async Task<ActionResult<List<Models.TbVendaLivro>>> RelatorioLivrosVenda()
+        public async Task<ActionResult<List<Models.Response.RelatorioVendaLivro>>> RelatorioLivrosVenda()
         {
             try
             {
+                Utils.Conversor.RelatorioConversor ConvertRelatorio = new Utils.Conversor.RelatorioConversor();
+                
                 List<Models.TbVendaLivro> tabela = await business.ListarLivrosVendaBusiness();
                 
-                return tabela;
+                return tabela.Select(x => ConvertRelatorio.ConversorRelatorioVendaLivro(x)).ToList();
             }
             catch (System.Exception ex)
             {
