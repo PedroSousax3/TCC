@@ -70,10 +70,12 @@ export default function MinhasCompras() {
 
   const DevolverSim = async (idvendalivro, v) => {
     try {
+      let id = idvendalivro;
+      let val = v;
       let request = {
-        vendalivro: idvendalivro,
+        vendalivro: id,
         motivo,
-        valor: v,
+        valor: val,
         codigo_rastreio,
         comprovante,
         previsao_entrega
@@ -108,9 +110,9 @@ export default function MinhasCompras() {
 
                 {x.vendaLivro.map(y =>
                   <div className="card">
-                    <div className="card-header" Key={1}>
+                    <div className="card-header" Key={y.id}>
                     </div>
-                    <div className="card-body" Key={1}>
+                    <div className="card-body" Key={y.id}>
                       <img src={BuscarFoto(y.livroInfo.foto)} alt="..." height="300px" />
                       <h6 className="card-title">Nome:{y.livroInfo.nome}</h6>
                       <p className="card-text">Descrição:{y.livroInfo.descricao}</p>
@@ -147,7 +149,7 @@ export default function MinhasCompras() {
                           </div>
                           <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                            <button type="button" className="btn btn-primary" onClick={() => DevolverSim(y.id, y.valor)}>Sim</button>
+                    <button type="button" className="btn btn-primary" onClick={() => DevolverSim(y.id, y.valor)}>Sim </button>
                           </div>
                         </div>
                       </div>
