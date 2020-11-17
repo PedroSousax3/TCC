@@ -1,7 +1,5 @@
 # Relatório de Sistema - Livraria
 
-[TOC]
-
 # DIAGRAMAS
 
 ## CASO DE USO
