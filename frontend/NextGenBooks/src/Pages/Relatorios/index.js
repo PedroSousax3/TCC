@@ -21,8 +21,8 @@ export default function MenuRelatorios(){
                         <Link to="/TopVenda">
                             Top 10 Vendas
                         </Link>  
-                        <Link to="/Relatorio/Devolucao">
-                            Devoluções
+                        <Link to="Relatorio/LivroMaisVendido">
+                            Mais Vendidos
                         </Link>   
                     </div> 
             </ContainerVendaDia>

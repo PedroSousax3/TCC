@@ -58,7 +58,6 @@ export default function HomePage(e) {
     return (
         <Master>
             <Home>
-
                 <ContainerPesquisa className="pesquisa">
                     {/*
                         <div className="genero">
