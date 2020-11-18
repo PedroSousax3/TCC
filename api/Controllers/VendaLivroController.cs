@@ -65,7 +65,7 @@ namespace api.Controllers
         //DateTime comecao, DateTime termino, int inicio, int fim
 
         [HttpGet("Relatorio/Vendas")]
-        public async Task<ActionResult<List<Models.TbVendaLivro>>> RelatorioLivrosVenda()
+        public async Task<ActionResult<List<Models.Response.RelatorioVendaLivro>>> RelatorioLivrosVenda()
         {
             try
             {
@@ -73,9 +73,8 @@ namespace api.Controllers
                 
                 List<Models.TbVendaLivro> tabela = await business.ListarLivrosVendaBusiness();
                 
-                //return tabela.Select(x => ConvertRelatorio.ConversorRelatorioVendaLivro(x)).ToList();
+                return tabela.Select(x => ConvertRelatorio.ConversorRelatorioVendaLivro(x)).ToList();
 
-                return tabela;
             }
             catch (System.Exception ex)
             {

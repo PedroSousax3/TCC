@@ -77,7 +77,6 @@ namespace api.Database
                                 IdVenda = l.First().IdVenda,
                                 NrLivros = l.Sum(s => s.NrLivros),
                                 IdLivroNavigation = l.First().IdLivroNavigation,
-                                VlVendaLivro = l.First().VlVendaLivro
                             }).ToList();
         }
 
