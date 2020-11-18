@@ -7,7 +7,7 @@ import funcaoApi from '../../../Service/NextGenBookApi.js';
 const api = new funcaoApi();
 export default function LivroMaisvendidos() {
     const [registro, setRegistro] = useState([]);
-    const [ qtditem, setQtdItem ] = useState(0);
+    const [qtditem, setQtdItem] = useState(0);
 
     async function listarVendas() {
         const response = await api.livroMaisVendidosApi();
@@ -20,7 +20,7 @@ export default function LivroMaisvendidos() {
 
     useEffect(
         () => listarVendas(),
-        [] 
+        []
     );
 
     return (
@@ -38,7 +38,7 @@ export default function LivroMaisvendidos() {
                     </thead>
                     <tbody>
                         {
-                            registro.map(x => 
+                            registro.map(x =>
                                 <tr>
                                     <th scope="row">{qtditem}</th>
                                     <td>{x.nome_livro}</td>

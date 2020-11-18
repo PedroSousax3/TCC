@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -75,8 +76,8 @@ namespace api.Database
                                 IdLivro = l.First().IdLivro,
                                 IdVenda = l.First().IdVenda,
                                 NrLivros = l.Sum(s => s.NrLivros),
-                                VlVendaLivro = l.Sum(s => s.VlVendaLivro),
-                                IdLivroNavigation = l.First().IdLivroNavigation
+                                IdLivroNavigation = l.First().IdLivroNavigation,
+                                VlVendaLivro = Convert.ToDecimal(l.First().NrLivros * l.First().VlVendaLivro)
                             }).ToList();
         }
 
