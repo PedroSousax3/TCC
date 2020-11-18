@@ -15,7 +15,7 @@ namespace api.Utils.Conversor
             response.lancamento = tabela.IdLivroNavigation.DtLancamento;
             
             response.valor_venda = Convert.ToDouble(tabela.IdLivroNavigation.VlPrecoVenda);
-            response.total_vendido = Convert.ToDouble(tabela.VlVendaLivro);
+            response.total_vendido = Convert.ToDouble(tabela.VlVendaLivro * response.qtd);
 
             return response;
         }
