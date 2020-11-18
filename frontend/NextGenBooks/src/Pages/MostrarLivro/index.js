@@ -34,7 +34,7 @@ export default function MostrarLivro(props) {
     const [qtd, setQtd] = useState(0);
     const [foto, setFoto] = useState("");
     const [avaliacoes, setAvaliacoes] = useState([]);
-    const [favoritos,setFavoritos] = useState();
+    const [favoritos, setFavoritos] = useState();
 
 
     function popularLivro(dados) {
@@ -111,9 +111,9 @@ export default function MostrarLivro(props) {
 
     async function Consultar() {
         let response;
-        if(isNaN(idcliente) || idcliente === NaN)
+        if (isNaN(idcliente) || idcliente === NaN)
             response = await ConsultarPorIdLivro(id, 0);
-        else 
+        else
             response = await ConsultarPorIdLivro(id, idcliente);
         popularLivro(response.data);
 
@@ -130,20 +130,20 @@ export default function MostrarLivro(props) {
     return (
         <Master>
             <ToastContainer />
-            
+
             <BoxContainer id="livro" theme={{ sc_border: "none", sc_espace: "0px", sc_padding: "10px", sc_direction: "column" }}>
-            <Link to="/" >
-                <button type="button" className="btn btn-info">
-                    Voltar para menu
+                <Link to="/" >
+                    <button type="button" className="btn btn-info">
+                        Voltar para menu
                 </button>
-            </Link>
+                </Link>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
                     {
-                      favoritos === false && (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)) 
-                        ?
-                            <i className="fas fa-star"  style={{ cursor: "pointer" }} id="Icone"></i>
-                        :
+                        favoritos === false && (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente))
+                            ?
+                            <i className="fas fa-star" style={{ cursor: "pointer" }} id="Icone"></i>
+                            :
                             <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
                     }
                 </BoxContainer>
@@ -168,7 +168,7 @@ export default function MostrarLivro(props) {
                         <BoxContainer id="acoes" theme={{ sc_espace: "10px 0px" }}>
                             <button type="button" className="btn btn-carrinho" onClick={inserirCarrinho}>
                                 Adicionar ao Carrinho - R$ {valor}
-                                                                                                            </button>
+                            </button>
                         </BoxContainer>
                 }
                 <BoxContainer id="descicao" theme={{ sc_espace: "10px 0px", sc_direction: "column" }}>
