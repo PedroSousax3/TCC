@@ -77,7 +77,7 @@ namespace api.Database
                                 IdVenda = l.First().IdVenda,
                                 NrLivros = l.Sum(s => s.NrLivros),
                                 IdLivroNavigation = l.First().IdLivroNavigation,
-                                VlVendaLivro = Convert.ToDecimal(l.First().NrLivros * l.First().VlVendaLivro)
+                                VlVendaLivro = l.First().VlVendaLivro
                             }).ToList();
         }
 
