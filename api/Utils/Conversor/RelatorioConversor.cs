@@ -12,9 +12,9 @@ namespace api.Utils.Conversor
             response.idlivro = tabela.IdLivro;
             response.nome_livro = tabela.IdLivroNavigation.NmLivro;
             response.qtd = tabela.NrLivros;
-            response.valor_venda = Convert.ToDouble(tabela.IdLivroNavigation.VlPrecoVenda);
-            response.total_vendido = Convert.ToDouble(tabela.IdLivroNavigation.VlPrecoVenda);
             response.lancamento = tabela.IdLivroNavigation.DtLancamento;
+            
+            response.valor_venda = Convert.ToDouble(tabela.IdLivroNavigation.VlPrecoVenda);
             response.total_vendido = Convert.ToDouble(tabela.VlVendaLivro);
 
             return response;
