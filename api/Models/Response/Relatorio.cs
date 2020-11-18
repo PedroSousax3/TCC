@@ -10,7 +10,6 @@ namespace api.Models.Response
         public double total_vendido { get; set; }
         public string nome_livro { get; set; }
         public DateTime lancamento { get; set; }
-        public double valor_compra { get; set; }
         public double valor_venda { get; set; }
     }
 }
