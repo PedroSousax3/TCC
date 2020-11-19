@@ -11,7 +11,6 @@ namespace api.Business
     {
         public void EnvioEmail(string destinatario, string titulo, string corpo)
         {
-
             MailMessage mensagem = new MailMessage("nextgenbooks3@gmail.com", destinatario, titulo, corpo);
             mensagem.IsBodyHtml = true;
             using (var smtpClient = new SmtpClient())
@@ -27,7 +26,7 @@ namespace api.Business
             }
         }
       
-      public async Task<Models.TbLogin> EnviarCodigoRecuperarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request)
+        public async Task<Models.TbLogin> EnviarCodigoRecuperarSenha(Models.Request.EmailRequest.EmailRecuperarSenha request)
         {
             Database.LoginDatabase database = new Database.LoginDatabase();
             string codigo = GerarCodigolAleatorio();

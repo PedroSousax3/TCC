@@ -71,12 +71,15 @@ export default function Logar(e) {
   }
 
 
-  document.onkeypress = function (evt) {
-    evt = evt || window.event;
 
+  /*document.getElementById("loginsenha").onkeypress = (evt) => {
     if (evt.key === "Enter")
       Logar();
-  }
+  };*/
+  //evt = evt || window.event;
+  //console.log(evt);
+  //if (evt.key === "Enter")
+  //await Logar();
 
   function openCarregamento() {
     setCarregado(true);
@@ -106,8 +109,11 @@ export default function Logar(e) {
     }
   }
   useEffect(
-    () => AlterarTitulo('Acesso'), []
+    () => {
+      AlterarTitulo('Acesso')
+    }, []
   );
+
 
   const [carregado, setCarregado] = useState(false);
 
@@ -134,8 +140,8 @@ export default function Logar(e) {
             <div className="form-group">
               <label>Senha:</label>
               <div className="input-icone" style={{ position: "relative" }}>
-                <input type="password" className="form-control" id="formGroupExampleInput2" placeholder="Digite sua senha:" onChange={(e) => setSenha(e.target.value)} />
-                <i className="icone btn btn-sm fas fa-eye" onClick={mostrar} style={{ margin: "auto", position: "absolute", right: "15px", top: "50%", fontSize: "15px", transform: "translateY(-50%)" }}></i>
+                <input type="password" className="form-control" id="loginsenha" placeholder="Digite sua senha:" onChange={(e) => setSenha(e.target.value)} />
+                <i className="icone btn btn-sm fas fa-eye" onClick={mostrar} style={{ margin: "auto", position: "absolute", right: "0px", top: "50%", fontSize: "15px", transform: "translateY(-50%)" }}></i>
               </div>
             </div>
             <div className="Links" style={{ margin: "10px 5px" }}>
@@ -148,7 +154,7 @@ export default function Logar(e) {
               <div className="link">
                 <Link as="a" to={{ pathname: "Cadastro" }}>
                   &#160;  Cadastre-se
-                                </Link>
+                </Link>
               </div>
             </div>
             <div className="botao">

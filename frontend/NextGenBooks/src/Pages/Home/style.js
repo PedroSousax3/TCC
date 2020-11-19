@@ -111,10 +111,6 @@ export const Card = styled.div`
         outline: none;
     }
 
-    & > .card-titulo {
-        flex-wrap: wrap;
-        text-align: center;
-    }
 
     .card-image {
         margin-bottom: auto;
@@ -132,15 +128,32 @@ export const Card = styled.div`
 
     .card-focus {
         transition: linear 0.3s;
-        background-color: black;
+        background-color: rgba(0, 0, 0, 0.5);
         position: absolute;
         width: 100%;
         height: 100%;
-        opacity: 0.28;
         top: 0;
     }
 
+    #card-titulo {
+        flex-wrap: wrap;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(118, 227, 33, 0);
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        color: transparent;
+        transition: linear 0.5s;
+    }
+
     .card-focus:hover {
-        opacity: 0;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .card-focus:hover #card-titulo {
+        background-color: rgba(118, 227, 33, 1);
+        color: black;
     }
 `; 
