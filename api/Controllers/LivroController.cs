@@ -10,6 +10,7 @@ namespace api.Controllers
     public class LivroController : ControllerBase
     {
         Utils.Conversor.LivroConversor ConversorLivro = new Utils.Conversor.LivroConversor();
+        Utils.Conversor.FavoritoConversor conversor = new Utils.Conversor.FavoritoConversor();
         Business.LivroBusiness business = new Business.LivroBusiness();
         Business.GerenciadorFile gerenciadorFoto = new Business.GerenciadorFile();
         
@@ -45,6 +46,8 @@ namespace api.Controllers
                 if(livro.TbFavoritos.Count != 0 && livro.TbFavoritos.All(x =>x.IdCliente == idcliente))
                 {
                     response.livro.favorito = true;
+                    Models.TbFavoritos a = livro.TbFavoritos.FirstOrDefault( x => x.IdCliente == idcliente && x.IdLivro == idlivro);
+                    response.favorito = conversor.ConversorResponse(a);
                 }
                 else
                 {

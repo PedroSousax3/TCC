@@ -10,10 +10,11 @@ import { BoxContainer } from '../../components/Card/styled.js';
 import Cookies from 'js-cookie'
 
 import { InserirCarrinhoApi } from '../../Service/carrinhoApi.js';
-import { inserirFavoritoApi } from '../../Service/favoritosApi.js';
+import { inserirFavoritoApi,removerFav } from '../../Service/favoritosApi.js';
 import { ConsultarPorIdLivro } from '../../Service/LivroApi.js';
-import { BuscarFoto } from '../../Service/fileApi.js'
+import { BuscarFoto } from '../../Service/fileApi.js';
 import { listarAvaliacaoLivroApi } from '../../Service/AvaliacaoLivro.js'
+import { SignalCellularNull } from '@material-ui/icons';
 
 export default function MostrarLivro(props) {
     const [id] = useState(props.location.state.idlivro);
@@ -35,6 +36,10 @@ export default function MostrarLivro(props) {
     const [foto, setFoto] = useState("");
     const [avaliacoes, setAvaliacoes] = useState([]);
     const [favoritos, setFavoritos] = useState();
+    const [idFavorito, setIdFavoritos] = useState();
+    const [Favoritoobj, setFavoritoobj] = useState();
+
+
 
     const navegacao = useHistory();
 
@@ -49,6 +54,8 @@ export default function MostrarLivro(props) {
             setDescricao(dados.livro.descricao);
             setFoto(dados.livro.foto);
             setFavoritos(dados.livro.favorito);
+            setIdFavoritos(dados.favorito.id);
+            setFavoritoobj(dados.favorito);
             if (dados.livro.editora != null && dados.livro.editora !== undefined)
                 setEditora(dados.livro.editora.nome);
             if (dados.livro.medida != null && dados.livro.editora !== undefined) {
@@ -91,22 +98,26 @@ export default function MostrarLivro(props) {
                     livro: id,
                     cliente: idcliente
                 });
+               await ConsultarPorIdLivro(id, idcliente)
                 toast.success(' 🥇 Livro foi adicionado a lista de favoritos com sucesso');
+                setFavoritos(true);
             }
         } catch (ex) {
             toast.info(' 🏁 ' + ex.response.data.erro);
         }
     }
-
-    function MudarEstrela() {
-        let botao = document.querySelector(".estrela");
-
-        if (botao.classList) {
-            botao.classList.remove("fas fa-star");
-            botao.classList.add("far fa-star");
-        } else {
-            botao.classList.remove("far fa-star");
-            botao.classList.add("fas fa-star");
+    async function removerFavorito() {
+        try {
+            if (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)) {
+                toast.error("Usúario não encotrado, nescessário a realização de login.");
+            }
+            else {
+                await removerFav(idFavorito);
+                toast.success(' 🥇 Livro foi removido da lista de favoritos com sucesso');
+                setFavoritos(false);
+            }
+        } catch (ex) {
+            toast.info(' 🏁 ' + ex.response.data.erro);
         }
     }
 
@@ -117,8 +128,8 @@ export default function MostrarLivro(props) {
                 response = await ConsultarPorIdLivro(id, 0);
             else
                 response = await ConsultarPorIdLivro(id, idcliente);
-            popularLivro(response.data);
-    
+            popularLivro(response.data)
+                 console.log(response.data)
             const listAvaliacao = await listarAvaliacaoLivroApi(id);
             if (listAvaliacao != null && listAvaliacao !== undefined && listAvaliacao.length > 0)
                 setAvaliacoes([...listAvaliacao]);
@@ -147,11 +158,13 @@ export default function MostrarLivro(props) {
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
                     {
-                        favoritos === false && (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente))
+                         idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)
                             ?
-                            <i className="fas fa-star" style={{ cursor: "pointer" }} id="Icone"></i>
-                            :
+                            <></>
+                            :favoritos === false?
                             <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
+                            :
+                            <i className="fas fa-star estrela" onClick={removerFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
                     }
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>

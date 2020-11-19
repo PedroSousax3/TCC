@@ -95,7 +95,7 @@ export default function Logar(e) {
   }
 
   function mostrar() {
-    var tipo = document.getElementById("formGroupExampleInput2");
+    var tipo = document.getElementById("loginsenha");
     var botao = document.querySelector(".btn.btn-sm");
 
     if (tipo.type === "password") {

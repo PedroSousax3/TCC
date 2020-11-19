@@ -23,7 +23,6 @@ import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
 import CadastrarEndereco from './Pages/Cliente/Endereco';
 import AlterarCliente from './Pages/Cliente/AlterarCliente/index.js';
 import VendaPorDia from './Pages/Relatorios/VendaPorDia/index.js';
-import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/index.js';
 import RatrearPedido from './Pages/Cliente/AcompanharPedido/index.js';
 
 
@@ -34,7 +33,7 @@ import TopClientes from './Pages/Relatorios/TopClientes/index.js';
 import MenuRelatorios from './Pages/Relatorios/index.js';
 import TopVenda from './Pages/Relatorios/TopVendas/index.js';
 import LivroMaisVendadido from './Pages/Relatorios/LivroMaisvendidos/index.js'
-import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/index.js';
+import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/index';
 
 export default function Rotas() {
   return (
