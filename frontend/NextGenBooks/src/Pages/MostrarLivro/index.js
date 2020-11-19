@@ -209,9 +209,9 @@ export default function MostrarLivro(props) {
                         <li>Data de Lançamento: {lancamento}</li>
                     </ul>
                     <ul>
-                        <li>Altura: {altura}</li>
-                        <li>Largura: {largura}</li>
-                        <li>Peso: {peso}g</li>
+                        <li>Altura: {altura} cm</li>
+                        <li>Largura: {largura} cm</li>
+                        <li>Peso: {peso} g</li>
                     </ul>
                 </BoxContainer>
 

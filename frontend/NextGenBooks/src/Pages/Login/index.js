@@ -39,8 +39,10 @@ export default function Logar(e) {
       navegacao.push("/", a.data);
     }
     catch (e) {
-      closeCarregamento();
       toast.error(e.response.data.erro);
+    }
+    finally {
+      closeCarregamento();
     }
   }
 
