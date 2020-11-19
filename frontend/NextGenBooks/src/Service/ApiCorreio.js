@@ -11,7 +11,12 @@ export const buscarEndereco = async (cep) => {
 
 
 const correio = axios.create(
-    { baseURL:"https://apicorreio.herokuapp.com" }
+    { baseURL:"https://apicorreio.herokuapp.com" ,
+      validateStatus: function (status) {
+      return status < 600; 
+      }
+    }
+
 );
 
 export const calcularFrete = async (request) => {
@@ -19,8 +24,15 @@ export const calcularFrete = async (request) => {
     return resp.data;
 }
 
+const configAxios = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
 
 export const rastrearPedido = async (request) => {
-    const resp = await correio.get("/rastrear",request);
-    return resp.data;
+    console.log(request);
+    const resp =  await correio.get("/rastrear",request);
+    console.log(resp)
+    return resp;
 }
