@@ -50,8 +50,12 @@ namespace api.Database
 
         public async Task<List<Models.TbLivro>> ListarLivroCompleto(int inicio, int fim, string nome)
         {
-            return await db.TbLivro.Include(x => x.IdMedidaNavigation)
-                                    .Where(x => x.NmLivro.Contains(nome))
+            return await db.TbLivro.Where(x => x.NmLivro.Contains(nome))
+                                    .Include(x => x.IdEditoraNavigation)
+                                    .Include(x => x.TbLivroAutor).ThenInclude(y => y.IdAutorNavigation)
+                                    .Include(x => x.TbLivroGenero).ThenInclude(y => y.IdGeneroNavigation)
+                                    .Include(x => x.TbEstoque)
+                                    .Where(x => x.NmLivro.Contains(nome) || x.TbLivroAutor.Any(a => a.IdAutorNavigation.NmAutor.Contains(nome)) || x.TbLivroGenero.Any(g => g.IdGeneroNavigation.NmGenero.Contains(nome)))
                                     .Skip(inicio)
                                     .Take(fim)
                                     .ToListAsync();
@@ -77,11 +81,6 @@ namespace api.Database
         {
             return await db.TbLivro.Include(x => x.IdMedidaNavigation).FirstOrDefaultAsync(x => x.IdLivro == idlivro);
         }
-
-        /*public async Task<Models.TbLivro> ConsultarLivroCompleto (int idlivro) 
-        {
-            List<Models.TbLivro> livros = await db.TbLivro.Include(x => x.IdEditoraNavigation).Include(x => x.IdMedidaNavigation).ToListAsync();
-        }*/
 
         public async Task<List<Models.TbLivro>> ListarLivrosFiltro(Models.Request.LivrosFiltrosRequest filtros)
         {

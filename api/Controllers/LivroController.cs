@@ -51,8 +51,7 @@ namespace api.Controllers
                     response.livro.favorito = false;
                 }
 
-                return response ;
-
+                return response;
             }
             catch (System.Exception ex)
             {

@@ -9,20 +9,20 @@ export default function MenuRelatorios(){
                <h1>Relatórios</h1>
                <h6>Aqui você pode acompanhar o crescimento da nossa empresa</h6>
                    <div style={{display:"flex",flexDirection:"column",fontSize:"25px",marginTop:"10%"}}>
-                        <Link to="/VendaDia">
+                        <Link to="/Relatorios/VendaDia">
                             Vendas Do Dia
                         </Link>
-                        <Link to="/VendaMes">
+                        <Link to="/Relatorios/VendaMes">
                             Vendas Por Mês
                         </Link>
-                        <Link to="/TopClientes">
+                        <Link to="/Relatorios/TopClientes">
                             Top 10 Clientes
                         </Link>
-                        <Link to="/TopVenda">
+                        <Link to="/Relatorios/TopVenda">
                             Top 10 Vendas
                         </Link>  
-                        <Link to="/Relatorio/Devolucao">
-                            Devoluções
+                        <Link to="/Relatorios/LivroMaisVendido">
+                            Mais Vendidos
                         </Link>   
                     </div> 
             </ContainerVendaDia>

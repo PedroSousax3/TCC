@@ -18,8 +18,7 @@ export default function HomePage(e) {
     
     const listarLivros = async () => {
         try  {
-            let fim = inicio + 10;
-            const result = await ListPostFile(inicio, fim, nome);
+            const result = await ListPostFile(inicio, 10, nome);
             setConsulta([...result.data.posteres]);
             setQtdPost(result.data.qtd);
         }
@@ -45,7 +44,10 @@ export default function HomePage(e) {
     }
 
     function aumentarPosicao () {
-        setInicio(inicio + 10);
+        if (inicio + 10 > qtdPost)
+            setInicio(qtdPost - 10);
+        else
+            setInicio(inicio + 10);
     } 
 
     useEffect(
@@ -56,7 +58,6 @@ export default function HomePage(e) {
     return (
         <Master>
             <Home>
-
                 <ContainerPesquisa className="pesquisa">
                     {/*
                         <div className="genero">
@@ -91,12 +92,13 @@ export default function HomePage(e) {
                                 <div className="card-image" style={{ height: "310px" }}>
                                     <img src={BuscarFoto(x.nomeArquivo)} height="100%" width="100%" alt="" />
                                 </div>
-                                <div id="card-titulo">
-                                    <h5 style={{ margin: "0px", textAlign : "center" }}>
-                                        {x.nome}
-                                    </h5>
+                                <div className="card-focus">
+                                    <div id="card-titulo">
+                                        <h5 style={{ margin: "0px", textAlign : "center" }}>
+                                            {x.nome}
+                                        </h5>
+                                    </div>
                                 </div>
-                                <div className="card-focus"></div>
                             </Card>
                         )
                     }

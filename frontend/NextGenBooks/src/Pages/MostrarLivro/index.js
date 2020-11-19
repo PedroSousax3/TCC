@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 //Master
 import Master from '../Master/index';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 
 //Components:
@@ -18,7 +18,7 @@ import { listarAvaliacaoLivroApi } from '../../Service/AvaliacaoLivro.js'
 export default function MostrarLivro(props) {
     const [id] = useState(props.location.state.idlivro);
     const [nome, setNome] = useState("");
-    const [idcliente] = useState(Number(Cookies.get('id')));
+    const [idcliente, setIdCliente] = useState(Number(Cookies.get('id')));
     const [valor, setValor] = useState();
     const [edicao, setEdicao] = useState();
     const [acabamento, setAcabamento] = useState("");
@@ -34,11 +34,12 @@ export default function MostrarLivro(props) {
     const [qtd, setQtd] = useState(0);
     const [foto, setFoto] = useState("");
     const [avaliacoes, setAvaliacoes] = useState([]);
-    const [favoritos,setFavoritos] = useState();
+    const [favoritos, setFavoritos] = useState();
 
+    const navegacao = useHistory();
 
     function popularLivro(dados) {
-        if (dados.livro != null && dados.livro != undefined) {
+        if (dados.livro != null && dados.livro !== undefined) {
             setLancamento(new Date(dados.livro.lancamento).toLocaleDateString());
             setNome(dados.livro.nome);
             setValor(dados.livro.venda);
@@ -48,9 +49,9 @@ export default function MostrarLivro(props) {
             setDescricao(dados.livro.descricao);
             setFoto(dados.livro.foto);
             setFavoritos(dados.livro.favorito);
-            if (dados.livro.editora != null && dados.livro.editora != undefined)
+            if (dados.livro.editora != null && dados.livro.editora !== undefined)
                 setEditora(dados.livro.editora.nome);
-            if (dados.livro.medida != null && dados.livro.editora != undefined) {
+            if (dados.livro.medida != null && dados.livro.editora !== undefined) {
                 setAltura(dados.livro.medida.altura)
                 setLargura(dados.livro.medida.largura)
                 setpeso(dados.livro.medida.peso)
@@ -110,12 +111,22 @@ export default function MostrarLivro(props) {
     }
 
     async function Consultar() {
-        const response = await ConsultarPorIdLivro(id,idcliente);
-        popularLivro(response.data);
-
-        const listAvaliacao = await listarAvaliacaoLivroApi(id);
-        if (listAvaliacao != null && listAvaliacao !== undefined && listAvaliacao.length > 0)
-            setAvaliacoes([...listAvaliacao]);
+        try {
+            let response;
+            if (isNaN(idcliente))
+                response = await ConsultarPorIdLivro(id, 0);
+            else
+                response = await ConsultarPorIdLivro(id, idcliente);
+            popularLivro(response.data);
+    
+            const listAvaliacao = await listarAvaliacaoLivroApi(id);
+            if (listAvaliacao != null && listAvaliacao !== undefined && listAvaliacao.length > 0)
+                setAvaliacoes([...listAvaliacao]);
+        }
+        catch(ex) {
+            toast.erro(ex.response.data.erro);
+            navegacao.push('/');
+        }
     }
 
     useEffect(() => {
@@ -126,20 +137,20 @@ export default function MostrarLivro(props) {
     return (
         <Master>
             <ToastContainer />
-            
+
             <BoxContainer id="livro" theme={{ sc_border: "none", sc_espace: "0px", sc_padding: "10px", sc_direction: "column" }}>
-            <Link to="/" >
-                <button type="button" className="btn btn-info">
-                    Voltar para menu
+                <Link to="/" >
+                    <button type="button" className="btn btn-info">
+                        Voltar para menu
                 </button>
-            </Link>
+                </Link>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
                     {
-                      favoritos === false && (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)) 
-                        ?
-                            <i className="fas fa-star"  style={{ cursor: "pointer" }} id="Icone"></i>
-                        :
+                        favoritos === false && (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente))
+                            ?
+                            <i className="fas fa-star" style={{ cursor: "pointer" }} id="Icone"></i>
+                            :
                             <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
                     }
                 </BoxContainer>
@@ -164,7 +175,7 @@ export default function MostrarLivro(props) {
                         <BoxContainer id="acoes" theme={{ sc_espace: "10px 0px" }}>
                             <button type="button" className="btn btn-carrinho" onClick={inserirCarrinho}>
                                 Adicionar ao Carrinho - R$ {valor}
-                                                                                                            </button>
+                            </button>
                         </BoxContainer>
                 }
                 <BoxContainer id="descicao" theme={{ sc_espace: "10px 0px", sc_direction: "column" }}>
@@ -177,7 +188,7 @@ export default function MostrarLivro(props) {
                     <h5 style={{ marginTop: "15px", marginBottom: "5px" }}>Sobre o Escritor(a):</h5>
                     <div>
                         {autor.map(x =>
-                            <div>
+                            <div key={x.id} >
                                 <h6>
                                     {x.nome}
                                 </h6>
@@ -198,16 +209,16 @@ export default function MostrarLivro(props) {
                         <li>Data de Lançamento: {lancamento}</li>
                     </ul>
                     <ul>
-                        <li>Altura: {altura}</li>
-                        <li>Largura: {largura}</li>
-                        <li>Peso: {peso}g</li>
+                        <li>Altura: {altura} cm</li>
+                        <li>Largura: {largura} cm</li>
+                        <li>Peso: {peso} g</li>
                     </ul>
                 </BoxContainer>
 
                 <BoxContainer id="comentarios" theme={{ sc_direction: "column", sc_espace: "10px 0px" }}>
                     {
                         avaliacoes.map(x =>
-                            <div className="coment">
+                            <div key={x.id}  className="coment">
                                 <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
                                     <h6>Nome do usuario</h6>
                                     <p>{x.avaliacao}</p>

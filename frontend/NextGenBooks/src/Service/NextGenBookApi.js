@@ -179,4 +179,9 @@ export default class NextGenBookApi{
         const resp = await api.get('/Venda/PorMes?'+ 'mesInicio='+request.MesInicio+'&'+'mesFim='+request.MesFim);
         return resp.data;
     }
+
+    async livroMaisVendidosApi() {
+        const response = await api.get('/VendaLivro/Relatorio/Vendas');
+        return response.data;
+    }
 }

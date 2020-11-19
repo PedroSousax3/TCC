@@ -5,7 +5,7 @@ const api = axios.create (
     
 );
 
-export const ConsultarPorIdLivro = async (idlivro,idcliente) => {
+export const ConsultarPorIdLivro = async (idlivro, idcliente = 0) => {
     const response = await api.get("/" + idlivro + "/" + idcliente);
     return response;
 }

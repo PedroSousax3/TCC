@@ -17,3 +17,9 @@
     --verde-escuro: rgb(0, 133, 13);
     --marrom-medio: rgb(210, 110, 78);
 }
+
+@media print {
+    button {
+        display: none;
+    }
+}
