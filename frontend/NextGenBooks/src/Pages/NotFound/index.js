@@ -28,6 +28,7 @@ export const ComponentNotFound = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     background-position-y: center;
+    background-position-x: center;
 
     & > h1 {
         position : fixed;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 //Master
 import Master from '../Master/index';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 
 //Components:
@@ -36,6 +36,7 @@ export default function MostrarLivro(props) {
     const [avaliacoes, setAvaliacoes] = useState([]);
     const [favoritos, setFavoritos] = useState();
 
+    const navegacao = useHistory();
 
     function popularLivro(dados) {
         if (dados.livro != null && dados.livro !== undefined) {
@@ -110,16 +111,22 @@ export default function MostrarLivro(props) {
     }
 
     async function Consultar() {
-        let response;
-        if (isNaN(idcliente) || idcliente === NaN)
-            response = await ConsultarPorIdLivro(id, 0);
-        else
-            response = await ConsultarPorIdLivro(id, idcliente);
-        popularLivro(response.data);
-
-        const listAvaliacao = await listarAvaliacaoLivroApi(id);
-        if (listAvaliacao != null && listAvaliacao !== undefined && listAvaliacao.length > 0)
-            setAvaliacoes([...listAvaliacao]);
+        try {
+            let response;
+            if (isNaN(idcliente))
+                response = await ConsultarPorIdLivro(id, 0);
+            else
+                response = await ConsultarPorIdLivro(id, idcliente);
+            popularLivro(response.data);
+    
+            const listAvaliacao = await listarAvaliacaoLivroApi(id);
+            if (listAvaliacao != null && listAvaliacao !== undefined && listAvaliacao.length > 0)
+                setAvaliacoes([...listAvaliacao]);
+        }
+        catch(ex) {
+            toast.erro(ex.response.data.erro);
+            navegacao.push('/');
+        }
     }
 
     useEffect(() => {
@@ -181,7 +188,7 @@ export default function MostrarLivro(props) {
                     <h5 style={{ marginTop: "15px", marginBottom: "5px" }}>Sobre o Escritor(a):</h5>
                     <div>
                         {autor.map(x =>
-                            <div>
+                            <div key={x.id} >
                                 <h6>
                                     {x.nome}
                                 </h6>
@@ -211,7 +218,7 @@ export default function MostrarLivro(props) {
                 <BoxContainer id="comentarios" theme={{ sc_direction: "column", sc_espace: "10px 0px" }}>
                     {
                         avaliacoes.map(x =>
-                            <div className="coment">
+                            <div key={x.id}  className="coment">
                                 <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
                                     <h6>Nome do usuario</h6>
                                     <p>{x.avaliacao}</p>

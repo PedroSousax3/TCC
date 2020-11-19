@@ -51,13 +51,13 @@ export default function Rotas() {
         <Route path="/MinhasCompras" component={MinhasCompras} />
         <Route path="/FinalizarCompra" component={FinalizarCompra} />
 
-        <Route path="/Relatorios" component={MenuRelatorios} />
-        <Route path="/Relatorio/VendaDia" component={VendaPorDia} />
-        <Route path="/Relatorio/LivroVenda" component={LivroVendaRelatorio} />
-        <Route path="/Relatorio/VendaMes" component={VendaPorMes} />
-        <Route path="/Relatorio/TopClientes" component={TopClientes} />
-        <Route path="/Relatorio/TopVenda" component={TopVenda} />
-        <Route path="/Relatorio/LivroMaisVendido" component={LivroMaisVendadido} />
+        <Route path="/Relatorios" exact={true} component={MenuRelatorios} />
+        <Route path="/Relatorios/VendaDia" component={VendaPorDia} />
+        <Route path="/Relatorios/LivroVenda" component={LivroVendaRelatorio} />
+        <Route path="/Relatorios/VendaMes" component={VendaPorMes} />
+        <Route path="/Relatorios/TopClientes" component={TopClientes} />
+        <Route path="/Relatorios/TopVenda" component={TopVenda} />
+        <Route path="/Relatorios/LivroMaisVendido" component={LivroMaisVendadido} />
         <Route path="*" component={NotFound}/>
       </Switch>
     </BrowserRouter>
