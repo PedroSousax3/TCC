@@ -107,7 +107,7 @@ export default function LivroMaisvendidos() {
                                 filterColumnIndex: 0,
                                 matchType: 'any', // 'prefix' | 'exact',
                                 ui: {
-                                    label: 'Search by name',
+                                    label: 'Filtrar',
                                 },
                             },
                         },
