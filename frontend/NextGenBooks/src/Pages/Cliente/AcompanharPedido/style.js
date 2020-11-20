@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    
-    justify-content:center;
     flex:1;
     min-height:80vh;
     align-items:center;
     display:flex;
+    flex-direction:collumn;
     justify-content:center;
       @media screen and (max-width: 600px)
     {

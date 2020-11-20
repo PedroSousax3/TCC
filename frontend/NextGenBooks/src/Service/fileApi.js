@@ -1,7 +1,9 @@
 import axios from 'axios'
 
 const api = axios.create(
-    { baseURL : 'http://3.87.226.24:5000/Arquivo' }
+ { baseURL : 'http://3.87.226.24:5000/Arquivo' }
+
+    
  
 );
 

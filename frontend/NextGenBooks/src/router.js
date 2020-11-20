@@ -23,6 +23,9 @@ import FinalizarCompra from './Pages/Cliente/FinalizarCompra';
 import CadastrarEndereco from './Pages/Cliente/Endereco';
 import AlterarCliente from './Pages/Cliente/AlterarCliente/index.js';
 import VendaPorDia from './Pages/Relatorios/VendaPorDia/index.js';
+import RatrearPedido from './Pages/Cliente/AcompanharPedido/index.js';
+
+
 
 //Relatorios
 import VendaPorMes from './Pages/Relatorios/VendaPorMes/index.js';
@@ -30,7 +33,7 @@ import TopClientes from './Pages/Relatorios/TopClientes/index.js';
 import MenuRelatorios from './Pages/Relatorios/index.js';
 import TopVenda from './Pages/Relatorios/TopVendas/index.js';
 import LivroMaisVendadido from './Pages/Relatorios/LivroMaisvendidos/index.js'
-import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/index.js';
+import LivroVendaRelatorio from './Pages/Relatorios/VendaPorDia/LivrosDaCompra/index';
 
 export default function Rotas() {
   return (
@@ -50,7 +53,6 @@ export default function Rotas() {
         <Route path="/Carrinho" component={Carrinho} />
         <Route path="/MinhasCompras" component={MinhasCompras} />
         <Route path="/FinalizarCompra" component={FinalizarCompra} />
-
         <Route path="/Relatorios" exact={true} component={MenuRelatorios} />
         <Route path="/Relatorios/VendaDia" component={VendaPorDia} />
         <Route path="/Relatorios/LivroVenda" component={LivroVendaRelatorio} />
