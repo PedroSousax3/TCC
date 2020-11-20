@@ -60,6 +60,8 @@ export default function Rotas() {
         <Route path="/Relatorios/TopClientes" component={TopClientes} />
         <Route path="/Relatorios/TopVenda" component={TopVenda} />
         <Route path="/Relatorios/LivroMaisVendido" component={LivroMaisVendadido} />
+        <Route path="/Acompanhar/Pedido" component={RatrearPedido} />
+
         <Route path="*" component={NotFound}/>
       </Switch>
     </BrowserRouter>

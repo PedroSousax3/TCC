@@ -24,15 +24,9 @@ export const calcularFrete = async (request) => {
     return resp.data;
 }
 
-const configAxios = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
 
-export const rastrearPedido = async (request) => {
-    console.log(request);
-    const resp =  await correio.get("/rastrear",request);
-    console.log(resp)
-    return resp;
+export const rastrearPedido = async (codigo) => {
+    const resp =  await correio.get("/rastrear/" + codigo);
+    console.log(resp.data)
+    return resp.data;
 }

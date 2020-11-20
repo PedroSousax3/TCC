@@ -2,11 +2,11 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     flex:1;
-    min-height:80vh;
+    min-height:100vh;
+    min-width:80vw;
     align-items:center;
     display:flex;
-    flex-direction:collumn;
-    justify-content:center;
+    flex-direction:column;
       @media screen and (max-width: 600px)
     {
         & {
@@ -23,12 +23,51 @@ export const Container = styled.div`
 `
 
 export const CaixaPadrao = styled.div`
-    background-color: white;
-    width: 60%;
-    height: 65vh;
+    background-color: #f5f5f5;
     display: flex;
     flex-direction: column;
-
-    justify-content:center;
-    align-items:center;
+    min-width:60vw;
+    min-height:100vh;
+    padding-top:6px;
+ 
+    
+    .titulo{
+        font-size: 16px;
+        color: #999;
+        margin-bottom: 2px;
+        margin-left: 42px;
+        text-align: left;
+    }
+    .corpo{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        vertical-align: baseline;
+        font-size: 14px;
+        color: #999;
+        margin-top: 0;
+        margin-left: 42px;
+        text-align: left;
+        display: block;
+        font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .card{
+        padding: 32px 20px;
+        margin-top: 17px;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        vertical-align: baseline;
+        display: block;
+        font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
+        font-size: 13px;
+        line-height: 20px;
+        padding: 0 10px;
+        background-color: #fff;
+        color: #333;
+        width:100%;
+    }
     `

@@ -4,18 +4,13 @@ import {rastrearPedido} from  "../../../Service/ApiCorreio.js";
 import Master from "../../Master";
 
 export default function AcompanharPedido(){
-    let rast = [];
-    let registros ; 
+    const [registros,setRegistros] = useState([]);
     const [ valor,setValor] = useState("");
 
     const acompanharPedido = async() =>{
        try{
-        rast.push(valor);
-        let request= {
-          rast:rast
-        };
-        let resp = await rastrearPedido(request);
-        registros = resp;
+        let resp = await rastrearPedido(valor);
+         setRegistros([...resp]);
        }catch(e){
            console.error(e);
        }
@@ -23,17 +18,48 @@ export default function AcompanharPedido(){
     return(
         <Master>
             <Container>
-                            <h1 style={{color:"white"}}>Acompanhar Pedido</h1>
-                            <div className="form-group row" style={{width:"97%",marginTop:"2%",marginLeft:"14%"}}>
-                                <div className="col-sm-10">
-                                    <input type="text" className="form-control" id="codigo" placeholder="Digite o codigo"  onChange={(e) => setValor(e.target.value)}/>
-                                    <button onClick={acompanharPedido}>Rastrear</button>
+
+                        <CaixaPadrao>
+                            <div style={{textAlign:"center"}}>
+                                <h3 style={{color:"green"}}>Status do envio</h3>
+                            </div>
+                            <div className="form-group row"style={{width:"80%",display:"flex"}} >
+                                <div className="col-sm-10" style={{display:"flex",flexDirection:"row",width:"80%"}}>
+                                    <input type="text" style={{width:"50%",marginRight:"5px"}} className="form-control" id="codigo" placeholder="Digite o codigo"  onChange={(e) => setValor(e.target.value)}/>
+                                    <div className="button1">
+                                        <button className="btn btn-success" onClick={acompanharPedido}>Buscar</button>
+                                    </div>
                                 </div>
                             </div>
-                        <CaixaPadrao>
-                            {registros}
+                            <div >
+                            {registros.map((x) =>
+                              x.map((item)=>
+
+                              <div className="card" key={item.status} >
+                                    <div className="titulo" style={{color:"#999"}}>
+                                      
+                                    Status:{item.status}
+                                 
+                                    </div>
+                                   <div className="corpo">
+                                   <div>
+                                      Data: {item.data}
+                                   </div>
+                                   <div>
+                                       Hora:{item.hora}
+                                   </div>
+                                   <div>
+                                       Local:{item.local}
+                                   </div>
+                                   
+                                   
+                                   </div>
+                              </div>
+                                )
+                                )}
+                            </div>
                         </CaixaPadrao>
             </Container>
-            </Master>
+     </Master>
     )
 }
