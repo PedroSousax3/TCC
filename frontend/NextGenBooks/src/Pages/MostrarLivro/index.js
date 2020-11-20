@@ -78,6 +78,7 @@ export default function MostrarLivro(props) {
         }
         catch (ex) {
             toast.error(ex.response.data.erro);
+            navegacao.push('/NotFound');
         }
     }
 
