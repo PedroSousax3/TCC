@@ -3,16 +3,25 @@ import styled from  'styled-components'
 export const Card = styled.div`
     width: 100%;
     height: auto;
+    padding : 15px;
 
     background-color : ${props => props.theme.bg_color};
 
     display: flex;
     flex-direction: column;
 
-    border-radius: 5px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
 
     margin: 10px 0px;
+    border-left: 7px solid rgba(0, 0, 0, 0.4);
+
+    .button-card {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        justify-content: space-between;
+    }
 `;
 
 export const Title = styled.div`
@@ -23,7 +32,6 @@ export const Title = styled.div`
     padding: auto 15px;
     padding-left: 8px;
 
-    border-bottom: .5px solid rgba(0, 0, 0, 0.4);
     font-size: 20px;
     font-weight: 600;
     color: ${props => props.theme.color};
@@ -33,15 +41,13 @@ export const Title = styled.div`
 export const Container = styled.div`
     height: auto;
     max-width: 100%;
-    
-    padding-left: 10px;
-    
+        
     display: flex;
+    padding-top : 4px;
 
-    align-items: center;
+    align-items: flex-start;
 
     & > .item {
-        border-left: .5px solid rgba(0, 0, 0, 0.4);
         padding-left: 10px;
     }
 
@@ -53,15 +59,13 @@ export const Container = styled.div`
 
         & > .item {
             width: 100%;
-            border-top: .5px solid rgba(0, 0, 0, 0.4);
+            border-top: 3px solid rgba(0, 0, 0, 0.4);
             border-left: none;
             padding-left: 0px;
         }
 
         & {
             flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
         }
     }
 

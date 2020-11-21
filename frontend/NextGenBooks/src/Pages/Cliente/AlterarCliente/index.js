@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import { toast, ToastContainer } from "react-toastify";
 
 import Master from '../../Master/index.js';
-
+import { BuscarFoto } from '../../../Service/fileApi';
 
 import nextGenBookAPI from "../../../Service/NextGenBookApi";
 import { CaixaImage, CaixaInformacoes, CadastroCaixa } from './style.js';

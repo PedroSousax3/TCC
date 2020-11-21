@@ -8,6 +8,7 @@ import { Pesquisa } from "./style.js";
 import nextgenBooks from "../../../Service/NextGenBookApi";
 import Cookies from 'js-cookie';
 import { BuscarFoto } from '../../../Service/fileApi.js'
+import { Card, Title, Container, ImagemCard } from '../../../components/Card/index.js'
 
 let api = new nextgenBooks();
 export default function MinhasCompras() {
@@ -105,27 +106,48 @@ export default function MinhasCompras() {
               <button id="btcompra" type="button" className="btn btn-success" onClick={listarFinalizadas} style={{ width: "200px" }}>Finalizadas</button>
             </Pesquisa>
             {registros.map(x =>
+
               <div style={{ marginTop: "35px" }}>
                 {x.vendaLivro.map(y =>
+
                   <div className="card">
-                    <div className="card-header" Key={y.id}>
-                    </div>
-                    <div className="card-body" Key={y.id}>
-                      <img src={BuscarFoto(y.livroInfo.foto)} alt="..." height="300px" />
-                      <h6 className="card-title">Nome:{y.livroInfo.nome}</h6>
-                      <p className="card-text">Descrição:{y.livroInfo.descricao}</p>
-                      {
-                        y.devolvido ?
-                          <>
-                            <h6 className="card-text" style={{ color: "red" }}>Livro Devolvido</h6>
-
-                          </>
-                          :
-                          <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#modalExemplo2" >Pedir Devolução</button>
-                      }
-                    </div>
-
-
+                    <Card theme={{ bg_color: "#98F0BB" }}>
+                      <Title theme={{ color: "black", bg_color: "rgba(0, 0, 0, 0.1)" }}>{y.livroInfo.nome}</Title>
+                      <Container>
+                        <img style={{ height: "300px", width: "180px" }} src={BuscarFoto(y.livroInfo.foto)} alt={"Capa do livro " + y.livroInfo.nome} />
+                        <div className="column item" ke={x.id}>
+                          <div>
+                            <h5>
+                              Descrição:
+                            </h5>
+                            <p>
+                              {
+                                (y.livroInfo.descricao.length > 300)
+                                  ? y.livroInfo.descricao.substr(0, y.livroInfo.descricao.indexOf(".", 300) + 1) + "..." : y.livroInfo.descricao
+                              }
+                            </p>
+                          </div>
+                          <div className="button-card" style ={{ padding : "0px"}}>
+                            <div>
+                              {
+                                y.devolvido ?
+                                  <>
+                                    <h6 className="card-text" style={{ color: "red" }}>Livro Devolvido</h6>
+                                  </>
+                                  :
+                                  <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#modalExemplo2" >Pedir Devolução</button>
+                              }
+                            </div>
+                            <Link to={{
+                              state: {
+                                idlivro: x.livro
+                              },
+                              pathname: "/MostrarLivro"
+                            }}>Ver detalhes</Link>
+                          </div>
+                        </div>
+                      </Container>
+                    </Card>
                     <div className="modal" id="modalExemplo2" tabindex="-1" role="dialog">
                       <div className="modal-dialog" role="document">
                         <div className="modal-content">
@@ -147,7 +169,7 @@ export default function MinhasCompras() {
                           </div>
                           <div className="modal-footer" Key={y.id}>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" className="btn btn-primary" onClick={() => DevolverSim(y.id, y.valor)}>Sim </button>
+                            <button type="button" className="btn btn-primary" onClick={() => DevolverSim(y.id, y.valor)}>Sim </button>
                           </div>
                         </div>
                       </div>

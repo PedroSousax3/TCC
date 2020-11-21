@@ -35,7 +35,6 @@ export const CaixaPadrao = styled.div`
         font-size: 16px;
         color: #999;
         margin-bottom: 2px;
-        margin-left: 42px;
         text-align: left;
     }
     .corpo{
@@ -47,7 +46,6 @@ export const CaixaPadrao = styled.div`
         font-size: 14px;
         color: #999;
         margin-top: 0;
-        margin-left: 42px;
         text-align: left;
         display: block;
         font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
@@ -65,7 +63,6 @@ export const CaixaPadrao = styled.div`
         font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif;
         font-size: 13px;
         line-height: 20px;
-        padding: 0 10px;
         background-color: #fff;
         color: #333;
         width:100%;
