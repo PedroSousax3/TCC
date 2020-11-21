@@ -10,11 +10,10 @@ import { BoxContainer } from '../../components/Card/styled.js';
 import Cookies from 'js-cookie'
 
 import { InserirCarrinhoApi } from '../../Service/carrinhoApi.js';
-import { inserirFavoritoApi,removerFav } from '../../Service/favoritosApi.js';
+import { inserirFavoritoApi, removerFav } from '../../Service/favoritosApi.js';
 import { ConsultarPorIdLivro } from '../../Service/LivroApi.js';
 import { BuscarFoto } from '../../Service/fileApi.js';
 import { listarAvaliacaoLivroApi } from '../../Service/AvaliacaoLivro.js'
-import { SignalCellularNull } from '@material-ui/icons';
 
 export default function MostrarLivro(props) {
     const [id] = useState(props.location.state.idlivro);
@@ -54,7 +53,7 @@ export default function MostrarLivro(props) {
             setDescricao(dados.livro.descricao);
             setFoto(dados.livro.foto);
             setFavoritos(dados.livro.favorito);
-            setIdFavoritos(dados.favorito.id);
+            //setIdFavoritos(dados.favorito.id);
             setFavoritoobj(dados.favorito);
             if (dados.livro.editora != null && dados.livro.editora !== undefined)
                 setEditora(dados.livro.editora.nome);
@@ -63,13 +62,13 @@ export default function MostrarLivro(props) {
                 setLargura(dados.livro.medida.largura)
                 setpeso(dados.livro.medida.peso)
             }
+            if (dados.estoque_livro != null && dados.estoque_livro !== undefined)
+                setQtd(dados.estoque_livro.qtd);
+            if (dados.generos != null && dados.generos !== undefined && dados.generos.length > 0)
+                setGenero(dados.generos.map(x => x.genero + " ").toString());
+            if (dados.autores != null && dados.autores !== undefined && dados.autores.length > 0)
+                setAutor([...dados.autores]);
         }
-        if (dados.estoque_livro != null && dados.estoque_livro !== undefined)
-            setQtd(dados.estoque_livro.qtd);
-        if (dados.generos != null && dados.generos !== undefined && dados.generos.length > 0)
-            setGenero(dados.generos.map(x => x.genero + " ").toString());
-        if (dados.autores != null && dados.autores !== undefined && dados.autores.length > 0)
-            setAutor([...dados.autores]);
     }
 
     async function inserirCarrinho() {
@@ -85,7 +84,6 @@ export default function MostrarLivro(props) {
         }
         catch (ex) {
             toast.error(ex.response.data.erro);
-            navegacao.push('/NotFound');
         }
     }
 
@@ -99,7 +97,7 @@ export default function MostrarLivro(props) {
                     livro: id,
                     cliente: idcliente
                 });
-               await ConsultarPorIdLivro(id, idcliente)
+                await ConsultarPorIdLivro(id, idcliente)
                 toast.success(' 🥇 Livro foi adicionado a lista de favoritos com sucesso');
                 setFavoritos(true);
             }
@@ -130,20 +128,18 @@ export default function MostrarLivro(props) {
             else
                 response = await ConsultarPorIdLivro(id, idcliente);
             popularLivro(response.data)
-                 console.log(response.data)
+            console.log(response.data)
             const listAvaliacao = await listarAvaliacaoLivroApi(id);
             if (listAvaliacao != null && listAvaliacao !== undefined && listAvaliacao.length > 0)
                 setAvaliacoes([...listAvaliacao]);
         }
-        catch(ex) {
-            toast.erro(ex.response.data.erro);
-            navegacao.push('/');
+        catch (ex) {
+            toast.error(ex.response.data.erro);
         }
     }
 
     useEffect(() => {
         Consultar();
-        window.scrollTo(0, 0);
     }, [])
 
     return (
@@ -159,13 +155,13 @@ export default function MostrarLivro(props) {
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
                     {
-                         idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)
+                        idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)
                             ?
                             <></>
-                            :favoritos === false?
-                            <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
-                            :
-                            <i className="fas fa-star estrela" onClick={removerFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
+                            : favoritos === false ?
+                                <i className="far fa-star estrela" onClick={inserirFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
+                                :
+                                <i className="fas fa-star estrela" onClick={removerFavorito} style={{ cursor: "pointer" }} id="Icone"></i>
                     }
                 </BoxContainer>
                 <BoxContainer id="generico" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
@@ -232,7 +228,7 @@ export default function MostrarLivro(props) {
                 <BoxContainer id="comentarios" theme={{ sc_direction: "column", sc_espace: "10px 0px" }}>
                     {
                         avaliacoes.map(x =>
-                            <div key={x.id}  className="coment">
+                            <div key={x.id} className="coment">
                                 <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
                                     <h6>Nome do usuario</h6>
                                     <p>{x.avaliacao}</p>

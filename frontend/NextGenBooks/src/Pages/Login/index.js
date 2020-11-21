@@ -28,21 +28,21 @@ export default function Logar(e) {
   const [senha, setSenha] = useState("");
 
   const Logar = async () => {
-    openCarregamento();
     try {
+      openCarregamento();
       const request = {
         user,
         senha
       }
       const a = await api.login(request);
       gerarCookies(a.data)
-      navegacao.push("/", a.data);
     }
     catch (e) {
       toast.error(e.response.data.erro);
     }
     finally {
       closeCarregamento();
+      navegacao.push("/");
     }
   }
 
@@ -108,7 +108,8 @@ export default function Logar(e) {
       botao.classList.add("fa-eye");
     }
   }
-  useEffect(
+
+  useEffect (
     () => {
       AlterarTitulo('Acesso')
     }, []

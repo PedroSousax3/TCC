@@ -92,7 +92,7 @@ export default function HomePage(e) {
                                 <div className="card-image" style={{ height: "310px" }}>
                                     <img src={BuscarFoto(x.nomeArquivo)} height="100%" width="100%" alt="" />
                                 </div>
-                                <div className="card-focus">
+                                <div className="card-focus" style = {{ width : "100%    "}}>
                                     <div id="card-titulo">
                                         <h5 style={{ margin: "0px", textAlign : "center" }}>
                                             {x.nome}
