@@ -185,7 +185,7 @@ export default function FinalizarCompra(props) {
                             <div className="form-group">
                                 <label>Metodo De Pagamento:</label>
                                 <select id="tipos" className="form-control" onChange={(x) => setTipoPagamento(x.target.value)}>
-                                    <option value="Dinheiro">Dinheiro</option>
+                                    <option value="Dinheiro">Boleto</option>
                                     <option value="Credito" >Crédito</option>
                                     <option value="Débito">Débito</option>
                                 </select>

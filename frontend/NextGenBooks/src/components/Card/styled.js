@@ -90,12 +90,16 @@ export const BoxContainer = styled.div`
         &#livro {
             margin: 80px 15px;
         }
+
+        &#titulo {
+            position: static;
+        }
     }
 
     @media screen and (max-width: 775px)
     {
         &#livro {
-            margin: 80px 15px;
+            margin: 45px 15px;
         }
 
         &#generico {

@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import Master from '../Master/index';
+import LoadingBar from 'react-top-loading-bar'
 
 import { Home, ContainerPesquisa, ContainerPreview, Card } from './style.js'
 
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+
+import { alterarTituloPagina } from '../../components/Utils/mask.js'
+
 import { ListPostFile, BuscarFoto } from '../../Service/fileApi.js';
 import '../../components/pesquisa/pesquisa.css';
+import { toast } from 'react-toastify';
 
 export default function HomePage(e) {
     const [consulta, setConsulta] = useState([]);
@@ -15,23 +22,27 @@ export default function HomePage(e) {
     const [nome, setNome] = useState("");
     
     const [qtdPost, setQtdPost] = useState(0);
+
+    const ref = useRef(null);
     
     const listarLivros = async () => {
         try  {
+            ref.current.continuousStart();
             const result = await ListPostFile(inicio, 10, nome);
             setConsulta([...result.data.posteres]);
             setQtdPost(result.data.qtd);
         }
         catch (ex) {
-
+            toast.info(ex.response.data.erro)
+        }
+        finally {
+            ref.current.complete();
         }
     }
 
     async function listarPress(event) {
         if (event.key === 'Enter') {
-            const result = await ListPostFile(0, qtdPost, nome);
-            setConsulta([...result.data.posteres]);
-            setQtdPost(result.data.qtd);
+            setInicio(0);
         }
     }
 
@@ -51,12 +62,18 @@ export default function HomePage(e) {
     } 
 
     useEffect(
-        () => { listarLivros() }, 
+        () => { 
+            listarLivros() 
+        }, 
         [inicio]
     );
-
+    alterarTituloPagina("Inicio");
     return (
         <Master>
+            <LoadingBar
+                color='#f11946'
+                ref = {ref}
+            />
             <Home>
                 <ContainerPesquisa className="pesquisa">
                     {/*
@@ -92,8 +109,8 @@ export default function HomePage(e) {
                                 <div className="card-image" style={{ height: "310px" }}>
                                     <img src={BuscarFoto(x.nomeArquivo)} height="100%" width="100%" alt="" />
                                 </div>
-                                <div className="card-focus">
-                                    <div id="card-titulo">
+                                <div className="card-focus" style = {{ width : "100%    "}}>
+                                    <div id="card-titulo" style={{ width : "100%" }}>
                                         <h5 style={{ margin: "0px", textAlign : "center" }}>
                                             {x.nome}
                                         </h5>

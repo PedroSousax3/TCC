@@ -39,6 +39,7 @@ export default function Rotas() {
   return (
     <BrowserRouter>
       <Switch>
+        
         <Route path="/" exact={true} component={HomePage} />
         <Route path="/Cadastro" component={Cadastro} />
         <Route path="/Alterar-Dados" component={AlterarCliente} />
@@ -51,8 +52,10 @@ export default function Rotas() {
         <Route path='/MostrarLivro' component={MostrarLivro} />
         <Route path="/Favoritos" component={Favoritos} />
         <Route path="/Carrinho" component={Carrinho} />
+        
         <Route path="/MinhasCompras" component={MinhasCompras} />
         <Route path="/FinalizarCompra" component={FinalizarCompra} />
+
         <Route path="/Relatorios" exact={true} component={MenuRelatorios} />
         <Route path="/Relatorios/VendaDia" component={VendaPorDia} />
         <Route path="/Relatorios/LivroVenda" component={LivroVendaRelatorio} />
@@ -63,6 +66,7 @@ export default function Rotas() {
         <Route path="/Acompanhar/Pedido" component={RatrearPedido} />
 
         <Route path="*" component={NotFound}/>
+      
       </Switch>
     </BrowserRouter>
   )

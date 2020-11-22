@@ -8,7 +8,7 @@ import Master from '../Master/index.js'
 import background from '../../Assets/images/NotFound.jpg'
 
 export default function NotFound() {
-    alterarTituloPagina("NotFound")
+    alterarTituloPagina("Não Encontrada")
     return (
         <Master>
             <ComponentNotFound>

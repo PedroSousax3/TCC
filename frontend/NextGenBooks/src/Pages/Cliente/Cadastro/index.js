@@ -1,5 +1,7 @@
-import React, { useState, Component} from "react";
+import React, { useState, Component } from "react";
 import { useHistory, Link } from "react-router-dom";
+import InputMask from "react-input-mask";
+import MaterialInput from '@material-ui/core/Input';
 
 import Cookies from 'js-cookie';
 
@@ -35,7 +37,10 @@ export default function Cadastro(props) {
 
     const AdicionarFoto = (arquivo) => {
         setFoto(arquivo);
-        setFile(URL.createObjectURL(arquivo));
+        if (arquivo !== null && arquivo !== undefined)
+            setFile(URL.createObjectURL(arquivo));
+        else
+            setFile(null);
     }
 
 
@@ -124,12 +129,30 @@ export default function Cadastro(props) {
 
                     <div className="form-group">
                         <label className="CPF">CPF:</label>
-                        <input className="form-control" type="text" brmasker = "{mask:'00/00/0000', len:10}" onChange={(n) => setCPF(n.target.value)} maxLength="11" />
+                        <div>
+                            <InputMask
+                                className="form-control"
+                                mask="999.999.999-99"
+                                value={cpf}
+                                onChange={x => setCPF(x.target.value)}
+                            >
+                                {(x) => <MaterialInput as="input" className="form-group" {...x} type="tel" disableUnderline />}
+                            </InputMask>
+                        </div>
                     </div>
 
                     <div className="form-group">
                         <label className="Celular">Celular:</label>
-                        <input className="form-control" type="text" onChange={(n) => setCelular(n.target.value)} data-mask="(00) 0000-0000" data-mask-selectonfocus="true" />
+                        <div>
+                            <InputMask
+                                className="form-control"
+                                mask="(99) 9 9999-9999"
+                                value={celular}
+                                onChange={x => setCelular(x.target.value)}
+                            >
+                                {(cel) => <MaterialInput className="form-group" {...cel} disableUnderline />}
+                            </InputMask>
+                        </div>
                     </div>
 
                     <div className="form-group">
@@ -139,13 +162,13 @@ export default function Cadastro(props) {
                 </CaixaInformacoes>
 
                 <CaixaImage>
-                    <label>
-                        <span>Selecionar uma imagem de perfil</span>
+                    <label className="label-image">
+                        Selecionar uma imagem de perfil
+                    </label>
                         <br />
                         <input type="file" id="img-input" name="image"
                             onChange={e => AdicionarFoto(e.target.files[0])}
                         />
-                    </label>
 
                     <div className="image-preview" id="img-container">
                         <img src={file} alt="" id="preview"></img>

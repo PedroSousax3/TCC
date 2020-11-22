@@ -9,7 +9,7 @@ export const CadastroCaixa = styled.div`
         color : white;
         font-weight : 600;
         padding: 20px 30px;
-        span{
+        .label-image {
                 color:#00870D;
                 font-weight: bold;
                 font-size:20px;

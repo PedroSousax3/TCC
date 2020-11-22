@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const CadastroCaixa = styled.div`
         width: 100%;
         min-height: 100%;
+        color : white;
         justify-content: space-around;
         flex-direction: row;
         display:flex;

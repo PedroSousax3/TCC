@@ -12,6 +12,7 @@ import { PerfilComponest } from './style';
 import { Container } from '../../components/Card/index.js'
 import Master from '../Master/index.js';
 
+import { alterarTituloPagina } from '../../components/Utils/mask.js'
 
 import nextGenBookAPI from "../../Service/NextGenBookApi"
 const api = new nextGenBookAPI();
@@ -19,7 +20,6 @@ const api = new nextGenBookAPI();
 
 export default function Perfil(props) {
     const navegacao = useHistory()
-    const [infos, setInfos] = useState(props.location.state);
     const [informacoes, setInformacoes] = useState([]);
 
     const sairPerfil = () => {
@@ -37,6 +37,8 @@ export default function Perfil(props) {
 
     useEffect(() => {
         consultarPerfil();
+        alterarTituloPagina(informacoes.nome);
+
 
         console.log(informacoes);
     }, [])
@@ -57,8 +59,8 @@ export default function Perfil(props) {
 
                 <div className="botoes" style={{ marginTop: "10px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
                     <Link to={{
-                        pathname : "/Alterar-Dados",
-                        state : {
+                        pathname: "/Alterar-Dados",
+                        state: {
                             informacoes
                         }
                     }}

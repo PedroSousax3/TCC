@@ -35,7 +35,7 @@ export default function EsqueciSenha() {
             await removerFav(id);
 
             toast.success("Livro removido dos Favoritos");
-            
+
             await listarFavoritos();
         }
         catch (ex) {
@@ -59,37 +59,31 @@ export default function EsqueciSenha() {
                             <div className="column item" ke={x.id}>
                                 <div>
                                     <h5>
-                                        Autor(a):
-                                        </h5>
-                                    <p>
-                                        {x.atores}
-                                    </p>
+                                        Autor(a): {x.atores}
+                                    </h5>
                                 </div>
                                 <div>
                                     <h5>
-                                        Editora:
-                                        </h5>
-                                    <p>
-                                        {x.editora}
-                                    </p>
+                                        Editora: {x.editora}
+                                    </h5>
                                 </div>
                                 <div>
                                     <h5>
                                         Descrição:
                                         </h5>
                                     <p>
-                                        {x.descricao}
+                                        {
+                                            (x.descricao.length > 300)
+                                                ? x.descricao.substr(0, x.descricao.indexOf(".", 300) + 1) + "..." : x.descricao
+                                        }
                                     </p>
                                     <div>
                                     </div>
                                     <h5>
-                                        Quantidade Disponível:
-                                        </h5>
-                                    <p>
-                                        {x.qtd}
-                                    </p>
+                                        Quantidade Disponível: {x.qtd}
+                                    </h5>
                                 </div>
-                                <div>
+                                <div className="button-card">
                                     <Link to={{
                                         state: {
                                             idlivro: x.livro
