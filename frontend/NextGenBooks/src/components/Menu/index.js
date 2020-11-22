@@ -15,7 +15,7 @@ export default function Menu() {
         Cookies.remove('token');
         Cookies.remove('usuario');
         Cookies.remove('perfil');
-        navegacao.push('/')
+        navegacao.go();
     }
 
     const [ perfil, setPerfil ] = useState(false);

@@ -12,14 +12,13 @@ import { toast, ToastContainer } from "react-toastify";
 
 //Components
 import Master from '../../Master/index.js';
-import { Card, Title, Container, ImagemCard } from '../../../components/Card/index.js'
+import { Card, Title, Container } from '../../../components/Card/index.js'
 
 //Api 
 import { ListarCarrinho, Remover, alterarQuantidadeApi } from '../../../Service/carrinhoApi.js';
 import { BuscarFoto } from '../../../Service/fileApi.js';
 
 import Cookies from 'js-cookie'
-import { red } from "@material-ui/core/colors";
 
 const override = css`
   display: block;
@@ -50,7 +49,6 @@ export default function Carrinho(props) {
         result.forEach(x => {
             valor += x.informacoes.venda * x.qtd;
             frete += x.qtd;
-            console.log(x.informacoes.venda * x.qtd);
         });
         setValorLivros(valor);
         setValorFrete(frete);
@@ -63,6 +61,7 @@ export default function Carrinho(props) {
             const result = await ListarCarrinho(id);
             setRegistros([...result]);
             SomarCarrinho(result);
+            console.log(result);
         }
         catch (ex) {
             toast.erro(ex.response.data.erro)
@@ -71,9 +70,11 @@ export default function Carrinho(props) {
             ref.current.complete();
         }
     }
+
     const Comprar = () => {
         navegacao.push("/FinalizarCompra", registros);
     }
+
     const alterarCarrinho = async (item, idcarrinho, qtd) => {
         try {
             setEstado(true);
@@ -99,7 +100,7 @@ export default function Carrinho(props) {
             <ToastContainer />
             <ConteinerItens>
                 {registros.map((x) =>
-                    <Card theme={{ bg_color: "#98F0BB" }}>
+                    <Card theme={{ bg_color: "#98F0BB" }} key={x.id}>
                         <Title theme={{ color: "black", bg_color: "rgba(0, 0, 0, 0.1)" }}>{x.informacoes.nome}</Title>
                         <Container>
                             <img style={{ height: "300px", width: "180px" }} src={BuscarFoto(x.informacoes.foto)} alt={"Capa do livro " + x.informacoes.editora.nome} />
@@ -125,7 +126,7 @@ export default function Carrinho(props) {
                                         </p>
                                     </h5>
                                     <h5>
-                                        Quantidade Disponível: {x.qtd}
+                                        Quantidade Disponível: {x.estoque.qtd}
                                         <div>
                                             <Link to={{
                                                 state: {
@@ -136,9 +137,9 @@ export default function Carrinho(props) {
                                         </div>
                                     </h5>
                                 </div>
-                                <div className="button-card">
+                                <div className="button-card" key={x.id}>
                                     <button className="btn btn-danger" onClick={() => RemoverItem(x.id)}>
-                                        <i class="fas fa-trash-alt" alt="Remover Livro do carrinho"></i>
+                                        <i className="fas fa-trash-alt" alt="Remover Livro do carrinho"></i>
                                     </button>
                                     <div className="unidadebutao" style={{ float: "left", margin: "0px 8px" }}>
                                         <ClipLoader

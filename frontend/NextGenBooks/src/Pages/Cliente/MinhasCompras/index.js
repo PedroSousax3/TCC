@@ -81,12 +81,10 @@ export default function MinhasCompras() {
         previsao_entrega
       }
 
-      console.log(request);
       await api.Devolver(request);
       toast.success("Devolução solicitada.");
       listarAndamento();
     } catch (e) {
-      console.log(e.response)
       toast.error(e.response.data.erro);
     }
   }

@@ -6,7 +6,7 @@ export const ConteinerItens = styled.div`
     min-height: calc(100vh - 296px);
     width: auto;
     
-    padding: 10px;
+    padding: 0px 10px;
     margin-right: 300px;
 
     display: flex;

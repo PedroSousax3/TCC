@@ -42,9 +42,7 @@ export default function HomePage(e) {
 
     async function listarPress(event) {
         if (event.key === 'Enter') {
-            const result = await ListPostFile(0, qtdPost, nome);
-            setConsulta([...result.data.posteres]);
-            setQtdPost(result.data.qtd);
+            setInicio(0);
         }
     }
 
