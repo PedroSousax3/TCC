@@ -44,6 +44,7 @@ namespace api.Utils.Conversor
             AutorConversor AutorConvert = new AutorConversor();
             EstoqueConvert EstoqueConvert = new EstoqueConvert();
             EditoraConversor EditoraConvert = new EditoraConversor();
+            MedidasConversor medidasConversor = new MedidasConversor();
             
             if(tabela.IdLivroNavigation == null)
                 response.informacoes = null;
@@ -62,6 +63,11 @@ namespace api.Utils.Conversor
             else
                 response.informacoes.editora = EditoraConvert.Conversor(tabela.IdLivroNavigation.IdEditoraNavigation);
             
+            if(tabela.IdLivroNavigation.IdMedidaNavigation == null)
+                response.informacoes.medida = null;
+            else
+                response.informacoes.medida = medidasConversor.Conversor(tabela.IdLivroNavigation.IdMedidaNavigation);
+
             return response;
         }
     }

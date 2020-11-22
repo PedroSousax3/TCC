@@ -36,6 +36,7 @@ namespace api.Database
                                                                 .Include(x => x.IdLivroNavigation.TbEstoque)
                                                                 .Include(x => x.IdLivroNavigation.TbLivroAutor)
                                                                 .ThenInclude(x => x.IdAutorNavigation)
+                                                                .Include(x => x.IdLivroNavigation.IdMedidaNavigation)
                                                                 .Where(x => x.IdCliente == idcliente)
                                                                 .ToList();
 

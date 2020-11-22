@@ -19,8 +19,10 @@ const correio = axios.create(
 
 );
 
-export const calcularFrete = async (request) => {
-    const resp = await correio.post("/frete",request);
+export const calcularFrete = async (nCdServico,sCepOrigem ,sCepDestino ,nVlPeso ,nCdFormato ,nVlComprimento,nVlAltura ,nVlLargura , nVlDiametro) => {
+    console.log("oie")
+    const resp = await correio.post("/frete/" + nCdServico + "/" + sCepOrigem + "/" + sCepDestino + "/" + nVlPeso + "/" + nCdFormato + "/" + nVlComprimento + "/" + nVlAltura + "/" + nVlLargura + "/"+ nVlDiametro);
+
     return resp.data;
 }
 
