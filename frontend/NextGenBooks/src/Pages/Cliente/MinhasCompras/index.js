@@ -141,7 +141,7 @@ export default function MinhasCompras() {
                             <Link to={{
                               state: {
                                 idlivro: x.livro
-                              },
+                              }, 
                               pathname: "/MostrarLivro"
                             }}>Ver detalhes</Link>
                           </div>
