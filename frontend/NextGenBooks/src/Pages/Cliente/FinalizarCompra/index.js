@@ -12,14 +12,9 @@ const api = new nextGenBookAPI();
 export default function FinalizarCompra(props) {
 
     const [nCdServico,setnCdServico] = useState("40010");
-    const [sCepOrigem,setsCepOrigem] = useState("04890300");
-    const [sCepDestino,setsCepDestino] = useState(""); 
-    let cepd="";
-    const[nVlPeso,setnVlPeso] = useState("");
+    const [sCepOrigem,setsCepOrigem] = useState("04458110");
     const [nCdFormato,setnCdFormato] = useState("1");
-    const [nVlComprimento,setnVlComprimento] = useState("");
-    const [nVlAltura,setnVlAltura] = useState("");
-    const [nVlLargura,setVlLargura] = useState("");
+  
     const [nVlDiametro,setnVlDiametro] = useState("0");
 
     const navegacao = useHistory();
@@ -40,6 +35,7 @@ export default function FinalizarCompra(props) {
     const listarEndereco = async () => {
         try {
             const resp = await api.listarEndereco(idCliente);
+
             if(resp.data == null || resp.data === undefined) {
                 toast.erro("Endereço não encontrados.");
                 navegacao.push('/Perfil');
@@ -57,32 +53,30 @@ export default function FinalizarCompra(props) {
     }
 
     const CalcularFrete = async () => {
-        
+        try {
+            
             let peso = 0;
             let comprimento = 0;
             let altura = 0;
             let largura = 0;
             registros.map(x => {
-                peso += x.informacoes.medida.peso;
-                comprimento += (x.informacoes.medida.altura * x.informacoes.medida.largura);
+                comprimento += 0;
                 altura += x.informacoes.medida.altura;
                 largura += x.informacoes.medida.largura;
                 peso += x.informacoes.medida.peso;
-            })
-            console.log(listaDeEndereco)
-            let cep = listaDeEndereco.find(x => x.id == enderecoId).cep;
-                
-            cepd = cep;
-            console.log("00")
-            let resp = await calcularFrete(nCdServico,sCepOrigem ,cepd ,peso,nCdFormato ,comprimento,altura ,largura , nVlDiametro);
-            console.log(resp)
-            if(resp[0].Valor === 0){
-                setValorFrete(resp[0].Valor)
-                toast.error(resp[0].MsgErro)
-            }else{
+                console.log(x.informacoes)
+            });
+    
+            const enderecocep = listaDeEndereco.filter(x => x.id === enderecoId)[0];
+            let cep = enderecocep.cep;
+            let resp = await calcularFrete(nCdServico, sCepOrigem, cep, peso, nCdFormato,comprimento,altura ,largura , nVlDiametro);
+            console.log(resp);
+            setValorFrete(resp[0].Valor);
+  
+        }
+        catch (ex) {
 
-                setValorFrete(resp[0].Valor);
-            }
+        } 
         
     }
 
@@ -99,7 +93,6 @@ export default function FinalizarCompra(props) {
             result += y;
         }
         setValorLivros(result);
-        setValorFrete(registros.length);
         setTotalCompra(result + registros.length);
     }
 
@@ -138,13 +131,13 @@ export default function FinalizarCompra(props) {
 
 
     useEffect(() => {
-        calcular();
         listarEndereco(idCliente);
+        calcular();
     }, []);
 
     useEffect(() => {
         CalcularFrete();
-    }, [listaDeEndereco,enderecoId]);
+    }, [enderecoId]);
 
     return (
         <div>
@@ -154,7 +147,7 @@ export default function FinalizarCompra(props) {
                         <span style={{ fontSize: "25px", fontWeight: "bold", color : "white"}}>Finalizar Compra</span>
                     </div>
                     <CaixaFinalizarCompra>
-                        <div>
+                        <div >
                             <table className="table table-striped">
                                 <thead>
                                     <tr>

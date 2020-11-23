@@ -197,6 +197,7 @@ export default function MinhasCompras() {
                 </div>
                 <div className="btn-group" role="group" aria-label="Exemplo básico" style={{ color: "white" }}>
                   <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#modalExemplo" >Cancelar Compra</button>
+                 <Link to="/Acompanhar/Pedido"><button className="btn btn-success">Acompanhar Pedido</button></Link>
                 </div>
               </div>
             )}
