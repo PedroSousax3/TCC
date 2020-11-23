@@ -68,7 +68,7 @@ export default function Menu() {
                             perfil ?
                                     <>
                                         <Link className="dropdown-item" to="/Perfil">Minha Area</Link>
-                                        <button className="dropdown-item" onClick={sairPerfil}>Sair</button>
+                                        <button className="dropdown-item" onClick={sairPerfil}>SAIR</button>
                                     </>
                                     :
                                         <Link className="dropdown-item" to="/Acesso">Acessar</Link>

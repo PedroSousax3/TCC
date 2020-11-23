@@ -109,7 +109,7 @@ export default function MinhasCompras() {
                 {x.vendaLivro.map(y =>
 
                   <div className="card">
-                    <Card theme={{ bg_color: "#98F0BB" }}>
+                    <Card theme={{ bg_color: "white" }}>
                       <Title theme={{ color: "black", bg_color: "rgba(0, 0, 0, 0.1)" }}>{y.livroInfo.nome}</Title>
                       <Container>
                         <img style={{ height: "300px", width: "180px" }} src={BuscarFoto(y.livroInfo.foto)} alt={"Capa do livro " + y.livroInfo.nome} />
@@ -136,12 +136,14 @@ export default function MinhasCompras() {
                                   <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#modalExemplo2" >Pedir Devolução</button>
                               }
                             </div>
-                            <Link to={{
+                            
+                            <Link  to={{
                               state: {
                                 idlivro: x.livro
                               }, 
                               pathname: "/MostrarLivro"
                             }}>Ver detalhes</Link>
+                            
                           </div>
                         </div>
                       </Container>
