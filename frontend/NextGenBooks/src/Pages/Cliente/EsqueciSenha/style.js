@@ -15,6 +15,7 @@ export const CaixaEsqueciSenha = styled.div`
     text-align:left;
     font-weight:bold;
     font-size:1rem;
+    border-radius: 10px;
 
 
 input{
