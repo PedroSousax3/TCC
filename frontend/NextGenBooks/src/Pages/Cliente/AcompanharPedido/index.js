@@ -1,33 +1,24 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Container, CaixaPadrao } from "./style.js";
 import { rastrearPedido } from "../../../Service/ApiCorreio.js";
 import Master from "../../Master";
 
-import LoadingBar from 'react-top-loading-bar';
-
 export default function AcompanharPedido() {
     const [registros, setRegistros] = useState([]);
     const [valor, setValor] = useState("");
-    const ref = useRef(null);
 
     const acompanharPedido = async () => {
         try {
-            ref.current.continuousStart();
             let resp = await rastrearPedido(valor);
-            setRegistros([...resp]);
+            console.log(resp.map(x => x))
+            if(resp.length > 0)
+                setRegistros([...resp]);
         } catch (e) {
             console.error(e);
-        }
-        finally {
-            ref.current.complete();
         }
     }
     return (
         <Master>
-            <LoadingBar
-                color='#f11946'
-                ref = {ref}
-            />
             <Container>
                 <CaixaPadrao>
                     <div style={{ textAlign: "center" }}>
@@ -41,8 +32,8 @@ export default function AcompanharPedido() {
                             </div>
                         </div>
                     </div>
-                    <div >
-                        {registros.map((x) =>
+                    <div>
+                        {registros.length > 0 && registros.map((x) =>
                             x.map((item) =>
 
                                 <div className="card" key={item.status} >
