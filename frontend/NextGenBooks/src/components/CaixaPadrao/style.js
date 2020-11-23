@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CaixaPadrao = styled.div`
-    background-color: rgb(152, 240, 187);
+    background-color: white;
     width: 60%;
     height: 65vh;
     display: flex;

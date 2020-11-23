@@ -53,7 +53,7 @@ export default function EsqueciSenha() {
             <Favoritos>
                 <h1>Lista de Favoritos</h1>
                 {registros.map(x =>
-                    <Card theme={{ bg_color: "#98F0BB" }}>
+                    <Card theme={{ bg_color: "white" }}>
                         <Title theme={{ color: "black", bg_color: "rgba(0, 0, 0, 0.1)" }}>{x.nome}</Title>
                         <Container>
                             <div className="column item" ke={x.id}>

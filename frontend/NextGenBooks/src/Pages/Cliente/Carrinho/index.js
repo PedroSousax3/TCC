@@ -100,7 +100,7 @@ export default function Carrinho(props) {
             <ToastContainer />
             <ConteinerItens>
                 {registros.map((x) =>
-                    <Card theme={{ bg_color: "#98F0BB" }} key={x.id}>
+                    <Card theme={{ bg_color: "white" }} key={x.id}>
                         <Title theme={{ color: "black", bg_color: "rgba(0, 0, 0, 0.1)" }}>{x.informacoes.nome}</Title>
                         <Container>
                             <img style={{ height: "300px", width: "180px" }} src={BuscarFoto(x.informacoes.foto)} alt={"Capa do livro " + x.informacoes.editora.nome} />
