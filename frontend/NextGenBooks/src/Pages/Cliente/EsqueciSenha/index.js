@@ -69,10 +69,10 @@ export default function EsqueciSenha(){
                         <div style={{width:"80%",display:"flex",justifyContent:"flex-start",fontSize:"25px",fontWeight:"bold"}}>
                                 </div>
                         <CaixaEsqueciSenha>
-                                    <div className="inputs form-row" >
+                                    <div style={{display : "flex"}} >
                                         <input type="email" className="form-control col-7" id="email" placeholder="INFORME SEU E-MAIL"
                                         onChange = {(e) => setEmail(e.target.value)}  />
-                                        <button type="button" clasName="btn btn-light col" 
+                                        <button type="button" className="btn btn-success" 
                                         style={{cursor:"pointer"}}
                                             onClick={enviarEmailRecuperacao}
                                         >Enviar Código</button>
@@ -85,7 +85,7 @@ export default function EsqueciSenha(){
                                         </div>
                                     </div>
                                     <div className="botao" style={{alignItems:"center", display:"flex", justifyContent:"center",width:"61%"}}>
-                                        <button type="button" style={{width:"77%"}}className="btn btn-success" onClick={validarCodigo}>
+                                        <button type="button" style={{width:"77%", borderRadius:"10px"}}className="btn btn-success" onClick={validarCodigo}>
                                         Prosseguir
                                         </button>
                                     </div>
