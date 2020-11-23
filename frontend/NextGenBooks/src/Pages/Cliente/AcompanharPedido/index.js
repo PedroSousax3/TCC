@@ -29,7 +29,6 @@ export default function AcompanharPedido() {
                 ref = {ref}
             />
             <Container>
-
                 <CaixaPadrao>
                     <div style={{ textAlign: "center" }}>
                         <h3 style={{ color: "green" }}>Status do envio</h3>
@@ -62,8 +61,6 @@ export default function AcompanharPedido() {
                                         <div>
                                             Local:{item.local}
                                         </div>
-
-
                                     </div>
                                 </div>
                             )

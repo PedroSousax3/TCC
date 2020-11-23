@@ -43,6 +43,7 @@ export default function HomePage(e) {
     async function listarPress(event) {
         if (event.key === 'Enter') {
             setInicio(0);
+            await listarLivros();
         }
     }
 
