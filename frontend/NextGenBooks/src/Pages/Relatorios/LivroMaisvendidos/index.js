@@ -30,11 +30,17 @@ export default function LivroMaisvendidos() {
         }, []
     );
 
-    function imprimirRelatorio () {
+    function imprimirRelatorio() {
         const container = document.getElementById("relatotio").innerHTML;
+
+        let screen = `
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />            
+            ${container}
+        `;
+
         const tela = window.open('about:blank');
 
-        tela.document.write(container);
+        tela.document.write(screen);
         tela.window.print();
         tela.window.close();
     }
@@ -114,7 +120,7 @@ export default function LivroMaisvendidos() {
                     ]}
                 />
 
-                <div className="no-print" style={{margin: "60px 10px 0px auto"}}>
+                <div className="no-print" style={{ margin: "60px 10px 0px auto" }}>
                     <button type="button" className="btn btn-primary" onClick={imprimirRelatorio}>Imprimir</button>
                 </div>
             </ContainerLivroMaisvendidos>

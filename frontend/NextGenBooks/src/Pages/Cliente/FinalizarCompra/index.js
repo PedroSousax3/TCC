@@ -6,6 +6,9 @@ import { ToastContainer, toast } from "react-toastify";
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
 
+import InputMask from "react-input-mask";
+import MaterialInput from '@material-ui/core/Input';
+
 import {calcularFrete} from '../../../Service/ApiCorreio';
 
 const api = new nextGenBookAPI();
@@ -35,7 +38,6 @@ export default function FinalizarCompra(props) {
     const listarEndereco = async () => {
         try {
             const resp = await api.listarEndereco(idCliente);
-
             if(resp.data == null || resp.data === undefined) {
                 toast.erro("Endereço não encontrados.");
                 navegacao.push('/Perfil');
@@ -70,7 +72,6 @@ export default function FinalizarCompra(props) {
             const enderecocep = listaDeEndereco.filter(x => x.id === enderecoId)[0];
             let cep = enderecocep.cep;
             let resp = await calcularFrete(nCdServico, sCepOrigem, cep, peso, nCdFormato,comprimento,altura ,largura , nVlDiametro);
-            console.log(resp);
             setValorFrete(resp[0].Valor);
   
         }
@@ -106,21 +107,24 @@ export default function FinalizarCompra(props) {
             })
         })
 
-
         try 
         {
-            let request = {
-                idCliente: idCliente,
-                idendereco: enderecoId,
-                tipoDePagamento,
-                numeroParcela,
-                valorfrete,
-                livros
+            if (numeroParcela > 10)
+                toast.error("Não é possivel realizar está operação.")
+            else {
+                let request = {
+                    idCliente: idCliente,
+                    idendereco: enderecoId,
+                    tipoDePagamento,
+                    numeroParcela,
+                    valorfrete,
+                    livros
+                }
+    
+                const resp = await api.realizarVenda(request);
+                navegacao.push('/MinhasCompras');
+                toast.success("Compra realizada com sucesso.");
             }
-
-            const resp = await api.realizarVenda(request);
-            navegacao.push('/MinhasCompras');
-            toast.success("Compra realizada com sucesso.");
         } 
         catch (ex) {
             toast.error(ex.response.data.erro);
@@ -192,7 +196,13 @@ export default function FinalizarCompra(props) {
                             }
                             {tipoDePagamento === "Credito" &&
                                 <div className="form-row">
-                                    <input type="text" className="form-control col-4" id="endereco" placeholder="Informe o numero do seu cartão" />
+                                    <InputMask
+                                        className="form-control col-4"
+                                        mask="9999 9999 9999 9999"
+                                        placeholder="Digite o número de seu cartão"
+                                        maxLength="20"
+                                    >
+                                    </InputMask>
                                     <span className="col">Número de Parcelas</span>
                                     <input type="number" className="form-control col-1" onChange={(x) => setNumeroParcela(x.target.value)} min="0" max="10"/>
                                     <span className="col">Valor das Parcelas :

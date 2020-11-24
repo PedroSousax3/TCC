@@ -9,10 +9,6 @@ header {
     justify-content: space-between;
 }
 
-#cima {
-    text-transform: uppercase;
-}
-
 header {
     z-index: 10;
 }

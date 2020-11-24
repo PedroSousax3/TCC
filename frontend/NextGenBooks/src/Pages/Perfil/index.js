@@ -51,7 +51,7 @@ export default function Perfil(props) {
                         <img src={BuscarFoto(informacoes.foto)} alt={`Foto de Perfil de ${informacoes.nome}`} style={{ margin: "auto", borderRadius: "100%", height: "150px", width: "150px", position: "relative", left: "50%", transform: "translateX(-50%)" }} />
                     </div>
                     <div className="informacoes">
-                        <div style={{ marginTop: "10px" }}>NOME:{informacoes.nome} </div>
+                        <div style={{ marginTop: "10px" }}>NOME: {informacoes.nome} </div>
                         <div>DATA NASCIMENTO: {new Date(informacoes.nascimento).toLocaleDateString()} </div>
                         <div>GÊNERO: {informacoes.genero} </div>
                     </div>

@@ -14,7 +14,6 @@ export default class NextGenBookApi{
     }
 
     async cadastrarFuncionario(req){
-        console.log(req);
         const resp = await api.post('/Funcionario', req);
         
         return resp;
@@ -67,9 +66,7 @@ export default class NextGenBookApi{
     }
     
     async confirmarCodigo(req,idLogin){
-        console.log("hi")
         const resp = await api.post('/Login/codigo/'+ idLogin, req);
-        console.log(resp.data)
         return resp;
     }
     
@@ -79,14 +76,11 @@ export default class NextGenBookApi{
 
     async cadastrarEndereco(req){
         const resp = await api.post('/Endereco', req);
-        console.log(resp);
         return resp;
     }
     
     async realizarVenda(req){
-        console.log("hi")
         const resp = await api.post('/RealizarVenda',req);
-        console.log(resp.data)
         return resp;
     }
     async listarEndereco(cliente)
@@ -111,7 +105,6 @@ export default class NextGenBookApi{
     async listarComprasndamento(cliente)
     {
         const resp = await api.get('/VendaStatus/andamento/'+cliente);
-        console.log(resp.data)
         return resp.data;
     }
     ///
@@ -143,14 +136,12 @@ export default class NextGenBookApi{
 
     buscarImagem(foto) {
         const urlFoto = api.defaults.baseURL + '/Login/foto/' + foto;
-        console.log(urlFoto);
 
         return urlFoto;
     }
 
     async mostrarPerfil(idcliente){
         const resp = await api.get(`/Cliente/${idcliente}`);
-        console.log(resp.data);
         return resp.data;
     }
   

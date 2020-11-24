@@ -15,18 +15,20 @@ import { ListPostFile, BuscarFoto } from '../../Service/fileApi.js';
 import '../../components/pesquisa/pesquisa.css';
 import { toast } from 'react-toastify';
 
+import gifHarryDesktop from '../../Assets/images/Gif-Harry-Potter.gif'
+import gifHarryMobile from '../../Assets/images/Gif-Harry-Potter-mobile.gif'
 export default function HomePage(e) {
     const [consulta, setConsulta] = useState([]);
-    
+
     const [inicio, setInicio] = useState(0);
     const [nome, setNome] = useState("");
-    
+
     const [qtdPost, setQtdPost] = useState(0);
 
     const ref = useRef(null);
-    
+
     const listarLivros = async () => {
-        try  {
+        try {
             ref.current.continuousStart();
             const result = await ListPostFile(inicio, 10, nome);
             setConsulta([...result.data.posteres]);
@@ -51,21 +53,21 @@ export default function HomePage(e) {
         if (inicio - 10 <= 0) {
             setInicio(0);
         }
-        else 
+        else
             setInicio(inicio - 10);
     }
 
-    function aumentarPosicao () {
+    function aumentarPosicao() {
         if (inicio + 10 > qtdPost)
             setInicio(qtdPost - 10);
         else
             setInicio(inicio + 10);
-    } 
+    }
 
     useEffect(
-        () => { 
-            listarLivros() 
-        }, 
+        () => {
+            listarLivros()
+        },
         [inicio]
     );
     alterarTituloPagina("Inicio");
@@ -73,11 +75,10 @@ export default function HomePage(e) {
         <Master>
             <LoadingBar
                 color='#f11946'
-                ref = {ref}
+                ref={ref}
             />
-            <Home>
-                <ContainerPesquisa className="pesquisa">
-                    {/*
+            <ContainerPesquisa className="pesquisa">
+                {/*
                         <div className="genero">
                             <select>
                                 <option valur="Todos">Genero</option>
@@ -87,40 +88,47 @@ export default function HomePage(e) {
                             </select>
                         </div>
                     */}
-                    <div className="nome" style={{width : "100%"}}>
-                        <input style={{width : "100%"}} type="text" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
-                    </div>
-                </ContainerPesquisa>
+                <div className="nome" style={{ width: "100%" }}>
+                    <input style={{ width: "100%" }} type="text" onChange={(x) => setNome(x.target.value)} onKeyPress={listarPress} placeholder="Pequisar ..." />
+                </div>
+            </ContainerPesquisa>
+            <Home>
 
-                    {/*
+                {/*
                         <div className="form-group" id="dvgenero" style={{ margin: "0px", width: "50vw" }}>
                             <input className="form-control" id="filtro" type="genero"  />
                         </div>
                     */}
 
-                <ContainerPreview style={{ justifyContent: "center" }}>
-                    {
-                        consulta.map(x =>
-                            <Card className="card-livro" style={{textDecoration : "none"}} key={x.id} as={Link} to={{
-                                pathname: "/MostrarLivro",
-                                state: {
-                                    idlivro: x.id
-                                }
-                            }}>
-                                <div className="card-image" style={{ height: "310px" }}>
-                                    <img src={BuscarFoto(x.nomeArquivo)} height="100%" width="100%" alt="" />
-                                </div>
-                                <div className="card-focus" style = {{ width : "100%    "}}>
-                                    <div id="card-titulo" style={{ width : "100%" }}>
-                                        <h5 style={{ margin: "0px", textAlign : "center" }}>
-                                            {x.nome}
-                                        </h5>
+                <div style={{marginTop : "40px"}}>
+                    <div className="tumb" style={{ margin: "0px", padding: "0px" }} as={Link} to="/MostrarLivro">
+                        <img className="desktop" src={gifHarryDesktop} alt="" height="100%" width="100%" />
+                        <img className="mobile" src={gifHarryMobile} alt="" />
+                    </div>
+                    <ContainerPreview style={{ justifyContent: "center" }}>
+                        {
+                            consulta.map(x =>
+                                <Card className="card-livro" style={{ textDecoration: "none" }} key={x.id} as={Link} to={{
+                                    pathname: "/MostrarLivro",
+                                    state: {
+                                        idlivro: x.id
+                                    }
+                                }}>
+                                    <div className="card-image" style={{ height: "310px" }}>
+                                        <img src={BuscarFoto(x.nomeArquivo)} height="100%" width="100%" alt="" />
                                     </div>
-                                </div>
-                            </Card>
-                        )
-                    }
-                </ContainerPreview>
+                                    <div className="card-focus" style={{ width: "100%    " }}>
+                                        <div id="card-titulo" style={{ width: "100%" }}>
+                                            <h5 style={{ margin: "0px", textAlign: "center" }}>
+                                                {x.nome}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </Card>
+                            )
+                        }
+                    </ContainerPreview>
+                </div>
                 <nav aria-label="Navegação de página exemplo" style={{ bottom: "0", position: "relative", marginTop: "35px", display: "flex", justifyContent: "center" }}>
                     <ul className="pagination">
                         <li className="page-item">
