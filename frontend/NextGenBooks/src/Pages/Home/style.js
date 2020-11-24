@@ -1,25 +1,25 @@
 import styled from 'styled-components'
 
 export const Home = styled.div` 
-    & > div > div.tumb > img.mobile {
+    & > div > div.tumb > a > img.mobile {
         display : none;
         margin : 0px auto;
         height : 350px;
         width : 100%;
     }
 
-    & > div > div.tumb > img.desktop {
+    & > div > div.tumb > a > img.desktop {
         margin : 0px auto;
         height : 320px;
         width : 100%;
     }
 
     @media screen and (max-width: 640px){
-        & > div > div.tumb > img.mobile {
+        & > div > div.tumb > a > img.mobile {
             display : block;
         }   
 
-        & > div > div.tumb > img.desktop {
+        & > div > div.tumb > a > img.desktop {
             display : none;
         }   
     }

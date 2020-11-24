@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { ToastContainer, toast, useToast } from "react-toastify"
 import Cookies from 'js-cookie';
 
+import LoadingBar from 'react-top-loading-bar'
 
 import { BuscarFoto } from '../../Service/fileApi.js'
 
@@ -22,6 +23,8 @@ export default function Perfil(props) {
     const navegacao = useHistory()
     const [informacoes, setInformacoes] = useState([]);
 
+    const ref = useRef(null);
+
     const sairPerfil = () => {
         Cookies.remove('id');
         Cookies.remove('token');
@@ -31,8 +34,17 @@ export default function Perfil(props) {
     }
 
     const consultarPerfil = async () => {
-        let response = await api.mostrarPerfil(Number(Cookies.get('id')));
-        setInformacoes(response);
+        try {
+            ref.current.continuousStart();
+            let response = await api.mostrarPerfil(Number(Cookies.get('id')));
+            setInformacoes(response);
+        }
+        catch (ex) {
+            toast.error(ex.response.erro)
+        }
+        finally {
+            ref.current.complete();
+        }
     }
 
     useEffect(() => {
@@ -46,6 +58,10 @@ export default function Perfil(props) {
     return (
         <Master>
             <PerfilComponest>
+                <LoadingBar
+                    color='#f11946'
+                    ref={ref}
+                />
                 <div>
                     <div>
                         <img src={BuscarFoto(informacoes.foto)} alt={`Foto de Perfil de ${informacoes.nome}`} style={{ margin: "auto", borderRadius: "100%", height: "150px", width: "150px", position: "relative", left: "50%", transform: "translateX(-50%)" }} />

@@ -101,9 +101,16 @@ export default function HomePage(e) {
                     */}
 
                 <div style={{marginTop : "40px"}}>
-                    <div className="tumb" style={{ margin: "0px", padding: "0px" }} as={Link} to="/MostrarLivro">
-                        <img className="desktop" src={gifHarryDesktop} alt="" height="100%" width="100%" />
-                        <img className="mobile" src={gifHarryMobile} alt="" />
+                    <div className="tumb" style={{ margin: "0px", padding: "0px" }}>
+                        <Link to = {{
+                            pathname : "/MostrarLivro",
+                            state : {
+                                idlivro : 28
+                            }
+                        }}>
+                            <img className="desktop" src={gifHarryDesktop} alt="Coleção de livros Harry Potter - Por apenas 419,50" height="100%" width="100%" />
+                            <img className="mobile" src={gifHarryMobile} alt="Coleção de livros Harry Potter - Por apenas 419,50" />
+                        </Link>
                     </div>
                     <ContainerPreview style={{ justifyContent: "center" }}>
                         {

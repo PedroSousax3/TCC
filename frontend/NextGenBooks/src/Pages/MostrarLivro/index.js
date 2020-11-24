@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 //Master
 import Master from '../Master/index';
 import { Link, useHistory } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
+import LoadingBar from 'react-top-loading-bar'
 
 //Components:
 import { BoxContainer } from '../../components/Card/styled.js';
@@ -39,7 +40,7 @@ export default function MostrarLivro(props) {
     const [idFavorito, setIdFavoritos] = useState();
     const [Favoritoobj, setFavoritoobj] = useState();
 
-
+    const ref = useRef(null);
 
     const navegacao = useHistory();
 
@@ -125,6 +126,7 @@ export default function MostrarLivro(props) {
 
     async function Consultar() {
         try {
+            ref.current.continuousStart();
             let response;
             if (isNaN(idcliente))
                 response = await ConsultarPorIdLivro(id, 0);
@@ -138,6 +140,9 @@ export default function MostrarLivro(props) {
         catch (ex) {
             toast.error(ex.response.data.erro);
         }
+        finally {
+            ref.current.complete();
+        }
     }
 
     useEffect(() => {
@@ -148,6 +153,10 @@ export default function MostrarLivro(props) {
     return (
         <Master>
             <ToastContainer />
+            <LoadingBar
+                color='#f11946'
+                ref={ref}
+            />
             <BoxContainer id="livro" style={{ borderRadius: "0px" }} theme={{ sc_border: "none", sc_espace: "0px", sc_padding: "10px", sc_direction: "column" }}>
                 <i class="fas fa-angle-left" style={{ fontSize: "40px", padding: "0px 15px 5px 0px", cursor: "pointer", width: "0px" }} onClick={() => { navegacao.goBack() }}></i>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
