@@ -8,6 +8,7 @@ import LoadingBar from 'react-top-loading-bar'
 import Master from '../../Master/index.js';
 
 import { toast, ToastContainer } from "react-toastify";
+import { alterarTituloPagina } from '../../../components/Utils/mask.js'
 
 
 import { Card, Title, Container, ImagemCard } from '../../../components/Card/index.js'
@@ -50,6 +51,7 @@ export default function EsqueciSenha() {
     }
 
     useEffect(() => {
+        alterarTituloPagina("Minha Lista");
         listarFavoritos();
     }, []);
 

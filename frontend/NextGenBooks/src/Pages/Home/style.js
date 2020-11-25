@@ -4,7 +4,6 @@ export const Home = styled.div`
     & > div > div.tumb > a > img.mobile {
         display : none;
         margin : 0px auto;
-        height : 350px;
         width : 100%;
     }
 

@@ -17,6 +17,7 @@ import { toast } from 'react-toastify';
 
 import gifHarryDesktop from '../../Assets/images/Gif-Harry-Potter.gif'
 import gifHarryMobile from '../../Assets/images/Gif-Harry-Potter-mobile.gif'
+
 export default function HomePage(e) {
     const [consulta, setConsulta] = useState([]);
 

@@ -3,25 +3,38 @@ import styled from 'styled-components';
 
 
 export const CaixaEsqueciSenha = styled.div`
-
-    background-color: white;
-    width: 50%;
-    height: 40vh;
-    display: flex;
+    margin-top : 100px;
+    width : 100%;
+    display : flex;
+    align-items : center;
     flex-direction: column;
-    justify-content:center;
-    align-items:center;
-    margin-top:9%;
-    text-align:left;
+    justify-content : center;
     font-weight:bold;
-    font-size:1rem;
-    border-radius: 10px;
 
+    input {
+        width : 300px;
+    }
 
-input{
-}
+    & > div {
+        width : 300px;
+        margin-top : 30px;
+        position: relative;
+    }
 
-button{
-    margin-left:10px;
-}
+    & > div > i {
+        color: black;
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    button {
+        width : 300px;
+    }
+
+    & > * {
+        width : 100%;
+        margin : 3px;
+    }
 `;
