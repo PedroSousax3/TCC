@@ -1,16 +1,22 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Master from "../../Master";
-import { toast, ToastContainer } from "react-toastify";
-import Botoes from "../MinhasCompras/components/Botoes/Botoes.js"
-import { ContainerMinhasCompras } from "./style.js";
-import { Pesquisa } from "./style.js";
-import nextgenBooks from "../../../Service/NextGenBookApi";
-import Cookies from 'js-cookie';
-import { BuscarFoto } from '../../../Service/fileApi.js'
-import { Card, Title, Container, ImagemCard } from '../../../components/Card/index.js'
+import { alterarTituloPagina } from '../../../components/Utils/mask.js'
 
-let api = new nextgenBooks();
+import { Link } from "react-router-dom";
+
+import Master from "../../Master";
+import Botoes from "../MinhasCompras/components/Botoes/Botoes.js"
+import { Pesquisa } from "./style.js";
+import { Card, Title, Container, ImagemCard } from '../../../components/Card/index.js'
+import { ContainerMinhasCompras } from "./style.js";
+
+
+import { toast, ToastContainer } from "react-toastify";
+import Cookies from 'js-cookie';
+
+import { BuscarFoto } from '../../../Service/fileApi.js'
+import nextgenBooks from "../../../Service/NextGenBookApi";
+
+const api = new nextgenBooks();
 export default function MinhasCompras() {
   const [registros, setRegistros] = useState([]);
 
@@ -25,6 +31,7 @@ export default function MinhasCompras() {
   const [cliente, setCliente] = useState(Number(Cookies.get('id')));
 
   const listarAndamento = async () => {
+    alterarTituloPagina('Minhas Compras');
     try {
 
       let resp = await api.listarComprasndamento(cliente);

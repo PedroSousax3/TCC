@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { alterarTituloPagina } from '../../components/Utils/mask.js'
 
 import { Link, useHistory } from "react-router-dom";
 import { ToastContainer, toast, useToast } from "react-toastify"
@@ -12,8 +13,6 @@ import { BuscarFoto } from '../../Service/fileApi.js'
 import { PerfilComponest } from './style';
 import { Container } from '../../components/Card/index.js'
 import Master from '../Master/index.js';
-
-import { alterarTituloPagina } from '../../components/Utils/mask.js'
 
 import nextGenBookAPI from "../../Service/NextGenBookApi"
 const api = new nextGenBookAPI();
@@ -38,6 +37,8 @@ export default function Perfil(props) {
             ref.current.continuousStart();
             let response = await api.mostrarPerfil(Number(Cookies.get('id')));
             setInformacoes(response);
+            console.log(response);
+            alterarTituloPagina(response.nome);
         }
         catch (ex) {
             toast.error(ex.response.erro)
@@ -49,10 +50,6 @@ export default function Perfil(props) {
 
     useEffect(() => {
         consultarPerfil();
-        alterarTituloPagina(informacoes.nome);
-
-
-        console.log(informacoes);
     }, [])
 
     return (

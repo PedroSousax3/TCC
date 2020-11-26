@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { alterarTituloPagina } from '../../../components/Utils/mask.js'
 
 import LoadingBar from 'react-top-loading-bar'
 
@@ -28,6 +29,8 @@ const override = css`
 
 
 export default function Carrinho(props) {
+    
+    alterarTituloPagina('Carrinho');
     const navegacao = useHistory()
     const [id, setId] = useState(Number(Cookies.get('id')));
     const [registros, setRegistros] = useState([]);
