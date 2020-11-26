@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
 import { BuscarFoto } from '../../../Service/fileApi';
+import LoadingBar from 'react-top-loading-bar'
+
 //Mastes
 import Master from '../../Master/index.js';
 
 import { toast, ToastContainer } from "react-toastify";
+import { alterarTituloPagina } from '../../../components/Utils/mask.js'
 
 
 import { Card, Title, Container, ImagemCard } from '../../../components/Card/index.js'
@@ -18,15 +21,19 @@ export default function EsqueciSenha() {
 
     const [registros, setRegistros] = useState([]);
     const [idCliente, setIdCliente] = useState(Number(Cookies.get('id')));
-
+    const ref = useRef(null);
     const listarFavoritos = async () => {
         try {
+            ref.current.continuousStart();
             const response = await listarApi(idCliente);
             setRegistros([...response]);
             console.log(response);
         }
         catch (ex) {
             toast.error(ex.response.erro)
+        }
+        finally {
+            ref.current.complete();
         }
     }
 
@@ -44,6 +51,7 @@ export default function EsqueciSenha() {
     }
 
     useEffect(() => {
+        alterarTituloPagina("Minha Lista");
         listarFavoritos();
     }, []);
 
@@ -51,6 +59,10 @@ export default function EsqueciSenha() {
         <Master>
             <ToastContainer />
             <Favoritos>
+                <LoadingBar
+                    color='#f11946'
+                    ref={ref}
+                />
                 <h1>Lista de Favoritos</h1>
                 {registros.map(x =>
                     <Card theme={{ bg_color: "white" }}>

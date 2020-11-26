@@ -49,7 +49,7 @@ const [registros,setRegistros] = useState([]);
 
                                 <tbody>
                                     {registros.map((item) =>
-                                        <tr className="table" key={item.nome}>
+                                        <tr key={item.nome}>
                                             <th scope="row">{item.nome}</th>
                                             <td>{item.email}</td>
                                             <td>{item.telefone}</td>

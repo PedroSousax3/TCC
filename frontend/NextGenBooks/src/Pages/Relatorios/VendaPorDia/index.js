@@ -77,7 +77,7 @@ export default function VendaPorDia() {
                                                 state: {
                                                     livros:item.livros
                                                 },
-                                                pathname: "/LivroVenda"
+                                                pathname: "/Relatorios/LivroVenda"
                                             }}
                                         >
                                             <button id="btcompra" type="button" className="btn btn-success" >Livros</button>

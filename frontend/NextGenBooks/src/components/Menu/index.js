@@ -15,12 +15,13 @@ export default function Menu() {
         Cookies.remove('token');
         Cookies.remove('usuario');
         Cookies.remove('perfil');
-        navegacao.go();
+        navegacao.go('/');
     }
 
     const [ perfil, setPerfil ] = useState(false);
     useEffect(
-        () => setPerfil(Cookies.get('token') !== null && Cookies.get('token') !== undefined && Cookies.get("token") !== ""), []);
+        () => setPerfil(Cookies.get('token') !== null && Cookies.get('token') !== undefined && Cookies.get("token") !== ""), []
+    );
 
     return (
         <div className="menu">
@@ -68,7 +69,7 @@ export default function Menu() {
                             perfil ?
                                     <>
                                         <Link className="dropdown-item" to="/Perfil">Minha Area</Link>
-                                        <button className="dropdown-item" onClick={sairPerfil}>SAIR</button>
+                                        <button className="dropdown-item" onClick={sairPerfil}>Sair</button>
                                     </>
                                     :
                                         <Link className="dropdown-item" to="/Acesso">Acessar</Link>

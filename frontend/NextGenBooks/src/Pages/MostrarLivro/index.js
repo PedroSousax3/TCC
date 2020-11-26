@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 //Master
 import Master from '../Master/index';
 import { Link, useHistory } from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
+import LoadingBar from 'react-top-loading-bar'
 
 //Components:
 import { BoxContainer } from '../../components/Card/styled.js';
@@ -29,6 +30,7 @@ export default function MostrarLivro(props) {
     const [lancamento, setLancamento] = useState();
     const [descricao, setDescricao] = useState("");
     const [paginas, setPaginas] = useState();
+    const [isbn, SetIsbn] = useState("");
     const [editora, setEditora] = useState("");
     const [autor, setAutor] = useState([]);
     const [genero, setGenero] = useState("");
@@ -39,13 +41,14 @@ export default function MostrarLivro(props) {
     const [idFavorito, setIdFavoritos] = useState();
     const [Favoritoobj, setFavoritoobj] = useState();
 
-
+    const ref = useRef(null);
 
     const navegacao = useHistory();
 
     function popularLivro(dados) {
         if (dados.livro != null && dados.livro !== undefined) {
             setLancamento(new Date(dados.livro.lancamento).toLocaleDateString());
+            SetIsbn(String(dados.livro.isbn));
             setNome(dados.livro.nome);
             alterarTituloPagina(dados.livro.nome);
             setValor(dados.livro.venda);
@@ -125,6 +128,7 @@ export default function MostrarLivro(props) {
 
     async function Consultar() {
         try {
+            ref.current.continuousStart();
             let response;
             if (isNaN(idcliente))
                 response = await ConsultarPorIdLivro(id, 0);
@@ -138,18 +142,25 @@ export default function MostrarLivro(props) {
         catch (ex) {
             toast.error(ex.response.data.erro);
         }
+        finally {
+            ref.current.complete();
+        }
     }
 
     useEffect(() => {
-        window.scrollTo = -100000;
         Consultar();
+        window.scrollTo(-1000000, 0);
     }, [])
 
     return (
         <Master>
             <ToastContainer />
+            <LoadingBar
+                color='#f11946'
+                ref={ref}
+            />
             <BoxContainer id="livro" style={{ borderRadius: "0px" }} theme={{ sc_border: "none", sc_espace: "0px", sc_padding: "10px", sc_direction: "column" }}>
-                <i class="fas fa-angle-left" style={{ fontSize: "40px", padding: "0px 15px 5px 0px", cursor: "pointer", width: "0px" }} onClick={() => { navegacao.goBack() }}></i>
+                <i className="fas fa-angle-left" style={{ fontSize: "40px", padding: "0px 15px 5px 0px", cursor: "pointer", width: "0px" }} onClick={() => { navegacao.goBack() }}></i>
                 <BoxContainer id="titulo" theme={{ sc_espace: "10px 0px", sc_direction: "row" }}>
                     <h2>{nome}</h2>
                     {
@@ -213,7 +224,7 @@ export default function MostrarLivro(props) {
                         <li>Número de páginas: {paginas}</li>
                         <li>Edição: {edicao}º</li>
                         <li>Tipo de Acabamento: {acabamento}</li>
-                        <li>ISBN: 123456789</li>
+                        <li>ISBN: {isbn}</li>
                         <li>Data de Lançamento: {lancamento}</li>
                     </ul>
                     <ul>

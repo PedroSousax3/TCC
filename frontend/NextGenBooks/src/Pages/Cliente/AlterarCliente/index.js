@@ -4,14 +4,16 @@ import { useHistory, Link } from "react-router-dom";
 import Cookies from 'js-cookie';
 import InputMask from "react-input-mask";
 import MaterialInput from '@material-ui/core/Input';
-
 import { toast, ToastContainer } from "react-toastify";
 
-import Master from '../../Master/index.js';
-import { BuscarFoto } from '../../../Service/fileApi';
+import { alterarTituloPagina } from '../../../components/Utils/mask.js'
 
-import nextGenBookAPI from "../../../Service/NextGenBookApi";
+
 import { CaixaImage, CaixaInformacoes, CadastroCaixa } from './style.js';
+import Master from '../../Master/index.js';
+
+import { BuscarFoto } from '../../../Service/fileApi';
+import nextGenBookAPI from "../../../Service/NextGenBookApi";
 
 const api = new nextGenBookAPI();
 
@@ -35,13 +37,22 @@ export default function AlterarCliente(props) {
 
     const salvarClick = async () => {
         try {
+            let file = null;
+            if (foto === undefined) {
+                file = null;
+            }
+            else {
+                file = foto;
+            }
+            setFoto(file);
             let request = {
                 email,
                 nome,
                 celular,
-                foto,
-                genero
+                genero,
+                foto: file
             }
+            console.log(file);
             const response = await api.alterar(request, idcliente);
             toast.dark("Dados alterados com Sucesso," + response.data.Nome);
             navegacao.push("/Perfil");
@@ -51,9 +62,10 @@ export default function AlterarCliente(props) {
         }
     }
 
+    alterarTituloPagina('Altera Dados');
     return (
         <Master>
-            <h2 style={{ color: "white" }}>Alterar Dados da Conta</h2>
+            <h2 style={{ color: "white", margin: "0px auto", width: "max-content" }}>Alterar Dados da Conta</h2>
             <CadastroCaixa>
                 <CaixaInformacoes>
                     <div className="form-group">
@@ -68,7 +80,7 @@ export default function AlterarCliente(props) {
 
                     <div className="form-group">
                         <label>Gênero:</label>
-                        <input className="form-control" value={genero} onChange={(x) => setGenero(x.target.value)} list="generos" name="genero" id="genero" />
+                        <input className="form-control" placeholder="Digite qual seu genero" value={genero} onChange={(x) => setGenero(x.target.value)} list="generos" />
                         <datalist id="generos">
                             <option value="Masculino" />
                             <option value="Feminino" />
@@ -92,11 +104,11 @@ export default function AlterarCliente(props) {
                 <CaixaImage>
                     <label>
                         <span>Selecionar uma imagem de perfil</span>
-                        <br />
-                        <input type="file" id="img-input" name="image"
-                            onChange={e => AdicionarFoto(e.target.files[0])}
-                        />
                     </label>
+                    <br />
+                    <input type="file" id="img-input" name="image"
+                        onChange={e => AdicionarFoto(e.target.files[0])}
+                    />
 
                     <div className="image-preview" id="img-container">
                         <img src={file} alt="" id="preview"></img>

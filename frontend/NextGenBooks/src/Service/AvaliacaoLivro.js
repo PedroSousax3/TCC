@@ -7,6 +7,5 @@ const api = axios.create(
 
 export const listarAvaliacaoLivroApi = async (idlivro) => {
     const response = await api.get('/' + idlivro);
-    console.log(response);
     return response;
 }

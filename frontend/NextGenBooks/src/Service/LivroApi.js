@@ -8,7 +8,6 @@ const api = axios.create (
 
 export const ConsultarPorIdLivro = async (idlivro, idcliente) => {
     const response = await api.get("/" + idlivro + "/" + idcliente);
-    console.log(response.data)
     return response;
 }
 
