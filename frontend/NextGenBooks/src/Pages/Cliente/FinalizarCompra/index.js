@@ -11,7 +11,7 @@ import {calcularFrete} from '../../../Service/ApiCorreio';
 const api = new nextGenBookAPI();
 export default function FinalizarCompra(props) {
 
-    const [nCdServico,setnCdServico] = useState("40010");
+    const [nCdServico,setnCdServico] = useState("04014");
     const [sCepOrigem,setsCepOrigem] = useState("04458110");
     const [nCdFormato,setnCdFormato] = useState("1");
   
@@ -54,22 +54,23 @@ export default function FinalizarCompra(props) {
 
     const CalcularFrete = async () => {
         try {
-            
-            let peso = 0;
-            let comprimento = 0;
-            let altura = 0;
-            let largura = 0;
-            registros.map(x => {
-                comprimento += 0;
-                altura += x.informacoes.medida.altura;
-                largura += x.informacoes.medida.largura;
-                peso += x.informacoes.medida.peso;
-                console.log(x.informacoes)
-            });
-    
             const enderecocep = listaDeEndereco.filter(x => x.id === enderecoId)[0];
             let cep = enderecocep.cep;
-            let resp = await calcularFrete(nCdServico, sCepOrigem, cep, peso, nCdFormato,comprimento,altura ,largura , nVlDiametro);
+            let peso = 0;
+            let comprimento = 200;
+            let altura = 0;
+            let largura = 0;
+            let total = 0;
+            registros.map(x => {
+                comprimento = 1;
+                altura = x.informacoes.medida.altura;
+                largura = x.informacoes.medida.largura;
+                peso = x.informacoes.medida.peso;
+                
+
+                
+            });
+            let resp = await calcularFrete(nCdServico, sCepOrigem, cep,"0."+peso, nCdFormato,16,16,16, nVlDiametro);
             console.log(resp);
             setValorFrete(resp[0].Valor);
   
