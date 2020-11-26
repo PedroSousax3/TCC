@@ -13,7 +13,6 @@ export const ListarCarrinho = async (cliente) => {
 
 export const Remover = async (id) => {
     const resp = await api.delete('/' + id);
-    console.log(resp);
 }
 
 export const InserirCarrinhoApi = async (request) => {
