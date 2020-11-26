@@ -55,19 +55,18 @@ namespace api.Controllers
             {
                 Models.TbCliente tabela = conversor.ParaTabelAlteraCliente(request);
                 
-                if (request.foto == null)
-                    tabela.DsFoto = "";
-                else
+                if (request.foto != null)
                     tabela.DsFoto = gerenciadorFoto.GerarNovoNome(request.foto.FileName);
 
                 tabela = await business.AlterarCliente(idcliente, tabela);
+
                 if(request.foto != null)
                     gerenciadorFoto.SalvarFile(tabela.DsFoto, request.foto);
+
                 return conversor.ParaResponseCliente(tabela);
             }
             catch (System.Exception ex)
             {
-
                 return BadRequest(new Models.Response.ErroResponse(400, ex.Message));
             }
         }

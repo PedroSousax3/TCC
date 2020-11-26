@@ -50,7 +50,7 @@ export default class NextGenBookApi{
         formData.append('foto', req.foto);
         formData.append('genero', req.genero);
 
-        const resp = await api.put('/Cliente/' + idcliente , formData, {
+        const resp = await axios.put('http://localhost:5000/Cliente/' + idcliente , formData, {
             headers: { 'content-type': 'multipart/form-data' }
         });
         

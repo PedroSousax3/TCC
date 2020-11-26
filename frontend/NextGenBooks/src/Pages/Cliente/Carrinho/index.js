@@ -80,13 +80,17 @@ export default function Carrinho(props) {
 
     const alterarCarrinho = async (item, idcarrinho, qtd) => {
         try {
-            setEstado(true);
-            let response = await alterarQuantidadeApi(idcarrinho, qtd);
-            ConsultarCarrinho();
-            setEstado(false);
+            if(qtd > 0) {
+                setEstado(true);
+                let response = await alterarQuantidadeApi(idcarrinho, qtd);
+                ConsultarCarrinho();
+            }
         }
         catch (ex) {
             toast.error(ex.response.erro)
+        }
+        finally {
+            setEstado(false);
         }
     }
 
@@ -151,7 +155,7 @@ export default function Carrinho(props) {
                                             color={"#438719"}
                                             loading={estado}
                                         />
-                                        <input type="number" className="form-control" min="1" minLength="1" onChange={(qtd) => alterarCarrinho(x.qtd, x.id, Number(qtd.target.value))} value={x.qtd} style={{ width: "70px" }} />
+                                        <input type="number" className="form-control" onChange={(qtd) => alterarCarrinho(x.qtd, x.id, Number(qtd.target.value))} value={x.qtd} style={{ width: "70px" }} />
                                     </div>
                                 </div>
                             </div>

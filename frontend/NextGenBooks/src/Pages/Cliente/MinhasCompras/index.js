@@ -4,9 +4,8 @@ import { alterarTituloPagina } from '../../../components/Utils/mask.js'
 import { Link } from "react-router-dom";
 
 import Master from "../../Master";
-import Botoes from "../MinhasCompras/components/Botoes/Botoes.js"
 import { Pesquisa } from "./style.js";
-import { Card, Title, Container, ImagemCard } from '../../../components/Card/index.js'
+import { Card, Title, Container } from '../../../components/Card/index.js'
 import { ContainerMinhasCompras } from "./style.js";
 
 
@@ -20,24 +19,21 @@ const api = new nextgenBooks();
 export default function MinhasCompras() {
   const [registros, setRegistros] = useState([]);
 
-  const [status, setStatus] = useState("");
+  const [setStatus] = useState("");
 
   const [motivo, setMotivo] = useState("");
-  const [valor, setValor] = useState(0);
-  const [codigo_rastreio, setCodigoRastreio] = useState("123");
+  const [codigo_rastreio] = useState("123");
   const [comprovante, setComprovante] = useState();
-  const [previsao_entrega, setPrevisao_entrega] = useState(new Date().toISOString().substr(0, 10));
+  const [previsao_entrega] = useState(new Date().toISOString().substr(0, 10));
 
-  const [cliente, setCliente] = useState(Number(Cookies.get('id')));
+  const [cliente ] = useState(Number(Cookies.get('id')));
 
   const listarAndamento = async () => {
     alterarTituloPagina('Minhas Compras');
     try {
-
       let resp = await api.listarComprasndamento(cliente);
       setRegistros([...resp]);
-
-    } catch (e) {
+    } catch {
       toast.error("Ainda não ha compras em andamento");
     }
   }
@@ -46,7 +42,7 @@ export default function MinhasCompras() {
       let resp = await api.listarComprasfinalizadas(cliente);
       setRegistros([...resp]);
       setStatus(registros[0].status.status);
-    } catch (e) {
+    } catch {
       toast.error("Ainda não ha compras finalizadas");
     }
   }
@@ -55,7 +51,7 @@ export default function MinhasCompras() {
       let resp = await api.listarComprasPendentes(cliente);
       setRegistros([...resp]);
       setStatus(registros[0].status.status);
-    } catch (e) {
+    } catch {
       toast.error("Ainda não ha compras pendentes");
     }
   }
@@ -95,7 +91,6 @@ export default function MinhasCompras() {
       toast.error(e.response.data.erro);
     }
   }
-
 
   return (
     <div>

@@ -118,7 +118,7 @@ const Favoritos = styled.div`
     display: flex;
     flex-direction: column;
 
-    padding: 10px 10%;
+    padding: 10px 0px 0px 20px;
 
     & > h1 {
         color : white;
