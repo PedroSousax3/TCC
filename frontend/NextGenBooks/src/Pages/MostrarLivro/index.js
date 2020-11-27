@@ -57,9 +57,6 @@ export default function MostrarLivro(props) {
             setPaginas(dados.livro.paginas)
             setDescricao(dados.livro.descricao);
             setFoto(dados.livro.foto);
-            setFavoritos(dados.livro.favorito);
-            setIdFavoritos(dados.favorito.id);
-            setFavoritoobj(dados.favorito);
             if (dados.livro.editora != null && dados.livro.editora !== undefined)
                 setEditora(dados.livro.editora.nome);
             if (dados.livro.medida != null && dados.livro.editora !== undefined) {
@@ -73,6 +70,9 @@ export default function MostrarLivro(props) {
                 setGenero(dados.generos.map(x => x.genero + " ").toString());
             if (dados.autores != null && dados.autores !== undefined && dados.autores.length > 0)
                 setAutor([...dados.autores]);
+            setFavoritos(dados.livro.favorito);
+            setIdFavoritos(dados.favorito.id);
+            setFavoritoobj(dados.favorito);
         }
     }
 
