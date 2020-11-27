@@ -58,7 +58,7 @@ export default function MostrarLivro(props) {
             setDescricao(dados.livro.descricao);
             setFoto(dados.livro.foto);
             setFavoritos(dados.livro.favorito);
-            //setIdFavoritos(dados.favorito.id);
+            setIdFavoritos(dados.favorito.id);
             setFavoritoobj(dados.favorito);
             if (dados.livro.editora != null && dados.livro.editora !== undefined)
                 setEditora(dados.livro.editora.nome);
@@ -105,6 +105,7 @@ export default function MostrarLivro(props) {
                 await ConsultarPorIdLivro(id, idcliente)
                 toast.success(' 🥇 Livro foi adicionado a lista de favoritos com sucesso');
                 setFavoritos(true);
+                await Consultar();
             }
         } catch (ex) {
             toast.info(' 🏁 ' + ex.response.data.erro);
@@ -113,7 +114,7 @@ export default function MostrarLivro(props) {
 
     async function removerFavorito() {
         try {
-            if (idcliente <= 0 || idcliente === undefined || idcliente == null || isNaN(idcliente)) {
+            if (idcliente <= 0 || idcliente === undefined || idcliente == null) {
                 toast.error("Usúario não encotrado, nescessário a realização de login.");
             }
             else {
@@ -140,7 +141,7 @@ export default function MostrarLivro(props) {
                 setAvaliacoes([...listAvaliacao]);
         }
         catch (ex) {
-            toast.error(ex.response.data.erro);
+            //toast.error(ex.response.data.erro);
         }
         finally {
             ref.current.complete();
