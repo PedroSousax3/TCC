@@ -2,13 +2,6 @@
 
 [TOC]
 
-:toc: macro
-:toc-title:
-:toclevels: 99
-# Title
-
-toc::[]
-
 - # DIAGRAMAS
 
 - ## CASO DE USO
