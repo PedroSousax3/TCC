@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create(
-    { baseURL : 'http://localhost:5000/Favoritos'}  
+    { baseURL : 'http://151.106.109.133:5000/Favoritos'}  
 
 );
 
