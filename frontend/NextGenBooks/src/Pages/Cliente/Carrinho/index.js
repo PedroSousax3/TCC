@@ -96,7 +96,7 @@ export default function Carrinho(props) {
 
     useEffect(() => {
         ConsultarCarrinho();
-    }, []);
+    });
 
     return (
         <Master>

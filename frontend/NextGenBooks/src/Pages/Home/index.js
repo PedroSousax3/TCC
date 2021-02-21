@@ -29,13 +29,15 @@ export default function HomePage(e) {
     const ref = useRef(null);
 
     const listarLivros = async () => {
-        try {
+        try 
+        {
             ref.current.continuousStart();
             const result = await ListPostFile(inicio, 10, nome);
             setConsulta([...result.data.posteres]);
             setQtdPost(result.data.qtd);
         }
-        catch (ex) {
+        catch (ex) 
+        {
             toast.info(ex.response.data.erro)
         }
         finally {
